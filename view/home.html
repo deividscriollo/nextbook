@@ -1,0 +1,119 @@
+<header class="header header-transparent header-waterfall ui-header">
+		<span class="header-logo">NextBook</span>
+		<ul class="nav nav-list pull-right">
+			<li class="dropdown margin-right">
+				<a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown">
+					<span class="access-hide">John Smith</span>
+					<span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="images/users/avatar-001.jpg"></span>
+				</a>
+				<ul class="dropdown-menu dropdown-menu-right dropdown-menu-right">
+					<li>
+						<a class="padding-right-lg waves-attach" href="javascript:void(0)"><span class="icon icon-lg margin-right">account_box</span>Profile Settings</a>
+					</li>
+					<li>
+						<a class="padding-right-lg waves-attach" href="javascript:void(0)"><span class="icon icon-lg margin-right">add_to_photos</span>Upload Photo</a>
+					</li>
+					<li>
+						<a class="padding-right-lg waves-attach" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<div class="form-group form-group-label">
+				    <label class="floating-label" for="..."> Usuario </label>
+				    <input class="form-control" id="..." type="text">
+				</div>
+			</li>
+			<li>
+				<div class="form-group form-group-label">
+				    <label class="floating-label" for="..."> Usuario </label>
+				    <input class="form-control" id="..." type="text">
+				</div>
+			</li>
+			<li>
+				<a class="btn btn-brand-accent waves-attach waves-light waves-effect">Entrar</a>
+			</li>
+			<li>
+				<a data-toggle="modal" href="#ui_picker_alert">
+					<span class="icon icon-lg">help_outline</span>
+				</a>
+			</li>
+		</ul>
+	</header>
+	<main class="content">
+		<div class="content-header ui-content-header">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+						<h1 class="content-heading">Red de Negocios</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+					<section class="content-inner margin-top-no">
+						<nav class="tab-nav ui-tab">
+							<ul class="nav nav-justified">
+								<li class="active" ng-class="{active: ('s1.ParaEmpresas' | routeSegmentStartsWith)}">
+									<a class="waves-attach waves-light waves-effect" href="#{{'s1.ParaEmpresas' | routeSegmentUrl}}"><span class="text-white">Para Empresa</span></a>
+								</li>
+								<li ng-class="{active: ('s1.Parati' | routeSegmentStartsWith)}">
+									<a class="waves-attach waves-light waves-effect" href="#{{'s1.Parati' | routeSegmentUrl}}"><span class="text-white">Para Ti</span></a>
+								</li>
+								<li ng-class="{active: ('s1.quienessomos' | routeSegmentStartsWith)}">
+									<a class="waves-attach waves-light waves-effect" href="#{{'s1.quienessomos' | routeSegmentUrl}}"><span class="text-white">Quienes Somos</span></a>
+								</li>
+							</ul>
+						</nav>
+					</section>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3">
+					<section>
+						<div app-view-segment="1"></div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer class="ui-footer">
+		<div class="container">
+			<p>copyright by Conceptual Business Group</p>
+		</div>
+	</footer>
+	<div class="fbtn-container">
+		<div class="fbtn-inner">
+			<a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown"><span class="fbtn-text fbtn-text-left">Links</span><span class="fbtn-ori icon">apps</span><span class="fbtn-sub icon">close</span></a>
+			<div class="fbtn-dropup">
+				<a class="fbtn waves-attach waves-circle" href="https://github.com/Daemonite/material" target="_blank"><span class="fbtn-text fbtn-text-left">Fork me on GitHub</span><span class="icon">code</span></a>
+				<a class="fbtn fbtn-brand waves-attach waves-circle waves-light" href="https://twitter.com/daemonites" target="_blank"><span class="fbtn-text fbtn-text-left">Follow Daemon on Twitter</span><span class="icon">share</span></a>
+				<a class="fbtn fbtn-green waves-attach waves-circle" href="http://www.daemon.com.au/" target="_blank"><span class="fbtn-text fbtn-text-left">Visit Daemon Website</span><span class="icon">link</span></a>
+			</div>
+		</div>
+	</div>
+	<!-- modal registro -->
+	<div aria-hidden="true" class="modal modal-va-middle fade" id="ui_picker_alert" role="dialog" tabindex="-1">
+		<div class="modal-dialog modal-xs">
+			<div class="modal-content">
+				<div class="modal-heading">
+					<p class="modal-title">About Picker UI</p>
+				</div>
+				<div class="modal-inner">
+					<ul class="padding-left text-black-hint">
+						<li>Picker UI is not responsive and only works in desktop,</li>
+						<li>Click items in the middle column to view additional information about that item,</li>
+						<li>Draw a box with cursor to select multiple items,</li>
+						<li>Hold down <kbd>Cmd</kbd> or <kbd>Ctrl</kbd> to make multiple non-adjacent selections,</li>
+						<li>Click on the selected items' gripper icon and drag them anywhere within the viewport,</li>
+						<li>Click on the selected items' gripper icon and drop them on the navigaation links in the left hand column.</li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<p class="text-right"><a class="btn btn-flat btn-brand-accent waves-attach" data-dismiss="modal">OK</a></p>
+				</div>
+			</div>
+		</div>
+	</div>

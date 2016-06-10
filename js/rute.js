@@ -12,20 +12,23 @@ app.config(function($routeSegmentProvider, $routeProvider) {
         
             
             .when('/',          's1')
+            // procesos inicial
             .when('/Home/Inicio',    's1.inicio')
+            .when('/Home/ParaTi',      's1.Parati')
             .when('/Home/ParaEmpresas',    's1.ParaEmpresas')
-
-            .when('/Home/ParaTi',      's1.Parati')            
             .when('/Home/QuienesSomos',          's1.quienessomos')
-            .when('/section2/:id',      's2.itemInfo')            
+            
+            // segmentacion seleccion sucursal
+            .when('/SeleccionarSucursal',      'selec-sucursal')
+            .when('/My-space',      'dashboard')
+
             .when('/section3',          's3')
             
             .segment('s1', {
                 templateUrl: 'view/home.html',
                 controller: 'MainCtrl'})
                 
-            .within()
-                
+            .within()                
                 .segment('inicio', {
                     'default': true,
                     templateUrl: 'view/empresas.html'})
@@ -37,16 +40,17 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     templateUrl: 'view/parati.html',
                 })                    
                 .segment('quienessomos', {
-                    templateUrl: 'view/quienessomos.html'})
-                    
+                    templateUrl: 'view/quienessomos.html'})                    
             .up()
-            
-            .segment('s2', {
-                templateUrl: 'templates/section2.html',
-                controller: 'MainCtrl'})
-                
-            .within()
-                
+            .segment('selec-sucursal', {
+                templateUrl: 'view/data/seleccionarempresa/index.html',
+                controller: 'seleccionar-empresa'
+            })
+            .segment('dashboard', {
+                templateUrl: 'view/dashboardempresa/index.html',
+                // controller: 'MainCtrl'
+            })                
+            .within()                
                 .segment('itemInfo', {
                     templateUrl: 'templates/section2/item.html',
                     dependencies: ['id']})

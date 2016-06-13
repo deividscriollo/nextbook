@@ -1,5 +1,70 @@
 <div class="animated fadeIn">
 
-persona natural
+    <form name="formreg">
+        <div class="row col-lg-7">
+            <div class="col-lg-12 ">
+                <div class="form-group form-group-label control-focus">
+                    <label class="floating-label"><span class="icon icon-lg">play_arrow</span> Nombres y Apellidos </label>
+                    <input class="form-control" type="text" ng-model="data.nombres_apellidos" disabled>
+                </div>
+                <div class="form-group form-group-label control-focus">
+                    <label class="floating-label"><span class="icon icon-lg">play_arrow</span> Provincia</label>
+                    <input class="form-control" type="text" ng-model="data.provincia" disabled>
+                </div>
+                <div class="form-group form-group-label control-focus">
+                    <label class="floating-label"><span class="icon icon-lg">play_arrow</span> Cantón</label>
+                    <input class="form-control" type="text" ng-model="data.canton" disabled>
+                </div>
+                <div class="form-group form-group-label control-focus">
+                    <label class="floating-label"><span class="icon icon-lg">play_arrow</span> Parroquia</label>
+                    <input class="form-control" type="text" ng-model="data.parroquia" disabled>
+                </div>
+                <div class="form-group form-group-label control-focus" disabled>
+                    <label class="floating-label"><span class="icon icon-lg">play_arrow</span> Zona</label>
+                    <input class="form-control" type="text" ng-model="data.zona" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="row col-lg-5">
+            <div class="col-lg-12">
+                <div class="form-group-brand form-group-label" ng-class="{ 'form-group-red' : formreg.cedula.$invalid && formreg.cedula.$touched }">
+                    <label class="floating-label"> <span class="icon icon-lg">account_box</span> Cedula</label>
+                    <input class="form-control" id="cedula" ng-model="data.cedula" name="cedula" type="text" ng-keyup="cargadatos(formreg.cedula.$valid)" ng-required="true" cedula-validation>
+                    <span for="correo" ng-show="formreg.cedula.$invalid && formreg.cedula.$touched">
+                                <span class="label label-red"><span class="icon icon-lg">info_outline</span> La Cédula es incorrecta</span>
+                    </span>
+                </div>
+                <div class="form-group-brand form-group-label " ng-class="{ 'form-group-red' : formreg.telefono.$invalid && formreg.telefono.$touched }">
+                    <label class="floating-label"> <span class="icon icon-lg">phone</span> Teléfono</label>
+                    <input class="form-control" ng-model="data.telefono" name="telefono" type="text" ng-required="true">
+                    <span for="telefono" ng-show="formreg.telefono.$invalid && formreg.telefono.$touched">
+                    <span class="label label-red"><span class="icon icon-lg">info_outline</span> Campo Obligatorio</span>
+                    </span>
+                </div>
+                <div class="form-group-brand form-group-label " ng-class="{ 'form-group-red' : formreg.celular.$invalid && formreg.celular.$touched }">
+                    <label class="floating-label"><span class="icon icon-lg">phone_iphone</span> Celular</label>
+                    <input class="form-control" ng-model="data.celular" name="celular" type="text" ng-required="true">
+                    <span for="telefono" ng-show="formreg.celular.$invalid && formreg.celular.$touched">
+                    <span class="label label-red"><span class="icon icon-lg">info_outline</span> Campo Obligatorio</span>
+                </div>
+                <div class="form-group-brand form-group-label " ng-class="{ 'form-group-red' : formreg.correo.$invalid && formreg.correo.$touched }">
+                    <label class="floating-label"><span class="icon icon-lg">email</span> Correo</label>
+                    <input class="form-control" ng-model="data.correo" name="correo" type="email" ng-required="true">
+                    <span for="telefono" ng-show="formreg.correo.$invalid && formreg.correo.$touched">
+                    <span class="label label-red"><span class="icon icon-lg">info_outline</span> Email incorrecto</span>
+                </div>
+                <!--  <div class="form-group-brand form-group-label " ng-class="{ 'form-group-red' : formreg.fecha_nacimiento.$invalid && formreg.fecha_nacimiento.$touched }">
+                    <label class="floating-label"><span class="icon icon-lg">date_range</span> Fecha de nacimiento</label>
+                    <input class="form-control" ng-model="data.fecha_nacimiento" name="fecha_nacimiento" type="date" ng-required="true">
+                    <span for="telefono" ng-show="formreg.fecha_nacimiento.$invalid && formreg.fecha_nacimiento.$touched">
+                    <span class="label label-red">Campo Obligatorio</span>
+                </div> -->
+                <div class="panel-footer text-right">
+                    <button class="btn btn-brand waves-attach waves-light waves-effect" ng-click="registrar()">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
 </div>

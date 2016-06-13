@@ -34,10 +34,13 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     templateUrl: 'view/empresas.html'})
 
                 .segment('ParaEmpresas', {
-                    templateUrl: 'view/empresas.html'})
+                    templateUrl: 'view/empresas.html',
+                    controller: 'EmpresasCtrl'
+                    })
                     
                 .segment('Parati', {
                     templateUrl: 'view/parati.html',
+                    controller: 'PersonasCtrl'
                 })                    
                 .segment('quienessomos', {
                     templateUrl: 'view/quienessomos.html'})                    

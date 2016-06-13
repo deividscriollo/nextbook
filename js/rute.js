@@ -164,7 +164,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             
             
         $routeProvider.otherwise({redirectTo: '/'}); 
-    }) ;
+    });
 
     app.value('loader', {show: false});
 

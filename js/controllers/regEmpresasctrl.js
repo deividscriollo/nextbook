@@ -1,6 +1,6 @@
  
  app.controller('EmpresasCtrl', function ($scope,loaddatosSRI, Empresa) {
- 	console.log('Message from EmpresasCtrl');
+ 	// console.log('Message from EmpresasCtrl');
  $scope.nombres_apellidos = "";
     $scope.cedula = "";
     $scope.sucursales=[];

@@ -18,14 +18,20 @@
                 </li>
             </ul>
         </li>
-        <li>
+        <li class="col-lg-4">
             <div class="form-group form-group-label">
-                <label class="floating-label" for="..."> Usuario </label>
-                <input class="form-control" id="..." type="text">
+                <label class="floating-label " for="usuario" > Usuario </label>
+                <input class="form-control" id="usuario" type="text" ng-model="data.email">
             </div>
         </li>
         <li>
-            <a class="btn btn-brand-accent waves-attach waves-light waves-effect">Entrar</a>
+            <div class="form-group form-group-label">
+                <label class="floating-label" for="pass"> Contraseña</label>
+                <input class="form-control" id="pass" type="password" ng-model="data.password">
+            </div>
+        </li>
+        <li>
+            <a class="btn btn-brand-accent waves-attach waves-light waves-effect" ng-click="ingresar()">Entrar</a>
         </li>
         <li>
             <a data-toggle="modal" href="#ui_picker_alert">

@@ -1,6 +1,6 @@
  
  app.controller('PersonasCtrl', function ($scope,loaddatosSRI, Persona) {
- 	 console.log('Personas');
+ 	 // console.log('Personas');
 
     $scope.cargadatos = function(estado) {
         if (estado) {

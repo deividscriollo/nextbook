@@ -20,6 +20,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             
             // segmentacion seleccion sucursal
             .when('/SeleccionarSucursal',      'selec-sucursal')
+             .when('/FacturaNext',      'factura-next')
             .when('/My-space',      'dashboard')
 
             .when('/section3',          's3')
@@ -52,7 +53,11 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .segment('dashboard', {
                 templateUrl: 'view/dashboardempresa/index.html',
                 // controller: 'MainCtrl'
-            })                
+            })
+             .segment('factura-next', {
+                templateUrl: 'view/data/FacturaNext/index.html',
+                controller: 'FacturaCtrl'
+            })                   
             .within()                
                 .segment('itemInfo', {
                     templateUrl: 'templates/section2/item.html',
@@ -171,14 +176,27 @@ app.config(function($routeSegmentProvider, $routeProvider) {
 
     app.value('loader', {show: false});
 
-    app.controller('MainCtrl', function($scope, $routeSegment, loader) {
-
+    app.controller('MainCtrl', function($scope, $routeSegment,$localStorage, $location,loader,LoginE) {
+        $scope.data='';
         $scope.$routeSegment = $routeSegment;
         $scope.loader = loader;
 
         $scope.$on('routeSegmentChange', function() {
             loader.show = false;
         })
+        $scope.ingresar=function(){
+           $scope.data['tipo']="E";
+              LoginE.ingresar($scope.data).$promise.then(function(data){
+                // console.log(data[0]);
+                $localStorage.token=data[0].token;
+                $localStorage.datosE=data.datosE;
+                $location.path('/SeleccionarSucursal');
+                    }, function(err){
+                       if (err.status==404) {
+                           alert('Usario/Contraseña incorrectos');
+                       }
+                        });
+        }
     });
 
     app.controller('Section1Ctrl', function($scope, $routeSegment) {

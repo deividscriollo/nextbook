@@ -81,7 +81,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 })
                 .segment('perfil', {
                     templateUrl: 'templates/section3.html'
-                    controller: 'perfilCtrl'
+                    // controller: 'perfilCtrl'
                 })
             .up()
             .segment('factura-next', {

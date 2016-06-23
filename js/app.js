@@ -248,7 +248,7 @@ app.factory('Facturas', function($resource,$localStorage) {
 return $resource('http://192.168.1.21/appnext/public/readFacturas', {}, {
     get: {
         method: 'GET',
-        isArray: true,
+        isArray: false,
        params: {token: $localStorage.token}
     }
     });

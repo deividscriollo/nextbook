@@ -1,4 +1,7 @@
-var app=angular.module('app').controller('seleccionar-empresa', function ($scope, Sucursaless, $location, $localStorage) {
+var app=angular.module('app').controller('seleccionar-empresa', function ($scope, Sucursaless, $location, $localStorage,Facturas) {
+console.log('hello select empresa');
+    Facturas.get();
+
     $scope.products=[];
     Sucursaless.get().$promise.then(function(data) {
         if (data.sucursales.length==1) {

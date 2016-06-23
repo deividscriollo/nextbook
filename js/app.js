@@ -196,20 +196,20 @@ app.factory('loaddatosSRI', function($resource) {
 });
 
 app.factory('Empresa', function($resource) {
-    return $resource("http://192.168.1.28/appnext/public/registroEmpresas/:id", {
+    return $resource("http://192.168.1.21/appnext/public/registroEmpresas/:id", {
         id: "@id"
     });
 });
 
 app.factory('Persona', function($resource) {
-    return $resource("http://192.168.1.28/appnext/public/registroPersonas/:id", {
+    return $resource("http://192.168.1.21/appnext/public/registroPersonas/:id", {
         id: "@id"
     });
 });
 
 app.factory('LoginE', function($resource,$localStorage) {
 
-return $resource('http://192.168.1.28/appnext/public/login', {}, {
+return $resource('http://192.168.1.21/appnext/public/login', {}, {
     ingresar: {
         method: 'POST',
         isArray: false,
@@ -221,7 +221,7 @@ return $resource('http://192.168.1.28/appnext/public/login', {}, {
 
 app.factory('LogoutE', function($resource,$localStorage) {
 
-return $resource('http://192.168.1.28/appnext/public/logoutE', {}, {
+return $resource('http://192.168.1.21/appnext/public/logoutE', {}, {
     salir: {
         method: 'POST',
         isArray: false,
@@ -233,7 +233,7 @@ return $resource('http://192.168.1.28/appnext/public/logoutE', {}, {
 
 app.factory('Sucursaless', function($resource,$localStorage) {
 
-return $resource('http://192.168.1.28/appnext/public/getsucursales', {}, {
+return $resource('http://192.168.1.21/appnext/public/getsucursales', {}, {
     get: {
         method: 'GET',
         isArray: false,
@@ -245,10 +245,10 @@ return $resource('http://192.168.1.28/appnext/public/getsucursales', {}, {
 
 app.factory('Facturas', function($resource,$localStorage) {
 
-return $resource('http://192.168.1.28/appnext/public/readFacturas', {}, {
+return $resource('http://192.168.1.21/appnext/public/readFacturas', {}, {
     get: {
         method: 'GET',
-        isArray: false,
+        isArray: true,
        params: {token: $localStorage.token}
     }
     });

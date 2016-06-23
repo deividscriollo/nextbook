@@ -22,6 +22,10 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/SeleccionarSucursal',      'selec-sucursal')
              .when('/FacturaNext',      'factura-next')
             .when('/My-space',      'dashboard')
+            .when('/My-space/Inicio',      'dashboard.inicio')
+            .when('/My-space/Apss',      'dashboard.apps')
+            .when('/My-space/Maps',      'dashboard.maps')
+            .when('/My-space/Historial',      'dashboard.record')
 
             .when('/section3',          's3')
             
@@ -54,7 +58,26 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 templateUrl: 'view/dashboardempresa/index.html',
                 // controller: 'MainCtrl'
             })
-             .segment('factura-next', {
+                .within()
+                    .segment('inicio', {
+                        'default': true,
+                        templateUrl: 'view/dashboardempresa/inicio.html',
+                        controller: 'inicioCtrl'
+                    })
+                    .segment('apps', {
+                        templateUrl: 'view/dashboardempresa/apps.html',
+                        controller: 'appsCtrl'
+                    })
+                    .segment('maps', {
+                        templateUrl: 'view/dashboardempresa/maps.html',
+                        controller: 'appsCtrl'
+                    })
+                    .segment('record', {
+                        templateUrl: 'view/dashboardempresa/record.html',
+                        controller: 'recordCtrl'
+                    })
+                .up()
+            .segment('factura-next', {
                 templateUrl: 'view/data/FacturaNext/index.html',
                 controller: 'FacturaCtrl'
             })                   
@@ -69,108 +92,9 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 templateUrl: 'templates/section3.html'})
                 
                 
-        // Also, we can add new item in a deep separately. This is useful when working with
-        // routes in every module individually
+        
                 
-        $routeSegmentProvider
         
-            .when('/section1/:id/Z',    's1.itemInfo.tab3')  
-            
-            .within('s1')
-                .within('itemInfo')
-                    .segment('tab3', {
-                        templateUrl: 'templates/section1/tabs/tab3.html'})
-                        
-                        
-        // This is some usage of `resolve`, `untilResolved` and `resolveFailed` features
-                        
-        $routeSegmentProvider
-        
-            .when('/invalid-template', 's1.invalidTemplate')
-            .when('/invalid-data', 's1.invalidData')
-            .when('/slow-data', 's1.slowDataSimple')
-            .when('/slow-data-loading', 's1.slowDataLoading')
-            .when('/inline-view', 's1.inlineParent')
-            .when('/section1/:id/slow',    's1.itemInfo.tabSlow')
-            
-            .within('s1')
-                .segment('invalidTemplate', {
-                    templateUrl: 'this-does-not-exist.html',    // 404
-                    resolveFailed: {
-                        templateUrl: 'templates/error.html',
-                        controller: 'ErrorCtrl'
-                    }
-                })
-                .segment('invalidData', {
-                    templateUrl: 'templates/section1/home.html',     // Correct!
-                    resolve: {
-                        data: function($q) {
-                            return $q.reject('ERROR DESCRIPTION');     // Failed to load data
-                        }
-                    },
-                    resolveFailed: {
-                        templateUrl: 'templates/error.html',
-                        controller: 'ErrorCtrl'
-                    }
-                })
-                .segment('slowDataSimple', {
-                    templateUrl: 'templates/section1/slow-data.html',
-                    controller: 'SlowDataCtrl',
-                    resolve: {
-                        data: function($timeout, loader) {
-                            loader.show = true;
-                            return $timeout(function() { return 'SLOW DATA CONTENT'; }, 2000);
-                        }
-                    }
-                })
-                .segment('slowDataLoading', {
-                    templateUrl: 'templates/section1/slow-data.html',
-                    controller: 'SlowDataCtrl',
-                    resolve: {
-                        data: function($timeout) {
-                            return $timeout(function() { return 'SLOW DATA CONTENT'; }, 2000);
-                        }
-                    },
-                    untilResolved: {
-                        templateUrl: 'templates/loading.html'
-                    }
-                })
-                .segment('inlineParent', {
-                    templateUrl: 'templates/section1/inline-view.html'
-                })
-                .within()
-                    .segment('inlineChildren', {
-                        // no template here
-                        controller: 'SlowDataCtrl',
-                        'default': true,
-                        resolve: {
-                            data: function($timeout) {
-                                return $timeout(function() { return 'SLOW DATA CONTENT'; }, 2000);
-                            }
-                        },
-                        untilResolved: {
-                            templateUrl: 'templates/loading.html'
-                        }
-                    })
-                    .up()
-
-                .within('itemInfo')
-                    .segment('tabSlow', {
-                        templateUrl: 'templates/section1/slow-data.html',
-                        controller: 'SlowDataCtrl',
-                        resolve: {
-                            data: function($timeout) {
-                                return $timeout(function() { return 'SLOW DATA CONTENT'; }, 2000);
-                            }
-                        },
-                        untilResolved: {
-                            templateUrl: 'templates/loading.html'
-                        }
-                    })
-
-                    
-            
-            
         $routeProvider.otherwise({redirectTo: '/'}); 
     });
 

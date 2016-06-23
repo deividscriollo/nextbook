@@ -1,11 +1,14 @@
 
 var app = angular.module('app', 
-								['ngStorage',
+								[
+                                    'ngMaterial',
+                                    'ngMessages',
+                                    'ngStorage',
 									'ngRoute',
 									'route-segment',
 									'view-segment',
 									'ui.bootstrap',
-                   'ngResource',
+                                    'ngResource',
 									'blockUI'
 								]
 						);

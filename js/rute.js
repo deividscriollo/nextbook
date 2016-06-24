@@ -63,8 +63,13 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             })
             .within()
                 .segment('perfil', {
+<<<<<<< HEAD
                     templateUrl: 'view/dashboardempresa/perfil.html',
                     controller: 'perfilCtrl'
+=======
+                    templateUrl: 'templates/section3.html'
+                    // controller: 'perfilCtrl'
+>>>>>>> origin/master
                 })
                  .within()
                     .segment('inicio', {

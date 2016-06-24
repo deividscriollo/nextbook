@@ -19,21 +19,28 @@
                     </li>
                 </ul>
             </li>
-            <li class="active">
-                <a class="waves-attach waves-light" data-toggle="tab" href="">
+            <li ng-class="{active: ('dashboard.perfil.inicio' | routeSegmentStartsWith)}">
+                <a class="waves-attach waves-light" href="#{{'dashboard.perfil.inicio' | routeSegmentUrl}}">
                     <span class="text-white">ComercialHidrobo</span>
                 </a>
             </li>
-            <li>
-                <a class="waves-attach waves-light" data-toggle="tab" href="">
-                    <span class="text-white">Coments</span>
+            <li ng-class="{active: ('dashboard.perfil.apps' | routeSegmentStartsWith)}">
+                <a class="waves-attach waves-light" href="#{{'dashboard.perfil.apps' | routeSegmentUrl}}">
+                    <span class="text-white">Información</span>
                 </a>
             </li>
-            <li>
-                <a class="waves-attach waves-light" data-toggle="tab" href=""><span class="text-white">Third Tab</span></a>
+            <li ng-class="{active: ('dashboard.perfil.apps' | routeSegmentStartsWith)}">
+                <a class="waves-attach waves-light" href="#{{'dashboard.perfil.apps' | routeSegmentUrl}}">
+                    <span class="text-white">Información</span>
+                </a>
+            </li>
+            <li ng-class="{active: ('dashboard.perfil.maps' | routeSegmentStartsWith)}">
+                <a class="waves-attach waves-light" href="#{{'dashboard.perfil.maps' | routeSegmentUrl}}">
+                    <span class="text-white">Mi Cuenta</span>
+                </a>
             </li>
             <li class="dropdown">
-                <a class="dropdown-toggle text-black waves-attach" data-toggle="dropdown"><span class="icon">more_vert</span></a>
+                <a class="dropdown-toggle text-black waves-attach waves-effect" data-toggle="dropdown"><span class="icon">more_vert</span></a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li>
                         <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon icon-lg margin-right">account_box</span>Profile Settings</a>
@@ -49,55 +56,6 @@
         </ul>
     </nav>
 </header>
-<main class="content">
-    <div class="content-header ui-content-header">
-    <h1>buenas</h1>
-    </div>
-    <div class="container">        
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3">
-                <section class="content-inner margin-top-no">
-                    <nav class="tab-nav tab-nav-green  ui-tab">
-                        <ul class="nav nav-justified">
-                            <li ng-class="{active: ('dashboard.inicio' | routeSegmentStartsWith)}">
-                                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.inicio' | routeSegmentUrl}}">
-                                    <span class="text-white"><span class="icon">home</span> Inicio</span>
-                                </a>
-                            </li>
-                            <li ng-class="{active: ('dashboard.apps' | routeSegmentStartsWith)}">
-                                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.apps' | routeSegmentUrl}}">
-                                    <span class="text-white"><span class="icon">dashboard</span> App´s</span>
-                                </a>
-                            </li>
-                            <li ng-class="{active: ('dashboard.maps' | routeSegmentStartsWith)}">
-                                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.maps' | routeSegmentUrl}}">
-                                    <span class="text-white"><span class="icon">location_on</span> Donde me encuentro</span>
-                                </a>
-                            </li>
-                            <li ng-class="{active: ('dashboard.record' | routeSegmentStartsWith)}">
-                                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.record' | routeSegmentUrl}}">
-                                    <span class="text-white"><span class="icon">history</span> Historial</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </section>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1">
-                <div app-view-segment="1"></div>
-            </div>
-        </div>
-    </div>
-</main>
-<div class="fbtn-container">
-    <div class="fbtn-inner">
-        <a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown"><span class="fbtn-text fbtn-text-left">Links</span><span class="fbtn-ori icon">apps</span><span class="fbtn-sub icon">close</span></a>
-        <div class="fbtn-dropup">
-            <a class="fbtn waves-attach waves-circle" href="https://github.com/Daemonite/material" target="_blank"><span class="fbtn-text fbtn-text-left">Fork me on GitHub</span><span class="icon">code</span></a>
-            <a class="fbtn fbtn-brand waves-attach waves-circle waves-light" href="https://twitter.com/daemonites" target="_blank"><span class="fbtn-text fbtn-text-left">Follow Daemon on Twitter</span><span class="icon">share</span></a>
-            <a class="fbtn fbtn-green waves-attach waves-circle" href="http://www.daemon.com.au/" target="_blank"><span class="fbtn-text fbtn-text-left">Visit Daemon Website</span><span class="icon">link</span></a>
-        </div>
-    </div>
-</div>
+<div app-view-segment="1"></div>
+
+

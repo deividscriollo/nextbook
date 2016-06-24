@@ -1,0 +1,163 @@
+<main class="topping">
+    <main class="content">
+	    <div class="container">        
+	        <div class="row">
+	        	<div class="col-lg-10 col-lg-offset-1">
+	                <header id="header">
+	                    <div class="slider">
+	                    	<carousel interval="myInterval">
+						    <slide ng-repeat="slide in slides" active="slide.active" ng-animate="false">
+						      <img ng-src="{{slide.image}}?{{$index}}" style="margin:auto;">
+						      <div class="carousel-caption">
+						        <h4>Slide {{$index}}</h4>
+						        <p>{{slide.text}}</p>
+						      </div>
+						    </slide>
+						  </carousel>
+	                    </div>
+	                    <!--slider-->
+	                    <nav class="nav-perfil-2">
+	                        <!-- Brand and toggle get grouped for better mobile display -->
+	                        <a class="navbar-brand" href="#">
+	                        	<img class="img-responsive" src="images/samples/mat1.jpg">
+	                        </a>
+	                        <span class="site-name">Roland Maruntelu</span>
+	                        <span class="site-description">Servicii profesionale</span>
+	                    </nav>
+	                    <nav class="tab-nav pull-right nav-perfil-2-1">
+					        <ul class="nav nav-list">
+					            <li class="dropdown margin-right">
+					                <a class="dropdown-toggle padding-left-no padding-right-no waves-effect" data-toggle="dropdown">
+					                    <span class="access-hide">John Smith</span>
+					                    <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="images/users/avatar-001.jpg"></span>
+					                </a>
+					                <ul class="dropdown-menu dropdown-menu-right">
+					                    <li>
+					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon icon-lg margin-right">account_box</span>Profile Settings</a>
+					                    </li>
+					                    <li>
+					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon icon-lg margin-right">add_to_photos</span>Upload Photo</a>
+					                    </li>
+					                    <li>
+					                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
+					                    </li>
+					                </ul>
+					            </li>
+					            <li class="active">
+					                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.inicio' | routeSegmentUrl}}">
+					                    <span class="text-white">ComercialHidrobo</span>
+					                </a>
+					            </li>
+					            <li>
+					                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.apps' | routeSegmentUrl}}">
+					                    <span class="text-white ">Apps</span>
+					                </a>
+					            </li>
+					            <li>
+					                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.maps' | routeSegmentUrl}}">
+					                	<span class="text-white">Maps</span>
+					                </a>
+					            </li>
+					            <li class="dropdown">
+					                <a class="dropdown-toggle text-black waves-attach waves-effect" data-toggle="dropdown"><span class="icon">more_vert</span></a>
+					                <ul class="dropdown-menu dropdown-menu-right">
+					                    <li>
+					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon icon-lg margin-right">account_box</span>Profile Settings</a>
+					                    </li>
+					                    <li>
+					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon icon-lg margin-right">add_to_photos</span>Upload Photo</a>
+					                    </li>
+					                    <li>
+					                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
+					                    </li>
+					                </ul>
+					            </li>
+					        </ul>
+					    </nav>
+	                </header>
+	            </div>
+	        </div>
+	        <div class="row">
+	        	<div class="col-sm-10 col-sm-offset-1">
+	        		<div app-view-segment="2"></div>
+	        	</div>
+	        </div>
+	    </div>
+    </main>
+</main>
+<!--/#HEADER-->
+
+
+<style type="text/css">
+	.nav-perfil-2-1 {
+	    position: relative;
+	    bottom: 72px;
+	}
+	.topping{
+		position: relative;
+		top: 60px;
+	}
+	.header-transparent {
+	    background-color: rgb(255,64,129);
+	}
+	.nav-perfil-2{
+		position: absolute;
+	}
+	.site-name {
+	    color: #fff;
+	    font-size: 2em;
+	    position: relative;
+	    bottom: 63px;
+	    left: 190px;
+	}
+	.site-description {
+	    color: #fff;
+	    font-size: 1.3em;
+	    position: relative;
+	    bottom: 42px;
+	    left: -33px;
+	}
+	#header {
+	    border: 1px solid #ddd;
+	    /*margin-bottom: 20px;*/
+	}
+	.navbar {
+	    border-radius: 0;
+	    margin-bottom: 0;
+	    border: none;
+	    background: #303;
+	}
+	.navbar-brand {
+	    width: 160px;
+	    height: 160px;
+	    float: left;
+	    padding: 0;
+	    /* margin-top: -110px; */
+	    overflow: hidden;
+	    border: 3px solid #eee;
+	    margin-left: 15px;
+	    background: #333;
+	    text-align: center;
+	    line-height: 160px;
+	    color: #fff !important;
+	    font-size: 2em;
+	    position: absolute;
+	    bottom: 12px;
+	}
+	.main-menu {
+	    position: absolute;
+	    left: 190px;
+	}
+	.slider,
+	.carousel {
+	    max-height: 360px;
+	    overflow: hidden;
+	}
+	.article .panel-heading,
+	.article .panel-footer {
+	    background-color: transparent;
+	}
+	.article .panel-heading h3 {
+	    font-size: 2em;
+	}
+</style>

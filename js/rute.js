@@ -22,30 +22,30 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/SeleccionarSucursal',      'selec-sucursal')
              .when('/FacturaNext',      'factura-next')
 
-             // dashboard general
+            // dashboard general
             .when('/My-space',      'dashboard')
-                .when('/My-space/Inicio',      'dashboard.inicio')
-                .when('/My-space/Apss',      'dashboard.apps')
-                .when('/My-space/Maps',      'dashboard.maps')
-                .when('/My-space/Historial',      'dashboard.record')
-                    // perfil general
-                .when('/My-space/Perfil',          'dashboard.perfil')
-
-            
+                .when('/My-space/Perfil',      'dashboard.perfil.inicio')
+                    .when('/My-space/Usuario',      'dashboard.perfil.apps')
+                    .when('/My-space/Mapasa',      'dashboard.perfil.maps')
+                    .when('/My-space/Biografia',      'dashboard.perfil.Historial')
+                .when('/My-space/Inicio',      'dashboard.ini.inicio')
+                    .when('/My-space/Apss',      'dashboard.ini.apps')
+                    .when('/My-space/Maps',      'dashboard.ini.maps')
+                    .when('/My-space/Historial',      'dashboard.ini.record')
+            // perfil general            
             .segment('s1', {
                 templateUrl: 'view/home.html',
                 controller: 'MainCtrl'})
                 
-            .within()                
+            .within()
                 .segment('inicio', {
                     'default': true,
-                    templateUrl: 'view/empresas.html'})
-
+                    templateUrl: 'view/empresas.html'
+                })
                 .segment('ParaEmpresas', {
                     templateUrl: 'view/empresas.html',
                     controller: 'EmpresasCtrl'
-                    })
-                    
+                })                    
                 .segment('Parati', {
                     templateUrl: 'view/parati.html',
                     controller: 'PersonasCtrl'
@@ -59,30 +59,56 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             })
             .segment('dashboard', {
                 templateUrl: 'view/dashboardempresa/index.html',
-                // controller: 'MainCtrl'
+                controller: 'MainCtrl'
             })
             .within()
-                .segment('inicio', {
-                    'default': true,
+                .segment('perfil', {
+                    templateUrl: 'view/dashboardempresa/perfil.html',
+                    controller: 'perfilCtrl'
+                })
+                 .within()
+                    .segment('inicio', {
+                        'default': true,
+                        templateUrl: 'view/dashboardempresa/perfil/index.html',
+                        // controller: 'appsCtrl'
+                    })
+                    .segment('apps', {
+                        templateUrl: 'view/dashboardempresa/perfil/apps.html',
+                        // controller: 'appsCtrl'
+                    })
+                    .segment('maps', {
+                        templateUrl: 'view/dashboardempresa/perfil/maps.html',
+                        // controller: 'appsCtrl'
+                    })
+                    .segment('Historial', {
+                        templateUrl: 'view/dashboardempresa/perfil/Historial.html',
+                        // controller: 'recordCtrl'
+                    })
+                .up()
+                .segment('ini', {
+                    
                     templateUrl: 'view/dashboardempresa/inicio.html',
                     controller: 'inicioCtrl'
                 })
-                .segment('apps', {
-                    templateUrl: 'view/dashboardempresa/apps.html',
-                    controller: 'appsCtrl'
-                })
-                .segment('maps', {
-                    templateUrl: 'view/dashboardempresa/maps.html',
-                    controller: 'appsCtrl'
-                })
-                .segment('record', {
-                    templateUrl: 'view/dashboardempresa/record.html',
-                    controller: 'recordCtrl'
-                })
-                .segment('perfil', {
-                    templateUrl: 'templates/section3.html'
-                    controller: 'perfilCtrl'
-                })
+                .within()
+                    .segment('inicio', {
+                        'default': true,
+                        templateUrl: 'view/dashboardempresa/inicio2.html',
+                        controller: 'appsCtrl'
+                    })
+                    .segment('apps', {
+                        templateUrl: 'view/dashboardempresa/apps.html',
+                        controller: 'appsCtrl'
+                    })
+                    .segment('maps', {
+                        templateUrl: 'view/dashboardempresa/maps.html',
+                        controller: 'appsCtrl'
+                    })
+                    .segment('record', {
+                        templateUrl: 'view/dashboardempresa/record.html',
+                        controller: 'recordCtrl'
+                    })
+                .up()
             .up()
             .segment('factura-next', {
                 templateUrl: 'view/data/FacturaNext/index.html',
@@ -90,7 +116,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             })                   
             .within()                
                 .segment('itemInfo', {
-                    templateUrl: 'templates/section2/item.html',
+                    templateUrl: 'view/dashboardempresa/perfil.html',
                     dependencies: ['id']})
                     
             .up()        

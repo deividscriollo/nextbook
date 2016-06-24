@@ -24,7 +24,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
 
             // dashboard general
             .when('/My-space',      'dashboard')
-                .when('/My-space/Perfil',      'dashboard.perfil.inicio')
+                .when('/My-space/Perfil-inicio',      'dashboard.perfil.inicio')
                     .when('/My-space/Usuario',      'dashboard.perfil.apps')
                     .when('/My-space/Mapasa',      'dashboard.perfil.maps')
                     .when('/My-space/Biografia',      'dashboard.perfil.Historial')
@@ -63,13 +63,9 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             })
             .within()
                 .segment('perfil', {
-<<<<<<< HEAD
                     templateUrl: 'view/dashboardempresa/perfil.html',
                     controller: 'perfilCtrl'
-=======
-                    templateUrl: 'templates/section3.html'
                     // controller: 'perfilCtrl'
->>>>>>> origin/master
                 })
                  .within()
                     .segment('inicio', {

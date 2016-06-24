@@ -9,7 +9,9 @@ var app = angular.module('app',
 									'view-segment',
 									'ui.bootstrap',
                                     'ngResource',
-									'blockUI'
+									'blockUI',
+                                    'mdDataTable',
+                                    'ngMdIcons'
 								]
 						);
     

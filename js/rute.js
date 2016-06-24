@@ -20,7 +20,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             
             // segmentacion seleccion sucursal
             .when('/SeleccionarSucursal',      'selec-sucursal')
-             .when('/FacturaNext',      'factura-next')
+            .when('/FacturaNext',      'factura-next')
 
             // dashboard general
             .when('/My-space',      'dashboard')
@@ -32,6 +32,15 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .when('/My-space/Apss',      'dashboard.ini.apps')
                     .when('/My-space/Maps',      'dashboard.ini.maps')
                     .when('/My-space/Historial',      'dashboard.ini.record')
+
+                .when('/My-space/Facturanext',      'dashboard.facturanext.inicio')
+                    .when('/My-space/Facturanext/MisFacturas',      'dashboard.facturanext.misfacturas')
+                    .when('/My-space/Facturanext/SubirFacturas',      'dashboard.facturanext.subirfactura')
+                    .when('/My-space/Facturanext/FacurasRechazadas',      'dashboard.facturanext.facturasrechasadas')
+                    .when('/My-space/Facturanext/FacturasFisicas',      'dashboard.facturanext.facturasfisicas')
+                    .when('/My-space/Facturanext/Proveedores',      'dashboard.facturanext.proveedores')
+
+                    
             // perfil general            
             .segment('s1', {
                 templateUrl: 'view/home.html',
@@ -108,6 +117,42 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .segment('record', {
                         templateUrl: 'view/dashboardempresa/record.html',
                         controller: 'recordCtrl'
+                    })
+                .up()
+                .segment('facturanext', {                    
+                    templateUrl: 'view/dashboardempresa/facturanext/index.html',
+                    controller: 'inicioCtrl'
+                })
+                .within()
+                    .segment('inicio', {
+                        'default': true,
+                        templateUrl: 'view/dashboardempresa/facturanext/inicio.html',
+                        controller: 'appsCtrl'
+                    })
+                    .segment('misfacturas', {
+                        'default': true,
+                        templateUrl: 'view/dashboardempresa/facturanext/misfacturas.html',
+                        controller: 'appsCtrl'
+                    })
+                    .segment('subirfactura', {
+                        'default': true,
+                        templateUrl: 'view/dashboardempresa/facturanext/subirfactura.html',
+                        controller: 'appsCtrl'
+                    })
+                    .segment('facturasrechasadas', {
+                        'default': true,
+                        templateUrl: 'view/dashboardempresa/facturanext/facturasrechasadas.html',
+                        controller: 'appsCtrl'
+                    })
+                    .segment('facturasfisicas', {
+                        'default': true,
+                        templateUrl: 'view/dashboardempresa/facturanext/facturasfisicas.html',
+                        controller: 'appsCtrl'
+                    })
+                    .segment('proveedores', {
+                        'default': true,
+                        templateUrl: 'view/dashboardempresa/facturanext/proveedores.html',
+                        controller: 'appsCtrl'
                     })
                 .up()
             .up()

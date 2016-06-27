@@ -185,6 +185,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 // console.log(data[0]);
                 $localStorage.token=data[0].token;
                 $localStorage.datosE=data.datosE;
+                $localStorage.datosPersona=data.datosPersona;
                 $location.path('/SeleccionarSucursal');
                     }, function(err){
                        if (err.status==404) {

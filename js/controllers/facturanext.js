@@ -1,10 +1,10 @@
 app.controller('facturanextCtrl', function($scope, servicios) {
-	
+
 });
 
-app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice) {
+app.controller('FacturaCtrl', function($scope, servicios, facturanextservice) {
 	facturanextservice.get().$promise.then(function(data) {
-		console.log('test');
+		console.log(data);
 	});
 
 	// var vm = this;

@@ -1,5 +1,3 @@
-define(['app'], function (app) {
-    app.controller('HomeCtrl', function ($scope) {
-        $scope.message = "Message from HomeCtrl"; 
+angular.module('app').controller('dashboardCtrl', function ($scope, $localStorage) {
+        $scope.localStorage = $localStorage;
     });
-});

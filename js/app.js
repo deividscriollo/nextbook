@@ -10,7 +10,7 @@ var app = angular.module('app',
 									'ui.bootstrap',
                                     'ngResource',
 									'blockUI',
-                                    'mdDataTable',
+                                    'datatables',
                                     'ngMdIcons'
 								]
 						);

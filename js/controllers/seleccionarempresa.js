@@ -1,5 +1,4 @@
 var app=angular.module('app').controller('seleccionar-empresa', function ($scope, Sucursaless, $location, $localStorage,Facturas) {
-console.log('hello select empresa');
     Facturas.get();
 
     $scope.products=[];
@@ -10,7 +9,7 @@ console.log('hello select empresa');
             }
             );
             $localStorage.sucursal=$scope.products[0];
-            $location.path('/My-space');
+            $location.path('/My-space/Inicio');
         }
         else {
             for (var i=0; i < data.sucursales.length;i++) {

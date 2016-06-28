@@ -11,7 +11,8 @@ var app = angular.module('app',
                                     'ngResource',
 									'blockUI',
                                     'datatables',
-                                    'ngMdIcons'
+                                    'ngMdIcons',
+                                    'lfNgMdFileInput'
 								]
 						);
     

@@ -1,1 +1,141 @@
-subirfactura
+<main class="content">
+	<div class="container">
+		<section class="content-inner margin-top-no">
+			<h2 class="content-sub-heading">Basic Cards</h2>
+			<div class="ui-card-wrap">
+				<div class="row">
+					<div class="col-lg-8 col-sm-8">
+						<div class="card">
+							<div class="card-main">
+								<div class="card-inner">
+									<p class="card-heading">Este número es el identificador de tu factura en el SRI.!</p>
+									<p>
+										<md-content layout-padding>
+										    <div>
+										        <form name="userForm">
+										        	<div class="row">
+										        		<div class="col-sm-8">
+												        	<md-input-container class="md-block" md-cols-lg="8">
+												                <label>Ingrese clave de acceso de tu documento</label>
+												                <input ng-model="user.biography" md-maxlength="49" md-select-on-focus></input>
+												            </md-input-container>
+											            </div>
+											            <div class="col-sm-4">
+											            	<container class="md-block" md-cols-xs="1">
+												                <button class="btn btn-block btn-brand waves-attach waves-light" ng-click="btn_upload_file()">
+												                	<span class="icon">file_upload</span>Archivo XMl
+												                </button>
+												            </container>
+											            </div>
+										            </div>
+										            <div layout-gt-sm="row">
+										                <md-input-container class="md-block" flex-gt-sm>
+										                    <label>City</label>
+										                    <input ng-model="user.city">
+										                </md-input-container>
+										                <md-input-container class="md-block" flex-gt-sm>
+										                    <label>Tipo de Consumo</label>
+										                    <md-select ng-model="user.state">
+										                        <md-option ng-repeat="state in states" value="{{state}}">
+										                            {{state}}
+										                        </md-option>
+										                    </md-select>
+										                </md-input-container>
+										            </div>
+										        </form>
+										    </div>
+										</md-content>
+									</p>
+								</div>
+								<div class="card-action">
+									<div class="card-action-btn pull-right">
+										<button class="btn btn-brand waves-attach waves-light"><span class="icon">check</span>Guardar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 col-sm-4">
+						<img width="100%" alt="150x150" src="images/facturanext/factura.png" />
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+<div class="main-content-inner ">
+	<div class="page-content ">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="error-container">
+					<div class="well">						
+						<div class="row">
+							<div class="col-sm-8">
+								<h1 class="grey lighter smaller">
+									<span class="blue bigger-125">
+										<i class="ace-icon fa fa-sitemap"></i>
+									</span>
+									Clave de acceso de tu documento
+								</h1>
+								<hr>
+								<h3 class="lighter smaller center">Este número es el identificador de tu factura en el SRI.!</h3>
+								<div class="row">
+									<div class="col-sm-8">
+										<form  id="form_proceso" class="form-horizontal">
+											<div class="row">
+												<div class="form-group">
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Tipo de Consumo:</label>
+													<div class="col-xs-12 col-sm-9">
+														<select id="slt_consumo" name="slt_consumo" class="select2" data-placeholder="Seleccione tipo de consumo">
+														</select> 
+													</div>
+												</div>
+												<div class="form-group">									
+													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Clave de Acceso:</label>
+													<div class="col-xs-12 col-sm-9">
+														<div class="clearfix">
+															<input type="text" name="txt_clave" id="txt_clave" class="col-xs-12 col-sm-12" maxlength="49"  autocomplete="off" value="{{clave_acceso}}" />
+														</div>
+													</div>
+												</div>										
+											</div>
+											<div class="center">
+												<button type="submit" class="btn btn-sm btn-primary" id="btn_envio" >
+													<i class="ace-icon fa fa-save"></i>
+													Guardar Documento
+												</button>
+											</div>
+										</form>
+									</div>
+									<div class="col-sm-4">
+										<div class="row">
+											<div class="form-group">
+												<div class="col-xs-12">
+													<input type="file" id="id-input-file-3" name="xmlfile" accept="text/xml" />
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<ul class="ace-thumbnails clearfix">
+									<li>
+										<a href="assets/images/factura.png" data-rel="colorbox">
+											<!-- <img width="100%" alt="150x150" src="assets/images/factura.png" /> -->
+											<div class="text">
+												<div class="inner">Ver más..</div>
+											</div>
+										</a>
+									</li>				
+								</ul>
+							</div>
+						</div>				
+					</div>
+				</div>
+			</div>						
+		</div>
+	</div>
+</div>

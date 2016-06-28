@@ -144,7 +144,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .segment('subirfactura', {
                         'default': true,
                         templateUrl: 'view/dashboardempresa/facturanext/subirfactura.html',
-                        // controller: 'appsCtrl'
+                        controller: 'SubirFacCtrl'
                     })
                     .segment('facturasrechasadas', {
                         'default': true,

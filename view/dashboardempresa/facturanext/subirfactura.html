@@ -22,7 +22,7 @@
 											            </div>
 											            <div class="col-sm-4">
 											            	<container class="md-block" md-cols-xs="1">
-												                <button class="btn btn-block btn-brand waves-attach waves-light" ng-click="btn_upload_file()">
+												                <button class="btn btn-block btn-brand waves-attach waves-light" ng-click="btn_upload_file()" data-toggle="modal" data-target="#myModal">
 												                	<span class="icon">file_upload</span>Archivo XMl
 												                </button>
 												            </container>
@@ -139,3 +139,19 @@
 		</div>
 	</div>
 </div>
+
+<!-- Modal -->
+<div aria-hidden="true" class="modal modal-va-middle fade" id="myModal" role="dialog" tabindex="-1">
+		<div class="modal-dialog modal-xs">
+			<div class="modal-content">
+				<div class="modal-inner">
+					<p class="h5 margin-top-sm text-black-hint">SELECCIONE EL ARCHIVO</p>
+					<!-- <input type="file" name="xml_file" id="xml_file" accept=".xml"> -->
+				<input type="file" on-read-file="showContent($fileContent)" />
+				</div>
+				<div class="modal-footer">
+					<p class="text-right"><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal">CANCELAR</a><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" ng-click="upload_xml()" data-dismiss="modal">ACEPTAR</a></p>
+				</div>
+			</div>
+		</div>
+	</div>

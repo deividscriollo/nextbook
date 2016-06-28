@@ -70,3 +70,37 @@ return $resource('http://192.168.0.3/appnext/public/getFacturas', {}, {
     });
 
     });
+
+app.factory('UploadFac', function($resource,$localStorage) {
+
+return $resource('http://192.168.0.3/appnext/public/uploadFactura', {}, {
+    subir: {
+        method: 'POST',
+        isArray: false,
+       params: {token: $localStorage.token}
+    }
+    });
+
+    });
+
+app.directive('onReadFile', function ($parse) {
+    return {
+        restrict: 'A',
+        scope: false,
+        link: function(scope, element, attrs) {
+            var fn = $parse(attrs.onReadFile);
+            
+            element.on('change', function(onChangeEvent) {
+                var reader = new FileReader();
+                
+                reader.onload = function(onLoadEvent) {
+                    scope.$apply(function() {
+                        fn(scope, {$fileContent:onLoadEvent.target.result});
+                    });
+                };
+
+                reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+            });
+        }
+    };
+});

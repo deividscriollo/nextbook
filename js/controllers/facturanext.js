@@ -1,6 +1,7 @@
 app.controller('facturanextCtrl', function($scope, servicios) {
-	
+
 });
+
 
 app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice, DTOptionsBuilder, DTColumnBuilder, $http, $q) {
 
@@ -20,17 +21,10 @@ app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice
         	] ).draw( false );
 	  	}
 	});
-
-	$scope.btn_upload_file=function(){
-		console.log('test btn-cargar archivo');
-	}
+});
+app.controller('FacturaCtrl', function($scope, servicios, facturanextservice) {
 
 
-	 $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-    'WY').split(' ').map(function(state) {
-        return {abbrev: state};
-      });
 
 	// var vm = this;
  //    vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {

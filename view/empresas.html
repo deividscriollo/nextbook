@@ -53,9 +53,9 @@
                 </div>
                 <div class="form-group-brand form-group-label " ng-class="{ 'form-group-red' : formreg.celular.$invalid && formreg.celular.$touched }">
                     <label class="floating-label"><span class="icon icon-lg">phone_iphone</span> Celular</label>
-                    <input class="form-control" ng-model="data.celular" name="celular" type="text" ng-required="true">
+                    <input class="form-control" ng-model="data.celular" name="celular" type="text" ng-required="true" operadora-validation>
                     <span for="telefono" ng-show="formreg.celular.$invalid && formreg.celular.$touched">
-                    <span class="label label-red"><span class="icon icon-lg">info_outline</span> Campo Obligatorio</span>
+                    <span class="label label-red"><span class="icon icon-lg">info_outline</span> El celular es incorrecto </span>
                 </div>
                 <div class="form-group-brand form-group-label " ng-class="{ 'form-group-red' : formreg.correo.$invalid && formreg.correo.$touched }">
                     <label class="floating-label"><span class="icon icon-lg">email</span> Correo</label>

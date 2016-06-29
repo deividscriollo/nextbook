@@ -100,13 +100,26 @@ app.directive('rucValidation', function() {
     };
 });
 
-app.directive('operadoraValidation', function() {
+
+app.directive('operadoraValidation', function(consultarMovil) {
     return {
         require: 'ngModel',
         link: function(scope, element, attr, mCtrl) {
             function myValidation(value) {
+                if (value.length == 10) {
+                    consultarMovil.validar(value).$promise.then(function(data){
+                   if (data.status==200) {
+                        mCtrl.$setValidity('charE', true);
+                   }else{
+                    mCtrl.$setValidity('charE', false);
+                   }
+                    });
+                }else{
+                 mCtrl.$setValidity('charE', false);
+                }
              return value;   
             }
+            mCtrl.$parsers.push(myValidation);
         }
     }
 });
@@ -277,6 +290,18 @@ return $resource('http://172.30.1.11/appnext/public/getFacturas', {}, {
         method: 'GET',
         isArray: false,
        params: {token: $localStorage.token}
+    }
+    });
+
+    });
+
+app.factory('consultarMovil', function($resource,$localStorage) {
+
+return $resource('http://172.30.1.11/appserviciosnext/public/cosultarMovil', {}, {
+    validar: {
+        method: 'POST',
+        isArray: false,
+       // params: {token: $localStorage.token}
     }
     });
 

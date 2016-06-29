@@ -1,0 +1,20 @@
+.no-padding-top{
+	position: relative;
+    top: -74px;
+}
+
+
+
+/*validacion*/
+
+.form-group-red .form-control, .form-group-red .picker__select--month, .form-group-red .picker__select--year, .form-group-red .form-control:focus, .form-group-red .picker__select--month:focus, .form-group-red .picker__select--year:focus {
+    border-color: #D16E6C;
+}
+
+.form-group-label.form-group-red .floating-label {
+    color: #D16E6C;
+}
+.label-red {
+    background-color: #D16E6C;
+    color: white;
+}

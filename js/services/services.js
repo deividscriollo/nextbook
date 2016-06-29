@@ -82,17 +82,30 @@ return $resource('http://172.30.1.11/appnext/public/getFacturas', {}, {
 
     });
 
-app.factory('UploadFac', function($resource,$localStorage) {
-
-return $resource('http://172.30.1.11/appnext/public/uploadFactura', {}, {
-    subir: {
-        method: 'POST',
-        isArray: false,
-       params: {token: $localStorage.token}
-    }
-    });
-
-    });
+app.factory('UploadResource', function ($resource) {
+return $resource(
+'http://172.30.1.11/appnext/public/uploadFactura',
+{ id: "@Id" },
+{
+"save": {
+method: 'POST',
+transformRequest: formDataObject,
+headers: { 'Content-Type': undefined, enctype: 'multipart/form-data' }
+}
+}
+);
+ 
+function formDataObject(data) {
+var fd = new FormData();
+fd.append('File', data.file);
+ 
+fd.append('DocumentType', data.documentType)
+// Use JSON.stringify to format an array
+fd.append('DocumentName', JSON.stringify(data.documentName));
+fd.append('DocumentDesc', data.documentDesc)
+return fd;
+}
+});
 
 ///------------------------ Leer XML----------------------------
 app.directive('onReadFile', function ($parse) {

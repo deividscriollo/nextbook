@@ -18,17 +18,19 @@ $scope.get_claveAcceso=function(xml){
   }else{
     $claveAcceso = $aux;
   }
-
-servicios.UploadFac.subir($claveAcceso).$promise.then(function(data) {
-    console.log($claveAcceso);
-  });
-
+  
 }
 
  $scope.showContent = function($fileContent){
        // console.log($fileContent);
 $scope.get_claveAcceso($fileContent);
     };
+
+    $scope.subir_fac=function(){
+      servicios.UploadFac().subir($claveAcceso).$promise.then(function(data) {
+    console.log($claveAcceso);
+        });
+    }
 
 
 

@@ -11,7 +11,8 @@ app.config(function($routeSegmentProvider, $routeProvider) {
         $routeSegmentProvider
         
             .when('/salir/:id',          'salir')
-            .when('/',          's1')
+            .when('/',          'sbuscar')
+            .when('/Home',          's1')
             // procesos inicial
             .when('/Home/Inicio',    's1.inicio')
             .when('/Home/ParaTi',      's1.Parati')
@@ -49,6 +50,9 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 dependencies: ['id']
             })
             // perfil general            
+            .segment('sbuscar', {
+                templateUrl: 'view/buscar.html',
+                controller: 'MainCtrl'})
             .segment('s1', {
                 templateUrl: 'view/home.html',
                 controller: 'MainCtrl'})

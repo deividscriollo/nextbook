@@ -31,69 +31,27 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
-                <section class="content-inner margin-top-no">
-                    <nav class="tab-nav ui-tab">
-                        <ul class="nav nav-justified">
-                            <li class="active" ng-class="{active: ('s1.ParaEmpresas' | routeSegmentStartsWith)}">
-                                <a class="waves-attach waves-light waves-effect" href="#{{'s1.ParaEmpresas' | routeSegmentUrl}}"><span class="text-white"><span class="icon icon-lg">domain</span> Para Empresas</span></a>
-                            </li>
-                            <li ng-class="{active: ('s1.Parati' | routeSegmentStartsWith)}">
-                                <a class="waves-attach waves-light waves-effect" href="#{{'s1.Parati' | routeSegmentUrl}}"><span class="text-white"><span class="icon icon-lg">person_outline</span> Para Ti</span></a>
-                            </li>
-                            <li ng-class="{active: ('s1.quienessomos' | routeSegmentStartsWith)}">
-                                <a class="waves-attach waves-light waves-effect" href="#{{'s1.quienessomos' | routeSegmentUrl}}"><span class="text-white"><span class="icon icon-lg">info</span> Quienes Somos</span></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </section>
-            </div>
+        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+            <section class="content-inner margin-top-no">
+                <nav class="tab-nav ui-tab">
+                    <ul class="nav nav-justified">
+                        <li class="active" ng-class="{active: ('s1.ParaEmpresas' | routeSegmentStartsWith)}">
+                            <a class="waves-attach waves-light waves-effect" href="#{{'s1.ParaEmpresas' | routeSegmentUrl}}"><span class="text-white"><span class="icon icon-lg">domain</span> Para Empresas</span></a>
+                        </li>
+                        <li ng-class="{active: ('s1.Parati' | routeSegmentStartsWith)}">
+                            <a class="waves-attach waves-light waves-effect" href="#{{'s1.Parati' | routeSegmentUrl}}"><span class="text-white"><span class="icon icon-lg">person_outline</span> Para Ti</span></a>
+                        </li>
+                        <li ng-class="{active: ('s1.quienessomos' | routeSegmentStartsWith)}">
+                            <a class="waves-attach waves-light waves-effect" href="#{{'s1.quienessomos' | routeSegmentUrl}}"><span class="text-white"><span class="icon icon-lg">info</span> Quienes Somos</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
         </div>
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3">
-                <section>
-                    <div app-view-segment="1"></div>
-                </section>
-            </div>
+        <div class="col-lg-8 col-lg-offset-2 col-md-6 col-md-offset-3">
+            <section>
+                <div app-view-segment="1"></div>
+            </section>
         </div>
     </div>
 </main>
-<footer class="ui-footer">
-    <div class="container">
-        <p>copyright by Conceptual Business Group</p>
-    </div>
-</footer>
-<div class="fbtn-container">
-    <div class="fbtn-inner">
-        <a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown"><span class="fbtn-text fbtn-text-left">Links</span><span class="fbtn-ori icon">apps</span><span class="fbtn-sub icon">close</span></a>
-        <div class="fbtn-dropup">
-            <a class="fbtn waves-attach waves-circle" href="https://github.com/Daemonite/material" target="_blank"><span class="fbtn-text fbtn-text-left">Fork me on GitHub</span><span class="icon">code</span></a>
-            <a class="fbtn fbtn-brand waves-attach waves-circle waves-light" href="https://twitter.com/daemonites" target="_blank"><span class="fbtn-text fbtn-text-left">Follow Daemon on Twitter</span><span class="icon">share</span></a>
-            <a class="fbtn fbtn-green waves-attach waves-circle" href="http://www.daemon.com.au/" target="_blank"><span class="fbtn-text fbtn-text-left">Visit Daemon Website</span><span class="icon">link</span></a>
-        </div>
-    </div>
-</div>
-<!-- modal registro -->
-<div aria-hidden="true" class="modal modal-va-middle fade" id="ui_picker_alert" role="dialog" tabindex="-1">
-    <div class="modal-dialog modal-xs">
-        <div class="modal-content">
-            <div class="modal-heading">
-                <p class="modal-title">About Picker UI</p>
-            </div>
-            <div class="modal-inner">
-                <ul class="padding-left text-black-hint">
-                    <li>Picker UI is not responsive and only works in desktop,</li>
-                    <li>Click items in the middle column to view additional information about that item,</li>
-                    <li>Draw a box with cursor to select multiple items,</li>
-                    <li>Hold down <kbd>Cmd</kbd> or <kbd>Ctrl</kbd> to make multiple non-adjacent selections,</li>
-                    <li>Click on the selected items' gripper icon and drag them anywhere within the viewport,</li>
-                    <li>Click on the selected items' gripper icon and drop them on the navigaation links in the left hand column.</li>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <p class="text-right"><a class="btn btn-flat btn-brand-accent waves-attach" data-dismiss="modal">OK</a></p>
-            </div>
-        </div>
-    </div>
-</div>

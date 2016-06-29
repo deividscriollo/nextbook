@@ -99,6 +99,17 @@ app.directive('rucValidation', function() {
     };
 });
 
+app.directive('operadoraValidation', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attr, mCtrl) {
+            function myValidation(value) {
+             return value;   
+            }
+        }
+    }
+});
+
 app.directive('cedulaValidation', function(loaddatosSRI) {
     return {
         require: 'ngModel',

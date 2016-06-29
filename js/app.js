@@ -3,6 +3,7 @@ var app = angular.module('app',
 								[
                                     'ngMaterial',
                                     'ngMessages',
+                                    'ngFileUpload',
                                     'ngStorage',
 									'ngRoute',
 									'route-segment',

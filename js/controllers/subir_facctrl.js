@@ -18,7 +18,7 @@ $scope.get_claveAcceso=function(xml){
   }else{
     $claveAcceso = $aux;
   }
-  
+  console.log($claveAcceso);
 }
 
  $scope.showContent = function($fileContent){
@@ -26,9 +26,15 @@ $scope.get_claveAcceso=function(xml){
 $scope.get_claveAcceso($fileContent);
     };
 
-    $scope.subir_fac=function(){
-      servicios.UploadFac().subir($claveAcceso).$promise.then(function(data) {
-    console.log($claveAcceso);
+    $scope.set_clave=function(){
+      $("#input_clave").val($claveAcceso);
+  $("#label_clave").addClass('md-input-has-value md-input-focused');
+    }
+
+    $scope.upload_xml=function(){
+      // console.log();
+      servicios.UploadFac().subir({"clave":$claveAcceso}).$promise.then(function(data) {
+    console.log(data);
         });
     }
 

@@ -15,9 +15,9 @@
 										        <form name="userForm">
 										        	<div class="row">
 										        		<div class="col-sm-8">
-												        	<md-input-container class="md-block" md-cols-lg="8">
+												        	<md-input-container id="label_clave" class="md-block" md-cols-lg="8">
 												                <label>Ingrese clave de acceso de tu documento</label>
-												                <input ng-model="user.biography" md-maxlength="49" md-select-on-focus></input>
+												                <input id="input_clave" ng-model="data.clave" md-maxlength="49" md-select-on-focus ></input>
 												            </md-input-container>
 											            </div>
 											            <div class="col-sm-4">
@@ -31,11 +31,11 @@
 										            <div layout-gt-sm="row">
 										                <md-input-container class="md-block" flex-gt-sm>
 										                    <label>City</label>
-										                    <input ng-model="user.city">
+										                    <input ng-model="data.city">
 										                </md-input-container>
 										                <md-input-container class="md-block" flex-gt-sm>
 										                    <label>Tipo de Consumo</label>
-										                    <md-select ng-model="user.state">
+										                    <md-select ng-model="data.state">
 										                        <md-option ng-repeat="state in states" value="{{state}}">
 										                            {{state}}
 										                        </md-option>
@@ -49,7 +49,7 @@
 								</div>
 								<div class="card-action">
 									<div class="card-action-btn pull-right">
-										<button class="btn btn-brand waves-attach waves-light"><span class="icon">check</span>Guardar</button>
+										<button class="btn btn-brand waves-attach waves-light" ng-click="upload_xml()"><span class="icon">check</span> Guardar</button>
 									</div>
 								</div>
 							</div>
@@ -146,11 +146,10 @@
 			<div class="modal-content">
 				<div class="modal-inner">
 					<p class="h5 margin-top-sm text-black-hint">SELECCIONE EL ARCHIVO</p>
-					<!-- <input type="file" name="xml_file" id="xml_file" accept=".xml"> -->
 				<input type="file" on-read-file="showContent($fileContent)" />
 				</div>
 				<div class="modal-footer">
-					<p class="text-right"><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal">CANCELAR</a><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" ng-click="upload_xml()" data-dismiss="modal">ACEPTAR</a></p>
+					<p class="text-right"><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal">CANCELAR</a><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" ng-click="set_clave()" data-dismiss="modal">ACEPTAR</a></p>
 				</div>
 			</div>
 		</div>

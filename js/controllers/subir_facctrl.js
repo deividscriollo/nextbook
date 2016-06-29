@@ -1,4 +1,4 @@
-var app=angular.module('app').controller('SubirFacCtrl', function ($scope,UploadFac) {
+var app=angular.module('app').controller('SubirFacCtrl', function ($scope,servicios) {
    // console.log(UploadFac.subir());
    $scope.files="";
 $("#xml_file").change(function(e){
@@ -10,16 +10,18 @@ $scope.get_claveAcceso=function(xml){
   var xmlDoc = $.parseXML(xml);
   $xml = $(xmlDoc);
   $aux = $xml.find("claveAcceso").text();
-  if ($claveAcceso!="") {
+  if ($aux=="") {
     $comprobante = $xml.find("comprobante").text();
-    var xmlDoc = $.parseXML(comprobante);
+    xmlDoc = $.parseXML($comprobante);
     $xml = $(xmlDoc);
     $claveAcceso = $xml.find("claveAcceso").text();
   }else{
-    $claveAcceso = $xml.find("claveAcceso").text();
+    $claveAcceso = $aux;
   }
 
-  console.log($claveAcceso);
+servicios.UploadFac.subir($claveAcceso).$promise.then(function(data) {
+    console.log($claveAcceso);
+  });
 
 }
 

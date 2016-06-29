@@ -212,15 +212,15 @@ app.factory('Persona', function($resource) {
 
 app.factory('LoginE', function($resource,$localStorage) {
 
-return $resource('http://192.168.0.3/appnext/public/login', {}, {
-    ingresar: {
-        method: 'POST',
-        isArray: false,
-       // params: {token: $localStorage.token}
-    }
+    return $resource('http://192.168.0.3/appnext/public/login', {}, {
+        ingresar: {
+            method: 'POST',
+            isArray: false,
+           // params: {token: $localStorage.token}
+        }
     });
 
-    });
+});
 
 app.factory('LogoutE', function($resource,$localStorage) {
 

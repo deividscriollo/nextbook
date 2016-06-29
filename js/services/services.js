@@ -35,7 +35,7 @@ app.service('servicios', function($resource,$localStorage, $location){
 	            return "http://apiservicios.nextbook.ec/";
 	        },
 	        appnext: function(){
-	            return "http://172.30.1.11/appnext/";
+	            return "http://172.30.1.14/appnext/";
 	        }  
 	    }   
     };
@@ -72,7 +72,7 @@ app.service('servicios', function($resource,$localStorage, $location){
 
 app.factory('facturanextservice', function($resource,$localStorage) {
 
-return $resource('http://172.30.1.11/appnext/public/getFacturas', {}, {
+return $resource('http://172.30.1.14/appnext/public/getFacturas', {}, {
     get: {
         method: 'GET',
         isArray: false,
@@ -84,7 +84,7 @@ return $resource('http://172.30.1.11/appnext/public/getFacturas', {}, {
 
 app.factory('UploadFac', function($resource,$localStorage) {
 
-return $resource('http://172.30.1.11/appnext/public/uploadFactura', {}, {
+return $resource('http://172.30.1.14/appnext/public/uploadFactura', {}, {
     subir: {
         method: 'POST',
         isArray: false,

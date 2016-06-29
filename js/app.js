@@ -224,20 +224,20 @@ app.factory('loaddatosSRI', function($resource) {
 });
 
 app.factory('Empresa', function($resource) {
-    return $resource("http://172.30.1.11/appnext/public/registroEmpresas/:id", {
+    return $resource("http://172.30.1.14/appnext/public/registroEmpresas/:id", {
         id: "@id"
     });
 });
 
 app.factory('Persona', function($resource) {
-    return $resource("http://172.30.1.11/appnext/public/registroPersonas/:id", {
+    return $resource("http://172.30.1.14/appnext/public/registroPersonas/:id", {
         id: "@id"
     });
 });
 
 app.factory('LoginE', function($resource,$localStorage, servicios) {
 
-return $resource('http://172.30.1.11/appnext/public/login', {}, {
+return $resource('http://172.30.1.14/appnext/public/login', {}, {
     ingresar: {
         method: 'POST',
         isArray: false,
@@ -249,7 +249,7 @@ return $resource('http://172.30.1.11/appnext/public/login', {}, {
 
 app.factory('LogoutE', function($resource,$localStorage) {
 
-return $resource('http://172.30.1.11/appnext/public/logoutE', {}, {
+return $resource('http://172.30.1.14/appnext/public/logoutE', {}, {
     salir: {
         method: 'POST',
         isArray: false,
@@ -261,7 +261,7 @@ return $resource('http://172.30.1.11/appnext/public/logoutE', {}, {
 
 app.factory('Sucursaless', function($resource,$localStorage) {
 
-return $resource('http://172.30.1.11/appnext/public/getsucursales', {}, {
+return $resource('http://172.30.1.14/appnext/public/getsucursales', {}, {
     get: {
         method: 'GET',
         isArray: false,
@@ -273,7 +273,7 @@ return $resource('http://172.30.1.11/appnext/public/getsucursales', {}, {
 
 app.factory('Facturas', function($resource,$localStorage) {
 
-return $resource('http://172.30.1.11/appnext/public/readFacturas', {}, {
+return $resource('http://172.30.1.14/appnext/public/readFacturas', {}, {
     get: {
         method: 'GET',
         isArray: false,
@@ -285,7 +285,7 @@ return $resource('http://172.30.1.11/appnext/public/readFacturas', {}, {
 
 app.factory('FacturasLista', function($resource,$localStorage) {
 
-return $resource('http://172.30.1.11/appnext/public/getFacturas', {}, {
+return $resource('http://172.30.1.14/appnext/public/getFacturas', {}, {
     get: {
         method: 'GET',
         isArray: false,
@@ -297,7 +297,7 @@ return $resource('http://172.30.1.11/appnext/public/getFacturas', {}, {
 
 app.factory('consultarMovil', function($resource,$localStorage) {
 
-return $resource('http://172.30.1.11/appserviciosnext/public/cosultarMovil', {}, {
+return $resource('http://172.30.1.14/appserviciosnext/public/cosultarMovil', {}, {
     validar: {
         method: 'POST',
         isArray: false,

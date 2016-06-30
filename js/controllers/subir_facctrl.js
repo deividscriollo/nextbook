@@ -25,7 +25,6 @@ if (xml.length!=0) {
   $scope.showModal('0');
 }
 
-
 }
 
 $scope.showModal = function(mensaje) {

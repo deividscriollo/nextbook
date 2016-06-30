@@ -1,6 +1,6 @@
 
 var app = angular.module('app', 
-								[
+								[   'angularModalService',
                                     'ngMaterial',
                                     'ngMessages',
                                     'ngFileUpload',

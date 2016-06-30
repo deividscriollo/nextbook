@@ -54,6 +54,10 @@ app.service('servicios', function($resource,$localStorage, $location){
         });
     };
 
+    this.gastos = function(){
+        return [{tipo:'ALIMENTACIÓN'},{tipo:'SALUD'},{tipo:'VESTIMENTA'},{tipo:'VIVIENDA'},{tipo:'EDUCACIÓN'}];
+    };
+
 });
 
 // app.factory('facturanextservice', function($resource,$localStorage, servicios){

@@ -30,14 +30,10 @@
 										            </div>
 										            <div layout-gt-sm="row">
 										                <md-input-container class="md-block" flex-gt-sm>
-										                    <label>City</label>
-										                    <input ng-model="data.city">
-										                </md-input-container>
-										                <md-input-container class="md-block" flex-gt-sm>
 										                    <label>Tipo de Consumo</label>
-										                    <md-select ng-model="data.state">
-										                        <md-option ng-repeat="state in states" value="{{state}}">
-										                            {{state}}
+										                    <md-select ng-model="tipo">
+										                        <md-option ng-repeat="gasto in gastos" value="{{gasto.tipo}}">
+										                            {{gasto.tipo}}
 										                        </md-option>
 										                    </md-select>
 										                </md-input-container>
@@ -64,89 +60,13 @@
 	</div>
 </main>
 
-<div class="main-content-inner ">
-	<div class="page-content ">
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-				<div class="error-container">
-					<div class="well">						
-						<div class="row">
-							<div class="col-sm-8">
-								<h1 class="grey lighter smaller">
-									<span class="blue bigger-125">
-										<i class="ace-icon fa fa-sitemap"></i>
-									</span>
-									Clave de acceso de tu documento
-								</h1>
-								<hr>
-								<h3 class="lighter smaller center">Este número es el identificador de tu factura en el SRI.!</h3>
-								<div class="row">
-									<div class="col-sm-8">
-										<form  id="form_proceso" class="form-horizontal">
-											<div class="row">
-												<div class="form-group">
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Tipo de Consumo:</label>
-													<div class="col-xs-12 col-sm-9">
-														<select id="slt_consumo" name="slt_consumo" class="select2" data-placeholder="Seleccione tipo de consumo">
-														</select> 
-													</div>
-												</div>
-												<div class="form-group">									
-													<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="email">Clave de Acceso:</label>
-													<div class="col-xs-12 col-sm-9">
-														<div class="clearfix">
-															<input type="text" name="txt_clave" id="txt_clave" class="col-xs-12 col-sm-12" maxlength="49"  autocomplete="off" value="{{clave_acceso}}" />
-														</div>
-													</div>
-												</div>										
-											</div>
-											<div class="center">
-												<button type="submit" class="btn btn-sm btn-primary" id="btn_envio" >
-													<i class="ace-icon fa fa-save"></i>
-													Guardar Documento
-												</button>
-											</div>
-										</form>
-									</div>
-									<div class="col-sm-4">
-										<div class="row">
-											<div class="form-group">
-												<div class="col-xs-12">
-													<input type="file" id="id-input-file-3" name="xmlfile" accept="text/xml" />
-												</div>
-											</div>
-
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<ul class="ace-thumbnails clearfix">
-									<li>
-										<a href="assets/images/factura.png" data-rel="colorbox">
-											<!-- <img width="100%" alt="150x150" src="assets/images/factura.png" /> -->
-											<div class="text">
-												<div class="inner">Ver más..</div>
-											</div>
-										</a>
-									</li>				
-								</ul>
-							</div>
-						</div>				
-					</div>
-				</div>
-			</div>						
-		</div>
-	</div>
-</div>
-
 <!-- Modal -->
 <div aria-hidden="true" class="modal modal-va-middle fade" id="myModal" role="dialog" tabindex="-1">
 		<div class="modal-dialog modal-xs">
 			<div class="modal-content">
 				<div class="modal-inner">
 					<p class="h5 margin-top-sm text-black-hint">SELECCIONE EL ARCHIVO</p>
-				<input type="file" on-read-file="showContent($fileContent)" />
+				<input type="file" ng-model="xml_file" on-read-file="showContent($fileContent)" />
 				</div>
 				<div class="modal-footer">
 					<p class="text-right"><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal">CANCELAR</a><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" ng-click="set_clave()" data-dismiss="modal">ACEPTAR</a></p>

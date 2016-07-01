@@ -1,0 +1,1074 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.2.16
+-- Dumped by pg_dump version 9.2.16
+-- Started on 2016-07-01 17:59:32
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 9 (class 2615 OID 17331)
+-- Name: Ingreso; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA "Ingreso";
+
+
+ALTER SCHEMA "Ingreso" OWNER TO postgres;
+
+--
+-- TOC entry 11 (class 2615 OID 30790)
+-- Name: factura_next; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA factura_next;
+
+
+ALTER SCHEMA factura_next OWNER TO postgres;
+
+--
+-- TOC entry 10 (class 2615 OID 29081)
+-- Name: perzonalizacion; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA perzonalizacion;
+
+
+ALTER SCHEMA perzonalizacion OWNER TO postgres;
+
+--
+-- TOC entry 8 (class 2615 OID 17090)
+-- Name: registro; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA registro;
+
+
+ALTER SCHEMA registro OWNER TO postgres;
+
+--
+-- TOC entry 1 (class 3079 OID 11727)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2070 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = "Ingreso", pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 180 (class 1259 OID 34573)
+-- Name: passwrdsE; Type: TABLE; Schema: Ingreso; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "passwrdsE" (
+    id integer NOT NULL,
+    email character varying(255) NOT NULL,
+    pass_email character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    remember_token character varying(500) NOT NULL,
+    id_user character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE "Ingreso"."passwrdsE" OWNER TO postgres;
+
+--
+-- TOC entry 179 (class 1259 OID 34571)
+-- Name: passwrdsE_id_seq; Type: SEQUENCE; Schema: Ingreso; Owner: postgres
+--
+
+CREATE SEQUENCE "passwrdsE_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Ingreso"."passwrdsE_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2071 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: passwrdsE_id_seq; Type: SEQUENCE OWNED BY; Schema: Ingreso; Owner: postgres
+--
+
+ALTER SEQUENCE "passwrdsE_id_seq" OWNED BY "passwrdsE".id;
+
+
+--
+-- TOC entry 182 (class 1259 OID 34589)
+-- Name: passwrdsP; Type: TABLE; Schema: Ingreso; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "passwrdsP" (
+    id integer NOT NULL,
+    email character varying(255) NOT NULL,
+    pass_email character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    remember_token character varying(500) NOT NULL,
+    id_user character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE "Ingreso"."passwrdsP" OWNER TO postgres;
+
+--
+-- TOC entry 181 (class 1259 OID 34587)
+-- Name: passwrdsP_id_seq; Type: SEQUENCE; Schema: Ingreso; Owner: postgres
+--
+
+CREATE SEQUENCE "passwrdsP_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Ingreso"."passwrdsP_id_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2072 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: passwrdsP_id_seq; Type: SEQUENCE OWNED BY; Schema: Ingreso; Owner: postgres
+--
+
+ALTER SEQUENCE "passwrdsP_id_seq" OWNED BY "passwrdsP".id;
+
+
+--
+-- TOC entry 178 (class 1259 OID 34565)
+-- Name: roles; Type: TABLE; Schema: Ingreso; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE roles (
+    id integer NOT NULL,
+    nombre_rol character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE "Ingreso".roles OWNER TO postgres;
+
+--
+-- TOC entry 177 (class 1259 OID 34563)
+-- Name: roles_id_seq; Type: SEQUENCE; Schema: Ingreso; Owner: postgres
+--
+
+CREATE SEQUENCE roles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Ingreso".roles_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2073 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: Ingreso; Owner: postgres
+--
+
+ALTER SEQUENCE roles_id_seq OWNED BY roles.id;
+
+
+--
+-- TOC entry 186 (class 1259 OID 34621)
+-- Name: users; Type: TABLE; Schema: Ingreso; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    email character varying(255) NOT NULL,
+    password_email character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    remember_token character varying(100),
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE "Ingreso".users OWNER TO postgres;
+
+--
+-- TOC entry 185 (class 1259 OID 34619)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: Ingreso; Owner: postgres
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "Ingreso".users_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2074 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: Ingreso; Owner: postgres
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+SET search_path = factura_next, pg_catalog;
+
+--
+-- TOC entry 192 (class 1259 OID 34679)
+-- Name: facturas; Type: TABLE; Schema: factura_next; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE facturas (
+    id_factura character varying(255) NOT NULL,
+    num_factura character varying(255) NOT NULL,
+    nombre_comercial character varying(255) NOT NULL,
+    "Ruc_prov" character varying(255) NOT NULL,
+    fecha_emision character varying(255) NOT NULL,
+    clave_acceso character varying(255) NOT NULL,
+    ambiente character varying(255) NOT NULL,
+    tipo_doc character varying(255) NOT NULL,
+    tipo_consumo character varying(255) NOT NULL,
+    total character varying(255) NOT NULL,
+    contenido_fac character varying(10000) NOT NULL,
+    id_empresa character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE factura_next.facturas OWNER TO postgres;
+
+--
+-- TOC entry 193 (class 1259 OID 34694)
+-- Name: facturas_rechazadas; Type: TABLE; Schema: factura_next; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE facturas_rechazadas (
+    id_factura_r character varying(255) NOT NULL,
+    clave_acceso character varying(255) NOT NULL,
+    tipo_consumo character varying(255) NOT NULL,
+    razon_rechazo character varying(255) NOT NULL,
+    contenido_fac character varying(10000) NOT NULL,
+    id_empresa character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE factura_next.facturas_rechazadas OWNER TO postgres;
+
+SET search_path = perzonalizacion, pg_catalog;
+
+--
+-- TOC entry 191 (class 1259 OID 34663)
+-- Name: empresa_colaborador_sucursales; Type: TABLE; Schema: perzonalizacion; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE empresa_colaborador_sucursales (
+    id integer NOT NULL,
+    id_colaborador character varying(255) NOT NULL,
+    id_sucursal integer NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE perzonalizacion.empresa_colaborador_sucursales OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 34661)
+-- Name: empresa_colaborador_sucursales_id_seq; Type: SEQUENCE; Schema: perzonalizacion; Owner: postgres
+--
+
+CREATE SEQUENCE empresa_colaborador_sucursales_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE perzonalizacion.empresa_colaborador_sucursales_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2075 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: empresa_colaborador_sucursales_id_seq; Type: SEQUENCE OWNED BY; Schema: perzonalizacion; Owner: postgres
+--
+
+ALTER SEQUENCE empresa_colaborador_sucursales_id_seq OWNED BY empresa_colaborador_sucursales.id;
+
+
+--
+-- TOC entry 189 (class 1259 OID 34647)
+-- Name: extras; Type: TABLE; Schema: perzonalizacion; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE extras (
+    id integer NOT NULL,
+    dato character varying(255) NOT NULL,
+    tipo character varying(255) NOT NULL,
+    id_empresa character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE perzonalizacion.extras OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 34645)
+-- Name: extras_id_seq; Type: SEQUENCE; Schema: perzonalizacion; Owner: postgres
+--
+
+CREATE SEQUENCE extras_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE perzonalizacion.extras_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2076 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: extras_id_seq; Type: SEQUENCE OWNED BY; Schema: perzonalizacion; Owner: postgres
+--
+
+ALTER SEQUENCE extras_id_seq OWNED BY extras.id;
+
+
+SET search_path = registro, pg_catalog;
+
+--
+-- TOC entry 176 (class 1259 OID 34550)
+-- Name: colaboradores; Type: TABLE; Schema: registro; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE colaboradores (
+    id_colaborador character varying(255) NOT NULL,
+    correo character varying(255) NOT NULL,
+    pass character varying(255) NOT NULL,
+    estado integer NOT NULL,
+    id_empresa character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE registro.colaboradores OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 34534)
+-- Name: empresas; Type: TABLE; Schema: registro; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE empresas (
+    id_empresa character varying(255) NOT NULL,
+    "Ruc" character varying(255) NOT NULL,
+    razon_social character varying(255) NOT NULL,
+    nombre_comercial character varying(255) NOT NULL,
+    estado_contribuyente character varying(255) NOT NULL,
+    tipo_contribuyente character varying(255) NOT NULL,
+    obligado_contabilidad character varying(255) NOT NULL,
+    actividad_economica character varying(255) NOT NULL,
+    codigo_activacion character varying(255) NOT NULL,
+    estado integer NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE registro.empresas OWNER TO postgres;
+
+--
+-- TOC entry 173 (class 1259 OID 33996)
+-- Name: migrations; Type: TABLE; Schema: registro; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE migrations (
+    migration character varying(255) NOT NULL,
+    batch integer NOT NULL
+);
+
+
+ALTER TABLE registro.migrations OWNER TO postgres;
+
+--
+-- TOC entry 175 (class 1259 OID 34542)
+-- Name: personas; Type: TABLE; Schema: registro; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE personas (
+    id_persona character varying(255) NOT NULL,
+    cedula character varying(255) NOT NULL,
+    "Nombres_apellidos" character varying(255) NOT NULL,
+    provincia character varying(255) NOT NULL,
+    canton character varying(255) NOT NULL,
+    parroquia character varying(255) NOT NULL,
+    zona character varying(255) NOT NULL,
+    correo character varying(255) NOT NULL,
+    telefono character varying(255) NOT NULL,
+    celular character varying(255) NOT NULL,
+    codigo_activacion character varying(255) NOT NULL,
+    estado integer NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE registro.personas OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 34632)
+-- Name: regpersona_empresas; Type: TABLE; Schema: registro; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE regpersona_empresas (
+    "idp_regE" character varying(255) NOT NULL,
+    nombres_apellidos character varying(255) NOT NULL,
+    fecha_nacimiento character varying(255) NOT NULL,
+    correo character varying(255) NOT NULL,
+    telefono character varying(255) NOT NULL,
+    celular character varying(255) NOT NULL,
+    estado integer NOT NULL,
+    id_empresa character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE registro.regpersona_empresas OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 34605)
+-- Name: sucursales; Type: TABLE; Schema: registro; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE sucursales (
+    id_sucursal integer NOT NULL,
+    codigo character varying(255) NOT NULL,
+    direccion character varying(255) NOT NULL,
+    estado character varying(255) NOT NULL,
+    nombre_sucursal character varying(255) NOT NULL,
+    id_empresa character varying(255) NOT NULL,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE registro.sucursales OWNER TO postgres;
+
+--
+-- TOC entry 183 (class 1259 OID 34603)
+-- Name: sucursales_id_sucursal_seq; Type: SEQUENCE; Schema: registro; Owner: postgres
+--
+
+CREATE SEQUENCE sucursales_id_sucursal_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE registro.sucursales_id_sucursal_seq OWNER TO postgres;
+
+--
+-- TOC entry 2077 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: sucursales_id_sucursal_seq; Type: SEQUENCE OWNED BY; Schema: registro; Owner: postgres
+--
+
+ALTER SEQUENCE sucursales_id_sucursal_seq OWNED BY sucursales.id_sucursal;
+
+
+SET search_path = "Ingreso", pg_catalog;
+
+--
+-- TOC entry 1890 (class 2604 OID 34576)
+-- Name: id; Type: DEFAULT; Schema: Ingreso; Owner: postgres
+--
+
+ALTER TABLE ONLY "passwrdsE" ALTER COLUMN id SET DEFAULT nextval('"passwrdsE_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1891 (class 2604 OID 34592)
+-- Name: id; Type: DEFAULT; Schema: Ingreso; Owner: postgres
+--
+
+ALTER TABLE ONLY "passwrdsP" ALTER COLUMN id SET DEFAULT nextval('"passwrdsP_id_seq"'::regclass);
+
+
+--
+-- TOC entry 1889 (class 2604 OID 34568)
+-- Name: id; Type: DEFAULT; Schema: Ingreso; Owner: postgres
+--
+
+ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regclass);
+
+
+--
+-- TOC entry 1893 (class 2604 OID 34624)
+-- Name: id; Type: DEFAULT; Schema: Ingreso; Owner: postgres
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+SET search_path = perzonalizacion, pg_catalog;
+
+--
+-- TOC entry 1895 (class 2604 OID 34666)
+-- Name: id; Type: DEFAULT; Schema: perzonalizacion; Owner: postgres
+--
+
+ALTER TABLE ONLY empresa_colaborador_sucursales ALTER COLUMN id SET DEFAULT nextval('empresa_colaborador_sucursales_id_seq'::regclass);
+
+
+--
+-- TOC entry 1894 (class 2604 OID 34650)
+-- Name: id; Type: DEFAULT; Schema: perzonalizacion; Owner: postgres
+--
+
+ALTER TABLE ONLY extras ALTER COLUMN id SET DEFAULT nextval('extras_id_seq'::regclass);
+
+
+SET search_path = registro, pg_catalog;
+
+--
+-- TOC entry 1892 (class 2604 OID 34608)
+-- Name: id_sucursal; Type: DEFAULT; Schema: registro; Owner: postgres
+--
+
+ALTER TABLE ONLY sucursales ALTER COLUMN id_sucursal SET DEFAULT nextval('sucursales_id_sucursal_seq'::regclass);
+
+
+SET search_path = "Ingreso", pg_catalog;
+
+--
+-- TOC entry 2049 (class 0 OID 34573)
+-- Dependencies: 180
+-- Data for Name: passwrdsE; Type: TABLE DATA; Schema: Ingreso; Owner: postgres
+--
+
+COPY "passwrdsE" (id, email, pass_email, password, remember_token, id_user, created_at, updated_at) FROM stdin;
+1	1001611381001@facturanext.com	PNYRCHg72hzd	$2y$10$mFN3buXDiXPmoD9d8nZAmOm/58x0h5pJVJUyelP3PyFQdc1N19EH6	eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdFwvYXBwbmV4dFwvcHVibGljXC9sb2dpbiIsImlhdCI6MTQ2NzQxMzE3NiwiZXhwIjoxNDY3NDQxOTc2LCJuYmYiOjE0Njc0MTMxNzYsImp0aSI6IjRhNzY0M2QzZjI2ZTZlYjM3YTZmY2JkOWM3MTMxMGE2In0.exv23R4AzRuTXI4SUYBHAuQTq0HhBohTfnCtNTbZmik	20160630105617577541214a6b2	2016-06-30 15:56:52	2016-07-01 22:46:16
+\.
+
+
+--
+-- TOC entry 2078 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: passwrdsE_id_seq; Type: SEQUENCE SET; Schema: Ingreso; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"passwrdsE_id_seq"', 1, true);
+
+
+--
+-- TOC entry 2051 (class 0 OID 34589)
+-- Dependencies: 182
+-- Data for Name: passwrdsP; Type: TABLE DATA; Schema: Ingreso; Owner: postgres
+--
+
+COPY "passwrdsP" (id, email, pass_email, password, remember_token, id_user, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2079 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: passwrdsP_id_seq; Type: SEQUENCE SET; Schema: Ingreso; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"passwrdsP_id_seq"', 1, false);
+
+
+--
+-- TOC entry 2047 (class 0 OID 34565)
+-- Dependencies: 178
+-- Data for Name: roles; Type: TABLE DATA; Schema: Ingreso; Owner: postgres
+--
+
+COPY roles (id, nombre_rol, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2080 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: roles_id_seq; Type: SEQUENCE SET; Schema: Ingreso; Owner: postgres
+--
+
+SELECT pg_catalog.setval('roles_id_seq', 1, false);
+
+
+--
+-- TOC entry 2055 (class 0 OID 34621)
+-- Dependencies: 186
+-- Data for Name: users; Type: TABLE DATA; Schema: Ingreso; Owner: postgres
+--
+
+COPY users (id, email, password_email, password, remember_token, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2081 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: Ingreso; Owner: postgres
+--
+
+SELECT pg_catalog.setval('users_id_seq', 1, false);
+
+
+SET search_path = factura_next, pg_catalog;
+
+--
+-- TOC entry 2061 (class 0 OID 34679)
+-- Dependencies: 192
+-- Data for Name: facturas; Type: TABLE DATA; Schema: factura_next; Owner: postgres
+--
+
+COPY facturas (id_factura, num_factura, nombre_comercial, "Ruc_prov", fecha_emision, clave_acceso, ambiente, tipo_doc, tipo_consumo, total, contenido_fac, id_empresa, created_at, updated_at) FROM stdin;
+201607011314425776b312ebe23	254-047-000000738	ARTEFACTA	1790895548001	2016-01-21	2101201604179089554800122540470000007380000073814	2	04	ALIMENTACIÓN	78.84	<?xml version="1.0" encoding="UTF-8"?><notaCredito id="comprobante" version="1.1.0">\r\n  <infoTributaria>\r\n    <ambiente>2</ambiente>\r\n    <tipoEmision>1</tipoEmision>\r\n    <razonSocial>ARTEFACTOS ECUATORIANOS PARA EL HOGAR S. A.</razonSocial>\r\n    <nombreComercial>ARTEFACTA</nombreComercial>\r\n    <ruc>1790895548001</ruc>\r\n    <claveAcceso>2101201604179089554800122540470000007380000073814</claveAcceso>\r\n    <codDoc>04</codDoc>\r\n    <estab>254</estab>\r\n    <ptoEmi>047</ptoEmi>\r\n    <secuencial>000000738</secuencial>\r\n    <dirMatriz>CIUDAD COLON TERCERA ETAPA, SOLAR 5 MANZANA 275 CORPORATIVO CUATRO PLANTA BAJA</dirMatriz>\r\n  </infoTributaria>\r\n  <infoNotaCredito>\r\n    <fechaEmision>21/01/2016</fechaEmision>\r\n    <dirEstablecimiento>BOLIVAR 1071 Y AV PEREZ GUERRERO DIAGONAL A SANA SANA</dirEstablecimiento>\r\n    <tipoIdentificacionComprador>05</tipoIdentificacionComprador>\r\n    <razonSocialComprador>MARIANA DEL CARMEN CABALLERO REINA</razonSocialComprador>\r\n    <identificacionComprador>1001945235</identificacionComprador>\r\n    <contribuyenteEspecial>5368</contribuyenteEspecial>\r\n    <obligadoContabilidad>SI</obligadoContabilidad>\r\n    <codDocModificado>01</codDocModificado>\r\n    <numDocModificado>254-054-000000012</numDocModificado>\r\n    <fechaEmisionDocSustento>15/12/2014</fechaEmisionDocSustento>\r\n    <totalSinImpuestos>70.39</totalSinImpuestos>\r\n    <valorModificacion>78.84</valorModificacion>\r\n    <moneda>DOLAR</moneda>\r\n    <totalConImpuestos>\r\n      <totalImpuesto>\r\n        <codigo>2</codigo>\r\n        <codigoPorcentaje>0</codigoPorcentaje>\r\n        <baseImponible>0.00</baseImponible>\r\n        <valor>0.00</valor>\r\n      </totalImpuesto>\r\n      <totalImpuesto>\r\n        <codigo>2</codigo>\r\n        <codigoPorcentaje>2</codigoPorcentaje>\r\n        <baseImponible>70.39</baseImponible>\r\n        <valor>8.45</valor>\r\n      </totalImpuesto>\r\n    </totalConImpuestos>\r\n    <motivo>DESCUENTO CUOTA</motivo>\r\n  </infoNotaCredito>\r\n  <detalles>\r\n    <detalle>\r\n      <codigoInterno>94088</codigoInterno>\r\n      <descripcion>DESCUENTO EN CUOTA 15</descripcion>\r\n      <cantidad>1.00</cantidad>\r\n      <precioUnitario>70.39</precioUnitario>\r\n      <descuento>0.00</descuento>\r\n      <precioTotalSinImpuesto>70.39</precioTotalSinImpuesto>\r\n      <impuestos>\r\n        <impuesto>\r\n          <codigo>2</codigo>\r\n          <codigoPorcentaje>2</codigoPorcentaje>\r\n          <tarifa>12.00</tarifa>\r\n          <baseImponible>70.39</baseImponible>\r\n          <valor>8.45</valor>\r\n        </impuesto>\r\n      </impuestos>\r\n    </detalle>\r\n  </detalles>\r\n  <infoAdicional>\r\n    <campoAdicional nombre="emailCliente">fallsouls@hotmail.com</campoAdicional>\r\n  </infoAdicional>\r\n<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature858021">\r\n<ds:SignedInfo Id="Signature-SignedInfo460082">\r\n<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>\r\n<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>\r\n<ds:Reference Id="SignedPropertiesID305752" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature858021-SignedProperties855097">\r\n<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>\r\n<ds:DigestValue>EDhypwm38WlV77NyNCwijQ5NyC8=</ds:DigestValue>\r\n</ds:Reference>\r\n<ds:Reference URI="#Certificate1426168">\r\n<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>\r\n<ds:DigestValue>hn1uGDDfA2Ow88Uufh+aymhOEEo=</ds:DigestValue>\r\n</ds:Reference>\r\n<ds:Reference Id="Reference-ID-891494" URI="#comprobante">\r\n<ds:Transforms>\r\n<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>\r\n</ds:Transforms>\r\n<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>\r\n<ds:DigestValue>PzyY2LPGpZ3wVma2ziDuYyIEB7Q=</ds:DigestValue>\r\n</ds:Reference>\r\n</ds:SignedInfo>\r\n<ds:SignatureValue Id="SignatureValue83359">\r\nLwU49jw0LbV7bgXLHHfPFpES9M8aaWL32M6yLHx6HLugK889pjahLi3Mt4B2SIWYAEOQnafRkTy9\r\npXThAwhYIU2a4Lahq+zanDsQEkuEnJNDMRuQvadDGO7jRVDimHMcH3NXBuZPQqEr0FJdrp1U7mHU\r\nRG+vDrOM4ygH0bUamTTdseuvrlC1VnvOfggUhA8pdJfHMUg1dsgdp1dT82CPLziKqU7wuO+Y8kv/\r\nUF/6XJ5sCQUHn0ozk5j6Azt9IYQGj1n9aoINaESCGvSMiqjRURc99m8sxR2izG2R+I7Ij8Cq/ogG\r\ntrTxow1YqG8C5F+rVsW1NRlcB8xFLCDA2s+7jA==\r\n</ds:SignatureValue>\r\n<ds:KeyInfo Id="Certificate1426168">\r\n<ds:X509Data>\r\n<ds:X509Certificate>\r\nMIIKHzCCCQegAwIBAgIETV30AzANBgkqhkiG9w0BAQsFADCBkzELMAkGA1UEBhMCRUMxGzAZBgNV\r\nBAoTElNFQ1VSSVRZIERBVEEgUy5BLjEwMC4GA1UECxMnRU5USURBRCBERSBDRVJUSUZJQ0FDSU9O\r\nIERFIElORk9STUFDSU9OMTUwMwYDVQQDEyxBVVRPUklEQUQgREUgQ0VSVElGSUNBQ0lPTiBTVUIg\r\nU0VDVVJJVFkgREFUQTAeFw0xNDA2MTkyMTQ1MDdaFw0xNjA2MTkyMjE1MDdaMIGEMQswCQYDVQQG\r\nEwJFQzEbMBkGA1UEChMSU0VDVVJJVFkgREFUQSBTLkEuMTAwLgYDVQQLEydFTlRJREFEIERFIENF\r\nUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04xJjAkBgNVBAMTHVZpbmljaW8gUm9iZXJ0byBEaWF6\r\nIFBlbmFmaWVsMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAx3n+e//45Y8VZEB25uFy\r\noOV3HJYKnuiKuwVVNn9TxEnWyci0Hm1tMSuk08JcMF4t1nVSBNJ2HZVrO1l3uBhH8Af5LI8hE8In\r\n2ay5iA8D8dxSETV6SXNmqTKUb6QRkb0Or18Htyu8YUmMNdnI+2mS69594lKCmFN6t5b466ejX/Y8\r\nUhGiNqVCuF6bWwF98RZFFMn/F12kQWDtmIZaam6tnNZ06QEhP4nwStbZG0iNNyDy2dTXbVAGosVw\r\nN8XoGxaWGlPVToRJgcO09EE+JDGrtCICvfloYXSqUjpRQrD6fb2P+16dPQcD1f2T+6YGdmeAV6rI\r\nsicSkWwNmcOS6pEHBwIDAQABo4IGhjCCBoIwCwYDVR0PBAQDAgbAMFkGCCsGAQUFBwEBBE0wSzBJ\r\nBggrBgEFBQcwAYY9aHR0cDovL29jc3Bndy5zZWN1cml0eWRhdGEubmV0LmVjL2VqYmNhL3B1Ymxp\r\nY3dlYi9zdGF0dXMvb2NzcDCBygYDVR0gBIHCMIG/MD8GCisGAQQBgqZyAgowMTAvBggrBgEFBQcC\r\nAjAjGiFDZXJ0aWZpY2FkbyBkZSBNaWVtYnJvIGRlIEVtcHJlc2EwfAYKKwYBBAGCpnICBDBuMGwG\r\nCCsGAQUFBwIBFmBodHRwczovL3d3dy5zZWN1cml0eWRhdGEubmV0LmVjL2xleWVzX25vcm1hdGl2\r\nYXMvUG9saXRpY2FzIGRlIENlcnRpZmljYWRvIE1pZW1icm8gZGUgRW1wcmVzYS5wZGYwRAYKKwYB\r\nBAGCpnIDCgQ2EzRBUlRFRkFDVE9TIEVDVUFUT1JJQU5PUyBQQVJBIEVMIEhPR0FSIFMuQS4gQVJU\r\nRUZBQ1RBMB0GCisGAQQBgqZyAwsEDxMNMTc5MDg5NTU0ODAwMTAaBgorBgEEAYKmcgMBBAwTCjE3\r\nMTE3MDc3ODQwHwYKKwYBBAGCpnIDAgQREw9WaW5pY2lvIFJvYmVydG8wFAYKKwYBBAGCpnIDAwQG\r\nEwREaWF6MBgGCisGAQQBgqZyAwQEChMIUGVuYWZpZWwwMwYKKwYBBAGCpnIDBQQlEyNHZXJlbnRl\r\nIEZpbmFuY2llcm8geSBBZG1pbmlzdHJhdGl2bzBoBgorBgEEAYKmcgMHBFoTWENpdWRhZGVsYSBD\r\nb2xvbiBUZXJjZXJhIEV0YXBhIFNvbGFyIDUgTWFuemFuYSAyNzUgU3VwZXJtYW56YW5hIFBCIEVk\r\naWZpY2lvIENvcnBvcmF0aXZvIDQwFgYKKwYBBAGCpnIDIgQIEwYwOTA1MTAwHQYKKwYBBAGCpnID\r\nCAQPEw01OTMtNC02MDQ0MzQwMBgGCisGAQQBgqZyAwkEChMIR3VheWFxdWkwFwYKKwYBBAGCpnID\r\nDAQJEwdFY3VhZG9yMCEGCisGAQQBgqZyAyAEExMRMDAxLTAwMi0wMDAwMDM0MzIwEwYKKwYBBAGC\r\npnIDIQQFEwNQRlgwKAYDVR0RBCEwH4Edcm9iZXJ0b19kaWF6QGFydGVmYWN0YS5jb20uZWMwggJ5\r\nBgNVHR8EggJwMIICbDCCAmigggJkoIICYIY9aHR0cDovL29jc3Bndy5zZWN1cml0eWRhdGEubmV0\r\nLmVjL2VqYmNhL3B1YmxpY3dlYi9zdGF0dXMvb2NzcIaB1GxkYXA6Ly9kaXJlY3Quc2VjdXJpdHlk\r\nYXRhLm5ldC5lYy9jbj1DUkw1OCxjbj1BVVRPUklEQUQlMjBERSUyMENFUlRJRklDQUNJT04lMjBT\r\nVUIlMjBTRUNVUklUWSUyMERBVEEsb3U9RU5USURBRCUyMERFJTIwQ0VSVElGSUNBQ0lPTiUyMERF\r\nJTIwSU5GT1JNQUNJT04sbz1TRUNVUklUWSUyMERBVEElMjBTLkEuLGM9RUM/Y2VydGlmaWNhdGVS\r\nZXZvY2F0aW9uTGlzdD9iYXNlhoGeaHR0cHM6Ly9kaXJlY3Quc2VjdXJpdHlkYXRhLm5ldC5lYy9+\r\nY3JsL2F1dG9yaWRhZF9kZV9jZXJ0aWZpY2FjaW9uX3N1Yl9zZWN1cml0eV9kYXRhX2VudGlkYWRf\r\nZGVfY2VydGlmaWNhY2lvbl9kZV9pbmZvcm1hY2lvbl9jdXJpdHlfZGF0YV9zLmEuX2NfZWNfY3Js\r\nZmlsZS5jcmykgaYwgaMxCzAJBgNVBAYTAkVDMRswGQYDVQQKExJTRUNVUklUWSBEQVRBIFMuQS4x\r\nMDAuBgNVBAsTJ0VOVElEQUQgREUgQ0VSVElGSUNBQ0lPTiBERSBJTkZPUk1BQ0lPTjE1MDMGA1UE\r\nAxMsQVVUT1JJREFEIERFIENFUlRJRklDQUNJT04gU1VCIFNFQ1VSSVRZIERBVEExDjAMBgNVBAMT\r\nBUNSTDU4MCsGA1UdEAQkMCKADzIwMTQwNjE5MjE0NTA3WoEPMjAxNjA2MDUwNzE1MDdaMB8GA1Ud\r\nIwQYMBaAFPcvTOB152KjeJZbBrYucTvMbD+QMB0GA1UdDgQWBBSs0OKiSrgLBfEJ7BEtfIBeZj2+\r\nZzAJBgNVHRMEAjAAMBkGCSqGSIb2fQdBAAQMMAobBFY4LjEDAgOoMA0GCSqGSIb3DQEBCwUAA4IB\r\nAQBO+Yl5Xo/3cTY9g1g2y2N7WMzTlulQb3/n30NxrSg+RiCq/hkMqG9Imagh/gDqTAIewF8drUSN\r\nVrcrkKbvNsZs14huSmCoN1Usn/tLIzG4J43HrFKJw+g658JdELvFN9exL9t/7UJSh4Spgj/kpLAZ\r\nIT4p09/b3Iw2bM/ivwROH6DevvSIEgV5/oGIF9akyblBKjmmy1n/DPwd9zgRy6xYlJmSblSsx/Ox\r\nwRoDygAI0Tg7Jq7q5D3P0LfNLmENqULA7gMeZxZVSXWY5mXhTki2puNK45F9iyPnVtZt99+xExMp\r\nG/OkfT0dZTo2ilMFBlFSMaiI/G+tSTCwhMEU43nz\r\n</ds:X509Certificate>\r\n</ds:X509Data>\r\n<ds:KeyValue>\r\n<ds:RSAKeyValue>\r\n<ds:Modulus>\r\nx3n+e//45Y8VZEB25uFyoOV3HJYKnuiKuwVVNn9TxEnWyci0Hm1tMSuk08JcMF4t1nVSBNJ2HZVr\r\nO1l3uBhH8Af5LI8hE8In2ay5iA8D8dxSETV6SXNmqTKUb6QRkb0Or18Htyu8YUmMNdnI+2mS6959\r\n4lKCmFN6t5b466ejX/Y8UhGiNqVCuF6bWwF98RZFFMn/F12kQWDtmIZaam6tnNZ06QEhP4nwStbZ\r\nG0iNNyDy2dTXbVAGosVwN8XoGxaWGlPVToRJgcO09EE+JDGrtCICvfloYXSqUjpRQrD6fb2P+16d\r\nPQcD1f2T+6YGdmeAV6rIsicSkWwNmcOS6pEHBw==\r\n</ds:Modulus>\r\n<ds:Exponent>AQAB</ds:Exponent>\r\n</ds:RSAKeyValue>\r\n</ds:KeyValue>\r\n</ds:KeyInfo>\r\n<ds:Object Id="Signature858021-Object70123"><etsi:QualifyingProperties Target="#Signature858021"><etsi:SignedProperties Id="Signature858021-SignedProperties855097"><etsi:SignedSignatureProperties><etsi:SigningTime>2016-01-21T11:20:10-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>BvDodDZ566ZlZxeVF/gbRZJO3rk=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AUTORIDAD DE CERTIFICACION SUB SECURITY DATA,OU=ENTIDAD DE CERTIFICACION DE INFORMACION,O=SECURITY DATA S.A.,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1298002947</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-891494"><etsi:Description>comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></notaCredito>	20160630105617577541214a6b2	2016-07-01 13:14:42	2016-07-01 13:14:42
+201607011316245776b3783b3ab	002-001-000034502			2016-05-16	1605201601109173201300120020010000345020003496419	2	01	-------	8.82	<?xml version="1.0" encoding="UTF-8"?><factura id="comprobante" version="1.0.0">\r\n  <infoTributaria>\r\n    <ambiente>2</ambiente>\r\n    <tipoEmision>1</tipoEmision>\r\n    <razonSocial>NORTEXTIL SCC</razonSocial>\r\n    <nombreComercial>NORTEXTIL</nombreComercial>\r\n    <ruc>1091732013001</ruc>\r\n    <claveAcceso>1605201601109173201300120020010000345020003496419</claveAcceso>\r\n    <codDoc>01</codDoc>\r\n    <estab>002</estab>\r\n    <ptoEmi>001</ptoEmi>\r\n    <secuencial>000034502</secuencial>\r\n    <dirMatriz>SANCHEZ Y CIFUENTES 1087 Y VELASCO  </dirMatriz>\r\n  </infoTributaria>\r\n  <infoFactura>\r\n    <fechaEmision>16/05/2016</fechaEmision>\r\n    <dirEstablecimiento>BOLIVAR Y OLMEDO  </dirEstablecimiento>\r\n    <obligadoContabilidad>SI</obligadoContabilidad>\r\n    <tipoIdentificacionComprador>05</tipoIdentificacionComprador>\r\n    <razonSocialComprador>JOSE MANUEL AMAGUANA</razonSocialComprador>\r\n    <identificacionComprador>1002132759</identificacionComprador>\r\n    <totalSinImpuestos>7.88</totalSinImpuestos>\r\n    <totalDescuento>0.00</totalDescuento>\r\n    <totalConImpuestos>\r\n      <totalImpuesto>\r\n        <codigo>2</codigo>\r\n        <codigoPorcentaje>2</codigoPorcentaje>\r\n        <baseImponible>7.88</baseImponible>\r\n        <valor>0.95</valor>\r\n      </totalImpuesto>\r\n    </totalConImpuestos>\r\n    <propina>0.00</propina>\r\n    <importeTotal>8.82</importeTotal>\r\n    <moneda>DOLAR</moneda>\r\n  </infoFactura>\r\n  <detalles>\r\n    <detalle>\r\n      <codigoPrincipal>1392</codigoPrincipal>\r\n      <descripcion>RONALDO BLANCO</descripcion>\r\n      <cantidad>2.80</cantidad>\r\n      <precioUnitario>2.81</precioUnitario>\r\n      <descuento>0.00</descuento>\r\n      <precioTotalSinImpuesto>7.88</precioTotalSinImpuesto>\r\n      <impuestos>\r\n        <impuesto>\r\n          <codigo>2</codigo>\r\n          <codigoPorcentaje>2</codigoPorcentaje>\r\n          <tarifa>12.00</tarifa>\r\n          <baseImponible>7.88</baseImponible>\r\n          <valor>0.95</valor>\r\n        </impuesto>\r\n      </impuestos>\r\n    </detalle>\r\n  </detalles>\r\n  <infoAdicional>\r\n    <campoAdicional nombre="Direccion">IBARRA</campoAdicional>\r\n    <campoAdicional nombre="Telefono">0982793775</campoAdicional>\r\n    <campoAdicional nombre="Email">joseamagua@hotmail.com</campoAdicional>\r\n  </infoAdicional>\r\n<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature679119">\r\n<ds:SignedInfo Id="Signature-SignedInfo23307">\r\n<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>\r\n<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>\r\n<ds:Reference Id="SignedPropertiesID659125" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature679119-SignedProperties895413">\r\n<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>\r\n<ds:DigestValue>qmrsmAww2kCsVldsJTsIKd2KKlc=</ds:DigestValue>\r\n</ds:Reference>\r\n<ds:Reference URI="#Certificate1698164">\r\n<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>\r\n<ds:DigestValue>FUbNYwHnujgWrKnTi1+3b/smtTM=</ds:DigestValue>\r\n</ds:Reference>\r\n<ds:Reference Id="Reference-ID-479543" URI="#comprobante">\r\n<ds:Transforms>\r\n<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>\r\n</ds:Transforms>\r\n<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>\r\n<ds:DigestValue>Z+jz9E1He2nK1KPN9PtPcCvZXoU=</ds:DigestValue>\r\n</ds:Reference>\r\n</ds:SignedInfo>\r\n<ds:SignatureValue Id="SignatureValue123574">\r\nCxO2+If15vPUsc/Oh6TPctbyn/Y4gy0/A1aVLYtELpsg4PMcGso4murV38ZgNAeZ4VPMy0rlO2e+\r\nMb1Oj5S1VK9Ztb2ROVKlP+aJfPCUU9cIm1D1h1JwW5LSEDLY5xhCUUzeyTggrv6KBKF8I6b1vxCq\r\nSMWFcU/NIrhxtaRG0cXFY6v1ZpatuZuA2pT2j9SMOBCLwZT+DcsAL4BlIVTWct6QbkB7HtdgNtkQ\r\ntmb2T7HKQ2HEa4GKNXeOB0LeRnyuC89huBsBFIwo6BpNWIA60zR7N/vVsf4/n94MVVsCJrlyhhhT\r\nFo5RweFT7lA9/b4VHM0MSMBC8g8k87U+OxmZdw==\r\n</ds:SignatureValue>\r\n<ds:KeyInfo Id="Certificate1698164">\r\n<ds:X509Data>\r\n<ds:X509Certificate>\r\nMIIJ5jCCB86gAwIBAgIETkXtRjANBgkqhkiG9w0BAQsFADCBoTELMAkGA1UEBhMCRUMxIjAgBgNV\r\nBAoTGUJBTkNPIENFTlRSQUwgREVMIEVDVUFET1IxNzA1BgNVBAsTLkVOVElEQUQgREUgQ0VSVElG\r\nSUNBQ0lPTiBERSBJTkZPUk1BQ0lPTi1FQ0lCQ0UxDjAMBgNVBAcTBVFVSVRPMSUwIwYDVQQDExxB\r\nQyBCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMB4XDTE2MDIwNTE0MzAzN1oXDTE4MDIwNTE1MDAz\r\nN1owgbcxCzAJBgNVBAYTAkVDMSIwIAYDVQQKExlCQU5DTyBDRU5UUkFMIERFTCBFQ1VBRE9SMTcw\r\nNQYDVQQLEy5FTlRJREFEIERFIENFUlRJRklDQUNJT04gREUgSU5GT1JNQUNJT04tRUNJQkNFMQ4w\r\nDAYDVQQHEwVRVUlUTzE7MBEGA1UEBRMKMDAwMDA5ODg3NzAmBgNVBAMTH1ZJVklBTkEgQUxFWEFO\r\nRFJBIEdBUlpPTiBKQVRJVkEwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC8bgTw9fmT\r\nLqqP3wCXt0FKZO+Ypufe+7egXeQIOchCJEeRTsBNyw3iQ4dBqMxSjleDOWwAtia+M7RMnNDogVh8\r\n5CNokXvGy9J0Dyit+/GvbjGCrju6JNgpegvPZ2BBu0ORYVk3WKkie6rp1do7yCZZ+Info1V/oZBr\r\nuQT5gjMQqBGcx7F/xjO0VWnIblDhUIylTDP5KxpkGn6r4NAZPY1e/YO3ukBdRXLxD6xo3kEl9g2V\r\nVAhd7X2j8fD0Ze/P4N9pkM+w+WJdpLYh752z7lWzReUmQyaSdiPXT1FCUHKvunehD9uVYzOV0UsV\r\nt/0mqeykBJR/5+Vt3Nd56F5c50qhAgMBAAGjggUMMIIFCDALBgNVHQ8EBAMCB4AwZwYDVR0gBGAw\r\nXjBcBgsrBgEEAYKoOwICATBNMEsGCCsGAQUFBwIBFj9odHRwOi8vd3d3LmVjaS5iY2UuZWMvcG9s\r\naXRpY2EtY2VydGlmaWNhZG8vcGVyc29uYS1qdXJpZGljYS5wZGYwgZEGCCsGAQUFBwEBBIGEMIGB\r\nMD4GCCsGAQUFBzABhjJodHRwOi8vb2NzcC5lY2kuYmNlLmVjL2VqYmNhL3B1YmxpY3dlYi9zdGF0\r\ndXMvb2NzcDA/BggrBgEFBQcwAYYzaHR0cDovL29jc3AxLmVjaS5iY2UuZWMvZWpiY2EvcHVibGlj\r\nd2ViL3N0YXR1cy9vY3NwMB0GCisGAQQBgqg7AwoEDxMNTk9SVEVYVElMIFNDQzAdBgorBgEEAYKo\r\nOwMLBA8TDTEwOTE3MzIwMTMwMDEwGgYKKwYBBAGCqDsDAQQMEwoxMDAyMzM1NDUxMCEGCisGAQQB\r\ngqg7AwIEExMRVklWSUFOQSBBTEVYQU5EUkEwFgYKKwYBBAGCqDsDAwQIEwZHQVJaT04wFgYKKwYB\r\nBAGCqDsDBAQIEwZKQVRJVkEwHwYKKwYBBAGCqDsDBQQREw9HRVJFTlRFIEdFTkVSQUwwIAYKKwYB\r\nBAGCqDsDBwQSExBCT0xJVkFSIFkgT0xNRURPMBkGCisGAQQBgqg7AwgECxMJMDYyOTA2NDEyMBwG\r\nCisGAQQBgqg7AwkEDhMMQW50b25pbyBhbnRlMBcGCisGAQQBgqg7AwwECRMHRUNVQURPUjAgBgor\r\nBgEEAYKoOwMzBBITEFNPRlRXQVJFLUFSQ0hJVk8wIgYDVR0RBBswGYEXbm9ydGV4dGlsLnNjY0Bn\r\nbWFpbC5jb20wggHfBgNVHR8EggHWMIIB0jCCAc6gggHKoIIBxoaB1WxkYXA6Ly9iY2VxbGRhcHN1\r\nYnAxLmJjZS5lYy9jbj1DUkwyOTYsY249QUMlMjBCQU5DTyUyMENFTlRSQUwlMjBERUwlMjBFQ1VB\r\nRE9SLGw9UVVJVE8sb3U9RU5USURBRCUyMERFJTIwQ0VSVElGSUNBQ0lPTiUyMERFJTIwSU5GT1JN\r\nQUNJT04tRUNJQkNFLG89QkFOQ08lMjBDRU5UUkFMJTIwREVMJTIwRUNVQURPUixjPUVDP2NlcnRp\r\nZmljYXRlUmV2b2NhdGlvbkxpc3Q/YmFzZYY0aHR0cDovL3d3dy5lY2kuYmNlLmVjL0NSTC9lY2lf\r\nYmNlX2VjX2NybGZpbGVjb21iLmNybKSBtTCBsjELMAkGA1UEBhMCRUMxIjAgBgNVBAoTGUJBTkNP\r\nIENFTlRSQUwgREVMIEVDVUFET1IxNzA1BgNVBAsTLkVOVElEQUQgREUgQ0VSVElGSUNBQ0lPTiBE\r\nRSBJTkZPUk1BQ0lPTi1FQ0lCQ0UxDjAMBgNVBAcTBVFVSVRPMSUwIwYDVQQDExxBQyBCQU5DTyBD\r\nRU5UUkFMIERFTCBFQ1VBRE9SMQ8wDQYDVQQDEwZDUkwyOTYwKwYDVR0QBCQwIoAPMjAxNjAyMDUx\r\nNDMwMzdagQ8yMDE4MDIwNTE1MDAzN1owHwYDVR0jBBgwFoAUGPnw++YyHJlmOSrKi7JpfUknv84w\r\nHQYDVR0OBBYEFJyI/+2dAVMdO/mWUNcCX/N8bWmzMAkGA1UdEwQCMAAwGQYJKoZIhvZ9B0EABAww\r\nChsEVjguMQMCBLAwDQYJKoZIhvcNAQELBQADggIBAA3HoG8aT7Ih5lEG0YkNLggFHqielbtpX/i0\r\nFLcbaU1giTgLJUl9YLKuAXfhPa8HMXgA570UJ1wNJwRB1qTLunErscUNC1LoQDHlCv7KFFbadgx4\r\nCsMWUn/j8NPXYWXjcG9AW7NPk36Bu9Th67LIHgmzU99BOKbGLTiLtmMGQUg/6v9WHOAe4jOem4ZZ\r\n790IBBSXYNCLfXc6Uk9IxyTnZdRQ6sFqmoxgiPX+WkPRnOOGo/bwDl0uFupNqkgQ46KJQEuSykXq\r\n86iecy2XGLFiVfAzopG9+ROfgccKZy25zFhXo9LR9rUmloTCqmJ9aK1ttYSCc8mmUS7tu/C/HZKJ\r\n/1ypfA/B7okwsZdr6H4pD6f2eXr1ZONmexqxRazyPaNBslOJ8dhHCbStRUIdAwsIPG1B57h9g3ca\r\niUosROJ7g9Mq2ZQNQfG7ev9bWSGrw2EUvaCdMzk01O+s71YJiBYY9T8UmfCrBEroloXSMsc9Aepo\r\nnfmpi7NS22Ma/IyBVhw4SmMyh/CjxKZXegzRTYQo6LGvAHNrvGWra355MIBGmUcwfkITZHJ/3DZ+\r\n2IwHNFk1eD1U/4shj16t3R4r7QWj4+DmZyTwb17RQ6w6ljQcwIRVogPzghMm0UjudEzzBks3iP3Z\r\nymYWfGXUK73tceWG9HXbSidDH9NS5zzqQrh/Zpxo\r\n</ds:X509Certificate>\r\n</ds:X509Data>\r\n<ds:KeyValue>\r\n<ds:RSAKeyValue>\r\n<ds:Modulus>\r\nvG4E8PX5ky6qj98Al7dBSmTvmKbn3vu3oF3kCDnIQiRHkU7ATcsN4kOHQajMUo5XgzlsALYmvjO0\r\nTJzQ6IFYfOQjaJF7xsvSdA8orfvxr24xgq47uiTYKXoLz2dgQbtDkWFZN1ipInuq6dXaO8gmWfiJ\r\n36NVf6GQa7kE+YIzEKgRnMexf8YztFVpyG5Q4VCMpUwz+SsaZBp+q+DQGT2NXv2Dt7pAXUVy8Q+s\r\naN5BJfYNlVQIXe19o/Hw9GXvz+DfaZDPsPliXaS2Ie+ds+5Vs0XlJkMmknYj109RQlByr7p3oQ/b\r\nlWMzldFLFbf9JqnspASUf+flbdzXeeheXOdKoQ==\r\n</ds:Modulus>\r\n<ds:Exponent>AQAB</ds:Exponent>\r\n</ds:RSAKeyValue>\r\n</ds:KeyValue>\r\n</ds:KeyInfo>\r\n<ds:Object Id="Signature679119-Object941727"><etsi:QualifyingProperties Target="#Signature679119"><etsi:SignedProperties Id="Signature679119-SignedProperties895413"><etsi:SignedSignatureProperties><etsi:SigningTime>2016-05-18T22:01:33-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>E6TnYq7DISgzU4tC4WUCRgShQd4=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=AC BANCO CENTRAL DEL ECUADOR,L=QUITO,OU=ENTIDAD DE CERTIFICACION DE INFORMACION-ECIBCE,O=BANCO CENTRAL DEL ECUADOR,C=EC</ds:X509IssuerName><ds:X509SerialNumber>1313205574</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-479543"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>	20160630105617577541214a6b2	2016-07-01 13:16:24	2016-07-01 13:16:24
+201607011316265776b37a14142	001-011-000013538			2016-06-13	1306201601106003416000120010110000135381535359116	2	01	-------	74.55	<?xml version="1.0" encoding="UTF-8"?>\n<factura id="comprobante" version="1.1.0"><infoTributaria><ambiente>2</ambiente><tipoEmision>1</tipoEmision><razonSocial>REGISTRO DE LA PROPIEDAD DEL CANTON IBARRA</razonSocial><ruc>1060034160001</ruc><claveAcceso>1306201601106003416000120010110000135381535359116</claveAcceso><codDoc>01</codDoc><estab>001</estab><ptoEmi>011</ptoEmi><secuencial>000013538</secuencial><dirMatriz>OLMEDO 519 Y GRIJALVA</dirMatriz></infoTributaria><infoFactura><fechaEmision>13/06/2016</fechaEmision><obligadoContabilidad>SI</obligadoContabilidad><tipoIdentificacionComprador>05</tipoIdentificacionComprador><razonSocialComprador>AMAGUAÑA CRIOLLO JOSE MANUEL</razonSocialComprador><identificacionComprador>1002132759</identificacionComprador><totalSinImpuestos>74.55</totalSinImpuestos><totalDescuento>0.00</totalDescuento><totalConImpuestos><totalImpuesto><codigo>2</codigo><codigoPorcentaje>7</codigoPorcentaje><descuentoAdicional>0.00</descuentoAdicional><baseImponible>74.55</baseImponible><valor>0.00</valor></totalImpuesto></totalConImpuestos><propina>0.00</propina><importeTotal>74.55</importeTotal><moneda>DOLAR</moneda></infoFactura><detalles><detalle><descripcion>COMPRAVENTA</descripcion><cantidad>1.000000</cantidad><precioUnitario>74.550000</precioUnitario><descuento>0.00</descuento><precioTotalSinImpuesto>74.55</precioTotalSinImpuesto><impuestos><impuesto><codigo>2</codigo><codigoPorcentaje>7</codigoPorcentaje><tarifa>0</tarifa><baseImponible>74.55</baseImponible><valor>0.00</valor></impuesto></impuestos></detalle></detalles><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Signature475192">\n<ds:SignedInfo Id="Signature-SignedInfo1004148">\n<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>\n<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>\n<ds:Reference Id="SignedPropertiesID34631" Type="http://uri.etsi.org/01903#SignedProperties" URI="#Signature475192-SignedProperties413661">\n<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>\n<ds:DigestValue>YRvGK0DUuXMw9bh8PSreuym7CxM=</ds:DigestValue>\n</ds:Reference>\n<ds:Reference URI="#Certificate1403816">\n<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>\n<ds:DigestValue>Qu6cBFgD/rBdhF5IcliBMSvV3PY=</ds:DigestValue>\n</ds:Reference>\n<ds:Reference Id="Reference-ID-182303" URI="#comprobante">\n<ds:Transforms>\n<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>\n</ds:Transforms>\n<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>\n<ds:DigestValue>OF4D4Pv7aNgdpL3Pnh7psYiuvog=</ds:DigestValue>\n</ds:Reference>\n</ds:SignedInfo>\n<ds:SignatureValue Id="SignatureValue867490">\ndEObSYiOh2vnWpuYELWwDHYhLo6DAmaMtmPtCc7eeWNiDNUrmSnpoBEJ1wO/TRLIr8FBLqrsmXXG\n9bmyhoEfHPqj4Va63oUhiuGM/9bPQbFKPKUGIPioKVcyTwQrnANRAImYLcgQo/d0Ebf7PTGisA1I\nZGgul9M0qPddm/W1PhmXxXaRot2NORjurxPuUDWnQomrYZ3vlYHkzdx2qC4eSAI4SzaLB34MoRpM\nZ0TxL1THegCsS17MrYg9p33Djd+WkYFUjKO43Ha7TfrxD6+9EHj6JBZ3MvID86m33xER89zkyyg9\nGBWpq+KMnx9fmxnSbtgJsDlPXB2C+z6fStIE3g==\n</ds:SignatureValue>\n<ds:KeyInfo Id="Certificate1403816">\n<ds:X509Data>\n<ds:X509Certificate>\nMIIIYzCCBkugAwIBAgIICvW5LGGCHEMwDQYJKoZIhvcNAQELBQAwgbUxCzAJBgNVBAYTAkVDMREw\nDwYDVQQHDAhETSBRVUlUTzEhMB8GA1UECgwYQ09OU0VKTyBERSBMQSBKVURJQ0FUVVJBMUQwQgYD\nVQQLDDtTVUJESVJFQ0NJT04gTkFDSU9OQUwgREUgU0VHVVJJREFEIERFIExBIElORk9STUFDSU9O\nIEROVElDUzEqMCgGA1UEAwwhRU5USURBRCBERSBDRVJUSUZJQ0FDSU9OIElDRVJULUVDMB4XDTE1\nMDYwMTE2NTMyN1oXDTE3MDYwMTE2NTMyN1owgZAxCzAJBgNVBAYTAkVDMQ8wDQYDVQQHDAZJQkFS\nUkExMzAxBgNVBAoMKlJFR0lTVFJPIERFIExBIFBST1BJRURBRCBERUwgQ0FOVE9OIElCQVJSQTET\nMBEGA1UEBRMKMTAwMjcwNDc2MzEmMCQGA1UEAwwdTUFSSUEgRkVSTkFOREEgSkFDT01FIEFSRVZB\nTE8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDWbR3JK3hgdnCoQG8XNf8yIWBbu8gD\nZye5QPf+qgxg1XFBfh5e7RSxGiI61fWTe7JhvEhQdcpwOT93hwlDvaKAmYtnpIkhNA2DwDXPnn3C\nKCiIeXAtYQMlww9HLbIJzkrYlb9irDtAF7jC96tS5PxPQ+bWPGR8cUfnJBMLs9Xm9B/lubkZ6mhy\nI0TG+F6uLhawIuOjvSy+lkEYEp7wTsJwtvyh/8RKv6MwD664qyTMXgkb8AJJYpmf3a1WkWH9qwwr\naVsh56hQFBeUqfVDrIueLQKcUKQCSHyRLTxXo9QS/B3xBkmxD2OFLwpgN/n/HP2ycW4It3EFeeTx\nHsr4RpBjAgMBAAGjggOYMIIDlDCCAiwGA1UdEQSCAiMwggIfgR5yZWdpc3Ryb3Byb3BpZWRhZGlA\naG90bWFpbC5jb22gGwYLKwYBBAGC1WEBAwGgDAwKMTAwMjcwNDc2M6AfBgsrBgEEAYLVYQEDAqAQ\nDA5NQVJJQSBGRVJOQU5EQaAXBgsrBgEEAYLVYQEDA6AIDAZKQUNPTUWgGAYLKwYBBAGC1WEBAwSg\nCQwHQVJFVkFMT6AjBgsrBgEEAYLVYQEDBaAUDBJTRVJWSURPUiBQVUJMSUNPIDGgIQYLKwYBBAGC\n1WEBAwagEgwQU0lOIERFUEFSVEFNRU5UT6A8BgsrBgEEAYLVYQEDB6AtDCtKT1NFIEpPQVFVSU4g\nT0xNRURPIDUtMTkgWSBKVUFOIE0uIEdSSUpBTFZBoB0GCysGAQQBgtVhAQMIoA4MDCs1OTM2Mjk1\nMTUzMKAXBgsrBgEEAYLVYQEDCaAIDAZJQkFSUkGgOwYLKwYBBAGC1WEBAwqgLAwqUkVHSVNUUk8g\nREUgTEEgUFJPUElFREFEIERFTCBDQU5UT04gSUJBUlJBoB4GCysGAQQBgtVhAQMLoA8MDTEwNjAw\nMzQxNjAwMDGgGAYLKwYBBAGC1WEBAwygCQwHRUNVQURPUqAkBgsrBgEEAYLVYQEDMqAVDBNGVU5D\nSU9OQVJJTyBQVUJMSUNPoB4GCysGAQQBgtVhAQMzoA8MDVRPS0VOL1RBUkpFVEGgEQYLKwYBBAGC\n1WEBAzSgAgwAMDgGCCsGAQUFBwEBBCwwKjAoBggrBgEFBQcwAYYcaHR0cDovL29jc3AuaWNlcnQu\nZmplLmdvYi5lYzAdBgNVHQ4EFgQUJexYTH4YoPLVAzVqVVhsECUuXyUwCQYDVR0TBAIwADAfBgNV\nHSMEGDAWgBQvInr4Xm2UjmpAFDfHbmty6TrCPzByBgNVHSAEazBpMGcGDisGAQQBgtVhAQIBBQEB\nMFUwUwYIKwYBBQUHAgEWR2h0dHA6Ly93d3cuaWNlcnQuZmplLmdvYi5lYy9kcGMvZGVjbGFyYWNp\nb25fcHJhY3RpY2FzX2NlcnRpZmljYWNpb24ucGRmMDoGA1UdHwQzMDEwL6AtoCuGKWh0dHA6Ly93\nd3cuaWNlcnQuZmplLmdvYi5lYy9jcmwvaWNlcnQuY3JsMA4GA1UdDwEB/wQEAwIGwDAdBgNVHSUE\nFjAUBggrBgEFBQcDAgYIKwYBBQUHAwQwDQYJKoZIhvcNAQELBQADggIBAEGybasNJR5TFKatiOBK\n8aGCuap3zZc2hXnsVrdR1o3Adm1WXR1pHeQCraFBpZs4aO9M1OR2VYbSIaRComhyxYwZFrTZnHov\n4i5jwRCkPwGFcp5ThIs/H6jE/57r1m6yt66bL0FUhhp85RI7AUs1eWd3bWv4Dcub2lsFMvx5CI5w\nsidXqsIf6IufG1h+Htq5I6uTpuYVOTQtgwb/mYK5nS796/GHqYDiXbK8wyTc2buQTz/qddi8PVuV\nyicxXet80Uk4atMKs9AbdBOdRIfMSRaIBCb+n1PsBeLoozSWuqAWAs32hyAL6K1g1hcELIGD81Q3\n2ncAXt7eMwPQB27CGANdfxnh2BsSmgmFwnuYfORlpEsOGsugozjDI0u089bGlrMJP31UPUqVDTrk\nmMFFu2gLJXWhRay3lGNJKJgl6K7XdKVfrMnE7kqdiw7c6KyfqewD10f1+D2P4RyVkqMzULIoWaws\nwZeyEhkNjsEFIjKCuKOXhlT6XbX9m9kT7dGkY3XSPZAeD5Nqo3wsV5+UkL+XV7I9sDKcJIlAIvMp\nSAIjoQD3epKTRLJqA27kBaal8goFJaS3dumPJ9+jCi3cf3/UhvJ7Nx+0w5ifC6hl7qHKHi8LqSOB\nYqlAu4voZ3UmVez1jm4+BUcHKaUznR+wF+Wwi31rzzsCivuLuRROyiNR\n</ds:X509Certificate>\n</ds:X509Data>\n<ds:KeyValue>\n<ds:RSAKeyValue>\n<ds:Modulus>\n1m0dySt4YHZwqEBvFzX/MiFgW7vIA2cnuUD3/qoMYNVxQX4eXu0UsRoiOtX1k3uyYbxIUHXKcDk/\nd4cJQ72igJmLZ6SJITQNg8A1z559wigoiHlwLWEDJcMPRy2yCc5K2JW/Yqw7QBe4wverUuT8T0Pm\n1jxkfHFH5yQTC7PV5vQf5bm5GepociNExvheri4WsCLjo70svpZBGBKe8E7CcLb8of/ESr+jMA+u\nuKskzF4JG/ACSWKZn92tVpFh/asMK2lbIeeoUBQXlKn1Q6yLni0CnFCkAkh8kS08V6PUEvwd8QZJ\nsQ9jhS8KYDf5/xz9snFuCLdxBXnk8R7K+EaQYw==\n</ds:Modulus>\n<ds:Exponent>AQAB</ds:Exponent>\n</ds:RSAKeyValue>\n</ds:KeyValue>\n</ds:KeyInfo>\n<ds:Object Id="Signature475192-Object929711"><etsi:QualifyingProperties Target="#Signature475192"><etsi:SignedProperties Id="Signature475192-SignedProperties413661"><etsi:SignedSignatureProperties><etsi:SigningTime>2016-06-13T15:57:47-05:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod><ds:DigestValue>gLspOgNQGsGR2LiEJRa65Nqx5TE=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>CN=ENTIDAD DE CERTIFICACION ICERT-EC,OU=SUBDIRECCION NACIONAL DE SEGURIDAD DE LA INFORMACION DNTICS,O=CONSEJO DE LA JUDICATURA,L=DM QUITO,C=EC</ds:X509IssuerName><ds:X509SerialNumber>789740909939006531</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference-ID-182303"><etsi:Description>contenido comprobante</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></factura>	20160630105617577541214a6b2	2016-07-01 13:16:26	2016-07-01 13:16:26
+\.
+
+
+--
+-- TOC entry 2062 (class 0 OID 34694)
+-- Dependencies: 193
+-- Data for Name: facturas_rechazadas; Type: TABLE DATA; Schema: factura_next; Owner: postgres
+--
+
+COPY facturas_rechazadas (id_factura_r, clave_acceso, tipo_consumo, razon_rechazo, contenido_fac, id_empresa, created_at, updated_at) FROM stdin;
+20160630110715577543b3d483c	no-definido	-------	Documento-Vacio		20160630105617577541214a6b2	2016-06-30 11:07:15	2016-06-30 11:07:15
+201607010941315776811b9a69e	no-definido	-------	Documento-Vacio		20160630105617577541214a6b2	2016-07-01 09:41:31	2016-07-01 09:41:31
+201607011316245776b378daf81	no-definido	-------	Documento-Vacio		20160630105617577541214a6b2	2016-07-01 13:16:24	2016-07-01 13:16:24
+201607011741215776f191e71f6	no-definido	-------	Documento-Vacio		20160630105617577541214a6b2	2016-07-01 17:41:21	2016-07-01 17:41:21
+\.
+
+
+SET search_path = perzonalizacion, pg_catalog;
+
+--
+-- TOC entry 2060 (class 0 OID 34663)
+-- Dependencies: 191
+-- Data for Name: empresa_colaborador_sucursales; Type: TABLE DATA; Schema: perzonalizacion; Owner: postgres
+--
+
+COPY empresa_colaborador_sucursales (id, id_colaborador, id_sucursal, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2082 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: empresa_colaborador_sucursales_id_seq; Type: SEQUENCE SET; Schema: perzonalizacion; Owner: postgres
+--
+
+SELECT pg_catalog.setval('empresa_colaborador_sucursales_id_seq', 1, false);
+
+
+--
+-- TOC entry 2058 (class 0 OID 34647)
+-- Dependencies: 189
+-- Data for Name: extras; Type: TABLE DATA; Schema: perzonalizacion; Owner: postgres
+--
+
+COPY extras (id, dato, tipo, id_empresa, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2083 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: extras_id_seq; Type: SEQUENCE SET; Schema: perzonalizacion; Owner: postgres
+--
+
+SELECT pg_catalog.setval('extras_id_seq', 1, false);
+
+
+SET search_path = registro, pg_catalog;
+
+--
+-- TOC entry 2045 (class 0 OID 34550)
+-- Dependencies: 176
+-- Data for Name: colaboradores; Type: TABLE DATA; Schema: registro; Owner: postgres
+--
+
+COPY colaboradores (id_colaborador, correo, pass, estado, id_empresa, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2043 (class 0 OID 34534)
+-- Dependencies: 174
+-- Data for Name: empresas; Type: TABLE DATA; Schema: registro; Owner: postgres
+--
+
+COPY empresas (id_empresa, "Ruc", razon_social, nombre_comercial, estado_contribuyente, tipo_contribuyente, obligado_contabilidad, actividad_economica, codigo_activacion, estado, created_at, updated_at) FROM stdin;
+20160630105617577541214a6b2	1001611381001	RIVADENEIRA EGAS JUAN CARLOS	no disponible	Suspensión Definitiva	Persona Natural	NO	OTRAS ACTIVIDADES DE LA ADMINISTRACION PUBLICA EN GENERAL.	$2y$10$gDytsoPF1B0mF47wOgmLBeCgGDz9jspY76aC2VLZv38hTGuF.GJFq	1	2016-06-30 10:56:17	2016-06-30 15:56:57
+\.
+
+
+--
+-- TOC entry 2042 (class 0 OID 33996)
+-- Dependencies: 173
+-- Data for Name: migrations; Type: TABLE DATA; Schema: registro; Owner: postgres
+--
+
+COPY migrations (migration, batch) FROM stdin;
+2016_06_03_165523_create_empresas_table	1
+2016_06_03_165701_create_personas_table	1
+2016_06_06_155715_create_colaboradores_table	1
+2016_06_07_143104_create_roles_table	1
+2016_06_07_152302_create_passwrds_table	1
+2016_06_08_141051_create_passwrds_ps_table	1
+2016_06_08_153908_create_sucursales_table	1
+2016_06_08_213302_create_users_table	1
+2016_06_09_204708_create_regpersona_empresas_table	1
+2016_06_14_135852_create_extras_table	1
+2016_06_14_161833_create_empresa_colaborador_sucursales_table	1
+2016_06_15_193553_create_facturas_table	1
+2016_06_28_141957_create_facturas_rechazadas_table	1
+\.
+
+
+--
+-- TOC entry 2044 (class 0 OID 34542)
+-- Dependencies: 175
+-- Data for Name: personas; Type: TABLE DATA; Schema: registro; Owner: postgres
+--
+
+COPY personas (id_persona, cedula, "Nombres_apellidos", provincia, canton, parroquia, zona, correo, telefono, celular, codigo_activacion, estado, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2056 (class 0 OID 34632)
+-- Dependencies: 187
+-- Data for Name: regpersona_empresas; Type: TABLE DATA; Schema: registro; Owner: postgres
+--
+
+COPY regpersona_empresas ("idp_regE", nombres_apellidos, fecha_nacimiento, correo, telefono, celular, estado, id_empresa, created_at, updated_at) FROM stdin;
+20160630105617577541215a45e	RIVADENEIRA EGAS JUAN CARLOS	1991-02-10T05:00:00.000Z	fallsouls@hotmail.com	999999	9999999999	1	20160630105617577541214a6b2	2016-06-30 10:56:17	2016-06-30 10:56:17
+\.
+
+
+--
+-- TOC entry 2053 (class 0 OID 34605)
+-- Dependencies: 184
+-- Data for Name: sucursales; Type: TABLE DATA; Schema: registro; Owner: postgres
+--
+
+COPY sucursales (id_sucursal, codigo, direccion, estado, nombre_sucursal, id_empresa, created_at, updated_at) FROM stdin;
+1	001	IMBABURA / IBARRA / 27 DE NOVIEMBRE 9-14 Y EZEQUIEL RIVADENEIRA	Cerrado		20160630105617577541214a6b2	2016-06-30 10:56:17	2016-06-30 10:56:17
+\.
+
+
+--
+-- TOC entry 2084 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: sucursales_id_sucursal_seq; Type: SEQUENCE SET; Schema: registro; Owner: postgres
+--
+
+SELECT pg_catalog.setval('sucursales_id_sucursal_seq', 1, true);
+
+
+SET search_path = "Ingreso", pg_catalog;
+
+--
+-- TOC entry 1905 (class 2606 OID 34581)
+-- Name: passwrdsE_pkey; Type: CONSTRAINT; Schema: Ingreso; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "passwrdsE"
+    ADD CONSTRAINT "passwrdsE_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1907 (class 2606 OID 34597)
+-- Name: passwrdsP_pkey; Type: CONSTRAINT; Schema: Ingreso; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "passwrdsP"
+    ADD CONSTRAINT "passwrdsP_pkey" PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1903 (class 2606 OID 34570)
+-- Name: roles_pkey; Type: CONSTRAINT; Schema: Ingreso; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1911 (class 2606 OID 34631)
+-- Name: users_email_unique; Type: CONSTRAINT; Schema: Ingreso; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_email_unique UNIQUE (email);
+
+
+--
+-- TOC entry 1913 (class 2606 OID 34629)
+-- Name: users_pkey; Type: CONSTRAINT; Schema: Ingreso; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+SET search_path = factura_next, pg_catalog;
+
+--
+-- TOC entry 1921 (class 2606 OID 34693)
+-- Name: facturas_clave_acceso_unique; Type: CONSTRAINT; Schema: factura_next; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY facturas
+    ADD CONSTRAINT facturas_clave_acceso_unique UNIQUE (clave_acceso);
+
+
+--
+-- TOC entry 1923 (class 2606 OID 34691)
+-- Name: facturas_pkey; Type: CONSTRAINT; Schema: factura_next; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY facturas
+    ADD CONSTRAINT facturas_pkey PRIMARY KEY (id_factura);
+
+
+--
+-- TOC entry 1925 (class 2606 OID 34706)
+-- Name: facturas_rechazadas_pkey; Type: CONSTRAINT; Schema: factura_next; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY facturas_rechazadas
+    ADD CONSTRAINT facturas_rechazadas_pkey PRIMARY KEY (id_factura_r);
+
+
+SET search_path = perzonalizacion, pg_catalog;
+
+--
+-- TOC entry 1919 (class 2606 OID 34668)
+-- Name: empresa_colaborador_sucursales_pkey; Type: CONSTRAINT; Schema: perzonalizacion; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY empresa_colaborador_sucursales
+    ADD CONSTRAINT empresa_colaborador_sucursales_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1917 (class 2606 OID 34655)
+-- Name: extras_pkey; Type: CONSTRAINT; Schema: perzonalizacion; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY extras
+    ADD CONSTRAINT extras_pkey PRIMARY KEY (id);
+
+
+SET search_path = registro, pg_catalog;
+
+--
+-- TOC entry 1901 (class 2606 OID 34562)
+-- Name: colaboradores_pkey; Type: CONSTRAINT; Schema: registro; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY colaboradores
+    ADD CONSTRAINT colaboradores_pkey PRIMARY KEY (id_colaborador);
+
+
+--
+-- TOC entry 1897 (class 2606 OID 34541)
+-- Name: empresas_pkey; Type: CONSTRAINT; Schema: registro; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY empresas
+    ADD CONSTRAINT empresas_pkey PRIMARY KEY (id_empresa);
+
+
+--
+-- TOC entry 1899 (class 2606 OID 34549)
+-- Name: personas_pkey; Type: CONSTRAINT; Schema: registro; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY personas
+    ADD CONSTRAINT personas_pkey PRIMARY KEY (id_persona);
+
+
+--
+-- TOC entry 1915 (class 2606 OID 34644)
+-- Name: regpersona_empresas_pkey; Type: CONSTRAINT; Schema: registro; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY regpersona_empresas
+    ADD CONSTRAINT regpersona_empresas_pkey PRIMARY KEY ("idp_regE");
+
+
+--
+-- TOC entry 1909 (class 2606 OID 34613)
+-- Name: sucursales_pkey; Type: CONSTRAINT; Schema: registro; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY sucursales
+    ADD CONSTRAINT sucursales_pkey PRIMARY KEY (id_sucursal);
+
+
+SET search_path = "Ingreso", pg_catalog;
+
+--
+-- TOC entry 1927 (class 2606 OID 34582)
+-- Name: passwrdse_id_user_foreign; Type: FK CONSTRAINT; Schema: Ingreso; Owner: postgres
+--
+
+ALTER TABLE ONLY "passwrdsE"
+    ADD CONSTRAINT passwrdse_id_user_foreign FOREIGN KEY (id_user) REFERENCES registro.empresas(id_empresa) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 1928 (class 2606 OID 34598)
+-- Name: passwrdsp_id_user_foreign; Type: FK CONSTRAINT; Schema: Ingreso; Owner: postgres
+--
+
+ALTER TABLE ONLY "passwrdsP"
+    ADD CONSTRAINT passwrdsp_id_user_foreign FOREIGN KEY (id_user) REFERENCES registro.personas(id_persona) ON DELETE CASCADE;
+
+
+SET search_path = factura_next, pg_catalog;
+
+--
+-- TOC entry 1934 (class 2606 OID 34685)
+-- Name: facturas_id_empresa_foreign; Type: FK CONSTRAINT; Schema: factura_next; Owner: postgres
+--
+
+ALTER TABLE ONLY facturas
+    ADD CONSTRAINT facturas_id_empresa_foreign FOREIGN KEY (id_empresa) REFERENCES registro.empresas(id_empresa) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 1935 (class 2606 OID 34700)
+-- Name: facturas_rechazadas_id_empresa_foreign; Type: FK CONSTRAINT; Schema: factura_next; Owner: postgres
+--
+
+ALTER TABLE ONLY facturas_rechazadas
+    ADD CONSTRAINT facturas_rechazadas_id_empresa_foreign FOREIGN KEY (id_empresa) REFERENCES registro.empresas(id_empresa) ON DELETE CASCADE;
+
+
+SET search_path = perzonalizacion, pg_catalog;
+
+--
+-- TOC entry 1932 (class 2606 OID 34669)
+-- Name: empresa_colaborador_sucursales_id_colaborador_foreign; Type: FK CONSTRAINT; Schema: perzonalizacion; Owner: postgres
+--
+
+ALTER TABLE ONLY empresa_colaborador_sucursales
+    ADD CONSTRAINT empresa_colaborador_sucursales_id_colaborador_foreign FOREIGN KEY (id_colaborador) REFERENCES registro.colaboradores(id_colaborador) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 1933 (class 2606 OID 34674)
+-- Name: empresa_colaborador_sucursales_id_sucursal_foreign; Type: FK CONSTRAINT; Schema: perzonalizacion; Owner: postgres
+--
+
+ALTER TABLE ONLY empresa_colaborador_sucursales
+    ADD CONSTRAINT empresa_colaborador_sucursales_id_sucursal_foreign FOREIGN KEY (id_sucursal) REFERENCES registro.sucursales(id_sucursal) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 1931 (class 2606 OID 34656)
+-- Name: extras_id_empresa_foreign; Type: FK CONSTRAINT; Schema: perzonalizacion; Owner: postgres
+--
+
+ALTER TABLE ONLY extras
+    ADD CONSTRAINT extras_id_empresa_foreign FOREIGN KEY (id_empresa) REFERENCES registro.empresas(id_empresa) ON DELETE CASCADE;
+
+
+SET search_path = registro, pg_catalog;
+
+--
+-- TOC entry 1926 (class 2606 OID 34556)
+-- Name: colaboradores_id_empresa_foreign; Type: FK CONSTRAINT; Schema: registro; Owner: postgres
+--
+
+ALTER TABLE ONLY colaboradores
+    ADD CONSTRAINT colaboradores_id_empresa_foreign FOREIGN KEY (id_empresa) REFERENCES empresas(id_empresa) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 1930 (class 2606 OID 34638)
+-- Name: regpersona_empresas_id_empresa_foreign; Type: FK CONSTRAINT; Schema: registro; Owner: postgres
+--
+
+ALTER TABLE ONLY regpersona_empresas
+    ADD CONSTRAINT regpersona_empresas_id_empresa_foreign FOREIGN KEY (id_empresa) REFERENCES empresas(id_empresa) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 1929 (class 2606 OID 34614)
+-- Name: sucursales_id_empresa_foreign; Type: FK CONSTRAINT; Schema: registro; Owner: postgres
+--
+
+ALTER TABLE ONLY sucursales
+    ADD CONSTRAINT sucursales_id_empresa_foreign FOREIGN KEY (id_empresa) REFERENCES empresas(id_empresa) ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2069 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2016-07-01 17:59:33
+
+--
+-- PostgreSQL database dump complete
+--
+

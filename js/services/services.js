@@ -1,7 +1,7 @@
 // url service general server
 
 var app = angular.module('app');
-app.service('servicios', function($resource,$localStorage, $location){
+app.service('servicios', function($resource,$localStorage, $location,ModalService){
     this.LogoutE = function(){
     	// limpiar registros
 		this.limpiarstorage();
@@ -19,7 +19,7 @@ app.service('servicios', function($resource,$localStorage, $location){
 	            return "http://apiservicios.nextbook.ec/";
 	        },
 	        appnext: function(){
-	            return "http://172.30.1.11/appnext/";
+	            return "http://localhost/appnext/";
 	        }  
 	    }   
     };
@@ -38,8 +38,39 @@ app.service('servicios', function($resource,$localStorage, $location){
         });
     };
 
+    this.Download_fac = function(){
+         return $resource(this.server().appnext()+'public/Downloadfac', {}, {
+            download: {
+                method: 'GET',
+                isArray: false,
+               params: {token: $localStorage.token}
+            }
+        });
+    };
+
+    this.gastos = function(){
+        return [{tipo:'ALIMENTACIÓN'},{tipo:'SALUD'},{tipo:'VESTIMENTA'},{tipo:'VIVIENDA'},{tipo:'EDUCACIÓN'}];
+    };
+
+    this.showModal = function(file,data,idmodal) {
+        ModalService.showModal({
+            templateUrl: 'view/modales/'+file,
+            controller: "ModalController",
+            inputs: {
+            data: data,
+            tipomodal:idmodal
+                    }
+        }).then(function(modal) {
+            modal.element.modal();
+            modal.close.then(function(result) {
+               // console.log("You said " + result);
+            });
+        });
+    };
+
 });
 
+<<<<<<< HEAD
 app.service('localizacion',function(){
     this.provincia = function(){
         return  [
@@ -142,11 +173,53 @@ app.service('localizacion',function(){
                     }
                 ];
     }
+=======
+app.controller('ModalController', function($scope,data,tipomodal,servicios,$window) {
+  switch(tipomodal) {
+    // ------------------------------------------------- MENSAJE-------------------------
+      case 'mensaje':
+          switch(data.error) {
+                case '4':
+                 $scope.mensaje="Documento no existe en el SRI";
+                  break;
+                case '5':
+                 $scope.mensaje="la Factura ya existe";
+                  break;
+                  case '0':
+                 $scope.mensaje="Documento vacío";
+                  break;
+                }
+        angular.element("input[type='file']").val(null);
+          break;
+          // ------------------------------------------------- DECARGA-------------------------
+      case 'download':
+          $scope.source=data.source;
+
+            servicios.Download_fac().download({id:$scope.source}).$promise.then(function(data){
+var data = JSON.stringify(data).replace(",", ""),
+        blob = new Blob([data], { type: 'text/plain' }),
+        url = $window.URL || $window.webkitURL;
+    $scope.fileUrl = url.createObjectURL(blob);
+            });
+
+          $scope.descargar=function(){
+            // alert($scope.source);
+
+          }
+          break;
+
+         // ------------------------------------------------- COMPARTIR-------------------------
+      case 'share':
+          
+          break;
+  }
+
+>>>>>>> origin/master
 });
 
 app.factory('facturanextservice', function($resource,$localStorage) {
 
-return $resource('http://172.30.1.11/appnext/public/getFacturas', {}, {
+return $resource('http://localhost/appnext/public/getFacturas', {}, {
     get: {
         method: 'GET',
         isArray: false,
@@ -158,7 +231,7 @@ return $resource('http://172.30.1.11/appnext/public/getFacturas', {}, {
 
 app.factory('UploadFac', function($resource,$localStorage) {
 
-return $resource('http://172.30.1.11/appnext/public/uploadFactura', {}, {
+return $resource('http://localhost/appnext/public/uploadFactura', {}, {
     subir: {
         method: 'POST',
         isArray: false,

@@ -1,78 +1,97 @@
 <div class="animated fadeIn no-padding-top">
-    <form name="formreg">
-        <h2 class="content-sub-heading text-center">Datos de mi empresa</h2>
-        <div class="row col-lg-7">
-            <div class="col-lg-12 ">
-                <div class="form-group form-group-label control-focus">
-                    <label class="floating-label"><span class="icon icon-lg">play_arrow</span> Razon Social </label>
-                    <input class="form-control" type="text" ng-model="data.razon_social" disabled>
-                </div>
-                <div class="form-group form-group-label control-focus">
-                    <label class="floating-label"><span class="icon icon-lg">play_arrow</span> Nombre Comercial </label>
-                    <input class="form-control" type="text" ng-model="data.nombre_comercial" disabled>
-                </div>
-                <div class="form-group form-group-label control-focus">
-                    <label class="floating-label"><span class="icon icon-lg">play_arrow</span> Estado del Contribuyente en el RUC </label>
-                    <input class="form-control" type="text" ng-model="data.estado_contribuyente" disabled>
-                </div>
-                <div class="form-group form-group-label control-focus">
-                    <label class="floating-label"><span class="icon icon-lg">play_arrow</span> Clase de contribuyente</label>
-                    <input class="form-control" type="text" ng-model="data.clase_contribuyente" disabled>
-                </div>
-                <div class="form-group form-group-label control-focus" disabled>
-                    <label class="floating-label"><span class="icon icon-lg">play_arrow</span> Tipo de contribuyente</label>
-                    <input class="form-control" type="text" ng-model="data.tipo_contribuyente" disabled>
-                </div>
-                <div class="form-group form-group-label control-focus">
-                    <label class="floating-label"><span class="icon icon-lg">play_arrow</span> Obligado a llevar Contabilidad</label>
-                    <input class="form-control" type="text" ng-model="data.obligado_llevar_contabilidad" disabled>
-                </div>
-                <div class="form-group form-group-label control-focus" disabled>
-                    <label class="floating-label"><span class="icon icon-lg">play_arrow</span> Actividad Económica Principal</label>
-                    <textarea class="form-control" type="text" ng-model="data.actividad_principal" rows="5" disabled></textarea>
-                </div>
-            </div>
+    <h2 class="content-sub-heading text-center">Datos de mi empresa</h2>
+    <div layout-gt-xs="row">
+        <div class="col-lg-7">
+            <md-input-container class="md-block" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Razon Social </label>
+                <input ng-model="razon_social" autocomplete="off" disabled>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Nombre Comercial </label>
+                <input ng-model="nombre_comercial" autocomplete="off" disabled>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Estado del Contribuyente en el RUC </label>
+                <input ng-model="estado_contribuyente" autocomplete="off" disabled>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Clase de contribuyente </label>
+                <input ng-model="clase_contribuyente" autocomplete="off" disabled>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Tipo de contribuyente </label>
+                <input ng-model="tipo_contribuyente" autocomplete="off" disabled>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Obligado a llevar Contabilidad </label>
+                <input ng-model="obligado_llevar_contabilidad" autocomplete="off" disabled>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Actividad Principal </label>
+                <input ng-model="actividad_principal" autocomplete="off" disabled>
+            </md-input-container>
         </div>
-
-        <div class="row col-lg-5">
-            <div class="col-lg-12">
-                <div class="form-group-brand form-group-label" ng-class="{ 'form-group-red' : formreg.cedula.$invalid && formreg.cedula.$touched }">
-                    <label class="floating-label"> <span class="icon icon-lg">account_box</span> Ruc</label>
-                    <input class="form-control" id="ruc" ng-model="data.cedula" name="cedula" type="text" ng-keyup="cargadatos(formreg.cedula.$valid)" ng-required="true" ruc-validation>
-                    <span for="correo" ng-show="formreg.cedula.$invalid && formreg.cedula.$touched">
-                    <span class="label label-red"><span class="icon icon-lg">info_outline</span> El Ruc es incorrecto</span>
-                    </span>
-                </div>
-                <div class="form-group-brand form-group-label " ng-class="{ 'form-group-red' : formreg.telefono.$invalid && formreg.telefono.$touched }">
-                    <label class="floating-label"> <span class="icon icon-lg">phone</span> Teléfono</label>
-                    <input class="form-control" ng-model="data.telefono" name="telefono" type="text" ng-required="true">
-                    <span for="telefono" ng-show="formreg.telefono.$invalid && formreg.telefono.$touched">
-                    <span class="label label-red"><span class="icon icon-lg">info_outline</span> Campo Obligatorio</span>
-                    </span>
-                </div>
-                <div class="form-group-brand form-group-label " ng-class="{ 'form-group-red' : formreg.celular.$invalid && formreg.celular.$touched }">
-                    <label class="floating-label"><span class="icon icon-lg">phone_iphone</span> Celular</label>
-                    <input class="form-control" ng-model="data.celular" name="celular" type="text" ng-required="true" operadora-validation>
-                    <span for="telefono" ng-show="formreg.celular.$invalid && formreg.celular.$touched">
-                    <span class="label label-red"><span class="icon icon-lg">info_outline</span> El celular es incorrecto </span>
-                </div>
-                <div class="form-group-brand form-group-label " ng-class="{ 'form-group-red' : formreg.correo.$invalid && formreg.correo.$touched }">
-                    <label class="floating-label"><span class="icon icon-lg">email</span> Correo</label>
-                    <input class="form-control" ng-model="data.correo" name="correo" type="email" ng-required="true">
-                    <span for="telefono" ng-show="formreg.correo.$invalid && formreg.correo.$touched">
-                    <span class="label label-red"><span class="icon icon-lg">info_outline</span> Email incorrecto</span>
-                </div>
-                <div class="form-group-brand form-group-label control-focus" ng-class="{ 'form-group-red' : formreg.fecha_nacimiento.$invalid && formreg.fecha_nacimiento.$touched }">
-                    <label class="floating-label "><span class="icon icon-lg">date_range</span> Fecha Inicio Actividad</label>
-                    <input class="form-control" ng-model="data.fecha_nacimiento" name="fecha_nacimiento" type="date" ng-required="true" >
-                    <span for="telefono" ng-show="formreg.fecha_nacimiento.$invalid && formreg.fecha_nacimiento.$touched">
-                    <span class="label label-red"><span class="icon icon-lg">info_outline</span> Campo Obligatorio</span>
-                </div>
-                <div class="panel-footer text-right">
-                    <button class="btn btn-brand waves-attach waves-light waves-effect" ng-click="registrar()">Registrar</button>
-                </div>
+        <div class="col-lg-5">
+            <form name="formsearchruc">
+            <div layout="row" flex>                
+                <md-input-container class="md-block" flex-gt-xs>
+                    <label><span class="icon icon-lg">play_arrow</span> RUC </label>
+                    <input id="ruc" name="ruc" ng-model="ruc" ng-minlength="13" ng-maxlength="13" maxlength="13" autocomplete="off"  required>
+                    <div ng-messages="formsearchruc.ruc.$error" ng-show="formsearchruc.ruc.$dirty">
+                        <div ng-message="required" class="my-message">requerido</div>
+                        <div ng-message="minlength" class="my-message">ruc invalido, minimo 13 digitos</div>
+                        <div ng-message="maxlength" class="my-message">ruc invalido, maximo 13 digitos</div>
+                    </div>
+                </md-input-container>
+                <md-button class="md-fab" type="submit" ng-disabled="formsearchruc.$invalid" ng-click="searchruc()">
+                    <md-icon class="material-icons">search</md-icon>
+                </md-button>                
             </div>
+            </form>
+            <form name="formreg">
+                <div layout="row" flex>
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Provincia</label>
+                        <md-select  name="myselect" id="myselect" ng-change="update()" ng-model="myOption">
+                            <md-option ng-repeat="state in states" value="{{state.id}}">
+                                {{state.nombre}}
+                            </md-option>
+                        </md-select>
+                        <div ng-messages="formreg.myOption.$error">
+                            <div ng-message="required">myselect is required.</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <md-input-container class="md-block" flex-gt-xs>
+                    <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Teléfono</label>
+                    <input autocomplete="off" name="lastName" ng-model="lastName" ng-minlength="7" required>
+                    <div ng-messages="formreg.lastName.$error" ng-show="formreg.lastName.$dirty">
+                      <div ng-message="required">Campo Requerido</div>
+                      <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-xs>
+                    <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Celular</label>
+                    <input name="fono" ng-model="fono" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
+                    <div ng-messages="formreg.fono.$error" ng-show="formreg.fono.$dirty">
+                      <div ng-message="required">Campo Requerido</div>
+                      <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
+                      <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
+                      <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-xs>
+                    <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Correo</label>
+                    <input autocomplete="off" ng-model="correo" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
+                    <div ng-messages="formreg.correo.$error" ng-show="formreg.correo.$dirty">
+                      <div ng-message="required">Campo Requerido</div>
+                      <div ng-message="pattern" class="my-message">correo invalido</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block pull-right" flex-gt-xs>
+                    <md-button class="md-raised md-primary" type="submit" ng-disabled="formreg.$invalid">Enviar</md-button>
+                </md-input-container>
+            </form>            
         </div>
-    </form>
-
+    </div>
 </div>

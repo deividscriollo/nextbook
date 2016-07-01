@@ -1,7 +1,53 @@
  
- app.controller('EmpresasCtrl', function ($scope,loaddatosSRI, Empresa) {
- 	// console.log('Message from EmpresasCtrl');
- $scope.nombres_apellidos = "";
+ app.controller('EmpresasCtrl', function ($scope,loaddatosSRI, Empresa, localizacion) {
+    // input items generate
+    $scope.inputitems=[
+        {name:'Razon Social', type:'ng-model="data."'},
+        {name:'Nombre Comercial', type:'ng-model="data."'},
+        {name:'Estado del Contribuyente en el RUC', type:'ng-model="data."'},
+        {name:'Clase de contribuyente', type:'ng-model="data."'},
+        {name:'Tipo de contribuyente', type:'ng-model="data."'},
+        {name:'Obligado a llevar Contabilidad', type:'ng-model="data."'},
+        {name:'Obligado a llevar Contabilidad', type:'ng-model="data.l"'}
+    ];
+    // asignacion de valores
+    $scope.states = localizacion.provincia();
+
+    // method generate
+    $scope.update = function(){
+        var itemselect = $scope.myOption;
+        for (k = 0; k < $scope.states.length; ++k) {
+            var item = $scope.states[k];
+            if (item['id']==itemselect) {
+                $scope.lastName = '( '+item['codtelefonico']+' ) - ';
+            }
+        }
+    }
+    $scope.searchruc = function() {    
+        if ($scope.ruc) {
+            console.log('test');
+            loaddatosSRI.get({
+                nrodocumento: $scope.ruc,
+                tipodocumento: "RUC"
+            }).$promise.then(function(data) {
+                var data = data.datosEmpresa;                
+                $scope.razon_social = data.razon_social;
+                $scope.nombre_comercial = data.nombre_comercial;
+                $scope.estado_contribuyente = data.estado_contribuyente;
+                $scope.clase_contribuyente = data.clase_contribuyente;
+                $scope.tipo_contribuyente = data.tipo_contribuyente;
+                $scope.obligado_llevar_contabilidad = data.obligado_llevar_contabilidad;
+                $scope.actividad_principal=data.actividad_economica;
+                $scope.rucdata = data;
+            });
+        }else{
+            console.log('no hay algo');
+        }
+    };
+
+    
+
+    $scope.nombres_apellidos = "";
     $scope.cedula = "";
     $scope.sucursales=[];
     $scope.cargadatos = function(estado) {
@@ -38,7 +84,11 @@
         $scope.data['nombres_apellidos']=$scope.nombres_apellidos;
         $scope.data['sucursales']=$scope.sucursales;
         Empresa.save($scope.data);
-        console.log($scope.data);
     }
 
-    });
+}).config(function($mdThemingProvider) {
+    // Configure a dark theme with primary foreground yellow
+    $mdThemingProvider.theme('docs-dark', 'default')
+      .primaryPalette('yellow')
+      .dark();
+  });

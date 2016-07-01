@@ -1,12 +1,11 @@
 var app=angular.module('app');
-app.controller('SubirFacCtrl', function ($scope,servicios,ModalService) {
+app.controller('SubirFacCtrl', function ($scope,servicios) {
    // console.log(UploadFac.subir());
    $scope.gastos=servicios.gastos();
    $scope.files="";
 $("#xml_file").change(function(e){
     $scope.files=this.files;
   });
-
 $scope.get_claveAcceso=function(xml){
  
 if (xml.length!=0) {
@@ -22,25 +21,10 @@ if (xml.length!=0) {
     $claveAcceso = $aux;
   }
 }else{
-  $scope.showModal('0');
+  servicios.showModal('modal_mensaje.html',{error:'0'},'mensaje');
 }
 
 }
-
-$scope.showModal = function(mensaje) {
-        ModalService.showModal({
-            templateUrl: 'view/modal.html',
-            controller: "ModalController",
-            inputs: {
-            mensaje: mensaje
-                    }
-        }).then(function(modal) {
-            modal.element.modal();
-            modal.close.then(function(result) {
-                $scope.message = "You said " + result;
-            });
-        });
-    };
 
  $scope.showContent = function($fileContent){
        // console.log($fileContent);
@@ -53,28 +37,10 @@ $scope.get_claveAcceso($fileContent);
     }
 
     $scope.upload_xml=function(){
-
       // console.log();
       servicios.UploadFac().subir({"clave":$claveAcceso,"tipo":$scope.tipo}).$promise.then(function(data) {
-           $scope.showModal(data.methods);
+           servicios.showModal('modal_mensaje.html',{error:data.error},'mensaje');
         });
 
     }
-});
-
-app.controller('ModalController', function($scope,mensaje) {
-    
-  switch(mensaje) {
-    case '4':
-     $scope.mensaje="Documento no existe en el SRI";
-      break;
-    case '5':
-     $scope.mensaje="la Factura ya existe";
-      break;
-      case '0':
-     $scope.mensaje="Documento vacío";
-      break;
-
-  }
-
 });

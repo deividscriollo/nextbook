@@ -3,7 +3,7 @@ app.controller('facturanextCtrl', function($scope, servicios) {
 });
 
 
-app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice, DTOptionsBuilder, DTColumnBuilder, $http, $q) {
+app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice, DTOptionsBuilder, DTColumnBuilder, $http, $q,ModalService) {
 
 	var t = $('#example').DataTable();
 	facturanextservice.get().$promise.then(function(data) {
@@ -17,10 +17,18 @@ app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice
 	            data.misfacturas[i].nombre_comercial,
 	            data.misfacturas[i].tipo_doc,
 	            data.misfacturas[i].total,
-	            "<button>Configuracion</button>"
+	            '<a href="#/My-space/Facturanext/MisFacturas" onclick="angular.element(this).scope().show_Download_modal('+"'"+data.misfacturas[i].id_factura+"'"+')"><span class="icon text-green icon-lg">file_download</span></a>\
+	            <a href="#/My-space/Facturanext/MisFacturas" ><span class="icon text-green icon-lg">insert_link</span></a>\
+	            <a href="#/My-space/Facturanext/MisFacturas"><span class="icon text-green icon-lg">visibility</span></a>'
         	] ).draw( false );
 	  	}
 	});
+
+	$scope.show_Download_modal=function(data){
+		servicios.showModal('modal_download.html',{source:data},'download');
+	}
+// $scope.show_Download_modal();
+
 });
 app.controller('FacturaCtrl', function($scope, servicios, facturanextservice) {
 

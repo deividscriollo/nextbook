@@ -29,7 +29,6 @@
 											            </div>
 										            </div>
 										            <div layout-gt-sm="row">
-
 										                <md-input-container class="md-block" flex-gt-sm>
 										                    <label>Tipo de Consumo</label>
 										                    <md-select ng-model="tipo">
@@ -67,7 +66,7 @@
 			<div class="modal-content">
 				<div class="modal-inner">
 					<p class="h5 margin-top-sm text-black-hint">SELECCIONE EL ARCHIVO</p>
-				<input type="file" on-read-file="showContent($fileContent)" />
+				<input type="file" ng-model="xml_file" on-read-file="showContent($fileContent)" />
 				</div>
 				<div class="modal-footer">
 					<p class="text-right"><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal">CANCELAR</a><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" ng-click="set_clave()" data-dismiss="modal">ACEPTAR</a></p>

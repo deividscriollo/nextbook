@@ -196,16 +196,11 @@ app.controller('ModalController', function($scope,data,tipomodal,servicios,$wind
           $scope.source=data.source;
 
             servicios.Download_fac().download({id:$scope.source}).$promise.then(function(data){
-var data = JSON.stringify(data).replace(",", ""),
-        blob = new Blob([data], { type: 'text/plain' }),
+var data = data.fac[0].contenido_fac,
+        blob = new Blob([data], { type: 'text/xml;charset=utf-8' }),
         url = $window.URL || $window.webkitURL;
     $scope.fileUrl = url.createObjectURL(blob);
             });
-
-          $scope.descargar=function(){
-            // alert($scope.source);
-
-          }
           break;
 
          // ------------------------------------------------- COMPARTIR-------------------------

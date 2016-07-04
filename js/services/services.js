@@ -180,6 +180,7 @@ app.controller('ModalController', function($scope, data, tipomodal, servicios, $
             break;
         }
         angular.element("input[type='file']").val(null);
+<<<<<<< HEAD
         break;
         // ------------------------------------------------- DECARGA-------------------------
         case 'download': $scope.source=data.source;
@@ -201,6 +202,28 @@ app.controller('ModalController', function($scope, data, tipomodal, servicios, $
         // ------------------------------------------------- COMPARTIR-------------------------
         case 'share': break;
     }
+=======
+          break;
+          // ------------------------------------------------- DECARGA-------------------------
+      case 'download':
+          $scope.source=data.source;
+
+            servicios.Download_fac().download({id:$scope.source}).$promise.then(function(data){
+var data = data.fac[0].contenido_fac,
+        blob = new Blob([data], { type: 'text/xml;charset=utf-8' }),
+        url = $window.URL || $window.webkitURL;
+    $scope.fileUrl = url.createObjectURL(blob);
+            });
+          break;
+
+         // ------------------------------------------------- COMPARTIR-------------------------
+      case 'share':
+          
+          break;
+  }
+
+>>>>>>> origin/master
+>>>>>>> origin/master
 });
 app.factory('facturanextservice', function($resource, $localStorage) {
     return $resource('http://localhost/appnext/public/getFacturas', {}

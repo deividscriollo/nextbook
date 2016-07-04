@@ -1,6 +1,6 @@
 // url service general server
 var app=angular.module('app');
-app.service('servicios', function($resource, $localStorage, $location, ModalService) {
+app.service('servicios', function($resource, $localStorage, $location, ModalService,$http) {
     this.LogoutE=function() {
         // limpiar registros
         this.limpiarstorage();
@@ -43,11 +43,15 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         );
     }
     ;
-    this.Download_fac=function() {
-        return $resource(this.server().appnext()+'public/Downloadfac', {}
+    this.Download_link=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/Downloadlink', {}
         , {
-            download: {
-                method: 'GET', isArray: false, params: {
+            generar: {
+                method: 'POST',
+                isArray: false,
+                // responseType:'arraybuffer', 
+                params: {
                     token: $localStorage.token
                 }
             }
@@ -180,39 +184,13 @@ app.controller('ModalController', function($scope, data, tipomodal, servicios, $
             break;
         }
         angular.element("input[type='file']").val(null);
-<<<<<<< HEAD
         break;
         // ------------------------------------------------- DECARGA-------------------------
-        case 'download': $scope.source=data.source;
-        servicios.Download_fac().download( {
-            id: $scope.source
-        }
-        ).$promise.then(function(data) {
-            var data=JSON.stringify(data).replace(",", ""), blob=new Blob([data], {
-                type: 'text/plain'
-            }
-            ), url=$window.URL || $window.webkitURL;
-            $scope.fileUrl=url.createObjectURL(blob);
-        }
-        );
-        $scope.descargar=function() {
-            // alert($scope.source);
-        }
-        break;
-        // ------------------------------------------------- COMPARTIR-------------------------
-        case 'share': break;
-    }
-=======
-          break;
-          // ------------------------------------------------- DECARGA-------------------------
       case 'download':
           $scope.source=data.source;
 
-            servicios.Download_fac().download({id:$scope.source}).$promise.then(function(data){
-var data = data.fac[0].contenido_fac,
-        blob = new Blob([data], { type: 'text/xml;charset=utf-8' }),
-        url = $window.URL || $window.webkitURL;
-    $scope.fileUrl = url.createObjectURL(blob);
+            servicios.Download_link().generar({id:$scope.source}).$promise.then(function(data){
+            $scope.fileUrl = data.link;
             });
           break;
 
@@ -222,8 +200,6 @@ var data = data.fac[0].contenido_fac,
           break;
   }
 
->>>>>>> origin/master
->>>>>>> origin/master
 });
 app.factory('facturanextservice', function($resource, $localStorage) {
     return $resource('http://localhost/appnext/public/getFacturas', {}

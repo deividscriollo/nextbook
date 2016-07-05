@@ -196,11 +196,18 @@ app.controller('ModalController', function($scope, data, tipomodal, servicios, $
 
          // ------------------------------------------------- COMPARTIR-------------------------
       case 'share':
-          
+          $scope.fileUrl = data.source;
+          break;
+           // ------------------------------------------------- VISTA PREVIA-------------------------
+      case 'preview':
+          $scope.pdfURL = "http://localhost/appnext/public/facturas/20160630105617577541214a6b2/"+data.source+".pdf";
           break;
   }
 
 });
+
+
+
 app.factory('facturanextservice', function($resource, $localStorage) {
     return $resource('http://localhost/appnext/public/getFacturas', {}
     , {

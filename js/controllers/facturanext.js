@@ -4,7 +4,6 @@ app.controller('facturanextCtrl', function($scope, servicios) {
 
 
 app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice, DTOptionsBuilder, DTColumnBuilder, $http, $q,ModalService) {
-
 	var t = $('#example').DataTable();
 	facturanextservice.get().$promise.then(function(data) {
 		for (var i = 0; i < data.misfacturas.length; i++) {
@@ -18,8 +17,8 @@ app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice
 	            data.misfacturas[i].tipo_doc,
 	            data.misfacturas[i].total,
 	            '<a href="#/My-space/Facturanext/MisFacturas" onclick="angular.element(this).scope().show_Download_modal('+"'"+data.misfacturas[i].id_factura+"'"+')"><span class="icon text-green icon-lg">file_download</span></a>\
-	            <a href="#/My-space/Facturanext/MisFacturas" ><span class="icon text-green icon-lg">insert_link</span></a>\
-	            <a href="#/My-space/Facturanext/MisFacturas"><span class="icon text-green icon-lg">visibility</span></a>'
+	            <a href="#/My-space/Facturanext/MisFacturas" onclick="angular.element(this).scope().show_Share_modal('+"'"+data.misfacturas[i].id_factura+"'"+')"><span class="icon text-green icon-lg">insert_link</span></a>\
+	            <a href="#/My-space/Facturanext/MisFacturas" onclick="angular.element(this).scope().show_preview_modal('+"'"+data.misfacturas[i].id_factura+"'"+')"><span class="icon text-green icon-lg">visibility</span></a>'
         	] ).draw( false );
 	  	}
 	});
@@ -27,14 +26,18 @@ app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice
 	$scope.show_Download_modal=function(data){
 		servicios.showModal('modal_download.html',{source:data},'download');
 	}
+	$scope.show_Share_modal=function(data){
+		servicios.showModal('modal_share.html',{source:data},'share');
+	}
+	$scope.show_preview_modal=function(data){
+		servicios.showModal('modal_preview.html',{source:data},'preview');
+	}
 // $scope.show_Download_modal();
 
 });
 app.controller('FacturaCtrl', function($scope, servicios, facturanextservice) {
 
-
-
-	// var vm = this;
+ // var vm = this;
  //    vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
  //        var defer = $q.defer();
  //        $http.get('data.json').then(function(result) {

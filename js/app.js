@@ -1,6 +1,9 @@
 
 var app = angular.module('app', 
-								[   'angularModalService',
+								[   
+                                    'ngPDFViewer',
+                                    'djds4rce.angular-socialshare',
+                                    'angularModalService',
                                     'ngMaterial',
                                     'ngMessages',
                                     'ngFileUpload',
@@ -15,7 +18,9 @@ var app = angular.module('app',
                                     'ngMdIcons',
                                     'lfNgMdFileInput'
 								]
-						);
+						).run(function($FB){
+  $FB.init('386469651480295');
+});;
     
 app.directive('rucValidation', function() {
     return {

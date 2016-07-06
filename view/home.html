@@ -1,8 +1,8 @@
-<header class="header header-transparent header-waterfall ui-header">
+<header class="header header-transparent header-waterfall ui-header container">
     <span class="header-logo">NextBook</span>
     <ul class="nav nav-list pull-right">
         <!-- <md-content layout-padding> -->
-        <li class="col-lg-4">
+        <!-- <li class="col-lg-4">
             <div class="form-group form-group-label">
                 <label class="floating-label " for="usuario" > Usuario </label>
                 <input class="form-control" id="usuario" type="text" ng-model="data.email">
@@ -16,8 +16,34 @@
         </li>
         <li>
             <a class="btn btn-brand-accent waves-attach waves-light waves-effect" ng-click="ingresar()">Entrar</a>
-        </li>
+        </li> -->
         <!-- </md-content> -->
+        <form name="formlogin">
+            <div layout="row">
+                <div>
+                    <md-input-container style="width: 240px!important">
+                        <label>Email</label>
+                        <input id="email" name="email" ng-model="email" type="email" placeholder="1004034805001@facturanext.com" autocomplete="off" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
+                        <div ng-messages="formlogin.email.$error" ng-show="formlogin.email.$dirty">
+                            <div ng-message="required" class="my-message">requerido</div>
+                            <div ng-message="pattern" class="my-message">correo invalido</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Password</label>
+                        <input id="password" name="password" ng-model="password" type="password" placeholder="*******" autocomplete="off" required md-theme="alt">
+                        <div ng-messages="formlogin.password.$error" ng-show="formlogin.password.$dirty">
+                            <div ng-message="required" class="my-message">requerido</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div>
+                    <md-button class="md-raised md-accent" ng-disabled="formlogin.$invalid" ng-click="ingresar()">
+                    <md-icon class="material-icons">security</md-icon> Entrar
+                </md-button>    
+                </div>                
+            </div>
+        </form>
     </ul>
 </header>
 <main class="content">

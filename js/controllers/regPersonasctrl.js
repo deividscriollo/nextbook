@@ -1,5 +1,4 @@
- 
- app.controller('PersonasCtrl', function ($scope,loaddatosSRI, Persona) {
+app.controller('PersonasCtrl', function ($scope,loaddatosSRI, Persona) {
  	 // console.log('Personas');
 
     $scope.cargadatos = function(estado) {

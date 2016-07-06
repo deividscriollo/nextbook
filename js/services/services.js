@@ -213,20 +213,8 @@ app.controller('ModalController', function($scope, data, tipomodal, servicios, $
           break;
 
           case 'selectimg':
-                   $scope.myImage='';
+    $scope.myImage=data.source;
     $scope.myCroppedImage='';
-
-    var handleFileSelect=function(evt) {
-      var file=evt.currentTarget.files[0];
-      var reader = new FileReader();
-      reader.onload = function (evt) {
-        $scope.$apply(function($scope){
-          $scope.myImage=evt.target.result;
-        });
-      };
-      reader.readAsDataURL(file);
-    };
-    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
             
           break;
   }

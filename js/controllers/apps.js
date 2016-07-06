@@ -16,4 +16,27 @@ app.controller('recordCtrl', function($scope, $routeSegment) {
 });
 
 
+app.controller('MainCtrl', function($scope, $routeSegment, $localStorage, $location, loader, LoginE) {
+    $scope.data = '';
+    $scope.$routeSegment = $routeSegment;
+    $scope.loader = loader;
 
+    $scope.$on('routeSegmentChange', function() {
+        loader.show = false;
+    })
+    $scope.ingresar = function() {
+        $scope.data['tipo'] = "E";
+        var obj = {'email':$scope.email, 'password':$scope.password, 'tipo':'E' };
+        LoginE.ingresar(obj).$promise.then(function(data) {
+            // console.log(data[0]);
+            $localStorage.token = data[0].token;
+            $localStorage.datosE = data.datosE;
+            $localStorage.datosPersona = data.datosPersona;
+            $location.path('/SeleccionarSucursal');
+        }, function(err) {
+            if (err.status == 404) {
+                alert('Usario/Contraseña incorrectos');
+            }
+        });
+    }
+});

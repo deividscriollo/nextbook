@@ -182,29 +182,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
 
     app.value('loader', {show: false});
 
-    app.controller('MainCtrl', function($scope, $routeSegment,$localStorage, $location,loader,LoginE) {
-        $scope.data='';
-        $scope.$routeSegment = $routeSegment;
-        $scope.loader = loader;
-
-        $scope.$on('routeSegmentChange', function() {
-            loader.show = false;
-        })
-        $scope.ingresar=function(){
-           $scope.data['tipo']="E";
-              LoginE.ingresar($scope.data).$promise.then(function(data){
-                // console.log(data[0]);
-                $localStorage.token=data[0].token;
-                $localStorage.datosE=data.datosE;
-                $localStorage.datosPersona=data.datosPersona;
-                $location.path('/SeleccionarSucursal');
-                    }, function(err){
-                       if (err.status==404) {
-                           alert('Usario/Contraseña incorrectos');
-                       }
-                        });
-        }
-    });
+    
 
     app.controller('Section1Ctrl', function($scope, $routeSegment) {
         

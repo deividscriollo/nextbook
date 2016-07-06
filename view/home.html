@@ -23,7 +23,7 @@
                 <div>
                     <md-input-container style="width: 240px!important">
                         <label>Email</label>
-                        <input id="email" name="email" ng-model="email" type="email" placeholder="1004034805001@facturanext.com" autocomplete="off" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
+                        <input id="email" name="email" ng-model="email" type="email" placeholder="1004034805001@facturanext.com" autocomplete="off" required>
                         <div ng-messages="formlogin.email.$error" ng-show="formlogin.email.$dirty">
                             <div ng-message="required" class="my-message">requerido</div>
                             <div ng-message="pattern" class="my-message">correo invalido</div>

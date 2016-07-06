@@ -59,10 +59,10 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 
             .within()
                 .segment('inicio', {
-                    'default': true,
                     templateUrl: 'view/empresas.html'
                 })
                 .segment('ParaEmpresas', {
+                    'default': true,
                     templateUrl: 'view/empresas.html',
                     controller: 'EmpresasCtrl'
                 })                    

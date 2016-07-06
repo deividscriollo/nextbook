@@ -1,5 +1,7 @@
  
  app.controller('EmpresasCtrl', function ($scope,loaddatosSRI, Empresa, localizacion) {
+        
+
     // input items generate
     $scope.inputitems=[
         {name:'Razon Social', type:'ng-model="data."'},
@@ -10,6 +12,9 @@
         {name:'Obligado a llevar Contabilidad', type:'ng-model="data."'},
         {name:'Obligado a llevar Contabilidad', type:'ng-model="data.l"'}
     ];
+
+    $scope.elementview=false;
+    $scope.elemennotview=true;
     // asignacion de valores
     $scope.states = localizacion.provincia();
 
@@ -22,6 +27,7 @@
                 $scope.lastName = '( '+item['codtelefonico']+' ) - ';
             }
         }
+
     }
     $scope.searchruc = function() {    
         if ($scope.ruc) {
@@ -30,7 +36,7 @@
                 nrodocumento: $scope.ruc,
                 tipodocumento: "RUC"
             }).$promise.then(function(data) {
-                var data = data.datosEmpresa;                
+                var data = data.datosEmpresa;
                 $scope.razon_social = data.razon_social;
                 $scope.nombre_comercial = data.nombre_comercial;
                 $scope.estado_contribuyente = data.estado_contribuyente;
@@ -39,6 +45,9 @@
                 $scope.obligado_llevar_contabilidad = data.obligado_llevar_contabilidad;
                 $scope.actividad_principal=data.actividad_economica;
                 $scope.rucdata = data;
+                $scope.elementview=true;
+                $scope.elemennotview=false;
+                
             });
         }else{
             console.log('no hay algo');

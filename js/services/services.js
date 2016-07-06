@@ -53,6 +53,34 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         }
         );
     };
+// ----------------------------------------- set get imagen perfil ----------------------------
+    this.set_img_perfil=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/setImgPerfil', {}
+        , {
+            enviar: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+      this.get_img_perfil=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/getImgPerfil', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+    ////////////////////////////////////////////////////////////////////////
     this.gastos=function() {
         return [ {
             tipo: 'ALIMENTACIÓN'
@@ -166,7 +194,7 @@ app.service('localizacion', function() {
         ];
     }
 });
-app.controller('ModalController', function($scope, data, tipomodal, servicios, $window, $localStorage) {
+app.controller('ModalController', function($scope,$rootScope, data, tipomodal, servicios, $window, $localStorage) {
     switch(tipomodal) {
         // ------------------------------------------------- MENSAJE-------------------------
         case 'mensaje': switch(data.error) {
@@ -193,7 +221,8 @@ app.controller('ModalController', function($scope, data, tipomodal, servicios, $
         case 'share': $scope.fileUrl=data.source;
         break;
         // ------------------------------------------------- VISTA PREVIA-------------------------
-        case 'preview': console.log();
+        case 'preview': 
+        // console.log(servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf");
         $scope.pdfURL=servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf";
         break;
         // ------------------------------------IMAGEN DE PERFIL ---------------------
@@ -206,27 +235,28 @@ app.controller('ModalController', function($scope, data, tipomodal, servicios, $
             , 'selectimg');
         }
         break;
-        case 'selectimg': $scope.myImage='';
+        case 'selectimg': 
+        $scope.myImage=data.source;
         $scope.myCroppedImage='';
-        var handleFileSelect=function(evt) {
-            var file=evt.currentTarget.files[0];
-            var reader=new FileReader();
-            reader.onload=function (evt) {
-                $scope.$apply(function($scope) {
-                    $scope.myImage=evt.target.result;
-                }
-                );
-            }
-            ;
-            reader.readAsDataURL(file);
+
+        $scope.cambiar_img=function(){
+            var imgData = btoa($scope.myCroppedImage);
+        servicios.set_img_perfil().enviar( {
+            img: imgData
         }
-        ;
-        angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
+        ).$promise.then(function(data) {
+         $localStorage.imgPerfil=servicios.server().appnext()+"public/perfiles/"+$localStorage.datosE.id_empresa+"/"+data.img;
+         $rootScope.imgPerfil=servicios.server().appnext()+"public/perfiles/"+$localStorage.datosE.id_empresa+"/"+data.img;
+        }
+        );
+           // console.log(imgData);
+        }
+
         break;
     }
 });
 app.factory('facturanextservice', function($resource, $localStorage, servicios) {
-    console.log(servicios);
+    // console.log(servicios);
     return $resource('http://localhost/appnext/public/getFacturas', {}
     , {
         get: {

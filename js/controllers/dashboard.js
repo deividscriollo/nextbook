@@ -5,7 +5,7 @@ app.controller('dashboardCtrl', function ($scope, $localStorage) {
 
 
 app.controller('iniCtrl', function($scope, $localStorage) {
-	alert('hola')
+	// alert('hola');
     
 });
 

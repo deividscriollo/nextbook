@@ -1,6 +1,7 @@
 
 var app = angular.module('app', 
 								[   
+                                    'ngImgCrop',
                                     'ngPDFViewer',
                                     'djds4rce.angular-socialshare',
                                     'angularModalService',

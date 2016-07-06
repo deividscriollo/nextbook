@@ -172,7 +172,7 @@ app.service('localizacion', function() {
         ];
     }
 });
-app.controller('ModalController', function($scope, data, tipomodal, servicios, $window) {
+app.controller('ModalController', function($scope, data, tipomodal, servicios, $window,$localStorage) {
     switch(tipomodal) {
         // ------------------------------------------------- MENSAJE-------------------------
         case 'mensaje': switch(data.error) {
@@ -200,7 +200,34 @@ app.controller('ModalController', function($scope, data, tipomodal, servicios, $
           break;
            // ------------------------------------------------- VISTA PREVIA-------------------------
       case 'preview':
-          $scope.pdfURL = "http://localhost/appnext/public/facturas/20160630105617577541214a6b2/"+data.source+".pdf";
+      console.log();
+          $scope.pdfURL = servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf";
+          break;
+// ------------------------------------IMAGEN DE PERFIL ---------------------
+          case 'imgperfil':
+          $scope.show_select_img=function(data){
+                // alert(data);
+                $scope.imgURL=data.source;
+                servicios.showModal('modal_img_perfil.html',{source:data},'selectimg');
+            }
+          break;
+
+          case 'selectimg':
+                   $scope.myImage='';
+    $scope.myCroppedImage='';
+
+    var handleFileSelect=function(evt) {
+      var file=evt.currentTarget.files[0];
+      var reader = new FileReader();
+      reader.onload = function (evt) {
+        $scope.$apply(function($scope){
+          $scope.myImage=evt.target.result;
+        });
+      };
+      reader.readAsDataURL(file);
+    };
+    angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+            
           break;
   }
 

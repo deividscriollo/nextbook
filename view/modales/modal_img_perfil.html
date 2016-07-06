@@ -1,0 +1,26 @@
+<div aria-hidden="true" class="modal fade" id="ui_modal_example_default" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-heading">
+                <a class="modal-close" data-dismiss="modal">×</a>
+                <h2 class="modal-title">IMÁGENES</h2>
+            </div>
+            <div class="modal-inner">
+				<!-- <img src="{{imgURL}}" style="width: 50%;"> -->
+ <div>Select an image file: <input type="file" id="fileInput" /></div>
+  <div class="cropArea">
+    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+  </div>
+  <div>Cropped Image:</div>
+  <div><img ng-src="{{myCroppedImage}}" /></div>
+				
+            </div>
+            <div class="modal-footer">
+                <p class="text-right">
+                    <button class="btn btn-flat btn-brand waves-attach" data-dismiss="modal" type="button">CANCELAR</button>
+                    <button class="btn btn-flat btn-brand waves-attach" data-dismiss="modal" type="button">ACEPTAR</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

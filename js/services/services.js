@@ -80,6 +80,19 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         }
         );
     };
+     this.mis_imgs_perfil=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/loadImgsPerfil', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
     ////////////////////////////////////////////////////////////////////////
     this.gastos=function() {
         return [ {
@@ -226,8 +239,10 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
         $scope.pdfURL=servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf";
         break;
         // ------------------------------------IMAGEN DE PERFIL ---------------------
-        case 'imgperfil': $scope.show_select_img=function(data) {
-            // alert(data);
+        case 'imgperfil': 
+            $scope.misimagenes=data.source;
+
+        $scope.show_select_img=function(data) {
             $scope.imgURL=data.source;
             servicios.showModal('modal_img_perfil.html', {
                 source: data
@@ -236,6 +251,7 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
         }
         break;
         case 'selectimg': 
+        console.log(data.source);
         $scope.myImage=data.source;
         $scope.myCroppedImage='';
 

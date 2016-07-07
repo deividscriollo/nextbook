@@ -7,12 +7,12 @@
             </div>
             <div class="modal-inner">
                 <div class="col-lg-12">
-                    <div class="col-lg-2">
-                        <a class="btn" ng-click="show_select_img('images/users/perfil.png')"><img class="img-responsive" src="images/users/perfil.png"></a>
+                    <div ng-repeat="imagen in misimagenes"class="col-lg-2">
+                        <a class="btn" ng-click="show_select_img(imagen.img)"><img class="img-responsive" src="{{imagen.img}}"></a>
                     </div>
-                     <div class="col-lg-2">
+                     <!-- <div class="col-lg-2">
                         <a class="btn" ng-click="show_select_img('images/users/x1.jpg')"><img class="img-responsive" src="images/users/x1.jpg"></a>
-                    </div>
+                    </div> -->
 <!--                <div class="col-lg-2">
                         <a class="btn" ng-click="show_select_img('images/samples/mat1.jpg')"><img class="img-responsive" src="images/samples/mat1.jpg"></a>
                     </div>

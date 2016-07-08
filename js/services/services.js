@@ -247,7 +247,7 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
         ).$promise.then(function(data) {
          $localStorage.imgPerfil=data.img;
          $rootScope.imgPerfil=data.img;
-         $('#modal_lista_img').modal().hide();
+         $('#modal_lista_img').modal('hide');
          $('#modal_lista_img').remove();
          $('.modal-backdrop').remove();
         }

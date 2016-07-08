@@ -10,27 +10,12 @@
                     <div ng-repeat="imagen in misimagenes"class="col-lg-2">
                         <a class="btn" ng-click="show_select_img(imagen.img)"><img class="img-responsive" src="{{imagen.img}}"></a>
                     </div>
-                     <!-- <div class="col-lg-2">
-                        <a class="btn" ng-click="show_select_img('images/users/x1.jpg')"><img class="img-responsive" src="images/users/x1.jpg"></a>
-                    </div> -->
-<!--                <div class="col-lg-2">
-                        <a class="btn" ng-click="show_select_img('images/samples/mat1.jpg')"><img class="img-responsive" src="images/samples/mat1.jpg"></a>
-                    </div>
-                    <div class="col-lg-2">
-                        <a class="btn" ng-click="show_select_img('images/samples/mat1.jpg')"><img class="img-responsive" src="images/samples/mat1.jpg"></a>
-                    </div>
-                    <div class="col-lg-2">
-                        <a class="btn" ng-click="show_select_img('images/samples/mat1.jpg')"><img class="img-responsive" src="images/samples/mat1.jpg"></a>
-                    </div>
-                    <div class="col-lg-2">
-                        <a class="btn" ng-click="show_select_img('images/samples/mat1.jpg')"><img class="img-responsive" src="images/samples/mat1.jpg"></a>
-                    </div> -->
                 </div>
             </div>
             <div class="modal-footer">
                 <p class="text-right">
                     <button class="btn btn-flat btn-brand waves-attach" data-dismiss="modal" type="button">CANCELAR</button>
-                    <button class="btn btn-flat btn-brand waves-attach" data-dismiss="modal" type="button">ACEPTAR</button>
+                    <button class="btn btn-flat btn-brand waves-attach" data-dismiss="modal" id="btn_aceptar" type="button">ACEPTAR</button>
                 </p>
             </div>
         </div>

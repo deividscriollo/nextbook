@@ -241,13 +241,22 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
         // ------------------------------------IMAGEN DE PERFIL ---------------------
         case 'imgperfil': 
             $scope.misimagenes=data.source;
-
         $scope.show_select_img=function(data) {
-            $scope.imgURL=data.source;
-            servicios.showModal('modal_img_perfil.html', {
-                source: data
-            }
-            , 'selectimg');
+            $scope.imgURL=data;
+             servicios.set_img_perfil().enviar({img: $scope.imgURL}
+        ).$promise.then(function(data) {
+         $localStorage.imgPerfil=data.img;
+         $rootScope.imgPerfil=data.img;
+         $('#modal_lista_img').modal().hide();
+         $('#modal_lista_img').remove();
+         $('.modal-backdrop').remove();
+        }
+        );
+
+            // servicios.showModal('modal_img_perfil.html', {
+            //     source: data
+            // }
+            // , 'selectimg');
         }
         break;
         case 'selectimg': 

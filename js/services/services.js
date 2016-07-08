@@ -273,7 +273,7 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
 });
 app.factory('facturanextservice', function($resource, $localStorage, servicios) {
     // console.log(servicios);
-    return $resource('http://localhost/appnext/public/getFacturas', {}
+    return $resource('http://192.168.100.5/appnext/public/getFacturas', {}
     , {
         get: {
             method: 'GET', isArray: false, params: {
@@ -283,7 +283,7 @@ app.factory('facturanextservice', function($resource, $localStorage, servicios) 
     });
 });
 app.factory('UploadFac', function($resource, $localStorage) {
-    return $resource('http://localhost/appnext/public/uploadFactura', {}
+    return $resource('http://192.168.100.5/appnext/public/uploadFactura', {}
     , {
         subir: {
             method: 'POST', isArray: false, params: {
@@ -365,7 +365,7 @@ app.factory('Sucursaless', function($resource, $localStorage, servicios) {
     });
 });
 app.factory('Facturas', function($resource, $localStorage) {
-    return $resource('http://localhost/appnext/public/readFacturas', {}
+    return $resource('http://192.168.100.5/appnext/public/readFacturas', {}
     , {
         get: {
             method: 'GET', isArray: false, params: {
@@ -376,7 +376,7 @@ app.factory('Facturas', function($resource, $localStorage) {
     );
 });
 app.factory('FacturasLista', function($resource, $localStorage) {
-    return $resource('http://localhost/appnext/public/getFacturas', {}
+    return $resource('http://192.168.100.5/appnext/public/getFacturas', {}
     , {
         get: {
             method: 'GET', isArray: false, params: {
@@ -386,7 +386,7 @@ app.factory('FacturasLista', function($resource, $localStorage) {
     });
 });
 app.factory('consultarMovil', function($resource, $localStorage) {
-    return $resource('http://localhost/appserviciosnext/public/cosultarMovil', {}
+    return $resource('http://192.168.100.5/appserviciosnext/public/cosultarMovil', {}
     , {
         validar: {
             method: 'POST', isArray: false, // params: {token: $localStorage.token}

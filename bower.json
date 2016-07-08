@@ -1,0 +1,25 @@
+{
+  "name": "next",
+  "description": "red de negocios, facturacion electronica, apps",
+  "main": "",
+  "keywords": [
+    "red",
+    "de",
+    "negocios"
+  ],
+  "authors": [
+    "conceptual group"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material-sidenav": "^0.0.14"
+  }
+}

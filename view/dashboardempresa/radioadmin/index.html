@@ -1,0 +1,32 @@
+<main class="content">
+    <div class="content-header ui-content-header">
+    <h1>Administracion de Radio</h1>
+    </div>
+    <div class="container">        
+        <div class="row">
+        	<div class="col-lg-10 col-lg-offset-1">
+                <section class="content-inner margin-top-no">
+                    <nav class="tab-nav tab-nav-green  ui-tab">
+                        <ul class="nav nav-justified">
+                            <li ng-class="{active: ('dashboard.radioadmin.inicio1' | routeSegmentStartsWith)}">
+                                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.radioadmin.inicio1' | routeSegmentUrl}}">
+                                    <span class="text-white"><span class="icon">home</span> Opcion1</span>
+                                </a>
+                            </li>
+                            <li ng-class="{active: ('dashboard.radioadmin.inicio2' | routeSegmentStartsWith)}">
+                                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.radioadmin.inicio2' | routeSegmentUrl}}">
+                                    <span class="text-white"><span class="icon">store</span> Opcion2</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </section>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+                <div app-view-segment="2"></div>
+            </div>
+        </div>
+    </div>
+</main>

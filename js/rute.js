@@ -23,6 +23,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/SeleccionarSucursal',      'selec-sucursal')
             .when('/FacturaNext',      'factura-next')
 
+
             // dashboard general
             .when('/My-space',      'dashboard')
                 .when('/My-space/Perfil-inicio',      'dashboard.perfil.inicio')
@@ -41,8 +42,8 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .when('/My-space/Facturanext/FacturasFisicas',      'dashboard.facturanext.facturasfisicas')
                     .when('/My-space/Facturanext/Proveedores',      'dashboard.facturanext.proveedores')
 
-                    
-            
+                .when('/My-space/RadioAdmin',      'dashboard.radioadmin.inicio1')
+                    .when('/My-space/RadioAdmin/Inicio2',      'dashboard.radioadmin.inicio2')
 
             .segment('salir', {
                 // templateUrl: 'view/home.html',
@@ -87,7 +88,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     controller: 'perfilCtrl'
                     // controller: 'perfilCtrl'
                 })
-                 .within()
+                .within()
                     .segment('inicio', {
                         'default': true,
                         templateUrl: 'view/dashboardempresa/perfil/index.html',
@@ -130,7 +131,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                         controller: 'recordCtrl'
                     })
                 .up()
-                .segment('facturanext', {                    
+                .segment('facturanext', {
                     templateUrl: 'view/dashboardempresa/facturanext/index.html',
                     controller: 'facturanextCtrl'
                 })
@@ -166,17 +167,22 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                         controller: 'appsCtrl'
                     })
                 .up()
+                .segment('radioadmin', {
+                    templateUrl: 'view/dashboardempresa/radioadmin/index.html',
+                    // controller: 'FacturaCtrl'
+                    'default': true,
+                })                   
+                .within()                
+                    .segment('inicio1', {
+                        templateUrl: 'view/dashboardempresa/radioadmin/inicio.html',
+                        controller: 'radioadminCtrl'
+                    })  
+                    .segment('inicio2', {
+                        templateUrl: 'view/dashboardempresa/radioadmin/inicio2.html'
+                    })                    
+                .up()   
             .up()
-            .segment('factura-next', {
-                templateUrl: 'view/data/FacturaNext/index.html',
-                controller: 'FacturaCtrl'
-            })                   
-            .within()                
-                .segment('itemInfo', {
-                    templateUrl: 'view/dashboardempresa/perfil.html',
-                    dependencies: ['id']})
-                    
-            .up()        
+                 
         $routeProvider.otherwise({redirectTo: '/'}); 
     });
 

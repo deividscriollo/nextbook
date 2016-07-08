@@ -3,7 +3,7 @@ app.controller('facturanextCtrl', function($scope, servicios) {
 });
 
 
-app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice, DTOptionsBuilder, DTColumnBuilder, $http, $q,ModalService) {
+app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice, $http, $q,ModalService) {
 	var t = $('#example').DataTable();
 	facturanextservice.get().$promise.then(function(data) {
 		for (var i = 0; i < data.misfacturas.length; i++) {

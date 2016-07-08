@@ -16,7 +16,7 @@ app.controller('recordCtrl', function($scope, $routeSegment) {
 });
 
 
-app.controller('MainCtrl', function($scope, $routeSegment, $localStorage, $location, loader, LoginE) {
+app.controller('MainCtrl', function($scope, $routeSegment, $localStorage,servicios, $location, loader, LoginE) {
     $scope.data = '';
     $scope.$routeSegment = $routeSegment;
     $scope.loader = loader;
@@ -32,6 +32,14 @@ app.controller('MainCtrl', function($scope, $routeSegment, $localStorage, $locat
             $localStorage.token = data[0].token;
             $localStorage.datosE = data.datosE;
             $localStorage.datosPersona = data.datosPersona;
+
+            servicios.get_img_perfil().get().$promise.then(function(data) {
+            $localStorage.imgPerfil=data.img;
+            
+            }, function(err) {
+               
+            });
+
             $location.path('/SeleccionarSucursal');
         }, function(err) {
             if (err.status == 404) {

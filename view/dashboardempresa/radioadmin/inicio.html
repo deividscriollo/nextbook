@@ -1,47 +1,30 @@
-<!-- hola inicio administracion radio
 <div ng-controller="newCtrl">
-	{{ejemplo}}
-</div> -->
-<!-- <div class="mainbody-section text-center">
-    <div class="container">
-    	<div class="col-sm-12">
-    		<div class="col-sm-4">
-    			<md-input-container class="md-icon-float md-block">
-                    <label>Name</label>
-                    <md-icon class="fa fa-user"></md-icon>
-                    <input type="text" required name="name" data-ng-model="vm.message.name">
-                </md-input-container>
-    		</div>
-
-    		<div class="col-sm-4">
-    			<md-input-container class="md-icon-float md-block">
-                    <label>Phone</label>
-                    <md-icon class="fa fa-phone"></md-icon>
-                    <input type="text" required name="phone" data-ng-model="vm.message.phone" pattern="[0-9]{10,12}">
-                </md-input-container>
-    		</div>
-
-    		<div class="col-sm-4">
-    			<md-input-container class="md-icon-float md-block">
-                    <label>Your Message</label>
-                    <md-icon class="fa fa-clipboard"></md-icon>
-                    <input type="text" required name="message" data-ng-model="vm.message.message">
-                </md-input-container>
-    		</div>
-
-    		<div class="pull-right">
-                <md-button class="md-raised md-primary" type="submit">Send <i class="fa fa-angle-double-right"></i></md-button>
-                <md-button class="md-raised md-warn" type="reset">Clear <i class="fa fa-trash-o"></i></md-button>
+ <!--First Tab-->
+    <div class="row">
+        <div class="col-md-4 animated bounceInDown" ng-repeat="item in appslist">
+            
+        
+        <div class="card">
+            <div class="card-main">
+                <div class="card-img">
+                    <img alt="alt text" src="images/samples/x2.jpg" style="width: 100%;">
+                    <h2 class="card-img-heading">{{item.title}} <span class="icon">play_arrow</span></h2>
+                </div>             
             </div>
-    		
-    	</div>
+        </div>
+        </div>
     </div>
-</div> -->
-
+ <!--Second Tab-->
+</div>
 <div class="mainbody-section text-center">
     <div class="container">
+        <core-animated-pages selected="0" transitions="cross-fade">
+
+  <section vertical layout center><h1 cross-fade>Hello World</h1></section>
+    <core-animated-pages>
         <div class="row">
             <div class="col-md-3 animated bounceInDown">
+
                 <div class="menu-item azul">
                     <a href="#/empresa">
                         <i class="fa fa-building"></i>

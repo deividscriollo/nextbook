@@ -1,3 +1,57 @@
+<div class="row" id="">
+<div class="col-lg-3 col-sm-6"></div>
+<div class="col-lg-6 col-sm-6" ng-model="div_pass" ng-show="{{show}}">
+        <div class="card">
+            <div class="card-main">
+                <div class="card-header">
+                    <div class="card-header-side pull-left">
+                        <div class="avatar">
+                            <img alt="John Smith Avatar" src="images/users/x2.jpg">
+                        </div>
+                    </div>
+                    <div class="card-inner">
+                        <span class="card-heading">CAMBIA TU CONTRASEÑA</span>
+                    </div>
+                </div>
+                <div class="card-img">
+                    <!-- <img alt="alt text" src="images/samples/x2.jpg" style="width: 100%;"> -->
+                    <p class="card-img-heading">Some Text!</p>
+                </div>
+                <div class="card-inner">
+                <div class="row">
+                                 <div class="col-sm-12">
+                                                            <md-input-container id="label_clave" class="md-block" md-cols-lg="5">
+                                                                <label>Contraseña actual</label>
+                                                                <input ng-model="data.clave_actual" md-select-on-focus ></input>
+                                                            </md-input-container>
+                                                        </div>
+                    <div class="col-sm-6">
+                                                            <md-input-container id="label_clave" class="md-block" md-cols-lg="5">
+                                                                <label>Nueva Contraseña</label>
+                                                                <input name="clave_nueva" ng-model="data.clave_nueva" md-select-on-focus ></input>
+                                                            </md-input-container>
+                                                        <div ng-messages="clave_nueva.$error">
+                                                            <div ng-message="required">myselect is required.</div>
+                                                        </div>
+                                                        </div>
+                                                                         <div class="col-sm-6">
+                                                            <md-input-container id="label_clave" class="md-block" md-cols-lg="5">
+                                                                <label>Repita su contraseña</label>
+                                                                <input ng-model="data.clave_repetir" md-select-on-focus ></input>
+                                                            </md-input-container>
+                                                        </div>
+                                                          </div>
+                </div>
+                <div class="card-action">
+                                    <div class="card-action-btn pull-right">
+                    <label>Click me to toggle: <input type="checkbox" ng-model="checked"></label>
+                    <button class="btn btn-brand waves-attach waves-light" ng-disabled="{{inputfield == true}}"><span class="icon">check</span> Cambiar</button>
+                                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
 <div class="row">
     <div class="col-lg-3 col-sm-6">
         <div class="card">

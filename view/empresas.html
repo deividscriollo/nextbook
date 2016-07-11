@@ -74,7 +74,7 @@
                     </h2>
                 </div>
                 <md-input-container class="md-block" flex-gt-xs ng-show="elementview">
-                    <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Teléfono</label>
+                    <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Teléfono 1</label>
                     <input autocomplete="off" name="lastName" ng-model="lastName" ng-minlength="7" required>
                     <div ng-messages="formreg.lastName.$error" ng-show="formreg.lastName.$dirty">
                       <div ng-message="required">Campo Requerido</div>
@@ -82,8 +82,16 @@
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-xs ng-show="elementview">
+                    <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Teléfono 2</label>
+                    <input autocomplete="off" name="lastName2" ng-model="lastName2" ng-minlength="7" required>
+                    <div ng-messages="formreg.lastName2.$error" ng-show="formreg.lastName2.$dirty">
+                      <div ng-message="required">Campo Requerido</div>
+                      <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-xs ng-show="elementview">
                     <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Celular</label>
-                    <input name="fono" ng-model="fono" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
+                    <input name="fono" ng-model="fono" name="fono" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
                     <div ng-messages="formreg.fono.$error" ng-show="formreg.fono.$dirty">
                       <div ng-message="required">Campo Requerido</div>
                       <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
@@ -93,14 +101,14 @@
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-xs ng-show="elementview">
                     <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Correo</label>
-                    <input autocomplete="off" ng-model="correo" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
+                    <input autocomplete="off" ng-model="correo" name="correo" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
                     <div ng-messages="formreg.correo.$error" ng-show="formreg.correo.$dirty">
                       <div ng-message="required">Campo Requerido</div>
                       <div ng-message="pattern" class="my-message">correo invalido</div>
                     </div>
                 </md-input-container>
-                <md-input-container class="md-block pull-right" flex-gt-xs ng-show="elementview">
-                    <md-button class="md-raised md-primary" type="submit" ng-disabled="formreg.$invalid">Enviar</md-button>
+                <md-input-container class="md-block pull-right" flex-gt-xs ng-show="elementview" >
+                    <md-button class="md-raised md-primary" ng-click="registrar()" ng-disabled="formreg.$invalid" >Enviar</md-button>
                 </md-input-container>
             </form>            
         </div>

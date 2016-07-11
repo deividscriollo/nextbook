@@ -2,9 +2,17 @@ app.controller('inicioCtrl', function($scope, $routeSegment) {
         
     $scope.$routeSegment = $routeSegment;
 });
-app.controller('appsCtrl', function($scope, $routeSegment) {
-        
+app.controller('appsCtrl', function($scope, $routeSegment,$localStorage) {        
     $scope.$routeSegment = $routeSegment;
+
+$scope.show=false;
+        if ($localStorage.datosE.pass_estado==0) {
+            $scope.show=true;
+        }
+        $scope.cambiar_pass=function(){
+            console.log($scope.data);
+        }
+
 });
 app.controller('mapsCtrl', function($scope, $routeSegment) {
         

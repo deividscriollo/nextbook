@@ -3,20 +3,14 @@
         
 
     // input items generate
-    $scope.inputitems=[
-        {name:'Razon Social', type:'ng-model="data."'},
-        {name:'Nombre Comercial', type:'ng-model="data."'},
-        {name:'Estado del Contribuyente en el RUC', type:'ng-model="data."'},
-        {name:'Clase de contribuyente', type:'ng-model="data."'},
-        {name:'Tipo de contribuyente', type:'ng-model="data."'},
-        {name:'Obligado a llevar Contabilidad', type:'ng-model="data."'},
-        {name:'Obligado a llevar Contabilidad', type:'ng-model="data.l"'}
-    ];
 
     $scope.elementview=false;
     $scope.elemennotview=true;
     // asignacion de valores
     $scope.states = localizacion.provincia();
+    $scope.nombres_apellidos = "";
+    $scope.cedula = "";
+    $scope.sucursales=[];
 
     // method generate
     $scope.update = function(){
@@ -25,17 +19,18 @@
             var item = $scope.states[k];
             if (item['id']==itemselect) {
                 $scope.lastName = '( '+item['codtelefonico']+' ) - ';
+                $scope.lastName2 = '( '+item['codtelefonico']+' ) - ';
             }
         }
 
     }
     $scope.searchruc = function() {    
         if ($scope.ruc) {
-            console.log('test');
             loaddatosSRI.get({
                 nrodocumento: $scope.ruc,
                 tipodocumento: "RUC"
             }).$promise.then(function(data) {
+                $scope.sucursales=data.establecimientos;
                 var data = data.datosEmpresa;
                 $scope.razon_social = data.razon_social;
                 $scope.nombre_comercial = data.nombre_comercial;
@@ -44,21 +39,17 @@
                 $scope.tipo_contribuyente = data.tipo_contribuyente;
                 $scope.obligado_llevar_contabilidad = data.obligado_llevar_contabilidad;
                 $scope.actividad_principal=data.actividad_economica;
+                data['sucursales']=$scope.sucursales;
                 $scope.rucdata = data;
                 $scope.elementview=true;
-                $scope.elemennotview=false;
-                
+                $scope.elemennotview=false;  
+                console.log(data);             
             });
         }else{
             console.log('no hay algo');
         }
     };
 
-    
-
-    $scope.nombres_apellidos = "";
-    $scope.cedula = "";
-    $scope.sucursales=[];
     $scope.cargadatos = function(estado) {
         if (estado) {
             loaddatosSRI.get({
@@ -90,14 +81,12 @@
         // }
     }
     $scope.registrar = function() {
-        $scope.data['nombres_apellidos']=$scope.nombres_apellidos;
-        $scope.data['sucursales']=$scope.sucursales;
-        Empresa.save($scope.data);
+        $scope.rucdata['telefonos']=[$scope.lastName,$scope.lastName2];
+        $scope.rucdata['privincia']=$scope.myOption;
+        $scope.rucdata['celular']=$scope.fono;
+        $scope.rucdata['correo']=$scope.correo;
+        Empresa.save($scope.rucdata);
+        // console.log($scope.rucdata);
     }
 
-}).config(function($mdThemingProvider) {
-    // Configure a dark theme with primary foreground yellow
-    $mdThemingProvider.theme('docs-dark', 'default')
-      .primaryPalette('yellow')
-      .dark();
-  });
+});

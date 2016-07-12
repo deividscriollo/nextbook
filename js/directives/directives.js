@@ -1,5 +1,6 @@
-    
-    var app = angular.module('myApp').directive('confirm', ['$window', function($window) {
+   
+    var app = angular.module('app'); 
+   app.directive('confirm', ['$window', function($window) {
         return {
             restrict: 'A',
             priority: 100,
@@ -98,6 +99,40 @@
         }
     };
 });
+
+app.directive('pwCheck', [function () {
+    return {
+      require: 'ngModel',
+      link: function (scope, elem, attrs, ctrl) {
+        var firstPassword = '#' + attrs.pwCheck;
+        elem.add(firstPassword).on('keyup', function () {
+          scope.$apply(function () {
+            var v = elem.val()===$(firstPassword).val();
+            ctrl.$setValidity('pwmatch', v);
+          });
+        });
+      }
+    }
+  }]);
+
+app.directive('pwActualCheck', function (servicios) {
+    return {
+      require: 'ngModel',
+      link: function (scope, elem, attrs, ctrl) {
+        elem.on('blur', function (value) {
+          scope.$apply(function () {
+servicios.verificar_pass().get({"pass":elem.val()}).$promise.then(function(data){
+    // console.log(data.response);
+        if (data.response) {
+        ctrl.$setValidity('pwactualmatch',true);
+        }else ctrl.$setValidity('pwactualmatch',false);
+    });
+          });
+        });
+      }
+    }
+  });
+
 app.directive('operadoraValidation', function(consultarMovil) {
     return {
         require: 'ngModel',

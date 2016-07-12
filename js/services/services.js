@@ -24,11 +24,13 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                 return "http://192.168.100.5/appnext/";
             }
         }
-    };
+    }
+    ;
     this.limpiarstorage=function() {
         $location.path('/');
         return $localStorage.$reset();
-    };
+    }
+    ;
     this.UploadFac=function() {
         return $resource(this.server().appnext()+'public/uploadFactura', {}
         , {
@@ -39,7 +41,8 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    };
+    }
+    ;
     this.Download_link=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
         return $resource(this.server().appnext()+'public/Downloadlink', {}
@@ -52,8 +55,9 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    };
-// ----------------------------------------- set get imagen perfil ----------------------------
+    }
+    ;
+    // ----------------------------------------- set get imagen perfil ----------------------------
     this.set_img_perfil=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
         return $resource(this.server().appnext()+'public/setImgPerfil', {}
@@ -66,8 +70,9 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    };
-      this.get_img_perfil=function() {
+    }
+    ;
+    this.get_img_perfil=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
         return $resource(this.server().appnext()+'public/getImgPerfil', {}
         , {
@@ -79,8 +84,9 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    };
-     this.mis_imgs_perfil=function() {
+    }
+    ;
+    this.mis_imgs_perfil=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
         return $resource(this.server().appnext()+'public/loadImgsPerfil', {}
         , {
@@ -92,7 +98,8 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    };
+    }
+    ;
     ////////////////////////////////////////////////////////////////////////
     this.gastos=function() {
         return [ {
@@ -111,7 +118,9 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             tipo: 'EDUCACIÓN'
         }
         ];
-    };
+    }
+    ;
+    // --------------------------------------------- abrir modal -----------------------------
     this.showModal=function(file, data, idmodal) {
         ModalService.showModal( {
             templateUrl: 'view/modales/'+file, controller: "ModalController", inputs: {
@@ -126,7 +135,38 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             );
         }
         );
-    };
+    }
+    ;
+    // ------------------------------------------------ verificar Password ----------------------------
+    this.verificar_pass=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/VerficarPass', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    }
+    ;
+    // ------------------------------------------------ Cambiar Password ----------------------------
+    this.change_pass=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/changePass', {}
+        , {
+            set: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    }
+    ;
 }
 
 );
@@ -206,8 +246,10 @@ app.service('localizacion', function() {
         }
         ];
     }
-});
-app.controller('ModalController', function($scope,$rootScope, data, tipomodal, servicios, $window, $localStorage) {
+}
+
+);
+app.controller('ModalController', function($scope, $rootScope, data, tipomodal, servicios, $window, $localStorage) {
     switch(tipomodal) {
         // ------------------------------------------------- MENSAJE-------------------------
         case 'mensaje': switch(data.error) {
@@ -234,52 +276,46 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
         case 'share': $scope.fileUrl=data.source;
         break;
         // ------------------------------------------------- VISTA PREVIA-------------------------
-        case 'preview': 
-        // console.log(servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf");
+        case 'preview': // console.log(servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf");
         $scope.pdfURL=servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf";
         break;
-        // ------------------------------------IMAGEN DE PERFIL ---------------------
-        case 'imgperfil': 
-            $scope.misimagenes=data.source;
+        // ------------------------------------LISTA DE IMAGENES DE PERFIL ---------------------
+        case 'imgperfil': $scope.misimagenes=data.source;
         $scope.show_select_img=function(data) {
             $scope.imgURL=data;
-             servicios.set_img_perfil().enviar({img: $scope.imgURL}
-        ).$promise.then(function(data) {
-         $localStorage.imgPerfil=data.img;
-         $rootScope.imgPerfil=data.img;
-         $('#modal_lista_img').modal('hide');
-         $('#modal_lista_img').remove();
-         $('.modal-backdrop').remove();
-        }
-        );
-
-            // servicios.showModal('modal_img_perfil.html', {
-            //     source: data
-            // }
-            // , 'selectimg');
+            servicios.set_img_perfil().enviar( {
+                img: $scope.imgURL
+            }
+            ).$promise.then(function(data) {
+                $localStorage.imgPerfil=data.img;
+                $rootScope.imgPerfil=data.img;
+                $('#modal_lista_img').modal('hide');
+                $('#modal_lista_img').remove();
+                $('.modal-backdrop').remove();
+            }
+            );
         }
         break;
-        case 'selectimg': 
-        console.log(data.source);
+        case 'selectimg': console.log(data.source);
         $scope.myImage=data.source;
         $scope.myCroppedImage='';
-
-        $scope.cambiar_img=function(){
-            var imgData = btoa($scope.myCroppedImage);
-        servicios.set_img_perfil().enviar( {
-            img: imgData
+        $scope.cambiar_img=function() {
+            var imgData=btoa($scope.myCroppedImage);
+            servicios.set_img_perfil().enviar( {
+                img: imgData
+            }
+            ).$promise.then(function(data) {
+                $localStorage.imgPerfil=servicios.server().appnext()+"public/perfiles/"+$localStorage.datosE.id_empresa+"/"+data.img;
+                $rootScope.imgPerfil=servicios.server().appnext()+"public/perfiles/"+$localStorage.datosE.id_empresa+"/"+data.img;
+            }
+            );
+            // console.log(imgData);
         }
-        ).$promise.then(function(data) {
-         $localStorage.imgPerfil=servicios.server().appnext()+"public/perfiles/"+$localStorage.datosE.id_empresa+"/"+data.img;
-         $rootScope.imgPerfil=servicios.server().appnext()+"public/perfiles/"+$localStorage.datosE.id_empresa+"/"+data.img;
-        }
-        );
-           // console.log(imgData);
-        }
-
         break;
     }
-});
+}
+
+);
 app.factory('facturanextservice', function($resource, $localStorage, servicios) {
     // console.log(servicios);
     return $resource('http://192.168.100.5/appnext/public/getFacturas', {}
@@ -289,8 +325,11 @@ app.factory('facturanextservice', function($resource, $localStorage, servicios) 
                 token: $localStorage.token
             }
         }
-    });
-});
+    }
+    );
+}
+
+);
 app.factory('UploadFac', function($resource, $localStorage) {
     return $resource('http://192.168.100.5/appnext/public/uploadFactura', {}
     , {
@@ -299,8 +338,11 @@ app.factory('UploadFac', function($resource, $localStorage) {
                 token: $localStorage.token
             }
         }
-    });
-});
+    }
+    );
+}
+
+);
 ///------------------------ Leer XML----------------------------
 app.directive('onReadFile', function ($parse) {
     return {
@@ -319,29 +361,39 @@ app.directive('onReadFile', function ($parse) {
                 }
                 ;
                 reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
-            });
+            }
+            );
         }
     }
-});
+}
+
+);
 app.factory('loaddatosSRI', function($resource) {
     return $resource("http://apiservicios.nextbook.ec/public/getDatos/:id", {
         id: "@id"
     }
     );
-});
+}
+
+);
 app.factory('Empresa', function($resource, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+"public/registroEmpresas/:id", {
         id: "@id"
     }
     );
-});
+}
+
+);
 app.factory('Persona', function($resource, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+"public/registroPersonas/:id", {
         id: "@id"
-    });
-});
+    }
+    );
+}
+
+);
 app.factory('LoginE', function($resource, $localStorage, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+'public/login', {}
@@ -349,8 +401,11 @@ app.factory('LoginE', function($resource, $localStorage, servicios) {
         ingresar: {
             method: 'POST', isArray: false, // params: {token: $localStorage.token}
         }
-    });
-});
+    }
+    );
+}
+
+);
 app.factory('LogoutE', function($resource, $localStorage, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+'appnext/public/logoutE', {}
@@ -360,8 +415,11 @@ app.factory('LogoutE', function($resource, $localStorage, servicios) {
                 token: $localStorage.token
             }
         }
-    });
-});
+    }
+    );
+}
+
+);
 app.factory('Sucursaless', function($resource, $localStorage, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+'public/getsucursales', {}
@@ -371,8 +429,11 @@ app.factory('Sucursaless', function($resource, $localStorage, servicios) {
                 token: $localStorage.token
             }
         }
-    });
-});
+    }
+    );
+}
+
+);
 app.factory('Facturas', function($resource, $localStorage) {
     return $resource('http://192.168.100.5/appnext/public/readFacturas', {}
     , {
@@ -383,7 +444,9 @@ app.factory('Facturas', function($resource, $localStorage) {
         }
     }
     );
-});
+}
+
+);
 app.factory('FacturasLista', function($resource, $localStorage) {
     return $resource('http://192.168.100.5/appnext/public/getFacturas', {}
     , {
@@ -392,13 +455,19 @@ app.factory('FacturasLista', function($resource, $localStorage) {
                 token: $localStorage.token
             }
         }
-    });
-});
+    }
+    );
+}
+
+);
 app.factory('consultarMovil', function($resource, $localStorage) {
     return $resource('http://192.168.100.5/appserviciosnext/public/cosultarMovil', {}
     , {
         validar: {
             method: 'POST', isArray: false, // params: {token: $localStorage.token}
         }
-    });
-});
+    }
+    );
+}
+
+);

@@ -116,7 +116,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         return $resource(this.server().appnext()+'public/buscarCliente', {}
         ,{
             repeat: {
-                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token
                 }

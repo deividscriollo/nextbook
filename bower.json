@@ -29,14 +29,14 @@
     "angular-material-icons": "^0.7.1",
     "angular-socialshare": "^1.4.5",
     "lf-ng-md-file-input": "^1.4.8",
-    "jquery": "^3.1.0",
     "angular": "^1.5.7",
     "ng-img-crop": "ngImgCrop#^0.3.2",
     "datatables-plugins": "^1.10.12",
     "angular-material-sidenav": "^0.0.14",
     "datatables.net": "^1.10.12",
     "components-font-awesome": "^4.6.3",
-    "animate.css": "^3.5.2"
+    "animate.css": "^3.5.2",
+    "jquery": "^3.1.0"
   },
   "private": true
 }

@@ -1,0 +1,31 @@
+<form data-ng-submit="vm.submitForm();" name="vm.contactForm">
+    <md-content class="autoScroll">
+        <md-input-container class="md-icon-float md-block">
+            <label>Name</label>
+            <md-icon class="fa fa-user"></md-icon>
+            <input type="text" required name="name" data-ng-model="vm.message.name">
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+            <label>Phone</label>
+            <md-icon class="fa fa-phone"></md-icon>
+            <input type="text" required name="phone" data-ng-model="vm.message.phone" pattern="[0-9]{10,12}">
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+            <label>Email</label>
+            <md-icon class="fa fa-envelope"></md-icon>
+            <input type="email" required name="email" data-ng-model="vm.message.email">
+        </md-input-container>
+
+        <md-input-container class="md-icon-float md-block">
+            <label>Your Message</label>
+            <md-icon class="fa fa-clipboard"></md-icon>
+            <input type="text" required name="message" data-ng-model="vm.message.message">
+        </md-input-container>
+        <div class="pull-right">
+            <md-button class="md-raised md-primary" type="submit">Send <i class="fa fa-angle-double-right"></i></md-button>
+            <md-button class="md-raised md-warn" type="reset">Clear <i class="fa fa-trash-o"></i></md-button>
+        </div>
+    </md-content>
+</form>

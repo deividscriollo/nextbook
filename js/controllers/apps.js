@@ -2,9 +2,26 @@ app.controller('inicioCtrl', function($scope, $routeSegment) {
         
     $scope.$routeSegment = $routeSegment;
 });
-app.controller('appsCtrl', function($scope, $routeSegment) {
-        
+app.controller('appsCtrl', function($scope, $routeSegment, $window,$localStorage,servicios) {        
     $scope.$routeSegment = $routeSegment;
+
+$scope.show=false;
+$scope.valido=false;
+        if ($localStorage.datosE.pass_estado==0) {
+            $scope.show=true;
+        }
+
+        $scope.cambiar_pass=function(){
+            servicios.change_pass().set({"new_pass":$scope.pw2}).$promise.then(function(data){
+                if (data.response) {
+                    var datosE=$localStorage.datosE;
+                    $localStorage.datosE.pass_estado=null;
+                    $window.location.reload();
+                }
+            });
+
+        }
+
 });
 app.controller('mapsCtrl', function($scope, $routeSegment) {
         

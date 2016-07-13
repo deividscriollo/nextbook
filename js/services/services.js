@@ -12,15 +12,14 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                 }
             }
         });
-    }
-    ;
+    };
     this.server=function() {
         return {
             appserviosnext: function() {
                 return "http://apiservicios.nextbook.ec/";
             }
             , appnext: function() {
-                return "http://192.168.100.5/appnext/";
+                return "http://192.168.100.17/appnext/";
             }
         }
     };
@@ -92,6 +91,40 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         }
         );
     };
+
+    // servicios creacion clientes
+
+    // guardar clientes
+    this.add_cliente = function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/addCliente', {}
+        ,{
+            save: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
+    // Fin
+
+    // comparar repetidos clientes
+    this.repeat_cliente = function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/buscarCliente', {}
+        ,{
+            repeat: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
+    // Fin
+
+    // Fin creacion servicios clientes
     ////////////////////////////////////////////////////////////////////////
     this.gastos=function() {
         return [ {

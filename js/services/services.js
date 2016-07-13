@@ -11,8 +11,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                     token: $localStorage.token
                 }
             }
-        }
-        );
+        });
     }
     ;
     this.server=function() {
@@ -166,7 +165,7 @@ app.service('localizacion', function() {
             "id": "20150326115500551439e48ec62", "nombre": "Imbabura", "codtelefonico": '062'
         }
         , {
-            "id": "20150326115500551439e48ee16", "nombre": "Loja", "codtelefonico": '0'
+            "id": "20150326115500551439e48ee16", "nombre": "Loja", "codtelefonico": '072'
         }
         , {
             "id": "20150326115500551439e48ef9b", "nombre": "Los Rios", "codtelefonico": '052'

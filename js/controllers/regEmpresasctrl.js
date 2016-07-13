@@ -1,8 +1,9 @@
  
  app.controller('EmpresasCtrl', function ($scope,loaddatosSRI, Empresa, localizacion) {
-        
-
     // input items generate
+  
+    // sweetAlert("Oops...", "Something went wrong!", "error");
+
 
     $scope.elementview=false;
     $scope.elemennotview=true;
@@ -24,12 +25,19 @@
         }
 
     }
+    $scope.verificar=function(){
+        var itemselect = $scope.myOption;
+        if (!itemselect) {
+            angular.element('#myselect').triggerHandler('click');
+        }
+    }
     $scope.searchruc = function() {    
         if ($scope.ruc) {
             loaddatosSRI.get({
                 nrodocumento: $scope.ruc,
                 tipodocumento: "RUC"
             }).$promise.then(function(data) {
+                
                 $scope.sucursales=data.establecimientos;
                 var data = data.datosEmpresa;
                 $scope.razon_social = data.razon_social;

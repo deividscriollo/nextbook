@@ -2,8 +2,6 @@
     <h2 class="content-sub-heading text-center">Datos de mi empresa</h2>
     <div layout-gt-xs="row">
         <div class="col-lg-7">
-            <img src="images/welcome/welcome.jpg" class="animated zoomIn" ng-show="elemennotview">
-            <h1 class="content-heading text-center">Bienvenido</h1>
             <md-input-container class="md-block animated zoomIn" ng-show="elementview" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                 <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Razon Social </label>
                 <input ng-model="razon_social" autocomplete="off" disabled>
@@ -32,17 +30,19 @@
                 <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Actividad Principal </label>
                 <input ng-model="actividad_principal" autocomplete="off" disabled>
             </md-input-container>
+            <img src="images/welcome/welcome.jpg" class="animated zoomIn" ng-show="elemennotview" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}" >
+            <h1 class="content-heading text-center" ng-show="elemennotview">Bienvenido</h1>
         </div>
         <div class="col-lg-5">
             <form name="formsearchruc">
-                <div layout="row" flex>                
+                <div layout="row" flex>
                     <md-input-container class="md-block" flex-gt-xs>
-                        <label><span class="icon icon-lg">play_arrow</span> RUC </label>
+                        <label><span class="icon icon-lg">play_arrow</span> Ingrese numero de RUC </label>
                         <input id="ruc" name="ruc" ng-model="ruc" ng-minlength="13" ng-maxlength="13" maxlength="13" autocomplete="off"  required>
                         <div ng-messages="formsearchruc.ruc.$error" ng-show="formsearchruc.ruc.$dirty">
-                            <div ng-message="required" class="my-message">requerido</div>
-                            <div ng-message="minlength" class="my-message">ruc invalido, minimo 13 digitos</div>
-                            <div ng-message="maxlength" class="my-message">ruc invalido, maximo 13 digitos</div>
+                            <div ng-message="required" class="my-message">Número de ruc es requerido</div>
+                            <div ng-message="minlength" class="my-message">Ruc invalido, minimo 13 digitos</div>
+                            <div ng-message="maxlength" class="my-message">Ruc invalido, maximo 13 digitos</div>
                         </div>
                     </md-input-container>
                     <md-button class="md-fab" type="submit" ng-disabled="formsearchruc.$invalid" ng-click="searchruc()">
@@ -51,10 +51,10 @@
                 </div>
             </form>
             <form name="formreg">
-                <div layout="row" flex ng-show="elementview">
-                    <md-input-container class="md-block" flex-gt-xs>
-                        <label>Provincia</label>
-                        <md-select  name="myselect" id="myselect" ng-change="update()" ng-model="myOption">
+                <div layout="row" flex flex-gt-xs ng-show="elementview" class="md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                    <md-input-container class="md-block" flex-gt-xs >
+                        <label class="text-brand">Provincias</label>
+                        <md-select  name="myselect" id="myselect" ng-change="update()" ng-model="myOption" required>
                             <md-option ng-repeat="state in states" value="{{state.id}}">
                                 {{state.nombre}}
                             </md-option>
@@ -64,6 +64,43 @@
                         </div>
                     </md-input-container>
                 </div>
+                <md-input-container flex-gt-xs ng-show="elementview" class="md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                    <label><span class="icon icon-lg">play_arrow</span> Teléfono 1</label>
+                    <input autocomplete="off" name="lastName" ng-click="select()" ng-model="lastName" ng-minlength="7" required>
+                    <div ng-messages="formreg.lastName.$error" ng-show="formreg.lastName.$dirty">
+                      <div ng-message="required">Campo Requerido</div>
+                      <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex-gt-xs ng-show="elementview" class="md-block animated zoomIn" ng-click="verificar()" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                    <label><span class="icon icon-lg">play_arrow</span> Teléfono 2</label>
+                    <input autocomplete="off" name="lastName2" ng-model="lastName2" ng-minlength="7" required>
+                    <div ng-messages="formreg.lastName2.$error" ng-show="formreg.lastName2.$dirty">
+                      <div ng-message="required">Campo Requerido</div>
+                      <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex-gt-xs ng-show="elementview" class="md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                    <label><span class="icon icon-lg">play_arrow</span> Celular</label>
+                    <input name="fono" ng-model="fono" name="fono" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
+                    <div ng-messages="formreg.fono.$error" ng-show="formreg.fono.$dirty">
+                      <div ng-message="required">Campo Requerido</div>
+                      <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
+                      <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
+                      <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex-gt-xs ng-show="elementview" class="md-block animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                    <label><span class="icon icon-lg">play_arrow</span> Correo</label>
+                    <input autocomplete="off" ng-model="correo" name="correo" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
+                    <div ng-messages="formreg.correo.$error" ng-show="formreg.correo.$dirty">
+                      <div ng-message="required">Campo Requerido</div>
+                      <div ng-message="pattern" class="my-message">correo invalido</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex-gt-xs ng-show="elementview" class="md-block pull-right animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                    <md-button class="md-raised md-primary" ng-click="registrar()" ng-disabled="formreg.$invalid" >Enviar</md-button>
+                </md-input-container>
                 <div >                
                     <img src="images/welcome/reddenegios.png" class="animated zoomIn" ng-show="elemennotview">
                     <h2 class="content-sub-heading" ng-show="elemennotview">
@@ -73,43 +110,6 @@
                         al mundo, seguro incrementarás tús ventas.
                     </h2>
                 </div>
-                <md-input-container class="md-block" flex-gt-xs ng-show="elementview">
-                    <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Teléfono 1</label>
-                    <input autocomplete="off" name="lastName" ng-model="lastName" ng-minlength="7" required>
-                    <div ng-messages="formreg.lastName.$error" ng-show="formreg.lastName.$dirty">
-                      <div ng-message="required">Campo Requerido</div>
-                      <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
-                    </div>
-                </md-input-container>
-                <md-input-container class="md-block" flex-gt-xs ng-show="elementview">
-                    <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Teléfono 2</label>
-                    <input autocomplete="off" name="lastName2" ng-model="lastName2" ng-minlength="7" required>
-                    <div ng-messages="formreg.lastName2.$error" ng-show="formreg.lastName2.$dirty">
-                      <div ng-message="required">Campo Requerido</div>
-                      <div ng-message="minlength" class="my-message">numero de teléfono invalido</div>
-                    </div>
-                </md-input-container>
-                <md-input-container class="md-block" flex-gt-xs ng-show="elementview">
-                    <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Celular</label>
-                    <input name="fono" ng-model="fono" name="fono" ng-pattern="/^[0-9]/" ng-minlength="10" ng-maxlength="10" maxlength="10" autocomplete="off" required>
-                    <div ng-messages="formreg.fono.$error" ng-show="formreg.fono.$dirty">
-                      <div ng-message="required">Campo Requerido</div>
-                      <div ng-message="pattern" class="my-message">Solo caracteres numericos</div>
-                      <div ng-message="minlength" class="my-message">Minimo 10 Digitos</div>
-                      <div ng-message="maxlength" class="my-message">Maximo 10 digitos</div>
-                    </div>
-                </md-input-container>
-                <md-input-container class="md-block" flex-gt-xs ng-show="elementview">
-                    <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Correo</label>
-                    <input autocomplete="off" ng-model="correo" name="correo" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" required>
-                    <div ng-messages="formreg.correo.$error" ng-show="formreg.correo.$dirty">
-                      <div ng-message="required">Campo Requerido</div>
-                      <div ng-message="pattern" class="my-message">correo invalido</div>
-                    </div>
-                </md-input-container>
-                <md-input-container class="md-block pull-right" flex-gt-xs ng-show="elementview" >
-                    <md-button class="md-raised md-primary" ng-click="registrar()" ng-disabled="formreg.$invalid" >Enviar</md-button>
-                </md-input-container>
             </form>            
         </div>
     </div>

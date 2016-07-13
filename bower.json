@@ -36,7 +36,8 @@
     "datatables.net": "^1.10.12",
     "components-font-awesome": "^4.6.3",
     "animate.css": "^3.5.2",
-    "jquery": "^3.1.0"
+    "jquery": "^3.1.0",
+    "ng-sweet-alert": "^1.0.7"
   },
   "private": true
 }

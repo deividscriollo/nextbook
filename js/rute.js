@@ -13,6 +13,8 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/salir/:id',          'salir')
             .when('/',          'sbuscar')
             .when('/Home',          's1')
+            // respuesta mensajeria
+            .when('/Mensaje',    'mensaje')
             // procesos inicial
             .when('/Home/Inicio',    's1.inicio')
             .when('/Home/ParaTi',      's1.Parati')
@@ -50,6 +52,10 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 controller: 'salirCtrl',
                 dependencies: ['id']
             })
+            .segment('mensaje', {
+                templateUrl: 'view/mensajes.html',
+                controller: 'mensajeCtrl',
+            })
             // perfil general            
             .segment('sbuscar', {
                 templateUrl: 'view/buscar.html',
@@ -66,7 +72,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     'default': true,
                     templateUrl: 'view/empresas.html',
                     controller: 'EmpresasCtrl'
-                })                    
+                }) 
                 .segment('Parati', {
                     templateUrl: 'view/parati.html',
                     controller: 'PersonasCtrl'

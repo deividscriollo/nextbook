@@ -1,28 +1,11 @@
 <header class="header header-transparent header-waterfall ui-header container">
     <span class="header-logo">NextBook</span>
     <ul class="nav nav-list pull-right">
-        <!-- <md-content layout-padding> -->
-        <!-- <li class="col-lg-4">
-            <div class="form-group form-group-label">
-                <label class="floating-label " for="usuario" > Usuario </label>
-                <input class="form-control" id="usuario" type="text" ng-model="data.email">
-            </div>
-        </li>
-        <li>
-            <div class="form-group form-group-label">
-                <label class="floating-label" for="pass"> Contraseña</label>
-                <input class="form-control" id="pass" type="password" ng-model="data.password">
-            </div>
-        </li>
-        <li>
-            <a class="btn btn-brand-accent waves-attach waves-light waves-effect" ng-click="ingresar()">Entrar</a>
-        </li> -->
-        <!-- </md-content> -->
-        <form name="formlogin">
+        <form name="formlogin" class="loginform">
             <div layout="row">
                 <div>
                     <md-input-container style="width: 240px!important">
-                        <label>Email</label>
+                        <label class="text-white2">Email</label>
                         <input id="email" name="email" ng-model="email" type="email" placeholder="1004034805001@facturanext.com" autocomplete="off" required>
                         <div ng-messages="formlogin.email.$error" ng-show="formlogin.email.$dirty">
                             <div ng-message="required" class="my-message">requerido</div>
@@ -30,7 +13,7 @@
                         </div>
                     </md-input-container>
                     <md-input-container>
-                        <label>Password</label>
+                        <label class="text-white2">Password</label>
                         <input id="password" name="password" ng-model="password" type="password" placeholder="*******" autocomplete="off" required md-theme="alt">
                         <div ng-messages="formlogin.password.$error" ng-show="formlogin.password.$dirty">
                             <div ng-message="required" class="my-message">requerido</div>

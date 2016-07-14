@@ -24,3 +24,13 @@ md-option {
     
     height: 25px!important;
 }
+
+.loginform md-input-container.md-default-theme .md-input, .loginform md-input-container .md-input {
+    color: rgba(255,255,255,0.6);
+    border-color: rgba(255,255,255,0.6);
+    /*text-shadow: ;*/
+}
+.text-white2{
+	color: rgba(255,255,255,0.6);
+}
+

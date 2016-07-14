@@ -1,9 +1,9 @@
  
- app.controller('EmpresasCtrl', function ($scope,loaddatosSRI, Empresa, localizacion) {
+ app.controller('EmpresasCtrl', function ($scope,loaddatosSRI, Empresa, localizacion, registros, SweetAlert) {
     // input items generate
   
     // sweetAlert("Oops...", "Something went wrong!", "error");
-
+    
 
     $scope.elementview=false;
     $scope.elemennotview=true;
@@ -31,13 +31,16 @@
             angular.element('#myselect').triggerHandler('click');
         }
     }
-    $scope.searchruc = function() {    
-        if ($scope.ruc) {
-            loaddatosSRI.get({
-                nrodocumento: $scope.ruc,
-                tipodocumento: "RUC"
-            }).$promise.then(function(data) {
-                
+    $scope.searchruc = function() {
+
+        registros.virificar_registro_existente().query({ruc: $scope.ruc}).$promise.then(function(data){
+            var x = data.respuesta;
+            if (x == true) {
+                SweetAlert.swal("Ya Existe!", "Este numero de RUC ya se encuentra registrado.", "success");
+            }else{
+
+                var data = data.respuesta;
+                console.log(data);
                 $scope.sucursales=data.establecimientos;
                 var data = data.datosEmpresa;
                 $scope.razon_social = data.razon_social;
@@ -51,11 +54,11 @@
                 $scope.rucdata = data;
                 $scope.elementview=true;
                 $scope.elemennotview=false;  
-                console.log(data);             
-            });
-        }else{
-            console.log('no hay algo');
-        }
+            }
+        });
+
+            
+       
     };
 
     $scope.cargadatos = function(estado) {

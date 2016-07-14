@@ -19,6 +19,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                 return "http://apiservicios.nextbook.ec/";
             }
             , appnext: function() {
+                // return "http://192.168.100.17/appnext/";
                 return "http://192.168.100.17/appnext/";
             }
         }
@@ -159,9 +160,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         }
         );
     };
-}
-
-);
+});
 app.service('localizacion', function() {
     this.provincia=function() {
         return [ {

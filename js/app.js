@@ -14,7 +14,7 @@ var app=angular.module	('app', 	[
 									'blockUI',
 									'ngMdIcons',
 									'lfNgMdFileInput',
-									// 'ng-sweet-alert'
+									'oitozero.ngSweetAlert'
 								]
 						).run(function($FB) {
     $FB.init('386469651480295');

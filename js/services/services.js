@@ -19,7 +19,11 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                 return "http://apiservicios.nextbook.ec/";
             }
             , appnext: function() {
+
                 // return "http://192.168.100.3/appnext/";
+
+                // return "http://192.168.100.17/appnext/";
+
                 return "http://192.168.100.3/appnext/";
             }
         }

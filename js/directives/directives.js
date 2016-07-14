@@ -122,8 +122,8 @@ app.directive('pwActualCheck', function (servicios) {
         elem.on('blur', function (value) {
           scope.$apply(function () {
 servicios.verificar_pass().get({"pass":elem.val()}).$promise.then(function(data){
-    // console.log(data.response);
-        if (data.response) {
+    // console.log(data.respuesta);
+        if (data.respuesta) {
         ctrl.$setValidity('pwactualmatch',true);
         }else ctrl.$setValidity('pwactualmatch',false);
     });

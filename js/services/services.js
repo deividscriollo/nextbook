@@ -283,12 +283,14 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
          $('.modal-backdrop').remove();
         }
         );
-
-            // servicios.showModal('modal_img_perfil.html', {
-            //     source: data
-            // }
-            // , 'selectimg');
         }
+
+         $scope.uploadFile = function(){
+        var filename = event.target.files[0].name;
+        alert('file was selected: ' + filename);
+        };
+        // angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
+
         break;
         case 'selectimg': 
         console.log(data.source);

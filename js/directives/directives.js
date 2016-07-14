@@ -133,6 +133,16 @@ servicios.verificar_pass().get({"pass":elem.val()}).$promise.then(function(data)
     }
   });
 
+app.directive('customOnChange', function() {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var onChangeFunc = scope.$eval(attrs.customOnChange);
+      element.bind('change', onChangeFunc);
+    }
+  };
+});
+
 app.directive('operadoraValidation', function(consultarMovil) {
     return {
         require: 'ngModel',

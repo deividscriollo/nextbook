@@ -1,31 +1,162 @@
-<form data-ng-submit="vm.submitForm();" name="vm.contactForm">
-    <md-content class="autoScroll">
-        <md-input-container class="md-icon-float md-block">
-            <label>Name</label>
-            <md-icon class="fa fa-user"></md-icon>
-            <input type="text" required name="name" data-ng-model="vm.message.name">
-        </md-input-container>
-
-        <md-input-container class="md-icon-float md-block">
-            <label>Phone</label>
-            <md-icon class="fa fa-phone"></md-icon>
-            <input type="text" required name="phone" data-ng-model="vm.message.phone" pattern="[0-9]{10,12}">
-        </md-input-container>
-
-        <md-input-container class="md-icon-float md-block">
-            <label>Email</label>
-            <md-icon class="fa fa-envelope"></md-icon>
-            <input type="email" required name="email" data-ng-model="vm.message.email">
-        </md-input-container>
-
-        <md-input-container class="md-icon-float md-block">
-            <label>Your Message</label>
-            <md-icon class="fa fa-clipboard"></md-icon>
-            <input type="text" required name="message" data-ng-model="vm.message.message">
-        </md-input-container>
-        <div class="pull-right">
-            <md-button class="md-raised md-primary" type="submit">Send <i class="fa fa-angle-double-right"></i></md-button>
-            <md-button class="md-raised md-warn" type="reset">Clear <i class="fa fa-trash-o"></i></md-button>
+<div class="card" ng-controller="cliente">
+    <div class="card-main">
+        <div class="card-header">
+            <div class="card-header-side pull-left">
+                <div class="avatar">
+                    <img alt="John Smith Avatar" src="images/users/x2.jpg">
+                </div>
+            </div>
+            <div class="card-inner">
+                <span class="card-heading">Registro clientes</span>
+            </div>
         </div>
-    </md-content>
-</form>
+        <div class="card-img">
+            <!-- <img alt="alt text" src="images/samples/x2.jpg" style="width: 100%;"> -->
+            <p class="card-img-heading">Some Text!</p>
+        </div>
+
+        <div class="card-inner">
+            <div class="row">
+                <form name="clienteForm" id="clienteForm">
+                    <div class="col-sm-4">
+                        <md-content class="autoScroll">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Ruc Empresa</label>
+                                <md-icon class="fa fa-chevron-circle-right"></md-icon>
+                                <input md-maxlength="13" required md-no-asterisk type="text" required name="ruc_empresa" id="ruc_empresa" ng-model="data.ruc_empresa" ng-blur="comparar_cliente()" />
+                                <div ng-messages="clienteForm.ruc_empresa.$error">
+                                    <div ng-message="md-maxlength">El Ruc tiene que ser de menos de 13 caracteres</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Razón Social</label>
+                                <md-icon class="fa fa-chevron-circle-right"></md-icon>
+                                <input type="text" required name="razon_social" ng-model="data.razon_social" />
+                                <div ng-messages="clienteForm.razon_social.$error">
+                                    <div ng-message="required">Razón Social Requerido</div>
+                                </div>
+                            </md-input-container>                
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Celular</label>
+                                <md-icon class="fa fa-mobile"></md-icon>
+                                <input type="text" required name="celular" id="celular" ng-model="data.celular">
+                                <div ng-messages="clienteForm.celular.$error">
+                                    <div ng-message="required">Número Celular Requerido</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Sitio Web</label>
+                                <md-icon class="fa fa-globe"></md-icon>
+                                <input type="text" name="sitio_web" ng-model="data.sitio_web">
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Facebook</label>
+                                <md-icon class="fa fa-facebook"></md-icon>
+                                <input type="text" name="facebook" ng-model="data.facebook">
+                            </md-input-container>
+                        </md-content>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <md-content class="autoScroll">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Nombre Comercial</label>
+                                <md-icon class="fa fa-chevron-circle-right"></md-icon>
+                                <input type="text"  required name="nombre_comercial" ng-model="data.nombre_comercial" />
+                                <div ng-messages="clienteForm.nombre_comercial.$error">
+                                    <div ng-message="required">Nombre Comercial Requerido</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Representante Legal</label>
+                                <md-icon class="fa fa-chevron-circle-right"></md-icon>
+                                <input type="text" required name="representante_legal" id="representante_legal" ng-model="data.representante_legal" />
+                                <div ng-messages="clienteForm.representante_legal.$error">
+                                    <div ng-message="required">Representante Legal Requerido</div>
+                                </div>
+                            </md-input-container>   
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Teléfono</label>
+                                <md-icon class="fa fa-phone"></md-icon>
+                                <input type="text" name="telefono" ng-model="data.telefono">
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Correo</label>
+                                <md-icon class="fa fa-envelope"></md-icon>
+                                <input type="email" required name="correo" ng-model="data.correo" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                                <div ng-messages="clienteForm.correo.$error">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Su correo electrónico debe tener entre 10 y 100 caracteres de longitud y se ven como una dirección de correo electrónico.
+                                    </div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Google+</label>
+                                <md-icon class="fa fa-google-plus"></md-icon>
+                                <input type="text" name="google" ng-model="data.google">
+                            </md-input-container>
+                        </md-content>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Actividad Ecónomica</label>
+                            <md-icon class="fa fa-chevron-circle-right"></md-icon>
+                            <input type="text" required name="actividad_economica" id="actividad_economica" ng-model="data.actividad_economica" />
+                            <div ng-messages="clienteForm.actividad_economica.$error">
+                                <div ng-message="required">Actividad Ecónomica Requerido</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Cédula Representante</label>
+                            <md-icon class="fa fa-chevron-circle-right"></md-icon>
+                            <input type="text" required name="cedula_representante" id="cedula_representante" ng-model="data.cedula_representante">
+                            <div ng-messages="clienteForm.cedula_representante.$error">
+                                <div ng-message="required">Cédula Representante Requerido</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Dirección</label>
+                            <md-icon class="fa fa-chevron-circle-right"></md-icon>
+                            <input type="text" required name="direccion" id="direccion" ng-model="data.direccion">
+                            <div ng-messages="clienteForm.direccion.$error">
+                                <div ng-message="required">Dirección Requerido</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Twitter</label>
+                            <md-icon class="fa fa-twitter light-blue"></md-icon>
+                            <input type="text" name="twitter" ng-model="data.twitter">
+                        </md-input-container>
+
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Observaciones</label>
+                            <md-icon class="fa fa-chevron-circle-right"></md-icon>
+                            <textarea ng-model="data.observaciones" name="observaciones" id="observaciones" rows="5" md-select-on-focus></textarea>
+                        </md-input-container>
+                    </div>
+                </form>
+            </div>  
+
+            <div class="row">
+                <div class="card-action">
+                    <div class="card-action-btn pull-right">
+                        <md-button class="md-raised md-primary" type="submit" ng-click="guardar_cliente()" ng-disabled="clienteForm.$invalid">Enviar <i class="fa fa-angle-double-right"></i></md-button>
+                        <md-button class="md-raised md-warn" type="reset">Limpiar <i class="fa fa-trash-o"></i></md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

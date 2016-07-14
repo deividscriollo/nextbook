@@ -44,8 +44,9 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .when('/My-space/Facturanext/FacturasFisicas',      'dashboard.facturanext.facturasfisicas')
                     .when('/My-space/Facturanext/Proveedores',      'dashboard.facturanext.proveedores')
 
-                .when('/My-space/RadioAdmin',      'dashboard.radioadmin.inicio1')
-                    .when('/My-space/RadioAdmin/Inicio2',      'dashboard.radioadmin.inicio2')
+                .when('/My-space/RadioAdmin',      'dashboard.radioadmin.inicio')
+                    .when('/My-space/RadioAdmin/Clientes',      'dashboard.radioadmin.clientes')
+                    .when('/My-space/RadioAdmin/Nomina',      'dashboard.radioadmin.nomina')
 
             .segment('salir', {
                 // templateUrl: 'view/home.html',
@@ -97,7 +98,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 .within()
                     .segment('inicio', {
                         'default': true,
-                        templateUrl: 'view/dashboardempresa/perfil/index.html',
+                        templateUrl: 'view/dashboardempresa/perfil/inicio1.html',
                         controller: 'iniCtrl'
                     })
                     .segment('apps', {
@@ -179,12 +180,15 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     'default': true,
                 })                   
                 .within()                
-                    .segment('inicio1', {
+                    .segment('inicio', {
                         templateUrl: 'view/dashboardempresa/radioadmin/inicio.html',
                         controller: 'radioadminCtrl'
                     })  
-                    .segment('inicio2', {
-                        templateUrl: 'view/dashboardempresa/radioadmin/inicio2.html'
+                    .segment('clientes', {
+                        templateUrl: 'view/dashboardempresa/radioadmin/clientes.html'
+                    })
+                    .segment('nomina', {
+                        templateUrl: 'view/dashboardempresa/radioadmin/nomina.html'
                     })                    
                 .up()   
             .up()

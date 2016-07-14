@@ -1,6 +1,38 @@
-<div ng-controller="radioadminCtrl">
+<div id="gridContainer" ng-controller="radioadminCtrl">
+    <md-grid-list md-cols="6" md-gutter="12px" md-row-height-gt-md="3:1" md-row-height-md="1:3" md-row-height-sm="1:1">
+        <md-grid-tile class="green">
+          <md-grid-tile-footer>
+            <h3>first tile</h3>
+          </md-grid-tile-footer>
+        </md-grid-tile>
+        <md-grid-tile class="blue">
+          <md-grid-tile-footer>
+            <h3>second tile</h3>
+          </md-grid-tile-footer>
+        </md-grid-tile>
+        <md-grid-tile class="purple">
+          <md-grid-tile-footer>
+            <h3>third tile</h3>
+          </md-grid-tile-footer>
+        </md-grid-tile>
+    </md-grid-list>
  <!--First Tab-->
-    <div class="row">
+    <md-content layout-padding>
+        <md-grid-list
+           md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
+           md-row-height-gt-md="1:1" md-row-height="4:3"
+           md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
+           <md-grid-tile
+              ng-repeat="tile in ctrl.colorTiles"
+              ng-style="{
+                 'background': tile.color
+              }"
+              md-colspan-gt-sm="{{tile.colspan}}"
+              md-rowspan-gt-sm="{{tile.rowspan}}">
+           </md-grid-tile>
+        </md-grid-list>
+    </md-content>
+    <!-- <div class="row">
         <div class="col-md-4 animated bounceInDown" ng-repeat="item in appslist">       
             <div class="card">
                 <div class="card-main">
@@ -11,7 +43,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
  <!--Second Tab-->
 </div>
 <!-- <div class="mainbody-section text-center">

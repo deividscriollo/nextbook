@@ -68,7 +68,6 @@ app.controller('cliente', function ($scope, $localStorage, servicios, loaddatosS
         // comparar clientes
         $scope.comparar_cliente = function() {
                 servicios.repeat_cliente().repeat($scope.data).$promise.then(function(data) {
-                        console.log(data.respuesta);
                         if(data.respuesta == true) {
                                 $scope.data.ruc_empresa = '';
                                 alert('repetido');

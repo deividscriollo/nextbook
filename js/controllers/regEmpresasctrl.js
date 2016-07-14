@@ -13,6 +13,8 @@
     $scope.cedula = "";
     $scope.sucursales=[];
 
+
+
     // method generate
     $scope.update = function(){
         var itemselect = $scope.myOption;
@@ -23,7 +25,6 @@
                 $scope.lastName2 = '( '+item['codtelefonico']+' ) - ';
             }
         }
-
     }
     $scope.verificar=function(){
         var itemselect = $scope.myOption;
@@ -36,11 +37,9 @@
         registros.virificar_registro_existente().query({ruc: $scope.ruc}).$promise.then(function(data){
             var x = data.respuesta;
             if (x == true) {
-                SweetAlert.swal("Ya Existe!", "Este numero de RUC ya se encuentra registrado.", "success");
+                SweetAlert.swal("Ya Existe!", "Este numero de RUC ya se encuentra registrado.", "warning");
             }else{
-
                 var data = data.respuesta;
-                console.log(data);
                 $scope.sucursales=data.establecimientos;
                 var data = data.datosEmpresa;
                 $scope.razon_social = data.razon_social;
@@ -56,9 +55,6 @@
                 $scope.elemennotview=false;  
             }
         });
-
-            
-       
     };
 
     $scope.cargadatos = function(estado) {
@@ -76,28 +72,34 @@
                 $scope.data.actividad_principal = data.datosEmpresa.actividad_economica;
                 $scope.nombres_apellidos=data.establecimientos.adicional.representante_legal;
                 $scope.sucursales=data.establecimientos;
-                // console.log(data.establecimientos.adicional.cedula);
             }, function(err) {
-                console.log(err.data.error);
+                // console.log(err.data.error);
+                console.log('proble-conecction');
             });
         } 
-        // else {
-        //     $scope.data.razon_social = "";
-        //     $scope.data.nombre_comercial = "";
-        //     $scope.data.estado_contribuyente = "";
-        //     $scope.data.clase_contribuyente = "";
-        //     $scope.data.tipo_contribuyente = "";
-        //     $scope.data.obligado_contabilidad = "";
-        //     $scope.data.actividad_principal = "";
-        // }
     }
     $scope.registrar = function() {
         $scope.rucdata['telefonos']=[$scope.lastName,$scope.lastName2];
         $scope.rucdata['privincia']=$scope.myOption;
         $scope.rucdata['celular']=$scope.fono;
         $scope.rucdata['correo']=$scope.correo;
-        Empresa.save($scope.rucdata);
-        // console.log($scope.rucdata);
+        Empresa.save($scope.rucdata).$promise.then(function(result){
+            if (result.respuesta==true) {
+                SweetAlert.swal("Registro Correcto", "En hora buena registro correcto revise su correo para activar su cuenta.", "success");
+                $scope.elemennotview=true;
+                $scope.elementview=false;                
+                $scope.ruc = null;
+                reset();
+            }else{
+                SweetAlert.swal("Lo sentimos!", "Intente mas Tarde.", "error");      
+            }   
+        });
     }
-
+    
+    $scope.reset = function(){
+        var vm = this;
+        vm.formsearchruc.$setPristine();
+        vm.formsearchruc.$setUntouched();
+        vm.formsearchruc = '';
+    }
 });

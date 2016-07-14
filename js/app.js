@@ -4,6 +4,7 @@ var app=angular.module	('app', 	[
 									'djds4rce.angular-socialshare',
 									'angularModalService',
 									'ngMaterial',
+									'md.data.table',
 									'ngMessages',
 									'ngFileUpload',
 									'ngStorage',

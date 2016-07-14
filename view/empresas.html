@@ -2,6 +2,7 @@
     <h2 class="content-sub-heading text-center">Datos de mi empresa</h2>
     <div layout-gt-xs="row">
         <div class="col-lg-7">
+            <form name="formvisualinfo">
             <md-input-container class="md-block animated zoomIn" ng-show="elementview" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                 <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Razon Social </label>
                 <input ng-model="razon_social" autocomplete="off" disabled>
@@ -30,6 +31,7 @@
                 <label class="text-brand"><span class="icon icon-lg">play_arrow</span> Actividad Principal </label>
                 <input ng-model="actividad_principal" autocomplete="off" disabled>
             </md-input-container>
+            </form>
             <img src="images/welcome/welcome.jpg" class="animated zoomIn" ng-show="elemennotview" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}" >
             <h1 class="content-heading text-center" ng-show="elemennotview">Bienvenido</h1>
         </div>
@@ -101,9 +103,9 @@
                 <md-input-container flex-gt-xs ng-show="elementview" class="md-block pull-right animated zoomIn" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                     <md-button class="md-raised md-primary" ng-click="registrar()" ng-disabled="formreg.$invalid" >Enviar</md-button>
                 </md-input-container>
-                <div >                
+                <div ng-show="elemennotview">                
                     <img src="images/welcome/reddenegios.png" class="animated zoomIn" ng-show="elemennotview">
-                    <h2 class="content-sub-heading" ng-show="elemennotview">
+                    <h2 class="content-sub-heading" >
                         <span class="text-brand-accent">Ingresa</span>fácil, <span class="text-brand-accent">rápido</span>,
                         efectivo y <span class="text-brand-accent">gratis</span>. 
                         Publica tú negocio y <span class="text-brand-accent">muéstrate</span>

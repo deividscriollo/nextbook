@@ -66,6 +66,23 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         }
         );
     };
+
+    // ----------------------------------------- Verificar contraseña ----------------------------
+    this.verificar_pass=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/VerficarPass', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+    // fin
+
       this.get_img_perfil=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
         return $resource(this.server().appnext()+'public/getImgPerfil', {}
@@ -160,7 +177,42 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         }
         );
     };
+
+// -------------------------------------------------- Datos de persona que registra ---------------------------------------------
+
+// ----------------------------------------- Si existen datos ----------------------------
+    this.get_propietario=function() {
+        return $resource(this.server().appnext()+'public/getDatosPropietario', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+    // ------------------- fin
+    // ----------------------------------------- guardar datos de persona que registra ----------------------------
+    this.set_propietario=function() {
+        return $resource(this.server().appnext()+'public/setDatosPropietario', {}
+        , {
+            enviar: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+    // ------------------- fin
+
+    // ------------------------------------------------ 
+
 });
+// --------------------
 app.service('localizacion', function() {
     this.provincia=function() {
         return [ {
@@ -315,7 +367,7 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
 });
 app.factory('facturanextservice', function($resource, $localStorage, servicios) {
     // console.log(servicios);
-    return $resource('http://192.168.100.5/appnext/public/getFacturas', {}
+    return $resource('http://192.168.100.3/appnext/public/getFacturas', {}
     , {
         get: {
             method: 'GET', isArray: false, params: {
@@ -325,7 +377,7 @@ app.factory('facturanextservice', function($resource, $localStorage, servicios) 
     });
 });
 app.factory('UploadFac', function($resource, $localStorage) {
-    return $resource('http://192.168.100.5/appnext/public/uploadFactura', {}
+    return $resource('http://192.168.100.3/appnext/public/uploadFactura', {}
     , {
         subir: {
             method: 'POST', isArray: false, params: {
@@ -407,7 +459,7 @@ app.factory('Sucursaless', function($resource, $localStorage, servicios) {
     });
 });
 app.factory('Facturas', function($resource, $localStorage) {
-    return $resource('http://192.168.100.5/appnext/public/readFacturas', {}
+    return $resource('http://192.168.100.3/appnext/public/readFacturas', {}
     , {
         get: {
             method: 'GET', isArray: false, params: {
@@ -418,7 +470,7 @@ app.factory('Facturas', function($resource, $localStorage) {
     );
 });
 app.factory('FacturasLista', function($resource, $localStorage) {
-    return $resource('http://192.168.100.5/appnext/public/getFacturas', {}
+    return $resource('http://192.168.100.3/appnext/public/getFacturas', {}
     , {
         get: {
             method: 'GET', isArray: false, params: {
@@ -428,7 +480,7 @@ app.factory('FacturasLista', function($resource, $localStorage) {
     });
 });
 app.factory('consultarMovil', function($resource, $localStorage) {
-    return $resource('http://192.168.100.5/appserviciosnext/public/cosultarMovil', {}
+    return $resource('http://192.168.100.3/appserviciosnext/public/cosultarMovil', {}
     , {
         validar: {
             method: 'POST', isArray: false, // params: {token: $localStorage.token}

@@ -5,23 +5,6 @@ app.controller('inicioCtrl', function($scope, $routeSegment) {
 app.controller('appsCtrl', function($scope, $routeSegment, $window,$localStorage,servicios) {        
     $scope.$routeSegment = $routeSegment;
 
-$scope.show=false;
-$scope.valido=false;
-        if ($localStorage.datosE.pass_estado==0) {
-            $scope.show=true;
-        }
-
-        $scope.cambiar_pass=function(){
-            servicios.change_pass().set({"new_pass":$scope.pw2}).$promise.then(function(data){
-                if (data.response) {
-                    var datosE=$localStorage.datosE;
-                    $localStorage.datosE.pass_estado=null;
-                    $window.location.reload();
-                }
-            });
-
-        }
-
 });
 app.controller('mapsCtrl', function($scope, $routeSegment) {
         
@@ -49,15 +32,30 @@ app.controller('MainCtrl', function($scope, $routeSegment, $localStorage,servici
             $localStorage.token = data[0].token;
             $localStorage.datosE = data.datosE;
             $localStorage.datosPersona = data.datosPersona;
+            //--------------------cargr imagen perfil-----------
 
             servicios.get_img_perfil().get().$promise.then(function(data) {
-            $localStorage.imgPerfil=data.img;
+                        $localStorage.imgPerfil=data.img;
+            
+            }, function(err) {
+               
+            });
+            // ---------- fin
+            //---------------------- verificar si existe datos de persona-----------
+
+            servicios.get_propietario().get().$promise.then(function(data) {
+                if (data.respuesta) {
+                    $location.path('/SeleccionarSucursal');
+                }
+                else{
+                    $location.path('/CambioPass');
+                }
             
             }, function(err) {
                
             });
 
-            $location.path('/SeleccionarSucursal');
+            // $location.path('/SeleccionarSucursal');
         }, function(err) {
             if (err.status == 404) {
                 alert('Usario/Contraseña incorrectos');

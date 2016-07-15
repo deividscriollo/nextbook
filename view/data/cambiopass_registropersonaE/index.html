@@ -1,0 +1,163 @@
+<header class="header header-transparent header-waterfall ui-header">
+    <ul class="nav nav-list pull-left">
+        <li>
+            <a data-toggle="menu" href="#ui_menu">
+                <span class="icon icon-lg">menu</span>
+            </a>
+        </li>
+    </ul>
+    <a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix" href="index.html">Nextbook</a>
+    <span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">Cards</span>
+    <ul class="nav nav-list pull-right">
+        <li class="dropdown margin-right">
+            <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown">
+                <span class="access-hide">John Smith</span>
+                <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="images/users/avatar-001.jpg"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                    <a class="padding-right-lg waves-attach" href="javascript:void(0)"><span class="icon icon-lg margin-right">account_box</span>Profile Settings</a>
+                </li>
+                <li>
+                    <a class="padding-right-lg waves-attach" href="javascript:void(0)"><span class="icon icon-lg margin-right">add_to_photos</span>Upload Photo</a>
+                </li>
+                <li>
+                    <a class="padding-right-lg waves-attach" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</header>
+<main class="content">
+    <div class="content-header ui-content-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+                    <h1 class="content-heading text-center">ACTUALIZACIÓN DE DATOS</h1>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div class="container">
+    <form name="form_pass"> 
+        <div class="row">
+        <!-- formulario Propietario -->
+            <div class="col-lg-6">
+<br><br><br>
+<div class="card">
+            <div class="card-main">
+                <div class="card-header">
+                    <div class="card-header-side pull-left">
+                        <div class="avatar">
+                            <img alt="John Smith Avatar" src="images/users/x2.jpg">
+                        </div>
+                    </div>
+                    <div class="card-inner">
+                        <span class="card-heading">DATOS PERSONALES</span>
+                    </div>
+                </div>
+                <div class="card-img">
+                    <!-- <img alt="alt text" src="images/samples/x2.jpg" style="width: 100%;"> -->
+                    <p class="card-img-heading">Some Text!</p>
+                </div>
+                <div class="card-inner">
+                                <md-input-container id="label_clave" class="md-block" md-cols-lg="5">
+                                    <label>Nombres</label>
+                                    <input name="nombres" ng-model="data.nombres" md-select-on-focus ng-required="true">
+                                    <div ng-messages="form_pass.nombres.$error" ng-show="form_pass.nombres.$require">
+                                        <div ng-message="required" class="my-message">requerido</div>
+                                    </div>
+                                </md-input-container>
+                                    <md-input-container id="label_clave" class="md-block" md-cols-lg="5">
+                                        <label>Apellidos</label>
+                                        <input type="text" id="apellidos" name="apellidos" ng-model="data.apellidos" ng-required="true"/>
+                                        <div ng-messages="form_pass.apellidos.$error.require" ng-show="form_pass.apellidos.$require">
+                                            <div ng-message="required" class="my-message">requerido</div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container class="md-block" md-cols-lg="5">
+                                        <label>Fecha de nacimiento</label>
+                                        <input type="date" id="fecha_nac" name="fecha_nac" ng-model="data.fecha_nac" ng-required="true"/>
+
+                                        <div ng-messages="form_pass.fecha_nac.$error" ng-show="form_pass.fecha_nac.$require">
+                                            <div ng-message="required" class="my-message">requerido</div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container id="label_clave" class="md-block" md-cols-lg="5">
+                                        <label>Teléfono</label>
+                                        <input type="text" id="telefono" name="telefono" ng-model="data.telefono" ng-required="true"/>
+                                        <div ng-messages="form_pass.telefono.$error" ng-show="form_pass.telefono.$require">
+                                            <div ng-message="required" class="my-message">requerido</div>
+                                        </div>
+                                    </md-input-container>
+                </div>
+            </div>
+        </div>
+            </div>
+            <!-- fin -->
+        <!-- formulario Contraseña -->
+            <div class="col-lg-6">
+
+<br><br><br>
+<div class="card">
+            <div class="card-main">
+                <div class="card-header">
+                    <div class="card-header-side pull-left">
+                        <div class="avatar">
+                            <img alt="John Smith Avatar" src="images/users/x2.jpg">
+                        </div>
+                    </div>
+                    <div class="card-inner">
+                        <span class="card-heading">CAMBIA TU CONTRASEÑA</span>
+                    </div>
+                </div>
+                <div class="card-img">
+                    <!-- <img alt="alt text" src="images/samples/x2.jpg" style="width: 100%;"> -->
+                    <p class="card-img-heading">Some Text!</p>
+                </div>
+                <div class="card-inner">
+                                <md-input-container id="label_clave" class="md-block" md-cols-lg="5">
+                                    <label>Contraseña actual</label>
+                                    <input type="password" name="clave_actual" ng-blur="verificar_pass()" ng-model="data.clave_actual" md-select-on-focus ng-required="true" pw-actual-check>
+                                    <div ng-messages="form_pass.clave_actual.$error" ng-show="form_pass.clave_actual.$dirty">
+                                        <div ng-message="required" class="my-message">requerido</div>
+                                    </div>
+                                    <div ng-messages="form_pass.clave_actual.$error" ng-show="form_pass.clave_actual.$error.pwactualmatch">
+                                        <div ng-message="pwactualmatch" class="my-message">Contraseña erronea</div>
+                                    </div>
+                                </md-input-container>
+            
+                                    <md-input-container id="label_clave" class="md-block" md-cols-lg="5">
+                                        <label>Nueva Contraseña</label>
+                                        <input type="password" id="pw1" name="pw1" ng-model="pw1" ng-required/>
+                                        <div ng-messages="form_pass.pw1.$error" ng-show="form_pass.pw1.$dirty">
+                                            <div ng-message="required" class="my-message">requerido</div>
+                                        </div>
+                                    </md-input-container>
+                                    <md-input-container class="md-block" md-cols-lg="5">
+                                        <label>Repita su contraseña</label>
+                                        <input type="password" id="pw2" name="pw2" ng-model="data.pw2" ng-required pw-check="pw1" />
+
+                                        <div ng-messages="form_pass.pw2.$error" ng-show="form_pass.pw2.$error.pwmatch">
+                                            <div ng-message="required" class="my-message">requerido</div>
+                                            <div ng-messages="pwmatch" class="my-message">Contraseñas no coinciden</div>
+                                        </div>
+
+                                    </md-input-container>
+                    <div class="row">
+                        <div class="card-action">
+                            <div class="card-action-btn pull-right">
+                                <button class="btn btn-brand waves-attach waves-light" ng-click="cambiar_datos()" ng-disabled="form_pass.$invalid"><span class="icon">check</span> Cambiar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+         
+        </div>
+        </form>
+    </div>
+</main>

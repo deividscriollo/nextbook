@@ -23,6 +23,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             
             // segmentacion seleccion sucursal
             .when('/SeleccionarSucursal',      'selec-sucursal')
+            .when('/CambioPass',      'cambio-pass-registro-persona')
             .when('/FacturaNext',      'factura-next')
 
 
@@ -84,6 +85,10 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .segment('selec-sucursal', {
                 templateUrl: 'view/data/seleccionarempresa/index.html',
                 controller: 'seleccionar-empresa'
+            })
+            .segment('cambio-pass-registro-persona', {
+                templateUrl: 'view/data/cambiopass_registropersonaE/index.html',
+                controller: 'cambio-password'
             })
             .segment('dashboard', {
                 templateUrl: 'view/dashboardempresa/index.html',

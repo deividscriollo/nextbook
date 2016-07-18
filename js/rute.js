@@ -205,8 +205,6 @@ app.config(function($routeSegmentProvider, $routeProvider) {
 
     app.value('loader', {show: false});
 
-    
-
     app.controller('Section1Ctrl', function($scope, $routeSegment) {
         
         $scope.$routeSegment = $routeSegment;

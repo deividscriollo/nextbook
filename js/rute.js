@@ -71,7 +71,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     templateUrl: 'view/empresas.html'
                 })
                 .segment('ParaEmpresas', {
-                    'default': true,
+                    // 'default': true,
                     templateUrl: 'view/empresas.html',
                     controller: 'EmpresasCtrl'
                 }) 
@@ -80,6 +80,8 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     controller: 'PersonasCtrl'
                 })                    
                 .segment('quienessomos', {
+                    'default': true,
+                    controller: 'quienes_somosCtrl',
                     templateUrl: 'view/quienessomos.html'})                    
             .up()
             .segment('selec-sucursal', {

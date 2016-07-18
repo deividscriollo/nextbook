@@ -4,7 +4,6 @@ var app=angular.module	('app', 	[
 									'djds4rce.angular-socialshare',
 									'angularModalService',
 									'ngMaterial',
-									'md.data.table',
 									'ngMessages',
 									'ngFileUpload',
 									'ngStorage',
@@ -15,8 +14,18 @@ var app=angular.module	('app', 	[
 									'blockUI',
 									'ngMdIcons',
 									'lfNgMdFileInput',
-									'oitozero.ngSweetAlert'
+									'oitozero.ngSweetAlert',
+									'md.data.table'
 								]
 						).run(function($FB) {
     $FB.init('386469651480295');
 });
+app.config(['$compileProvider', '$mdThemingProvider', function ($compileProvider, $mdThemingProvider) {
+    'use strict';
+    
+    $compileProvider.debugInfoEnabled(false);
+    
+    $mdThemingProvider.theme('default')
+      .primaryPalette('blue')
+      .accentPalette('pink');
+  }]);

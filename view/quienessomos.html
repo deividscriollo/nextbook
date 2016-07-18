@@ -4,11 +4,24 @@
 	    <h2 class="md-title">Nomina</h2>
 	    <div flex></div>
 	    <md-button class="md-icon-button" ng-click="filter.show = true">
-	      <md-icon>filter_list</md-icon>
+	    	<md-tooltip md-visible="demo.showTooltip">
+	            Buscar / Filtrar
+	        </md-tooltip>
+	    	<md-icon>filter_list</md-icon>
+	    </md-button>
+	    <md-button class="md-icon-button" ng-click="eddititem($event)">
+	    	<md-tooltip md-visible="demo.showTooltip">
+	            Nuevo Registro
+	        </md-tooltip>
+	      	<md-icon>note_add</md-icon>
 	    </md-button>
 	    <md-button class="md-icon-button" ng-click="addItem($event)">
-	      <md-icon>local_dining</md-icon>
+	    	 <md-tooltip md-visible="demo.showTooltip">
+	            Actualizar
+	          </md-tooltip>
+	      <md-icon>autorenew</md-icon>
 	    </md-button>
+	    
 	  </div>
 
 	</md-toolbar>
@@ -21,7 +34,7 @@
 	    </form>
 	    <md-button class="md-icon-button" ng-click="removeFilter()">
 	      <md-icon>close</md-icon>
-	    </md-button>
+	    </md-button>	    
 	  </div>
 	</md-toolbar>
 

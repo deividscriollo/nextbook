@@ -26,6 +26,6 @@ app.config(['$compileProvider', '$mdThemingProvider', function ($compileProvider
     $compileProvider.debugInfoEnabled(false);
     
     $mdThemingProvider.theme('default')
-      .primaryPalette('blue')
+      .primaryPalette('indigo')
       .accentPalette('pink');
   }]);

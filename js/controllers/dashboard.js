@@ -28,10 +28,10 @@ app.controller('quienes_somosCtrl', function ($mdDialog, $nutrition, $scope) {
 
   $scope.query = {
     filter: '',
-    num_registros: 10,
+    num_registros: 5,
     pagina_actual:1,
     limit: '5',
-    order: 'nameToLower',
+    // order: 'nameToLower',
     page_num: 1
   };
   

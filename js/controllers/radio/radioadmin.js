@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('radioadminCtrl', function ($scope, $localStorage) {
+app.controller('radioadminCtrl', function($scope) {
     $scope.appslist =       [
                                 {
                                         title:'Empresa',

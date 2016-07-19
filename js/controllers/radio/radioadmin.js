@@ -88,187 +88,161 @@ app.controller('cliente', function ($scope, $localStorage, servicios) {
         // fin
 });
 
-angular.module('app').controller('nomina', ['$http', '$mdEditDialog', '$q', '$timeout', '$scope', function ($http, $mdEditDialog, $q, $timeout, $scope) {
-  'use strict';
-
-  $scope.options = {
-    rowSelection: true,
-    multiSelect: true,
-    autoSelect: true,
-    decapitate: false,
-    largeEditDialog: false,
-    boundaryLinks: false,
-    limitSelect: true,
-    pageSelect: true
-  };
-
+app.controller('nomina', function ($mdDialog, $nutrition, $scope,servicios) {
+  // 'use strict';
+  var bookmark;
+  
   $scope.selected = [];
-  $scope.limitOptions = [5, 10, 15, {
-    label: 'All',
-    value: function () {
-      return $scope.desserts ? $scope.desserts.count : 0;
+  
+  $scope.filter = {
+    options: {
+      debounce: 500
     }
-  }];
+  };
 
   $scope.query = {
-    order: 'name',
-    limit: 5,
-    page: 1
+    filter: '',
+    num_registros: 5,
+    pagina_actual:1,
+    limit: '5',
+    // order: 'nameToLower',
+    page_num: 1
   };
+  
+  function success(desserts) {
+    $scope.desserts = desserts.respuesta;
+  }
+  
+  $scope.eddititem = function (event) {
+    console.log(event);
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'addItemController',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      templateUrl: 'view/tabladata/add-item-dialog.html',
+    }).then($scope.getDesserts);
+  };
+  
+  $scope.delete = function (event) {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'deleteController',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      locals: { desserts: $scope.selected },
+      templateUrl: 'view/tabladata/delete.html',
+    }).then($scope.getDesserts);
+  };
+  
+  $scope.getDesserts = function () {
+    $scope.promise = $nutrition.get($scope.query, success).$promise;
+  };
+  
+  $scope.removeFilter = function () {
+    $scope.filter.show = false;
+    $scope.query.filter = '';
+    
+    if($scope.filter.form.$dirty) {
+      $scope.filter.form.$setPristine();
+    }
+  };
+  
+// $scope.get_Nomina=function(){
+  servicios.get_Nomina().get({filer:'aaa',limit:3}).$promise.then(function(data) {
+  // servicios.get_Nomina().get().$prommise.then(function(data) {
+    console.log('test');
+  // alert(data);
+  });
+// }
+// $scope.get_Nomina();
 
-  // for testing ngRepeat
-  $scope.columns = [{
-    name: 'Dessert',
-    orderBy: 'name',
-    unit: '100g serving'
-  }, {
-    descendFirst: true,
-    name: 'Type',
-    orderBy: 'type'
-  }, {
-    name: 'Calories',
-    numeric: true,
-    orderBy: 'calories.value'
-  }, {
-    name: 'Fat',
-    numeric: true,
-    orderBy: 'fat.value',
-    unit: 'g'
-  }, /* {
-    name: 'Carbs',
-    numeric: true,
-    orderBy: 'carbs.value',
-    unit: 'g'
-  }, */ {
-    name: 'Protein',
-    numeric: true,
-    orderBy: 'protein.value',
-    trim: true,
-    unit: 'g'
-  }, /* {
-    name: 'Sodium',
-    numeric: true,
-    orderBy: 'sodium.value',
-    unit: 'mg'
-  }, {
-    name: 'Calcium',
-    numeric: true,
-    orderBy: 'calcium.value',
-    unit: '%'
-  }, */ {
-    name: 'Iron',
-    numeric: true,
-    orderBy: 'iron.value',
-    unit: '%'
-  }, {
-    name: 'Comments',
-    orderBy: 'comment'
-  }];
-
-  $http.get('desserts.json').then(function (desserts) {
-    $scope.desserts = desserts.data;
-
-    // $scope.selected.push($scope.desserts.data[1]);
-
-    // $scope.selected.push({
-    //   name: 'Ice cream sandwich',
-    //   type: 'Ice cream',
-    //   calories: { value: 237.0 },
-    //   fat: { value: 9.0 },
-    //   carbs: { value: 37.0 },
-    //   protein: { value: 4.3 },
-    //   sodium: { value: 129.0 },
-    //   calcium: { value: 8.0 },
-    //   iron: { value: 1.0 }
-    // });
-
-    // $scope.selected.push({
-    //   name: 'Eclair',
-    //   type: 'Pastry',
-    //   calories: { value:  262.0 },
-    //   fat: { value: 16.0 },
-    //   carbs: { value: 24.0 },
-    //   protein: { value:  6.0 },
-    //   sodium: { value: 337.0 },
-    //   calcium: { value:  6.0 },
-    //   iron: { value: 7.0 }
-    // });
-
-    // $scope.promise = $timeout(function () {
-    //   $scope.desserts = desserts.data;
-    // }, 1000);
+  $scope.$watch('query.filter', function (newValue, oldValue) {
+    if(!oldValue) {
+      bookmark = $scope.query.page_num;
+    }
+    
+    if(newValue !== oldValue) {
+      $scope.query.page_num = 1;
+    }
+    
+    if(!newValue) {
+      $scope.query.page_num = bookmark;
+    }    
+    $scope.getDesserts();
   });
 
-  $scope.editComment = function (event, dessert) {
-    event.stopPropagation();
 
-    var dialog = {
-      // messages: {
-      //   test: 'I don\'t like tests!'
-      // },
-      modelValue: dessert.comment,
-      placeholder: 'Add a comment',
-      save: function (input) {
-        dessert.comment = input.$modelValue;
-      },
-      targetEvent: event,
-      title: 'Add a comment',
-      validators: {
-        'md-maxlength': 30
-      }
-    };
 
-    var promise = $scope.options.largeEditDialog ? $mdEditDialog.large(dialog) : $mdEditDialog.small(dialog);
+});
 
-    promise.then(function (ctrl) {
-      var input = ctrl.getInput();
-
-      input.$viewChangeListeners.push(function () {
-        input.$setValidity('test', input.$modelValue !== 'test');
-      });
+app.controller('deleteController', ['$authorize', 'desserts', '$mdDialog', '$nutrition', '$scope', '$q', function ($authorize, desserts, $mdDialog, $nutrition, $scope, $q) {
+  'use strict';
+  
+  this.cancel = $mdDialog.cancel;
+  
+  function deleteDessert(dessert, index) {
+    var deferred = $nutrition.desserts.remove({id: dessert._id});
+    
+    deferred.$promise.then(function () {
+      desserts.splice(index, 1);
     });
+    
+    return deferred.$promise;
+  }
+  
+  function onComplete() {
+    $mdDialog.hide();
+  }
+  
+  function error() {
+    $scope.error = 'Invalid secret.';
+  }
+  
+  function success() {
+    $q.all(desserts.forEach(deleteDessert)).then(onComplete);
+  }
+  
+  this.authorizeUser = function () {
+    $authorize.get({secret: $scope.authorize.secret}, success, error);
   };
-
-  $scope.toggleLimitOptions = function () {
-    $scope.limitOptions = $scope.limitOptions ? undefined : [5, 10, 15];
-  };
-
-  $scope.getTypes = function () {
-    return ['Candy', 'Ice cream', 'Other', 'Pastry'];
-  };
-
-  $scope.onPaginate = function(page, limit) {
-    console.log('Scope Page: ' + $scope.query.page + ' Scope Limit: ' + $scope.query.limit);
-    console.log('Page: ' + page + ' Limit: ' + limit);
-
-    $scope.promise = $timeout(function () {
-
-    }, 2000);
-  };
-
-  $scope.deselect = function (item) {
-    console.log(item.name, 'was deselected');
-  };
-
-  $scope.log = function (item) {
-    console.log(item.name, 'was selected');
-  };
-
-  $scope.loadStuff = function () {
-    $scope.promise = $timeout(function () {
-
-    }, 2000);
-  };
-
-  $scope.onReorder = function(order) {
-
-    console.log('Scope Order: ' + $scope.query.order);
-    console.log('Order: ' + order);
-
-    $scope.promise = $timeout(function () {
-
-    }, 2000);
-  };
-
 }]);
+
+app.controller('addItemController', ['$mdDialog', '$nutrition', '$scope', function ($mdDialog, $nutrition, $scope) {
+  'use strict';
+
+  this.cancel = $mdDialog.cancel;
+  
+  function success(dessert) {
+    $mdDialog.hide(dessert);
+  }
+  
+  this.addItem = function () {
+    $scope.item.form.$setSubmitted();
+    
+    if($scope.item.form.$valid) {
+      $nutrition.desserts.save({dessert: $scope.dessert}, success);
+    }
+  };
+}]);
+
+app.factory('$authorize', ['$resource', function ($resource) {
+  'use strict';
+  return $resource('https://infinite-earth-4803.herokuapp.com/authorize/:secret');
+}]);
+
+// app.factory('$nutrition', ['$resource', function ($resource) {
+//   'use strict';
+//   return $resource('http://192.168.100.17/appnext/public/getNomina', {}
+//     ,{
+//         get: {
+//             method: 'GET', isArray: false, // responseType:'arraybuffer', 
+//             params: {
+//                 token: $localStorage.token;
+//             }
+//         }
+//     });
+// }]);
 

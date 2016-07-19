@@ -209,6 +209,21 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     };
     // ------------------- fin
 
+      // ----------------------------------------- guardar datos de persona que registra ----------------------------
+    this.get_Nomina=function() {
+        return $resource(this.server().appnext()+'public/getNomina', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+    // ------------------- fin
+
     // ------------------------------------------------ 
 
 });
@@ -458,8 +473,9 @@ app.factory('Sucursaless', function($resource, $localStorage, servicios) {
         }
     });
 });
-app.factory('Facturas', function($resource, $localStorage) {
-    return $resource('http://192.168.100.3/appnext/public/readFacturas', {}
+app.factory('Facturas', function($resource, $localStorage, servicios) {
+    var url_server=servicios.server().appnext();
+    return $resource(url_server+'public/readFacturas', {}
     , {
         get: {
             method: 'GET', isArray: false, params: {
@@ -469,8 +485,9 @@ app.factory('Facturas', function($resource, $localStorage) {
     }
     );
 });
-app.factory('FacturasLista', function($resource, $localStorage) {
-    return $resource('http://192.168.100.3/appnext/public/getFacturas', {}
+app.factory('FacturasLista', function($resource, $localStorage, servicios) {
+    var url_server=servicios.server().appnext();
+    return $resource(url_server+'public/getFacturas', {}
     , {
         get: {
             method: 'GET', isArray: false, params: {
@@ -479,8 +496,9 @@ app.factory('FacturasLista', function($resource, $localStorage) {
         }
     });
 });
-app.factory('consultarMovil', function($resource, $localStorage) {
-    return $resource('http://192.168.100.3/appserviciosnext/public/cosultarMovil', {}
+app.factory('consultarMovil', function($resource, $localStorage, servicios) {
+    var url_server=servicios.server().appserviosnext();
+    return $resource(url_server+'public/cosultarMovil', {}
     , {
         validar: {
             method: 'POST', isArray: false, // params: {token: $localStorage.token}

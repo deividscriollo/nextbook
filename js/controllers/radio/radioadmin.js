@@ -149,16 +149,68 @@ app.controller('nomina', function ($mdDialog, $nutrition, $scope,servicios) {
       $scope.filter.form.$setPristine();
     }
   };
+  'use strict';
   
-// $scope.get_Nomina=function(){
-  servicios.get_Nomina().get({filer:'aaa',limit:3}).$promise.then(function(data) {
-  // servicios.get_Nomina().get().$prommise.then(function(data) {
-    console.log('test');
-  // alert(data);
-  });
-// }
-// $scope.get_Nomina();
+  var bookmark;
+  
+  $scope.selected = [];
+  
+  $scope.filter = {
+    options: {
+      debounce: 500
+    }
+  };
 
+  $scope.query = {
+    filter: '',
+    num_registros: 5,
+    pagina_actual:1,
+    limit: '5',
+    // order: 'nameToLower',
+    page_num: 1
+  };
+  
+  function success(desserts) {
+    $scope.desserts = desserts.respuesta;
+  }
+  
+  $scope.eddititem = function (event) {
+    console.log(event);
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'addItemController',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      templateUrl: 'view/tabladata/add-item-dialog.html',
+    }).then($scope.getDesserts);
+  };
+  
+  $scope.delete = function (event) {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'deleteController',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      locals: { desserts: $scope.selected },
+      templateUrl: 'view/tabladata/delete.html',
+    }).then($scope.getDesserts);
+  };
+  
+  $scope.getDesserts = function () {
+    $scope.promise = $nutrition.get($scope.query, success).$promise;
+  };
+  
+  $scope.removeFilter = function () {
+    $scope.filter.show = false;
+    $scope.query.filter = '';
+    
+    if($scope.filter.form.$dirty) {
+      $scope.filter.form.$setPristine();
+    }
+  };
+  
   $scope.$watch('query.filter', function (newValue, oldValue) {
     if(!oldValue) {
       bookmark = $scope.query.page_num;
@@ -173,9 +225,6 @@ app.controller('nomina', function ($mdDialog, $nutrition, $scope,servicios) {
     }    
     $scope.getDesserts();
   });
-
-
-
 });
 
 app.controller('deleteController', ['$authorize', 'desserts', '$mdDialog', '$nutrition', '$scope', '$q', function ($authorize, desserts, $mdDialog, $nutrition, $scope, $q) {
@@ -233,16 +282,15 @@ app.factory('$authorize', ['$resource', function ($resource) {
   return $resource('https://infinite-earth-4803.herokuapp.com/authorize/:secret');
 }]);
 
-// app.factory('$nutrition', ['$resource', function ($resource) {
-//   'use strict';
-//   return $resource('http://192.168.100.17/appnext/public/getNomina', {}
-//     ,{
-//         get: {
-//             method: 'GET', isArray: false, // responseType:'arraybuffer', 
-//             params: {
-//                 token: $localStorage.token;
-//             }
-//         }
-//     });
-// }]);
-
+app.factory('$nutrition', function ($resource, $localStorage) {
+  'use strict';
+  return $resource('http://192.168.100.17/appnext/public/getNomina', {}
+    ,{
+        get: {
+            method: 'GET', isArray: false, // responseType:'arraybuffer', 
+            params: {
+                token: $localStorage.token
+            }
+        }
+    });
+});

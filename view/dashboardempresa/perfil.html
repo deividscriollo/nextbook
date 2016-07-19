@@ -22,7 +22,7 @@
 	                        	<img class="img-responsive" src="{{imgPerfil}}">
 	                        </a>
 	                        <span class="site-name">Roland Maruntelu</span>
-	                        <span class="site-description">Servicii profesionale</span>
+	                        <span class="site-description">{{localStorage.actividad_economica}}</span>
 	                    </nav>
 	                    <nav class="tab-nav pull-right nav-perfil-2-1">
 					        <ul class="nav nav-list">
@@ -45,7 +45,12 @@
 					            </li>
 					            <li class="active">
 					                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.inicio' | routeSegmentUrl}}">
-					                    <span class="text-white">ComercialHidrobo</span>
+					                    <span class="text-white" ng-if="localStorage.nombre_comercial != 'no disponible'">	
+					                    	{{localStorage.nombre_comercial}}
+					                    </span>
+                    					<span class="text-white" ng-if="localStorage.nombre_comercial == 'no disponible'">
+                    						{{localStorage.razon_social}}
+                    					</span>
 					                </a>
 					            </li>
 					            <li>

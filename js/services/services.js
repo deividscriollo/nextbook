@@ -24,6 +24,18 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
     };
+
+    this.dir_img=function() {
+        return {
+            perfil: function() {
+                return "public/perfiles/";
+            }
+            , portada: function() {
+                return "public/portadas/";
+            }
+        }
+    };
+
     this.limpiarstorage=function() {
         $location.path('/');
         return $localStorage.$reset();
@@ -56,6 +68,36 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     this.set_img_perfil=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
         return $resource(this.server().appnext()+'public/setImgPerfil', {}
+        , {
+            enviar: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+
+    // ----------------------------------------- Add imagen perfil ----------------------------
+    this.add_img_perfil=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/addImgPerfil', {}
+        , {
+            enviar: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+
+    // ----------------------------------------- Add imagen de POrtada ----------------------------
+    this.add_img_portada=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/addImgPortada', {}
         , {
             enviar: {
                 method: 'POST', isArray: false, // responseType:'arraybuffer', 
@@ -127,6 +169,21 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     };
     // Fin
 
+    // guardar nomina
+    this.add_nomina = function() {
+        return $resource(this.server().appnext()+'public/addNomina', {}
+        , {
+            save: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+    // ------------------- fin
+
     // comparar repetidos clientes
     this.repeat_cliente = function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
@@ -177,7 +234,6 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         }
         );
     };
-
 // -------------------------------------------------- Datos de persona que registra ---------------------------------------------
 
 // ----------------------------------------- Si existen datos ----------------------------
@@ -209,7 +265,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     };
     // ------------------- fin
 
-      // ----------------------------------------- guardar datos de persona que registra ----------------------------
+    // ----------------------------------------- guardar datos de persona que registra ----------------------------
     this.get_Nomina=function() {
         return $resource(this.server().appnext()+'public/getNomina', {}
         , {
@@ -353,19 +409,51 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
         }
 
         break;
-        case 'selectimg': 
-        console.log(data.source);
-        $scope.myImage=data.source;
-        $scope.myCroppedImage='';
 
-        $scope.cambiar_img=function(){
+/////////////////////////////////////////////////////////////////// SUBIR IMAGEN PORTADA Y PERFIL /////////////////////////////
+        case 'uploadimg': 
+        switch (data.source){
+            case 'perfil':
+
+        $scope.myImage='';
+        $scope.myCroppedImage='';
+        $scope.ctrlFn = function(arg) {        
+         $scope.myImage = arg;
+        }
+             $scope.upload_img=function(){
             var imgData = btoa($scope.myCroppedImage);
-        servicios.set_img_perfil().enviar( {
+        servicios.add_img_perfil().enviar( {
             img: imgData
         }
         ).$promise.then(function(data) {
-         $localStorage.imgPerfil=servicios.server().appnext()+"public/perfiles/"+$localStorage.datosE.id_empresa+"/"+data.img;
-         $rootScope.imgPerfil=servicios.server().appnext()+"public/perfiles/"+$localStorage.datosE.id_empresa+"/"+data.img;
+         $localStorage.imgPerfil=servicios.server().appnext()+servicios.dir_img().perfil()+$localStorage.datosE.id_empresa+"/"+data.img;
+         $rootScope.imgPerfil=servicios.server().appnext()+servicios.dir_img().perfil()+$localStorage.datosE.id_empresa+"/"+data.img;
+          $('#modal_upload_img').modal('hide');
+         $('#modal_upload_img').remove();
+         $('.modal-backdrop').remove();
+        }
+        );
+           // console.log(imgData);
+        }
+        break;
+        //////////////////////////////////////////////////////////// PORTADA //////////////////////////////////////////////
+        case 'portada':
+        $scope.myImage='';
+        $scope.myCroppedImage='';
+        $scope.ctrlFn = function(arg) {        
+         $scope.myImage = arg;
+        }
+             $scope.upload_img=function(){
+            var imgData = btoa($scope.myImage);
+        servicios.add_img_portada().enviar( {
+            img: imgData
+        }
+        ).$promise.then(function(data) {
+         $localStorage.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+$localStorage.datosE.id_empresa+"/"+data.img;
+         $rootScope.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+$localStorage.datosE.id_empresa+"/"+data.img;
+          $('#modal_upload_img').modal('hide');
+         $('#modal_upload_img').remove();
+         $('.modal-backdrop').remove();
         }
         );
            // console.log(imgData);
@@ -373,7 +461,11 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
 
         break;
     }
+
+        break;
+    }
 });
+
 app.factory('facturanextservice', function($resource, $localStorage, servicios) {
     // console.log(servicios);
     return $resource('http://192.168.100.3/appnext/public/getFacturas', {}

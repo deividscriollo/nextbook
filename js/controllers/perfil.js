@@ -4,6 +4,13 @@ $rootScope.imgPerfil=$localStorage.imgPerfil;
 }else{
 	$rootScope.imgPerfil="images/users/avatar-001.jpg"
 }
+
+if ($localStorage.imgPortada!=null) {
+$rootScope.imgPortada=$localStorage.imgPortada;
+}else{
+	$rootScope.imgPortada="images/samples/w1.jpg"
+}
+
 $scope.show_listaimg_modal=function(){
 	// $scope.misimagenes="";
 	servicios.mis_imgs_perfil().get().$promise.then(function(data) {
@@ -12,5 +19,9 @@ $scope.show_listaimg_modal=function(){
       
             });
 
+	}
+
+	$scope.show_upload_img_modal=function(tipo){
+                servicios.showModal('modal_upload_img_perfil.html',{source:tipo},'uploadimg');
 	}
 });

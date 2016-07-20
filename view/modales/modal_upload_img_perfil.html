@@ -1,12 +1,4 @@
-<style type="text/css">
-    .cropArea {
-        background: #E4E4E4;
-        overflow: hidden;
-        width: 400px;
-        height: 250px;
-    }
-</style>
-<div aria-hidden="true" class="modal fade" id="modal_select_img" role="dialog" tabindex="-1">
+<div aria-hidden="true" class="modal fade" id="modal_upload_img" role="dialog" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-heading">
@@ -14,9 +6,18 @@
                 <h2 class="modal-title">IMAGEN</h2>
             </div>
             <div class="modal-inner">
-                <!-- <img src="{{imgURL}}" style="width: 50%;"> -->
-                <div class="col-lg-12">
+              <style>
+  .cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  width:400px;
+  height:250px;
+}
+
+  </style>
+  <div class="col-lg-12">
                     <div class="col-lg-5">
+                          <input type="file" on-read-file data-method="ctrlFn"/>
                         <div class="cropArea">
                             <img-crop image="myImage" width="500px" result-image="myCroppedImage"></img-crop>
                         </div>
@@ -26,12 +27,11 @@
                         <div><img ng-src="{{myCroppedImage}}" /></div>
                     </div>
                 </div>
-
             </div>
             <div class="modal-footer">
                 <p class="text-right">
                     <button class="btn btn-flat btn-brand waves-attach" data-dismiss="modal" type="button">CANCELAR</button>
-                    <button class="btn btn-flat btn-brand waves-attach" type="button" ng-click="cambiar_img()" >ACEPTAR</button>
+                    <button class="btn btn-flat btn-brand waves-attach" type="button" ng-click="upload_img()" >ACEPTAR</button>
                 </p>
             </div>
         </div>

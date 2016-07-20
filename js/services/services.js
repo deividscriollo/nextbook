@@ -127,6 +127,21 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     };
     // Fin
 
+    // guardar nomina
+    this.add_nomina = function() {
+        return $resource(this.server().appnext()+'public/addNomina', {}
+        , {
+            save: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+    // ------------------- fin
+
     // comparar repetidos clientes
     this.repeat_cliente = function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
@@ -177,7 +192,6 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         }
         );
     };
-
 // -------------------------------------------------- Datos de persona que registra ---------------------------------------------
 
 // ----------------------------------------- Si existen datos ----------------------------
@@ -209,7 +223,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     };
     // ------------------- fin
 
-      // ----------------------------------------- guardar datos de persona que registra ----------------------------
+    // ----------------------------------------- guardar datos de persona que registra ----------------------------
     this.get_Nomina=function() {
         return $resource(this.server().appnext()+'public/getNomina', {}
         , {

@@ -54,42 +54,41 @@ app.controller('radioadminCtrl', function($scope) {
 });
 
 app.controller('cliente', function ($scope, $localStorage, servicios) {
-        // guardar clientes
-        $scope.guardar_cliente = function() {
-                servicios.add_cliente().save($scope.data).$promise.then(function(data) {
-                        if(data.respuesta == true) {
-                                alert('cliente guardado correctamente');        
-                                document.getElementById("clienteForm").reset();
-                        }
-                });       
+    // guardar clientes
+    $scope.guardar_cliente = function() {
+      servicios.add_cliente().save($scope.data).$promise.then(function(data) {
+        if(data.respuesta == true) {
+          alert('cliente guardado correctamente');        
+          document.getElementById("clienteForm").reset();
         }
-        // fin
+      });       
+    }
+    // fin
 
-        // comparar clientes
-        $scope.comparar_cliente = function() {
-                servicios.repeat_cliente().repeat($scope.data).$promise.then(function(data) {
-                        if(data.respuesta == true) {
-                                $scope.data.ruc_empresa = '';
-                                alert('repetido');
-                        } else {
-                                if (data.respuesta.datosEmpresa.valid == 'false' ) {
-                                        $scope.data.ruc_empresa = '';
-                                        alert('ruc incorrecto');
-                                } else {
-                                    $scope.data.nombre_comercial = data.respuesta.datosEmpresa.nombre_comercial;
-                                    $scope.data.actividad_economica = data.respuesta.datosEmpresa.actividad_economica;
-                                    $scope.data.razon_social = data.respuesta.datosEmpresa.razon_social;
-                                    $scope.data.representante_legal = data.respuesta.establecimientos.adicional.representante_legal;
-                                    $scope.data.cedula_representante = data.respuesta.establecimientos.adicional.cedula;            
-                                } 
-                        }
-                })
+    // comparar clientes
+    $scope.comparar_cliente = function() {
+      servicios.repeat_cliente().repeat($scope.data).$promise.then(function(data) {
+        if(data.respuesta == true) {
+          $scope.data.ruc_empresa = '';
+          alert('repetido');
+        } else {
+          if (data.respuesta.datosEmpresa.valid == 'false' ) {
+                  $scope.data.ruc_empresa = '';
+                  alert('ruc incorrecto');
+          } else {
+              $scope.data.nombre_comercial = data.respuesta.datosEmpresa.nombre_comercial;
+              $scope.data.actividad_economica = data.respuesta.datosEmpresa.actividad_economica;
+              $scope.data.razon_social = data.respuesta.datosEmpresa.razon_social;
+              $scope.data.representante_legal = data.respuesta.establecimientos.adicional.representante_legal;
+              $scope.data.cedula_representante = data.respuesta.establecimientos.adicional.cedula;            
+          } 
         }
-        // fin
+      })
+    }
+    // fin
 });
 
 app.controller('nomina', function ($mdDialog, $nutrition, $scope, servicios, $timeout, $mdEditDialog, $q) {
-  // 'use strict';
   var bookmark;
   
   $scope.selected = [];
@@ -113,7 +112,18 @@ app.controller('nomina', function ($mdDialog, $nutrition, $scope, servicios, $ti
   }
   
   $scope.addititem = function (event) {
-    console.log(event);
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'addItemController',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      templateUrl: 'view/tabladata/add-item-dialog.html',
+      clickOutsideToClose:true,
+    }).then($scope.getDesserts);
+  };
+
+  $scope.eddititem = function (event) {
     $mdDialog.show({
       clickOutsideToClose: true,
       controller: 'addItemController',
@@ -174,28 +184,17 @@ app.controller('nomina', function ($mdDialog, $nutrition, $scope, servicios, $ti
     $scope.desserts = desserts.respuesta;
   }
   
-  $scope.eddititem = function (event) {
-    console.log(event);
-    $mdDialog.show({
-      controller: 'addItemController',
-      controllerAs: 'ctrl',
-      focusOnOpen: false,
-      targetEvent: event,
-      templateUrl: 'view/tabladata/add-item-dialog.html',
-    }).then($scope.getDesserts);
-  };
-  
-  $scope.delete = function (event) {
-    $mdDialog.show({
-      clickOutsideToClose: true,
-      controller: 'deleteController',
-      controllerAs: 'ctrl',
-      focusOnOpen: false,
-      targetEvent: event,
-      locals: { desserts: $scope.selected },
-      templateUrl: 'view/tabladata/delete.html',
-    }).then($scope.getDesserts);
-  };
+  // $scope.delete = function (event) {
+  //   $mdDialog.show({
+  //     clickOutsideToClose: true,
+  //     controller: 'deleteController',
+  //     controllerAs: 'ctrl',
+  //     focusOnOpen: false,
+  //     targetEvent: event,
+  //     locals: { desserts: $scope.selected },
+  //     templateUrl: 'view/tabladata/delete.html',
+  //   }).then($scope.getDesserts);
+  // };
   
   $scope.getDesserts = function () {
     $scope.promise = $nutrition.get($scope.query, success).$promise;
@@ -215,20 +214,6 @@ app.controller('nomina', function ($mdDialog, $nutrition, $scope, servicios, $ti
 
     }, 2000);
   };
-
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-
-  $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-    'WY').split(' ').map(function(state) {
-        return {abbrev: state};
-      });
   
   $scope.$watch('query.filter', function (newValue, oldValue) {
     if(!oldValue) {
@@ -246,40 +231,50 @@ app.controller('nomina', function ($mdDialog, $nutrition, $scope, servicios, $ti
   });
 });
 
-app.controller('deleteController', ['$authorize', 'desserts', '$mdDialog', '$nutrition', '$scope', '$q', function ($authorize, desserts, $mdDialog, $nutrition, $scope, $q) {
-  'use strict';
+// app.controller('deleteController', ['$authorize', 'desserts', '$mdDialog', '$nutrition', '$scope', '$q', function ($authorize, desserts, $mdDialog, $nutrition, $scope, $q) {
+//   'use strict';
   
-  this.cancel = $mdDialog.cancel;
+//   this.cancel = $mdDialog.cancel;
   
-  function deleteDessert(dessert, index) {
-    var deferred = $nutrition.desserts.remove({id: dessert._id});
+//   function deleteDessert(dessert, index) {
+//     var deferred = $nutrition.desserts.remove({id: dessert._id});
     
-    deferred.$promise.then(function () {
-      desserts.splice(index, 1);
-    });
+//     deferred.$promise.then(function () {
+//       desserts.splice(index, 1);
+//     });
     
-    return deferred.$promise;
-  }
+//     return deferred.$promise;
+//   }
   
-  function onComplete() {
-    $mdDialog.hide();
-  }
+//   function onComplete() {
+//     $mdDialog.hide();
+//   }
   
-  function error() {
-    $scope.error = 'Invalid secret.';
-  }
+//   function error() {
+//     $scope.error = 'Invalid secret.';
+//   }
   
-  function success() {
-    $q.all(desserts.forEach(deleteDessert)).then(onComplete);
-  }
+//   function success() {
+//     $q.all(desserts.forEach(deleteDessert)).then(onComplete);
+//   }
   
-  this.authorizeUser = function () {
-    $authorize.get({secret: $scope.authorize.secret}, success, error);
-  };
-}]);
+//   this.authorizeUser = function () {
+//     $authorize.get({secret: $scope.authorize.secret}, success, error);
+//   };
+// }]);
 
-app.controller('addItemController', ['$mdDialog', '$nutrition', '$scope', function ($mdDialog, $nutrition, $scope) {
-  'use strict';
+app.controller('addItemController', function ($mdDialog, $scope, $localStorage, servicios, $timeout) {
+  $scope.guardar_nomina = function() {
+    servicios.add_nomina().save($scope.data).$promise.then(function(data) {
+      if(data.respuesta == true) {
+        alert('Registro guardado correctamente'); 
+        $mdDialog.cancel();  
+        $scope.promise = $timeout(function () {
+
+        }, 2000);     
+      }
+    }); 
+  }
 
   this.cancel = $mdDialog.cancel;
   
@@ -294,7 +289,7 @@ app.controller('addItemController', ['$mdDialog', '$nutrition', '$scope', functi
       $nutrition.desserts.save({dessert: $scope.dessert}, success);
     }
   };
-}]);
+});
 
 app.factory('$authorize', ['$resource', function ($resource) {
   'use strict';

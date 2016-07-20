@@ -133,14 +133,30 @@ servicios.verificar_pass().get({"pass":elem.val()}).$promise.then(function(data)
     }
   });
 
-app.directive('customOnChange', function() {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      var onChangeFunc = scope.$eval(attrs.customOnChange);
-      element.bind('change', onChangeFunc);
-    }
-  };
+app.directive('onReadFile', function ($parse) {
+    return {
+        restrict: 'A',
+        scope: {
+            fromDirectiveFn: '=method'
+        },
+        link: function(scope, element, attrs) {
+            var fn = $parse(attrs.onReadFile);
+            
+            element.on('change', function(onChangeEvent) {
+                var reader = new FileReader();
+                
+                reader.onloadend = function(onLoadEvent) {
+                    scope.hello = onLoadEvent.target.result;
+                    scope.fromDirectiveFn(scope.hello);
+                    // scope.$apply(function() {
+                    //     fn(scope, {$fileContent:onLoadEvent.target.result});
+                    // });
+                };
+
+                reader.readAsDataURL((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+            });
+        }
+    };
 });
 
 app.directive('operadoraValidation', function(consultarMovil) {

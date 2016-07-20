@@ -1,55 +1,55 @@
 var app = angular.module('app');
 app.controller('radioadminCtrl', function($scope) {
-    $scope.appslist =       [
-                                {
-                                        title:'Empresa',
-                                        descripcion:'descripcion',
-                                },
-                                {
-                                        title:'Clientes',
-                                        descripcion:'descripcion'
-                                },
-                                {
-                                        title:'Programas',
-                                        descripcion:'descripcion'
-                                },
-                                {
-                                        title:'Vendedores',
-                                        descripcion:'descripcion'
-                                },
-                                {
-                                        title:'Fichas de Ingreso',
-                                        descripcion:'descripcion'
-                                },
-                                {
-                                        title:'Ficha Invitados',
-                                        descripcion:'descripcion'
-                                },
-                                {
-                                        title:'Ficha Programas',
-                                        descripcion:'descripcion'
-                                },
-                                {
-                                        title:'Contrato Selectivo',
-                                        descripcion:'descripcion'
-                                },
-                                {
-                                        title:'Contrato Rotativo',
-                                        descripcion:'descripcion'
-                                },
-                                {
-                                        title:'Facturacion',
-                                        descripcion:'descripcion'
-                                },
-                                {
-                                        title:'Rol de Pagos',
-                                        descripcion:'descripcion'
-                                },
-                                {
-                                        title:'Privilegios',
-                                        descripcion:'descripcion'
-                                },
-            ];            
+  $scope.appslist =     [
+                          {
+                                  title:'Empresa',
+                                  descripcion:'descripcion',
+                          },
+                          {
+                                  title:'Clientes',
+                                  descripcion:'descripcion'
+                          },
+                          {
+                                  title:'Programas',
+                                  descripcion:'descripcion'
+                          },
+                          {
+                                  title:'Vendedores',
+                                  descripcion:'descripcion'
+                          },
+                          {
+                                  title:'Fichas de Ingreso',
+                                  descripcion:'descripcion'
+                          },
+                          {
+                                  title:'Ficha Invitados',
+                                  descripcion:'descripcion'
+                          },
+                          {
+                                  title:'Ficha Programas',
+                                  descripcion:'descripcion'
+                          },
+                          {
+                                  title:'Contrato Selectivo',
+                                  descripcion:'descripcion'
+                          },
+                          {
+                                  title:'Contrato Rotativo',
+                                  descripcion:'descripcion'
+                          },
+                          {
+                                  title:'Facturacion',
+                                  descripcion:'descripcion'
+                          },
+                          {
+                                  title:'Rol de Pagos',
+                                  descripcion:'descripcion'
+                          },
+                          {
+                                  title:'Privilegios',
+                                  descripcion:'descripcion'
+                          },
+      ];            
 
 });
 
@@ -88,7 +88,7 @@ app.controller('cliente', function ($scope, $localStorage, servicios) {
         // fin
 });
 
-app.controller('nomina', function ($mdDialog, $nutrition, $scope,servicios) {
+app.controller('nomina', function ($mdDialog, $nutrition, $scope, servicios, $timeout, $mdEditDialog, $q) {
   // 'use strict';
   var bookmark;
   
@@ -105,7 +105,6 @@ app.controller('nomina', function ($mdDialog, $nutrition, $scope,servicios) {
     num_registros: 5,
     pagina_actual:1,
     limit: '5',
-    // order: 'nameToLower',
     page_num: 1
   };
   
@@ -113,7 +112,7 @@ app.controller('nomina', function ($mdDialog, $nutrition, $scope,servicios) {
     $scope.desserts = desserts.respuesta;
   }
   
-  $scope.eddititem = function (event) {
+  $scope.addititem = function (event) {
     console.log(event);
     $mdDialog.show({
       clickOutsideToClose: true,
@@ -122,6 +121,7 @@ app.controller('nomina', function ($mdDialog, $nutrition, $scope,servicios) {
       focusOnOpen: false,
       targetEvent: event,
       templateUrl: 'view/tabladata/add-item-dialog.html',
+      clickOutsideToClose:true,
     }).then($scope.getDesserts);
   };
   
@@ -177,7 +177,6 @@ app.controller('nomina', function ($mdDialog, $nutrition, $scope,servicios) {
   $scope.eddititem = function (event) {
     console.log(event);
     $mdDialog.show({
-      clickOutsideToClose: true,
       controller: 'addItemController',
       controllerAs: 'ctrl',
       focusOnOpen: false,
@@ -210,6 +209,26 @@ app.controller('nomina', function ($mdDialog, $nutrition, $scope,servicios) {
       $scope.filter.form.$setPristine();
     }
   };
+
+  $scope.loadStuff = function () {
+    $scope.promise = $timeout(function () {
+
+    }, 2000);
+  };
+
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+
+  $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
+    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+    'WY').split(' ').map(function(state) {
+        return {abbrev: state};
+      });
   
   $scope.$watch('query.filter', function (newValue, oldValue) {
     if(!oldValue) {

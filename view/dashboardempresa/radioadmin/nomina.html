@@ -1,4 +1,4 @@
-<div ng-controller="nomina">
+<div class="card" ng-controller="nomina">
   <md-content layout="column" flex>
   <md-toolbar class="md-table-tool" ng-hide="selected.length || filter.show">
     <div class="md-toolbar-tools">
@@ -10,13 +10,13 @@
           </md-tooltip>
         <md-icon>filter_list</md-icon>
       </md-button>
-      <md-button class="md-icon-button" ng-click="eddititem($event)">
+      <md-button class="md-icon-button" ng-click="addititem($event)">
         <md-tooltip md-visible="demo.showTooltip">
               Nuevo Registro
           </md-tooltip>
           <md-icon>note_add</md-icon>
       </md-button>
-      <md-button class="md-icon-button" ng-click="addItem($event)">
+      <md-button class="md-icon-button" ng-click="loadStuff($event)">
          <md-tooltip md-visible="demo.showTooltip">
               Actualizar
             </md-tooltip>
@@ -94,11 +94,11 @@
     <table md-table ng-model="selected" md-progress="promise">
       <thead md-head md-order="query.order" md-on-reorder="getDesserts">
         <tr md-row>
-          <th md-column md-numeric>dias</th>
-          <th md-column md-numeric>fecha_inicio</th>
-          <th md-column md-numeric>periodicidad</th>
-          <th md-column md-numeric>id</th>
-          <th md-column md-numeric>registro_patronal</th>
+          <th md-column md-numeric>Nombre / Descripción</th>
+          <th md-column md-numeric>Periodicidad</th>
+          <th md-column md-numeric>Registro Patronal</th>
+          <th md-column md-numeric>Días</th>
+          <th md-column md-numeric>Fecha Inicio</th>
           <th md-column md-numeric>Action</th>
         </tr>
       </thead>

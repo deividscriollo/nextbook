@@ -62,4 +62,12 @@ app.controller('MainCtrl', function($scope, $routeSegment, $localStorage,servici
             }
         });
     }
+    $scope.mdm = function($event){
+        
+        var correo = $scope.email;
+        var res = correo.replace("@facturanext.com", "");
+        
+        $scope.email = res;
+
+    }
 });

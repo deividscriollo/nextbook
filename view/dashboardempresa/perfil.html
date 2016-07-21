@@ -7,7 +7,9 @@
 	                    <div class="slider">
 	                    	<!-- <carousel interval="myInterval"> -->
 						    <!-- <slide active="slide.active" ng-animate="false"> -->
-						      <img src="images/samples/w1.jpg">
+						     <a href="javascript:void(0)" ng-click="show_lista_portadas_modal()">
+						      <img src="{{imgPortada}}">
+						        </a>
 						      <!-- <div class="carousel-caption">
 						        <h4>Slide {{$index}}</h4>
 						        <p>{{slide.text}}</p>
@@ -29,14 +31,17 @@
 					            <li class="dropdown margin-right">
 					                <a class="dropdown-toggle padding-left-no padding-right-no waves-effect" data-toggle="dropdown">
 					                    <span class="access-hide">John Smith</span>
-					                    <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="images/users/avatar-001.jpg"></span>
+					                    <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="{{imgPerfil}}"></span>
 					                </a>
 					                <ul class="dropdown-menu dropdown-menu-right">
 					                    <li>
-					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon icon-lg margin-right">account_box</span>Profile Settings</a>
+					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_listaimg_modal()"><span class="icon icon-lg margin-right">account_box</span>Seleccionar Imagen</a>
 					                    </li>
 					                    <li>
-					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon icon-lg margin-right">add_to_photos</span>Upload Photo</a>
+					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal('perfil')"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Imagen</a>
+					                    </li>
+					                    <li>
+					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal('portada')"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Portada</a>
 					                    </li>
 					                    <li>
 					                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
@@ -67,10 +72,10 @@
 					                <a class="dropdown-toggle text-black waves-attach waves-effect" data-toggle="dropdown"><span class="icon">more_vert</span></a>
 					                <ul class="dropdown-menu dropdown-menu-right">
 					                    <li>
-					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon icon-lg margin-right">account_box</span>Profile Settings</a>
+					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_listaimg_modal()"><span class="icon icon-lg margin-right">account_box</span>Seleccionar Imagen</a>
 					                    </li>
 					                    <li>
-					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon icon-lg margin-right">add_to_photos</span>Upload Photo</a>
+					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal()"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Imagen</a>
 					                    </li>
 					                    <li>
 					                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>

@@ -1,23 +1,22 @@
-   
-    var app = angular.module('app'); 
-   app.directive('confirm', ['$window', function($window) {
-        return {
-            restrict: 'A',
-            priority: 100,
-            link: function(scope, element, attr) {
-                element.bind('click', function(e) {
-                    var msg = attr.confirm;
+var app = angular.module('app');
+app.directive('confirm', ['$window', function($window) {
+    return {
+        restrict: 'A',
+        priority: 100,
+        link: function(scope, element, attr) {
+            element.bind('click', function(e) {
+                var msg = attr.confirm;
 
-                    if (!$window.confirm(msg)) {
-                        e.stopImmediatePropagation();
-                        e.preventDefault();
-                    }
-                });
-            }
-        };
-    }]);
+                if (!$window.confirm(msg)) {
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                }
+            });
+        }
+    };
+}]);
 
-    app.directive('rucValidation', function() {
+app.directive('rucValidation', function() {
     return {
         require: 'ngModel',
         link: function(scope, element, attr, mCtrl) {
@@ -100,47 +99,83 @@
     };
 });
 
-app.directive('pwCheck', [function () {
+app.directive('pwCheck', [function() {
     return {
-      require: 'ngModel',
-      link: function (scope, elem, attrs, ctrl) {
-        var firstPassword = '#' + attrs.pwCheck;
-        elem.add(firstPassword).on('keyup', function () {
-          scope.$apply(function () {
-            var v = elem.val()===$(firstPassword).val();
-            ctrl.$setValidity('pwmatch', v);
-          });
-        });
-      }
+        require: 'ngModel',
+        link: function(scope, elem, attrs, ctrl) {
+            var firstPassword = '#' + attrs.pwCheck;
+            elem.add(firstPassword).on('keyup', function() {
+                scope.$apply(function() {
+                    var v = elem.val() === $(firstPassword).val();
+                    ctrl.$setValidity('pwmatch', v);
+                });
+            });
+        }
     }
-  }]);
+}]);
 
-app.directive('pwActualCheck', function (servicios) {
+app.directive('onlyNum', function() {
+    return function(scope, element, attrs) {
+        var keyCode = [8, 9, 37, 39, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 110, 13, 86];
+        element.bind("keydown", function(event) {
+            // console.log($.inArray(event.which,keyCode));
+            if ($.inArray(event.which, keyCode) == -1) {
+                scope.$apply(function() {
+                    scope.$eval(attrs.onlyNum);
+                    event.preventDefault();
+                });
+                event.preventDefault();
+            }
+        });
+    };
+});
+
+app.directive('pwActualCheck', function(servicios) {
     return {
-      require: 'ngModel',
-      link: function (scope, elem, attrs, ctrl) {
-        elem.on('blur', function (value) {
-          scope.$apply(function () {
-servicios.verificar_pass().get({"pass":elem.val()}).$promise.then(function(data){
-    // console.log(data.respuesta);
-        if (data.respuesta) {
-        ctrl.$setValidity('pwactualmatch',true);
-        }else ctrl.$setValidity('pwactualmatch',false);
-    });
-          });
-        });
-      }
+        require: 'ngModel',
+        link: function(scope, elem, attrs, ctrl) {
+            elem.on('blur', function(value) {
+                scope.$apply(function() {
+                    servicios.verificar_pass().get({
+                        "pass": elem.val()
+                    }).$promise.then(function(data) {
+                        // console.log(data.respuesta);
+                        if (data.respuesta) {
+                            ctrl.$setValidity('pwactualmatch', true);
+                        } else ctrl.$setValidity('pwactualmatch', false);
+                    });
+                });
+            });
+        }
     }
-  });
+});
 
-app.directive('customOnChange', function() {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      var onChangeFunc = scope.$eval(attrs.customOnChange);
-      element.bind('change', onChangeFunc);
-    }
-  };
+
+app.directive('onReadFile', function ($parse) {
+    return {
+        restrict: 'A',
+        scope: {
+            fromDirectiveFn: '=method'
+        },
+        link: function(scope, element, attrs) {
+            var fn = $parse(attrs.onReadFile);
+            
+            element.on('change', function(onChangeEvent) {
+                var reader = new FileReader();
+                
+                reader.onloadend = function(onLoadEvent) {
+                    scope.hello = onLoadEvent.target.result;
+                    scope.fromDirectiveFn(scope.hello);
+                    // scope.$apply(function() {
+                    //     fn(scope, {$fileContent:onLoadEvent.target.result});
+                    // });
+                };
+
+                reader.readAsDataURL((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+            });
+
+        }
+    };
 });
 
 app.directive('operadoraValidation', function(consultarMovil) {
@@ -149,17 +184,17 @@ app.directive('operadoraValidation', function(consultarMovil) {
         link: function(scope, element, attr, mCtrl) {
             function myValidation(value) {
                 if (value.length == 10) {
-                    consultarMovil.validar(value).$promise.then(function(data){
-                   if (data.status==200) {
-                        mCtrl.$setValidity('charE', true);
-                   }else{
-                    mCtrl.$setValidity('charE', false);
-                   }
+                    consultarMovil.validar(value).$promise.then(function(data) {
+                        if (data.status == 200) {
+                            mCtrl.$setValidity('charE', true);
+                        } else {
+                            mCtrl.$setValidity('charE', false);
+                        }
                     });
-                }else{
-                 mCtrl.$setValidity('charE', false);
+                } else {
+                    mCtrl.$setValidity('charE', false);
                 }
-             return value;   
+                return value;
             }
             mCtrl.$parsers.push(myValidation);
         }

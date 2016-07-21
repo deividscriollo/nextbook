@@ -24,15 +24,36 @@
 <style type="text/css">
     /* active state */
     
-     .text-blue{
+   /* md-input-container.md-input-focused label:not(.md-no-float),
+    md-input-container.md-input-has-placeholder label:not(.md-no-float),
+    md-input-container.md-input-has-value label:not(.md-no-float) .text-blue{
         color: red;
-    }
+    }*/
     
     [disabled] md-input-container .md-input, md-input-container .md-input[disabled] {
         color: #FF4081;
     }
+    [disabled] md-input-container .md-input, md-input-container .md-input[disabled]:hover {
+        cursor: not-allowed;
+    }
 </style>
 
+<md-tab label ng-disabled md-on-select md-on-deselect>
+  <h3>My Tab content</h3>
+</md-tab>
+<md-tab>
+  <md-tab-label>
+    <h3>My Tab content</h3>
+  </md-tab-label>
+  <md-tab-body>
+    <p>
+      Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+      totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae
+      dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
+      sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+    </p>
+  </md-tab-body>
+</md-tab>
 
 
  <md-toolbar class="md-accent">
@@ -45,7 +66,7 @@
     <div layout-gt-xs="row">
         <div class="col-lg-7">
             <form name="formvisualinfo">
-            <md-input-container class="md-block animated zoomIn" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+            <md-input-container class="md-block animated zoomIn" ng-show="elementview" flex-gt-xs ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
                 <label class="text-blue">
                     <span class="icon icon-lg">play_arrow</span>
                     Razon Social 
@@ -85,12 +106,13 @@
                 <div layout="row" flex>
                     <md-input-container class="md-block" flex-gt-xs>
                         <label><span class="icon icon-lg">play_arrow</span> Ingrese numero de RUC </label>
-                        <input id="ruc" name="ruc" ng-model="ruc" ng-minlength="13" ng-maxlength="13" ng-pattern="/^[0-9]/" maxlength="13" autocomplete="off"  required>
+                        <input id="ruc" name="ruc" ng-model="ruc" maxlength="13" ng-minlength="13" only-num required>
                         <div ng-messages="formsearchruc.ruc.$error" ng-show="formsearchruc.ruc.$dirty">
+                            <ng-message  when= "numbers"  class= "error" > This se toma </ ng-message> 
                             <div ng-message="required" class="my-message">Número de ruc es requerido</div>
                             <div ng-message="minlength" class="my-message">Ruc invalido, minimo 13 digitos</div>
-                            <div ng-message="maxlength" class="my-message">Ruc invalido, maximo 13 digitos</div>
-                            <div ng-message="pattern" class="my-message">Ingrese solo numeros</div>                            
+                            <div ng-message="pattern" class="my-message">Ingrese solo numeros</div>
+                            <div ng-message="numbersOnly" class="my-message">fdsfdasdf solo numeros</div>                            
                         </div>
                     </md-input-container>
                     <md-button class="md-fab" type="submit" ng-disabled="formsearchruc.$invalid" ng-click="searchruc()">

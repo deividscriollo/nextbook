@@ -23,4 +23,4 @@ app.controller('PersonasCtrl', function ($scope,loaddatosSRI, Persona) {
         console.log($scope.data);
     }
 
-    });
+});

@@ -1,61 +1,12 @@
-
-<!-- HEADER TOOL BAR -->
-<!-- <header>
-    <md-toolbar class="md-tall">
-      <h3>You text</h3>
-            <span flex></span>
-            <ANY>your right content</ANY>
-
-    </md-toolbar>
-</header> -->
-<!-- <md-toolbar layout="row" layout-align="center end">
-    <div flex flex-sm="100" flex-gt-sm="95" flex-gt-md="80" layout="column">
-        <span flex></span>
-        <md-tabs md-stretch-tabs="always" class="md-primary">
-            <md-tab id="tab1" aria-controls="Tab 1">
-                <md-tab-label>Para Empresas</md-tab-label>
-                <md-tab-body>
-                    <h1 class="md-display-2">Tab One</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
-                </md-tab-body>
-            </md-tab>
-            <md-tab id="tab2" aria-controls="Tab 2">
-                <md-tab-label>Para Ti</md-tab-label>
-                <md-tab-body>
-                    <h1 class="md-display-2">Tab Two</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
-                </md-tab-body>
-            </md-tab>
-            <md-tab id="tab3" aria-controls="Tab 3">
-                <md-tab-label>Quienes Somos</md-tab-label>
-                <md-tab-body>
-                    <h1 class="md-display-2">Tab Tree</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
-                </md-tab-body>
-            </md-tab>
-        </md-tabs>
-    </div>
-</md-toolbar> -->
-
-
-
 <header class="header header-transparent header-waterfall ui-header container">
     <span class="header-logo">NextBooks</span>
     <ul class="nav nav-list pull-right">
         <form name="formlogin" class="loginform">
             <div layout="row">
                 <div>
-                <paper-input label="username" id="inputWithButton">
-                  <iron-icon icon="mail" prefix></iron-icon>
-                  <div suffix>@email.com</div>
-                  <paper-icon-button suffix onclick="clearInput()" icon="clear" alt="clear" title="clear">
-                  </paper-icon-button>
-                </paper-input>
-                </div>
-                <div>
                     <md-input-container style="width: 240px!important">
                         <label class="text-white2">Email</label>
-                        <input id="email" name="email" ng-model="email" ng-blur="mdm($event)" type="email" autocomplete="off" required>
+                        <input id="email" name="email" ng-model="email" type="email" autocomplete="off" required>
                         <div ng-messages="formlogin.email.$error" ng-show="formlogin.email.$dirty">
                             <div ng-message="required" class="my-message">requerido</div>
                             <div ng-message="pattern" class="my-message">correo invalido</div>

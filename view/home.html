@@ -40,10 +40,18 @@
 
 
 <header class="header header-transparent header-waterfall ui-header container">
-    <span class="header-logo">NextBook</span>
+    <span class="header-logo">NextBooks</span>
     <ul class="nav nav-list pull-right">
         <form name="formlogin" class="loginform">
             <div layout="row">
+                <div>
+                <paper-input label="username" id="inputWithButton">
+                  <iron-icon icon="mail" prefix></iron-icon>
+                  <div suffix>@email.com</div>
+                  <paper-icon-button suffix onclick="clearInput()" icon="clear" alt="clear" title="clear">
+                  </paper-icon-button>
+                </paper-input>
+                </div>
                 <div>
                     <md-input-container style="width: 240px!important">
                         <label class="text-white2">Email</label>

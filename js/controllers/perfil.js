@@ -16,9 +16,7 @@ $scope.show_listaimg_modal=function(){
 	servicios.mis_imgs_perfil().get().$promise.then(function(data) {
                 // $scope.misimagenes=data.imgs;
                 servicios.showModal('modal_select_img.html',{source:data.imgs},'imgperfil');
-      
             });
-
 	}
 
 	$scope.show_upload_img_modal=function(tipo){

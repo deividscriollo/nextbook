@@ -3,13 +3,8 @@ app.config(function($routeSegmentProvider, $routeProvider) {
         // Configuring provider options
         
         $routeSegmentProvider.options.autoLoadTemplates = true;
-        
-        // Setting routes. This consists of two parts:
-        // 1. `when` is similar to vanilla $route `when` but takes segment name instead of params hash
-        // 2. traversing through segment tree to set it up
       
         $routeSegmentProvider
-        
             .when('/salir/:id',          'salir')
             .when('/',          'sbuscar')
             .when('/Home',          's1')
@@ -45,9 +40,12 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .when('/My-space/Facturanext/FacturasFisicas',      'dashboard.facturanext.facturasfisicas')
                     .when('/My-space/Facturanext/Proveedores',      'dashboard.facturanext.proveedores')
 
-                .when('/My-space/RadioAdmin',      'dashboard.radioadmin.inicio')
-                    .when('/My-space/RadioAdmin/Clientes',      'dashboard.radioadmin.clientes')
-                    .when('/My-space/RadioAdmin/Nomina',      'dashboard.radioadmin.nomina')
+                .when('/My-space/RadioAdmin',      'dashboard.radio.inicio')
+                .when('/My-space/RadioAdmin/Clientes',      'dashboard.radio.clientes')
+
+                // direccionar nomina
+                .when('/My-space/NominaAdmin',      'dashboard.nomina.inicio')
+                .when('/My-space/NominaAdmin/Nomina',      'dashboard.nomina.nomina')
 
             .segment('salir', {
                 // templateUrl: 'view/home.html',
@@ -180,23 +178,38 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                         controller: 'appsCtrl'
                     })
                 .up()
-                .segment('radioadmin', {
-                    templateUrl: 'view/dashboardempresa/radioadmin/index.html',
+                .segment('radio', {                 
+                    templateUrl: 'view/dashboardempresa/radio/index.html',
                     // controller: 'FacturaCtrl'
                     'default': true,
                 })                   
                 .within()                
                     .segment('inicio', {
-                        templateUrl: 'view/dashboardempresa/radioadmin/inicio.html',
-                        controller: 'radioadminCtrl'
+                        templateUrl: 'view/dashboardempresa/radio/inicio.html',
+                        controller: 'radioCtrl'
                     })  
                     .segment('clientes', {
-                        templateUrl: 'view/dashboardempresa/radioadmin/clientes.html'
+                        templateUrl: 'view/dashboardempresa/radio/clientes.html'
                     })
+                    // .segment('nomina', {
+                    //     templateUrl: 'view/dashboardempresa/radio/nomina.html'
+                    // })                    
+                .up()
+                .segment('nomina', {                 
+                    templateUrl: 'view/dashboardempresa/nomina/index.html',
+                    // controller: 'FacturaCtrl'
+                    'default': true,
+                })
+                .segment('inicio', {
+                        templateUrl: 'view/dashboardempresa/nomina/inicio.html',
+                        // controller: 'radioCtrl'
+                    })  
                     .segment('nomina', {
-                        templateUrl: 'view/dashboardempresa/radioadmin/nomina.html'
-                    })                    
-                .up()   
+                        templateUrl: 'view/dashboardempresa/nomina/nomina.html'
+                    })
+                    // .segment('nomina', {
+                    //     templateUrl: 'view/dashboardempresa/radioadmin/nomina.html'
+                    // })     
             .up()
                  
         $routeProvider.otherwise({redirectTo: '/'}); 

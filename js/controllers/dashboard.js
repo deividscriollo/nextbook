@@ -9,6 +9,13 @@ app.controller('iniCtrl', function($scope, $localStorage) {
     
 });
 
+
+app.controller('dashboarinicioCtrl', function($scope, $localStorage) {
+// inicio 1
+    $scope.localStorage = $localStorage.datosE;
+});
+
+
 // app.controller('quienes_somosCtrl', function($scope, $mdDialog, $http, $timeout) {
 	
 // });

@@ -1,6 +1,6 @@
-<header class="header header-transparent header-waterfall ui-header">
-    <span class="header-logo">Red de Negocios</span>
-    <nav class="tab-nav tab-nav-green pull-right hidden-xx">
+<header class="header header-transparent header-waterfall ui-header ">
+    <span class="header-logo">Nextbook, Red de Negocios</span>
+    <nav class="tab-nav pull-right hidden-xx">
         <ul class="nav nav-list">
             <li class="dropdown margin-right">
                 <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown">
@@ -19,36 +19,26 @@
                     </li>
                 </ul>
             </li>
-            <li ng-class="{active: ('dashboard.perfil.inicio' | routeSegmentStartsWith)}">
+            <li ng-class="{active: ('dashboard.perfil.inicio' | routeSegmentStartsWith)}" class="waves-light waves-effect">
                 <a class="waves-attach waves-light" href="#{{'dashboard.perfil.inicio' | routeSegmentUrl}}">
                     <span class="text-white" ng-if="localStorage.nombre_comercial != 'no disponible'">{{localStorage.nombre_comercial}}</span>
                     <span class="text-white" ng-if="localStorage.nombre_comercial == 'no disponible'">{{localStorage.razon_social}}</span>
                 </a>
             </li>
-            <li ng-class="{active: ('dashboard.ini.inicio' | routeSegmentStartsWith)}">
+            <li ng-class="{active: ('dashboard.ini.inicio' | routeSegmentStartsWith)}" class="waves-light waves-effect">
                 <a class="waves-attach waves-light" href="#{{'dashboard.ini.inicio' | routeSegmentUrl}}">
                     <span class="text-white">Inicio</span>
                 </a>
-            </li>
-            <li ng-class="{active: ('dashboard.perfil.apps' | routeSegmentStartsWith)}">
-                <a class="waves-attach waves-light" href="#{{'dashboard.perfil.apps' | routeSegmentUrl}}">
-                    <span class="text-white">Información</span>
-                </a>
-            </li>
-            <li ng-class="{active: ('dashboard.perfil.maps' | routeSegmentStartsWith)}">
-                <a class="waves-attach waves-light" href="#{{'dashboard.perfil.maps' | routeSegmentUrl}}">
-                    <span class="text-white">Mi Cuenta</span>
-                </a>
-            </li>
+            </li>            
             <li class="dropdown">
                 <a class="dropdown-toggle text-black waves-attach waves-effect" data-toggle="dropdown"><span class="icon">more_vert</span></a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li>
+                    <!-- <li>
                         <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon icon-lg margin-right">account_box</span>Configuración Perfil</a>
                     </li>
                     <li>
                         <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)"><span class="icon icon-lg margin-right">add_to_photos</span>Bloquear</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a class="padding-right-lg waves-attach waves-effect" ng-href="#/salir/159">
                             <span class="icon icon-lg margin-right">exit_to_app</span>
@@ -60,9 +50,6 @@
         </ul>
     </nav>
 </header>
-
 <div app-view-segment="1">
-
 </div>
-
 

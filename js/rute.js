@@ -103,7 +103,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .segment('inicio', {
                         'default': true,
                         templateUrl: 'view/dashboardempresa/perfil/inicio1.html',
-                        controller: 'iniCtrl'
+                        controller: 'perfil-inicio-Ctrl'
                     })
                     .segment('apps', {
                         templateUrl: 'view/dashboardempresa/perfil/apps.html',

@@ -34,6 +34,11 @@ html {
   -webkit-tap-highlight-color: transparent;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+
+}
+
+body, html  {
+  background: #EEEEEE!important;
 }
 
 button,
@@ -3079,7 +3084,7 @@ pre code {
 }
 .dropdown-menu a,
 .dropdown-menu .a {
-  color: #212121 !important;
+  color: #757575 !important;
   display: block;
   line-height: inherit;
   overflow: hidden;

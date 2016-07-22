@@ -1,5 +1,7 @@
 app.controller('perfilCtrl', function($scope, $rootScope, servicios, $localStorage) {
     
+    $scope.datosPersona = $localStorage.datosPersona;
+
     if ($localStorage.imgPerfil != null) {
         $rootScope.imgPerfil = $localStorage.imgPerfil;
     } else {
@@ -32,6 +34,8 @@ app.controller('perfilCtrl', function($scope, $rootScope, servicios, $localStora
 
 app.controller('perfil-inicio-Ctrl', function($scope, serviciosgenerales, $localStorage) {
 	$scope.localStorage = $localStorage.datosE;
+	$scope.sucursal = $localStorage.sucursal;
 	$scope.activitidad = serviciosgenerales.letra_cadena_mayuscula($scope.localStorage.actividad_economica);
-	console.log(serviciosgenerales.letra_cadena_mayuscula($scope.localStorage.actividad_economica));
+	console.log($localStorage);
+
 });

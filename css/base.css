@@ -39,6 +39,7 @@ html {
 
 body, html  {
   background: #EEEEEE!important;
+  color: #757575!important;
 }
 
 button,
@@ -2904,7 +2905,7 @@ html.no-touchevents .fbtn:hover > .fbtn-text {
 }
 
 .card-inner {
-  margin: 24px 16px;
+  margin: 4px 16px;
 }
 .card-header .card-inner {
   -webkit-box-flex: 1;

@@ -46,8 +46,9 @@
 
             <md-input-container class="md-icon-float md-block">
                 <label>Días</label>
-                <md-icon class="fa fa-chevron-circle-right"></md-icon>
-                <input type="text" required name="dias" ng-model="data.dias" />
+                <!-- <md-icon class="fa fa-chevron-circle-right"></md-icon> -->
+                <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
+                <input type="number" required name="dias" ng-model="data.dias" />
                 <div ng-messages="registroForm.dias.$error">
                     <div ng-message="required">Días Requeridos</div>
                 </div>

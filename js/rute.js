@@ -46,6 +46,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 // direccionar nomina
                 .when('/My-space/NominaAdmin',      'dashboard.nomina.inicio')
                 .when('/My-space/NominaAdmin/Nomina',      'dashboard.nomina.nomina')
+                .when('/My-space/NominaAdmin/Departamentos',      'dashboard.nomina.departamentos')
 
             .segment('salir', {
                 // templateUrl: 'view/home.html',
@@ -180,38 +181,32 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 .up()
                 .segment('radio', {                 
                     templateUrl: 'view/dashboardempresa/radio/index.html',
-                    // controller: 'FacturaCtrl'
                     'default': true,
                 })                   
                 .within()                
                     .segment('inicio', {
                         templateUrl: 'view/dashboardempresa/radio/inicio.html',
-                        controller: 'radioCtrl'
                     })  
                     .segment('clientes', {
                         templateUrl: 'view/dashboardempresa/radio/clientes.html'
-                    })
-                    // .segment('nomina', {
-                    //     templateUrl: 'view/dashboardempresa/radio/nomina.html'
-                    // })                    
+                    })                    
                 .up()
                 .segment('nomina', {                 
                     templateUrl: 'view/dashboardempresa/nomina/index.html',
-                    // controller: 'FacturaCtrl'
                     'default': true,
                 })
-                .segment('inicio', {
+                .within()
+                    .segment('inicio', {
                         templateUrl: 'view/dashboardempresa/nomina/inicio.html',
-                        // controller: 'radioCtrl'
                     })  
                     .segment('nomina', {
                         templateUrl: 'view/dashboardempresa/nomina/nomina.html'
                     })
-                    // .segment('nomina', {
-                    //     templateUrl: 'view/dashboardempresa/radioadmin/nomina.html'
-                    // })     
+                    .segment('departamentos', {
+                        templateUrl: 'view/dashboardempresa/nomina/departamentos.html'
+                    })
+                .up()   
             .up()
-                 
         $routeProvider.otherwise({redirectTo: '/'}); 
     });
 

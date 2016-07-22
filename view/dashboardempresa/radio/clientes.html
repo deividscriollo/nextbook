@@ -22,9 +22,11 @@
                         <md-content class="autoScroll">
                             <md-input-container class="md-icon-float md-block">
                                 <label>Ruc Empresa</label>
-                                <md-icon class="fa fa-chevron-circle-right"></md-icon>
+                                <md-icon class="fa fa-chevron-circle-right" style="fill: pink"></md-icon>
+                                <!-- <ng-md-icon icon="local_post_office" style="fill: pink" size="20"></ng-md-icon> -->
                                 <input md-maxlength="13" required md-no-asterisk type="text" required name="ruc_empresa" id="ruc_empresa" ng-model="data.ruc_empresa" ng-blur="comparar_cliente()" />
                                 <div ng-messages="clienteForm.ruc_empresa.$error">
+                                    <div ng-message="required">Ruc Empresa Requerido</div>
                                     <div ng-message="md-maxlength">El Ruc tiene que ser de menos de 13 caracteres</div>
                                 </div>
                             </md-input-container>

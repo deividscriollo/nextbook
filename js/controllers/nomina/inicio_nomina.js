@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('inicio_nomina', function($scope) {
+app.controller('nominaCtrl', function($scope) {
   $scope.appslist =     [
                           {
                                   title:'Empresa',

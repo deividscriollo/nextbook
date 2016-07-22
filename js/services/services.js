@@ -184,6 +184,36 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     };
     // ------------------- fin
 
+    // guardar nomina
+    this.get_nomina = function() {
+        return $resource(this.server().appnext()+'public/getNomina', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+    // ------------------- fin
+
+    // // ----------------------------------------- guardar datos de persona que registra ----------------------------
+    // this.get_Nomina=function() {
+    //     return $resource(this.server().appnext()+'public/getNomina', {}
+    //     , {
+    //         get: {
+    //             method: 'GET', isArray: false, // responseType:'arraybuffer', 
+    //             params: {
+    //                 token: $localStorage.token
+    //             }
+    //         }
+    //     }
+    //     );
+    // };
+    // // ------------------- fin
+
     // comparar repetidos clientes
     this.repeat_cliente = function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
@@ -264,24 +294,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         );
     };
     // ------------------- fin
-
-    // ----------------------------------------- guardar datos de persona que registra ----------------------------
-    this.get_Nomina=function() {
-        return $resource(this.server().appnext()+'public/getNomina', {}
-        , {
-            get: {
-                method: 'GET', isArray: false, // responseType:'arraybuffer', 
-                params: {
-                    token: $localStorage.token
-                }
-            }
-        }
-        );
-    };
-    // ------------------- fin
-
     // ------------------------------------------------ 
-
 });
 // --------------------
 app.service('localizacion', function() {

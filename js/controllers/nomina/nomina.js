@@ -43,7 +43,7 @@ app.controller('nomina', function ($mdDialog, $nutrition, $scope, servicios, $ti
       targetEvent: event,
       templateUrl: 'view/tabladata/add-item-dialog.html',
       clickOutsideToClose:true,
-    }).then($scope.getDesserts);
+    })
   };
   
   $scope.delete = function (event) {
@@ -189,17 +189,17 @@ app.controller('addItemController', function ($mdDialog, $scope, $localStorage, 
 
   this.cancel = $mdDialog.cancel;
   
-  function success(dessert) {
-    $mdDialog.hide(dessert);
-  }
+  // function success(dessert) {
+  //   $mdDialog.hide(dessert);
+  // }
   
-  this.addItem = function () {
-    $scope.item.form.$setSubmitted();
+  // this.addItem = function () {
+  //   $scope.item.form.$setSubmitted();
     
-    if($scope.item.form.$valid) {
-      $nutrition.desserts.save({dessert: $scope.dessert}, success);
-    }
-  };
+  //   if($scope.item.form.$valid) {
+  //     $nutrition.desserts.save({dessert: $scope.dessert}, success);
+  //   }
+  // };
 });
 
 app.factory('$authorize', ['$resource', function ($resource) {
@@ -207,15 +207,16 @@ app.factory('$authorize', ['$resource', function ($resource) {
   return $resource('https://infinite-earth-4803.herokuapp.com/authorize/:secret');
 }]);
 
-app.factory('$nutrition', function ($resource, $localStorage) {
+app.factory('$nutrition', function ($resource, $localStorage, servicios) {
   'use strict';
-  return $resource('http://192.168.100.17/appnext/public/getNomina', {}
+  var url_server = servicios.server().appnext();
+  return $resource(url_server+'public/getNomina', {}
     ,{
-        get: {
-            method: 'GET', isArray: false, // responseType:'arraybuffer', 
-            params: {
-                token: $localStorage.token
-            }
-        }
-    });
+      get: {
+          method: 'GET', isArray: false, // responseType:'arraybuffer', 
+          params: {
+              token: $localStorage.token
+          }
+      }
+  });
 });

@@ -28,11 +28,30 @@ app.controller('clientes', function ($scope, $localStorage, servicios, $mdDialog
     servicios.repeat_cliente().repeat($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
         $scope.data.ruc_empresa = '';
-        alert('repetido');
+        $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#dialogContainer')))
+            .clickOutsideToClose(true)
+            .title('NextBook')
+            .textContent('Error... Ruc Empresa Repetido')
+            .ariaLabel('Error... Ruc Empresa Repetido')
+            .ok('Ok!')
+            .openFrom('#left')
+        ); 
       } else {
         if (data.respuesta.datosEmpresa.valid == 'false' ) {
                 $scope.data.ruc_empresa = '';
-                alert('ruc incorrecto');
+                $mdDialog.show(
+                  $mdDialog.alert()
+                  .parent(angular.element(document.querySelector('#dialogContainer')))
+                  .clickOutsideToClose(true)
+                  .title('NextBook')
+                  .textContent('Error... Ruc Empresa Invalido')
+                  .ariaLabel('Error... Ruc Empresa Invalido')
+                  .ok('Ok!')
+                  .openFrom('#left')
+               );
+                // alert('ruc incorrecto');
         } else {
             $scope.data.nombre_comercial = data.respuesta.datosEmpresa.nombre_comercial;
             $scope.data.actividad_economica = data.respuesta.datosEmpresa.actividad_economica;

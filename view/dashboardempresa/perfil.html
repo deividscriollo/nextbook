@@ -1,98 +1,76 @@
-<main class="topping">
-    <main class="content">
-	    <div class="container">        
-	        <div class="row">
-	        	<div class="col-lg-10 col-lg-offset-1">
-	                <header id="header">
-	                    <div class="slider">
-	                    	<!-- <carousel interval="myInterval"> -->
-						    <!-- <slide active="slide.active" ng-animate="false"> -->
-						     <a href="javascript:void(0)" ng-click="show_lista_portadas_modal()">
-						      <img src="{{imgPortada}}">
-						        </a>
-						      <!-- <div class="carousel-caption">
-						        <h4>Slide {{$index}}</h4>
-						        <p>{{slide.text}}</p>
-						      </div> -->
-						    <!-- </slide> -->
-						  <!-- </carousel> -->
-	                    </div>
-	                    <!--slider-->
-	                    <nav class="nav-perfil-2">
-	                        <!-- Brand and toggle get grouped for better mobile display -->
-	                        <a class="navbar-brand" href="#/My-space/Perfil-inicio" ng-click="show_listaimg_modal()">
-	                        	<img class="img-responsive" src="{{imgPerfil}}">
-	                        </a>
-	                        <span class="site-name">{{localStorage.nombre_comercial}}</span>
-	                        <span class="site-description">{{datosPersona.nombres_apellidos}}</span>
-	                    </nav>
-	                    <nav class="tab-nav pull-right nav-perfil-2-1">
-					        <ul class="nav nav-list">
-					            <li class="dropdown margin-right">
-					                <a class="dropdown-toggle padding-left-no padding-right-no waves-effect" data-toggle="dropdown">
-					                    <span class="access-hide">John Smith</span>
-					                    <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="{{imgPerfil}}"></span>
-					                </a>
-					                <ul class="dropdown-menu dropdown-menu-right">
-					                    <li>
-					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_listaimg_modal()"><span class="icon icon-lg margin-right">account_box</span>Seleccionar Imagen</a>
-					                    </li>
-					                    <li>
-					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal('perfil')"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Imagen</a>
-					                    </li>
-					                    <li>
-					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal('portada')"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Portada</a>
-					                    </li>
-					                    <li>
-					                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
-					                    </li>
-					                </ul>
-					            </li>
-					            <li class="active">
-					                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.inicio' | routeSegmentUrl}}">
-					                    <span class="text-white">Perfil</span>
-					                </a>
-					            </li>
-					            <li>
-					                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.apps' | routeSegmentUrl}}">
-					                    <span class="text-white ">Apps</span>
-					                </a>
-					            </li>
-					            <li>
-					                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.maps' | routeSegmentUrl}}">
-					                	<span class="text-white">Maps</span>
-					                </a>
-					            </li>
-					            <li class="dropdown">
-					                <a class="dropdown-toggle text-black waves-attach waves-effect" data-toggle="dropdown"><span class="icon">more_vert</span></a>
-					                <ul class="dropdown-menu dropdown-menu-right">
-					                    <li>
-					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_listaimg_modal()"><span class="icon icon-lg margin-right">account_box</span>Seleccionar Imagen</a>
-					                    </li>
-					                    <li>
-					                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal()"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Imagen</a>
-					                    </li>
-					                    <li>
-					                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
-					                    </li>
-					                </ul>
-					            </li>
-					        </ul>
-					    </nav>					    
-	                </header>
-	            </div>
-	        </div>
-	        <div class="row">
-	        	<div class="col-sm-10 col-sm-offset-1">
-	        		<div app-view-segment="2"></div>
-	        	</div>
-	        </div>
-	    </div>
-    </main>
-</main>
-<!--/#HEADER-->
+<header id="header">
+    <div class="slider">
+	    <a href="javascript:void(0)" ng-click="show_lista_portadas_modal()">
+	      <img src="{{imgPortada}}">
+        </a>
+    </div>
+    <!--slider-->
+    <nav class="nav-perfil-2">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <a class="navbar-brand" href="#/My-space/Perfil-inicio" ng-click="show_listaimg_modal()">
+        	<img class="img-responsive" src="{{imgPerfil}}">
+        </a>
+        <span class="site-name">{{localStorage.nombre_comercial}}</span>
+        <span class="site-description">{{datosPersona.nombres_apellidos}}</span>
+    </nav>
+    <nav class="tab-nav pull-right nav-perfil-2-1">
+        <ul class="nav nav-list">
+            <li class="dropdown margin-right">
+                <a class="dropdown-toggle padding-left-no padding-right-no waves-effect" data-toggle="dropdown">
+                    <span class="access-hide">John Smith</span>
+                    <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="{{imgPerfil}}"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_listaimg_modal()"><span class="icon icon-lg margin-right">account_box</span>Seleccionar Imagen</a>
+                    </li>
+                    <li>
+                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal('perfil')"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Imagen</a>
+                    </li>
+                    <li>
+                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal('portada')"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Portada</a>
+                    </li>
+                    <li>
+                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="active">
+                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.inicio' | routeSegmentUrl}}">
+                    <span class="text-white">Perfil</span>
+                </a>
+            </li>
+            <li>
+                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.apps' | routeSegmentUrl}}">
+                    <span class="text-white ">Apps</span>
+                </a>
+            </li>
+            <li>
+                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.maps' | routeSegmentUrl}}">
+                	<span class="text-white">Maps</span>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle text-black waves-attach waves-effect" data-toggle="dropdown"><span class="icon">more_vert</span></a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_listaimg_modal()"><span class="icon icon-lg margin-right">account_box</span>Seleccionar Imagen</a>
+                    </li>
+                    <li>
+                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal()"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Imagen</a>
+                    </li>
+                    <li>
+                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>					    
+</header>
 
-
+<section>
+<div app-view-segment="2"></div>
+</section>
 <style type="text/css">
 	.nav-perfil-2-1 {
 	    position: relative;

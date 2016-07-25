@@ -1,240 +1,134 @@
-<div class="row">
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="card-main">
-                <div class="card-img">
-                    <img alt="alt text" src="images/samples/x2.jpg" style="width: 100%;">
-                    <p class="card-img-heading pull-right">Información</p>
-                </div>
-                <div class="card-action">
-                	<div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
-                		Actividad
-						<md-button class="md-icon-button" aria-label="More">
-					        <!-- <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
-					        <ng-md-icon icon="edit"></ng-md-icon>
-					    </md-button>
-					</div>
-                </div>
-                <div class="card-inner">
-                	<p>{{activitidad}}</p>
-                </div>
-                <div class="card-action">
-                	<div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
-                		Dirección
-						<md-button class="md-icon-button" aria-label="More">
-					        <!-- <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
-					        <ng-md-icon icon="add_location"></ng-md-icon>
-					    </md-button>
-					</div>
-                </div>
-                <div class="card-inner">
-                	{{sucursal.direccion}}
-                </div>
-                <div class="card-action">
-                	<div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
-                		Teléfonos
-						<md-button class="md-icon-button" aria-label="More">
-					        <!-- <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
-					        <ng-md-icon icon="phone"></ng-md-icon>
-					    </md-button>
-					</div>
-                </div>
-                <div class="card-inner">
-                	<ul>
-                		<li>0987113522 claro</li>
-                		<li>0987113522 Movi</li>
-                		<li>0987113522 cnt</li>
-                	</ul>
-                </div>
-                <div class="card-action">
-                	<div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
-                		correo electrónico
-						<md-button class="md-icon-button" aria-label="More">
-					        <!-- <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
-					        <ng-md-icon icon="contact_mail"></ng-md-icon>
-					    </md-button>
-					</div>
-                </div>
-                <div class="card-inner">
-                	<ul>
-                		<li>empresa@empresa.com</li>
-                		<li>10040348055001@facturanext.com</li>
-                	</ul>                	
-                </div>
+<div class="col-sm-3">
+    <div class="card">
+        <div class="card-main">
+            <div class="card-img">
+                <img alt="alt text" src="images/samples/x2.jpg" style="width: 100%;">
+                <p class="card-img-heading pull-right">Información</p>
+            </div>
+            <div class="card-action">
+            	<div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
+            		Actividad
+					<md-button class="md-icon-button" aria-label="More">
+				        <!-- <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
+				        <ng-md-icon icon="edit"></ng-md-icon>
+				    </md-button>
+				</div>
+            </div>
+            <div class="card-inner">
+            	<p>{{activitidad}}</p>
+            </div>
+            <div class="card-action">
+            	<div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
+            		Dirección
+					<md-button class="md-icon-button" aria-label="More">
+				        <!-- <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
+				        <ng-md-icon icon="add_location"></ng-md-icon>
+				    </md-button>
+				</div>
+            </div>
+            <div class="card-inner">
+            	{{sucursal.direccion}}
+            </div>
+            <div class="card-action">
+            	<div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
+            		Teléfonos
+					<md-button class="md-icon-button" aria-label="More">
+				        <!-- <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
+				        <ng-md-icon icon="phone"></ng-md-icon>
+				    </md-button>
+				</div>
+            </div>
+            <div class="card-inner">
+            	<ul>
+            		<li>0987113522 claro</li>
+            		<li>0987113522 Movi</li>
+            		<li>0987113522 cnt</li>
+            	</ul>
+            </div>
+            <div class="card-action">
+            	<div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
+            		correo electrónico
+					<md-button class="md-icon-button" aria-label="More">
+				        <!-- <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
+				        <ng-md-icon icon="contact_mail"></ng-md-icon>
+				    </md-button>
+				</div>
+            </div>
+            <div class="card-inner">
+            	<ul>
+            		<li>empresa@empresa.com</li>
+            		<li>10040348055001@facturanext.com</li>
+            	</ul>                	
+            </div>
 
-            </div>
         </div>
-        <div class="card">
-            <div class="card-main">
-                <div class="card-img">
-                    <img alt="alt text" src="images/samples/x2.jpg" style="width: 100%;">
-                    <p class="card-img-heading">Información</p>
-                </div>
-                <!-- <div class="card-inner">
-                    <p>
-                        Lorem ipsum dolor sit amet.
-                        <br> Consectetur adipiscing elit.
-                    </p>
-                    {{localStorage}}
-                </div> -->
-                <div class="card-action">
-                    <md-list>
-                        <md-item >
-                            <a>
-                                <md-item-content md-ink-ripple layout="row" layout-align="start center">
-                                    <div class="inset">
-                                        <ng-md-icon icon="home"></ng-md-icon>
-                                    </div>
-                                    <div class="inset">hola</div>
-                                </md-item-content>
-                            </a>
-                        </md-item>
-                        <md-divider></md-divider>
-                        <md-item >
-                            <a>
-                                <md-item-content md-ink-ripple layout="row" layout-align="start center">
-                                    <div class="inset">
-                                        <ng-md-icon icon="home"></ng-md-icon>
-                                    </div>
-                                    <div class="inset">hola</div>
-                                </md-item-content>
-                            </a>
-                        </md-item>
-                        <md-divider></md-divider>
-                        <md-item >
-                            <a>
-                                <md-item-content md-ink-ripple layout="row" layout-align="start center">
-                                    <div class="inset">
-                                        <ng-md-icon icon="home"></ng-md-icon>
-                                    </div>
-                                    <div class="inset">hola</div>
-                                </md-item-content>
-                            </a>
-                        </md-item>
-                        <md-divider></md-divider>
-                    </md-list>
-                </div>
+    </div>   
+</div>
+<div class="col-sm-7">
+    <div class="card">
+        <div class="card-main">
+            <div class="card-img">
+                <img alt="alt text" src="images/samples/x3.jpg" style="width: 100%;">
+                <p class="card-img-heading">Contenido</p>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-main">
-                <div class="card-img">
-                    <img alt="alt text" src="images/samples/x2.jpg" style="width: 100%;">
-                    <p class="card-img-heading">Empresas Similaress</p>
+            <div class="card-inner">
+                <p>
+                    Lorem ipsum dolor sit amet.
+                    <br> Consectetur adipiscing elit.
+                </p>
+                {{localStorage.nombre_comercial}}
+            </div>
+            <div class="card-action">
+                <div class="card-action-btn pull-left">
+                    <a class="btn btn-flat waves-attach">
+                        <span class="icon">account_circle</span>&nbsp;
+                        <span ng-if="localStorage.nombre_comercial != 'no disponible'">
+                            {{localStorage.nombre_comercial}}
+                        </span>
+                        <span ng-if="localStorage.nombre_comercial == 'no disponible'">
+                            {{localStorage.razon_social}}
+                        </span>
+                    </a>
                 </div>
-                <!-- <div class="card-inner">
-                    <p>
-                        Lorem ipsum dolor sit amet.
-                        <br> Consectetur adipiscing elit.
-                    </p>
-                    {{localStorage}}
-                </div> -->
-                <div class="card-action">
-                    <md-list>
-                        <md-item >
-                            <a>
-                                <md-item-content md-ink-ripple layout="row" layout-align="start center">
-                                    <div class="inset">
-                                        <ng-md-icon icon="home"></ng-md-icon>
-                                    </div>
-                                    <div class="inset">hola</div>
-                                </md-item-content>
-                            </a>
-                        </md-item>
-                        <md-divider></md-divider>
-                        <md-item >
-                            <a>
-                                <md-item-content md-ink-ripple layout="row" layout-align="start center">
-                                    <div class="inset">
-                                        <ng-md-icon icon="home"></ng-md-icon>
-                                    </div>
-                                    <div class="inset">hola</div>
-                                </md-item-content>
-                            </a>
-                        </md-item>
-                        <md-divider></md-divider>
-                        <md-item >
-                            <a>
-                                <md-item-content md-ink-ripple layout="row" layout-align="start center">
-                                    <div class="inset">
-                                        <ng-md-icon icon="home"></ng-md-icon>
-                                    </div>
-                                    <div class="inset">hola</div>
-                                </md-item-content>
-                            </a>
-                        </md-item>
-                        <md-divider></md-divider>
-                    </md-list>
+                <div class="card-action-btn pull-left">
+                    <a class="btn btn-flat waves-attach">
+                        <span class="icon">check</span>&nbsp;Button
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-sm-7">
-        <div class="card">
-            <div class="card-main">
-                <div class="card-img">
-                    <img alt="alt text" src="images/samples/x3.jpg" style="width: 100%;">
-                    <p class="card-img-heading">Contenido</p>
-                </div>
-                <div class="card-inner">
-                    <p>
-                        Lorem ipsum dolor sit amet.
-                        <br> Consectetur adipiscing elit.
-                    </p>
-                    {{localStorage.nombre_comercial}}
-                </div>
-                <div class="card-action">
-                    <div class="card-action-btn pull-left">
-                        <a class="btn btn-flat waves-attach">
-                            <span class="icon">account_circle</span>&nbsp;
-                            <span ng-if="localStorage.nombre_comercial != 'no disponible'">
-                                {{localStorage.nombre_comercial}}
-                            </span>
-                            <span ng-if="localStorage.nombre_comercial == 'no disponible'">
-                                {{localStorage.razon_social}}
-                            </span>
-                        </a>
-                    </div>
-                    <div class="card-action-btn pull-left">
-                        <a class="btn btn-flat waves-attach">
-                            <span class="icon">check</span>&nbsp;Button
-                        </a>
-                    </div>
-                </div>
+</div>
+<div class="col-sm-2">
+    <div class="card">
+        <div class="card-main">
+            <div class="card-img">
+                <img alt="alt text" src="images/samples/x4.jpg" style="width: 100%;">
+                <p class="card-img-heading">Publicidad</p>
             </div>
-        </div>
-    </div>
-    <div class="col-sm-2">
-        <div class="card">
-            <div class="card-main">
-                <div class="card-img">
-                    <img alt="alt text" src="images/samples/x4.jpg" style="width: 100%;">
-                    <p class="card-img-heading">Publicidad</p>
+            <div class="card-inner">
+                <p>
+                    Lorem ipsum dolor sit amet.
+                    <br> Consectetur adipiscing elit.
+                </p>
+                {{localStorage.nombre_comercial}}
+            </div>
+            <div class="card-action">
+                <div class="card-action-btn pull-left">
+                    <a class="btn btn-flat waves-attach">
+                        <span class="icon">account_circle</span>&nbsp;
+                        <span ng-if="localStorage.nombre_comercial != 'no disponible'">
+                            {{localStorage.nombre_comercial}}
+                        </span>
+                        <span ng-if="localStorage.nombre_comercial == 'no disponible'">
+                            {{localStorage.razon_social}}
+                        </span>
+                    </a>
                 </div>
-                <div class="card-inner">
-                    <p>
-                        Lorem ipsum dolor sit amet.
-                        <br> Consectetur adipiscing elit.
-                    </p>
-                    {{localStorage.nombre_comercial}}
-                </div>
-                <div class="card-action">
-                    <div class="card-action-btn pull-left">
-                        <a class="btn btn-flat waves-attach">
-                            <span class="icon">account_circle</span>&nbsp;
-                            <span ng-if="localStorage.nombre_comercial != 'no disponible'">
-                                {{localStorage.nombre_comercial}}
-                            </span>
-                            <span ng-if="localStorage.nombre_comercial == 'no disponible'">
-                                {{localStorage.razon_social}}
-                            </span>
-                        </a>
-                    </div>
-                    <div class="card-action-btn pull-left">
-                        <a class="btn btn-flat waves-attach">
-                            <span class="icon">check</span>&nbsp;Button
-                        </a>
-                    </div>
+                <div class="card-action-btn pull-left">
+                    <a class="btn btn-flat waves-attach">
+                        <span class="icon">check</span>&nbsp;Button
+                    </a>
                 </div>
             </div>
         </div>

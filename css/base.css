@@ -9,6 +9,26 @@
   box-sizing: border-box;
 }
 
+.material-icons {
+    top: -2px !important;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    height: 24px;
+    width: 35px!important;
+    font-size: 24px;
+    color: inherit;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
+    position: relative!important;
+}
+
 @-ms-viewport {
   width: device-width;
 }
@@ -39,6 +59,7 @@ html {
 
 body, html  {
   background: #EEEEEE!important;
+  color: #757575!important;
 }
 
 button,
@@ -2904,7 +2925,7 @@ html.no-touchevents .fbtn:hover > .fbtn-text {
 }
 
 .card-inner {
-  margin: 24px 16px;
+  margin: 4px 16px;
 }
 .card-header .card-inner {
   -webkit-box-flex: 1;
@@ -5917,7 +5938,7 @@ html.no-touchevents .tile-action-show {
 }
 .menu-content .nav a,
 .menu-content .nav .a {
-  color: #212121;
+  color: #757575;
   font-weight: 500;
 }
 .menu-content .nav a:focus, .menu-content .nav a:hover,

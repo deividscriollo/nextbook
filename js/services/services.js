@@ -152,6 +152,20 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         );
     };
 
+      this.mis_imgs_portadas=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/loadImgsPosrtada', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+
     // servicios creacion clientes
 
     // guardar clientes
@@ -295,6 +309,22 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     };
     // ------------------- fin
     // ------------------------------------------------ 
+    // ----------------------------------------- SET CATEGORIA SUCURSAL ----------------------------
+    this.set_categoria_sucursal=function() {
+        return $resource(this.server().appnext()+'public/setCategoriaSucursal', {}
+        , {
+            set: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+
+    // ------------------- fin
+    // ------------------------------------------------ 
 });
 // --------------------
 app.service('localizacion', function() {
@@ -374,7 +404,22 @@ app.service('localizacion', function() {
         ];
     }
 });
-app.controller('ModalController', function($scope,$rootScope, data, tipomodal, servicios, $window, $localStorage) {
+
+app.service('categorizacion', function() {
+    this.categorias=function() {
+        return $resource(this.server().appnext()+'public/getCategorias', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    }
+});
+app.controller('ModalController', function($scope,$rootScope, data, tipomodal, servicios, $window, $localStorage,categorizacion) {
     switch(tipomodal) {
         // ------------------------------------------------- MENSAJE-------------------------
         case 'mensaje': switch(data.error) {
@@ -475,6 +520,19 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
         break;
     }
 
+        break;
+
+         // ------------------------------------SELECCIONAR CATEGORIA DE SUCURSAL ---------------------
+        case 'select_categoria_sucursal': 
+        $scope.states=categorizacion.categorias();
+        $scope.set_categoria=function() {
+            servicios.set_categoria_sucursal().set({codigo:$localStorage.sucursal.codigo,categoria:$scope.categoria}).$promise.then(function(data){
+                $localStorage.sucursal.categoria=$scope.categoria;
+           $('#modal_select_categoria').modal('hide');
+         $('#modal_select_categoria').remove();
+         $('.modal-backdrop').remove();
+            });
+        }
         break;
     }
 });

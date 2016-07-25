@@ -1,4 +1,68 @@
 <div ng-controller="radioCtrl as vm" flex ng-cloak>
+  <div class="box-inner padding ng-scope" ui-view id="view">
+    <div class="row row-xs ng-scope">
+      <div class="col-sm-4">
+        <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">Clientes</span>
+              <div class="text-center">
+                dasfddgsg
+              </div>
+              <ng-md-icon icon="{{icon}}" ng-attr-style="fill: {{fill}}" size="64"></ng-md-icon>
+              <!-- <span class="md-subhead">Large</span> -->
+            </md-card-title-text>
+            <md-card-title-media>
+              <div class="md-media-lg card-media"></div>
+            </md-card-title-media>
+          </md-card-title>
+        </md-card>
+      </div> 
+    </div> 
+  </div>  
+
+  <ms-nav>
+    <ms-nav-item ms-nav-title>
+        <span>FUSE</span>
+    </ms-nav-item>
+    <ms-nav-item ms-nav-toggle>
+        <a ms-nav-button md-ink-ripple>
+            <i class="icon-tile-four s16"></i>
+            <span class="ms-nav-label" translate="NAVIGATION.DASHBOARDS">Dashboards</span>
+            <i class="icon-chevron-down s16 arrow"></i>
+        </a>
+        <ms-nav-toggle-items>
+            <ms-nav-item>
+                <a ms-nav-button ui-sref="app.dashboard-v1" ui-sref-active="active" md-ink-ripple>
+                    <span class="ms-nav-label">Dashboard v1</span>
+                </a>
+            </ms-nav-item>
+            <ms-nav-item>
+                <a ms-nav-button ui-sref="app.dashboard-v2" ui-sref-active="active" md-ink-ripple>
+                    <span class="ms-nav-label">Dashboard v2</span>
+                </a>
+            </ms-nav-item>
+        </ms-nav-toggle-items>
+    </ms-nav-item>
+</ms-nav>
+
+
+
+  <!-- <div class="widget-group layout-wrap ng-scope layout-row flex-100" layout="row" flex="100" layout-wrap>
+    <ms-widget flippable="true" layout="column" flex-gt-xs="50" flex-gt-md="25" class="ms-widget ng-isolate-scope layout-column flex-gt-xs-50 flex-gt-md-25 flex-100">
+      <ms-widget-front class="white-bg ms-widget-front ng-scope">
+        <div class="ph-8 pv-16 h-55 ng-scope layout-align-space-between-center layout-row">
+          
+        </div>
+
+        <div class="pt-8 pb-32 ng-scope layout-align-center-center layout-column" layout="column" layout-align="center center">
+          
+        </div> 
+      </ms-widget-front>
+    </ms-widget>  
+
+  </div> -->
+
     <md-content class="md-padding" layout-xs="column" layout="row">
     <div flex-xs flex-gt-xs="50" layout="column">
       <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>

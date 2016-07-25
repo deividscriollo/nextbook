@@ -1,12 +1,72 @@
-<div ng-controller="nominaCtrl">
-    <div class="col-md-4 animated bounceInDown" ng-repeat="item in appslist">       
-        <div class="card">
-            <div class="card-main">
-                <div class="card-img">
-                    <img alt="alt text" src="images/samples/x2.jpg" style="width: 100%;">
-                    <h2 class="card-img-heading">{{item.title}} <span class="icon">play_arrow</span></h2>
-                </div>             
+<div class="nominaCtrl as vm">
+    <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
+        <main class="mdl-layout__content">
+            <div class="mdl-grid">
+                <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+                    <figure class="mdl-card__media">
+                        <img src="http://tfirdaus.github.io/mdl/images/laptop.jpg" alt="" />
+                    </figure>
+                    <div class="mdl-card__title">
+                        <h1 class="mdl-card__title-text">Learning Web Design</h1>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam accusamus, consectetur.</p>
+                    </div>
+                                    <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Read More</a>
+        <div class="mdl-layout-spacer"></div>
+            <button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">favorite</i></button>
+                        <button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">share</i></button>
+          </div>
+                </div>
+                
+                
+                
+                <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+                    <figure class="mdl-card__media">
+                        <img src="http://tfirdaus.github.io/mdl/images/html5.jpg" alt="" />
+                    </figure>
+                    <div class="mdl-card__title">
+                        <h1 class="mdl-card__title-text">Learning HTML</h1>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam accusamus, consectetur.</p>
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Read More</a>
+        <div class="mdl-layout-spacer"></div>
+            <button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">favorite</i></button>
+                        <button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">share</i></button>
+          </div>
+                </div>
             </div>
-        </div>
+        </main>
     </div>
 </div>
+    
+<!-- <div ng-controller="nominaCtrl as vm">
+    <md-content ng-show="$showOptions" class="options">
+    <md-radio-group ng-model="vm.disableCaching" >
+      <md-radio-button  ng-value="true">Disable caching</md-radio-button>
+      <md-radio-button  ng-value="false">Enable caching</md-radio-button>
+    </md-radio-group>
+  </md-content>
+
+  <md-content class="md-padding">
+    <md-autocomplete placeholder="Search country"
+                     md-selected-item="vm.selectedCountry"
+                     md-search-text="vm.searchText"
+                     md-no-cache="vm.disableCaching"
+                     md-items="item in vm.querySearch(vm.searchText)"
+                     md-item-text="item.display">
+      <span md-highlight-text="vm.searchText">{{item.display}}</span>
+    </md-autocomplete>
+
+    <p>Selected country:
+      <b>{{vm.selectedCountry.display || 'No country selected'}}</b>
+    </p>
+    <p>Country code:
+      <b>{{vm.selectedCountry.code || 'No country selected'}}</b>
+    </p>
+  </md-content>
+</div> -->

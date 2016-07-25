@@ -322,6 +322,18 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         }
         );
     };
+     this.get_categorias_sucursal=function() {
+        return $resource(this.server().appnext()+'public/getCategorias', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
 
     // ------------------- fin
     // ------------------------------------------------ 
@@ -405,21 +417,7 @@ app.service('localizacion', function() {
     }
 });
 
-app.service('categorizacion', function() {
-    this.categorias=function() {
-        return $resource(this.server().appnext()+'public/getCategorias', {}
-        , {
-            get: {
-                method: 'GET', isArray: false, // responseType:'arraybuffer', 
-                params: {
-                    token: $localStorage.token
-                }
-            }
-        }
-        );
-    }
-});
-app.controller('ModalController', function($scope,$rootScope, data, tipomodal, servicios, $window, $localStorage,categorizacion) {
+app.controller('ModalController', function($scope,$rootScope, data, tipomodal, servicios, $window, $localStorage) {
     switch(tipomodal) {
         // ------------------------------------------------- MENSAJE-------------------------
         case 'mensaje': switch(data.error) {
@@ -524,7 +522,9 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
 
          // ------------------------------------SELECCIONAR CATEGORIA DE SUCURSAL ---------------------
         case 'select_categoria_sucursal': 
-        $scope.states=categorizacion.categorias();
+        servicios.get_categorias_sucursal().get().$promise.then(function(data){
+            $scope.states=data.categorias;
+        });
         $scope.set_categoria=function() {
             servicios.set_categoria_sucursal().set({codigo:$localStorage.sucursal.codigo,categoria:$scope.categoria}).$promise.then(function(data){
                 $localStorage.sucursal.categoria=$scope.categoria;

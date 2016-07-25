@@ -1,7 +1,8 @@
 var app = angular.module('app');
 app.controller('dashboardCtrl', function ($scope, $localStorage,servicios) {
     $scope.localStorage = $localStorage.datosE;
-    if ($localStorage.sucursal.categoria==null||$localStorage.sucursal.categoria=='') {
+    alert($localStorage.sucursal.categoria);
+    if ($localStorage.sucursal.categoria==null) {
     	 servicios.showModal('modal_select_sucursal_categoria.html', {
                 states:''
             }, 'select_categoria_sucursal');

@@ -14,14 +14,30 @@ app.controller('perfilCtrl', function($scope, $rootScope, servicios, $localStora
         $rootScope.imgPortada = "images/samples/w1.jpg"
     }
 
-    $scope.show_listaimg_modal = function() {
-        // $scope.misimagenes="";
-        servicios.mis_imgs_perfil().get().$promise.then(function(data) {
+    $scope.show_listaimg_modal = function(tipolista) {
+
+        switch(tipolista) {
+            case 'perfil':
+            servicios.mis_imgs_perfil().get().$promise.then(function(data) {
             // $scope.misimagenes=data.imgs;
             servicios.showModal('modal_select_img.html', {
-                source: data.imgs
+                source: data.imgs,
+                tipo:'perfil'
             }, 'imgperfil');
-        });
+            });
+            break;
+            case 'portada':
+             servicios.mis_imgs_portadas().get().$promise.then(function(data) {
+            // $scope.misimagenes=data.imgs;
+            servicios.showModal('modal_select_img.html', {
+                source: data.imgs,
+                tipo:'portada'
+            }, 'imgperfil');
+            });
+            break;
+
+        }
+        // $scope.misimagenes="";
     }
 
     $scope.show_upload_img_modal = function(tipo) {

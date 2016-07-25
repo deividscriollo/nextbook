@@ -94,6 +94,22 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         );
     };
 
+    // ----------------------------------------- SET imagen de POrtada ----------------------------
+    this.set_img_portada=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/setImgPortada', {}
+        , {
+            enviar: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+
+
     // ----------------------------------------- Add imagen de POrtada ----------------------------
     this.add_img_portada=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
@@ -124,7 +140,22 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         );
     };
     // fin
-
+    //--------------------------------------------------------- get imagen Portada ---------------------------------
+      this.get_img_portada=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/getImgPortada', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
+    // fin
+//--------------------------------------------------------- get imagen perfil ---------------------------------
       this.get_img_perfil=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
         return $resource(this.server().appnext()+'public/getImgPerfil', {}
@@ -138,6 +169,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         }
         );
     };
+    // fin
      this.mis_imgs_perfil=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
         return $resource(this.server().appnext()+'public/loadImgsPerfil', {}
@@ -154,7 +186,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
 
       this.mis_imgs_portadas=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
-        return $resource(this.server().appnext()+'public/loadImgsPosrtada', {}
+        return $resource(this.server().appnext()+'public/loadImgsPortada', {}
         , {
             get: {
                 method: 'GET', isArray: false, // responseType:'arraybuffer', 
@@ -451,7 +483,10 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
         // ------------------------------------IMAGEN DE PERFIL ---------------------
         case 'imgperfil': 
             $scope.misimagenes=data.source;
+            $scope.tipo=data.tipo;
         $scope.show_select_img=function(data) {
+        switch($scope.tipo){
+            case 'perfil':
             $scope.imgURL=data;
              servicios.set_img_perfil().enviar({img: $scope.imgURL}
         ).$promise.then(function(data) {
@@ -462,6 +497,22 @@ app.controller('ModalController', function($scope,$rootScope, data, tipomodal, s
          $('.modal-backdrop').remove();
         }
         );
+            break;
+            case 'portada':
+               $scope.imgURL=data;
+             servicios.set_img_portada().enviar({img: $scope.imgURL}
+        ).$promise.then(function(data) {
+         $localStorage.imgPortada=data.img;
+         $rootScope.imgPortada=data.img;
+         $('#modal_lista_img').modal('hide');
+         $('#modal_lista_img').remove();
+         $('.modal-backdrop').remove();
+        }
+        );
+            break;
+
+        }
+
         }
 
         break;

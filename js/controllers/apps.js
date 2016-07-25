@@ -40,6 +40,13 @@ app.controller('MainCtrl', function($scope, $routeSegment, $localStorage,servici
             }, function(err) {
                
             });
+             //--------------------cargar imagen Portada-----------
+
+            servicios.get_img_portada().get().$promise.then(function(data) {
+                        $localStorage.imgPortada=data.img;
+            }, function(err) {
+               
+            });
             // ---------- fin
             //---------------------- verificar si existe datos de persona-----------
 

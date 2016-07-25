@@ -1,4 +1,4 @@
-<header id="header">
+<seccion id="header">
     <div class="slider">
 	    <a href="javascript:void(0)" ng-click="show_lista_portadas_modal()">
 	      <img src="{{imgPortada}}">
@@ -7,9 +7,9 @@
     <!--slider-->
     <nav class="nav-perfil-2">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <a class="navbar-brand" href="#/My-space/Perfil-inicio" ng-click="show_listaimg_modal()">
+        <div class="navbar-brand" ng-click="show_listaimg_modal()">
         	<img class="img-responsive" src="{{imgPerfil}}">
-        </a>
+        </div>
         <span class="site-name">{{localStorage.nombre_comercial}}</span>
         <span class="site-description">{{datosPersona.nombres_apellidos}}</span>
     </nav>
@@ -66,7 +66,7 @@
             </li>
         </ul>
     </nav>					    
-</header>
+</seccion>
 
 <section>
 <div app-view-segment="2"></div>
@@ -124,6 +124,7 @@
 	    font-size: 2em;
 	    position: absolute;
 	    bottom: 12px;
+	    cursor: pointer;
 	}
 	.main-menu {
 	    position: absolute;

@@ -1,4 +1,55 @@
 <div ng-controller="radioCtrl as vm" flex ng-cloak>
+  <style type="text/css">
+    .mdl-card__actions {
+      display: flex;
+      box-sizing:border-box;
+      align-items: center;
+    }
+    .mdl-card__actions > .mdl-button--icon {
+      margin-right: 3px;
+      margin-left: 3px;
+    }
+  </style>
+  <div class="container">
+    <div class="row">
+        <!-- Card Projects -->
+        <div class="col-md-6 col-md-offset-3">
+          <md-card>
+            <md-card-header>
+              <md-card-avatar>
+                <ng-md-icon icon="{{icon}}" ng-attr-style="fill: {{fill}}" size="64"></ng-md-icon>
+              </md-card-avatar>
+            </md-card-header>
+            <!-- <img ng-src="card-image.png" class="md-card-image" alt="image caption"> -->
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Clientes</span>
+              </md-card-title-text>
+            </md-card-title>
+          </md-card>
+            <!-- <div class="card">
+                <div class="card-image">
+                    <img class="img-responsive" src="http://material-design.storage.googleapis.com/publish/v_2/material_ext_publish/0Bx4BSt6jniD7TDlCYzRROE84YWM/materialdesign_introduction.png">
+                    <span class="card-title">Material Cards</span>
+                </div>
+                
+                <div class="card-content">
+                    <p>Cards for display in portfolio style material design by Google.</p>
+                </div>
+                
+                <div class="card-action">
+                    <a href="#" target="new_blank">Link</a>
+                    <a href="#" target="new_blank">Link</a>
+                    <a href="#" target="new_blank">Link</a>
+                    <a href="#" target="new_blank">Link</a>
+                    <a href="#" target="new_blank">Link</a>
+                </div>
+            </div> -->
+        </div>
+    </div>
+  </div>
+ 
+
   <div class="box-inner padding ng-scope" ui-view id="view">
     <div class="row row-xs ng-scope">
       <div class="col-sm-4">
@@ -137,7 +188,7 @@
       </div>
     </div>
   </md-content>
-    <md-card>
+    <!-- <md-card> -->
      <md-card>
       <md-card-header>
         <md-card-avatar>

@@ -41,7 +41,8 @@
     "angular-material-data-table": "^0.10.9",
     "angular-input-masks": "^2.4.0",
     "angular-ui-mask": "^1.8.6",
-    "ng-pattern-restrict": "^0.2.2"
+    "ng-pattern-restrict": "^0.2.2",
+    "material-design-icons": "^2.2.3"
   },
   "private": true
 }

@@ -5168,6 +5168,8 @@ input[type="checkbox"]:checked + .switch-toggle-red:active:after, input[type="ra
 .tab-nav .nav > li > .a {
   color: inherit;
   text-transform: uppercase;
+  color: #757575;
+  font-weight: 500;
 }
 .tab-nav .nav > li > a:after,
 .tab-nav .nav > li > .a:after {
@@ -5808,6 +5810,8 @@ html.no-touchevents .tile-action-show {
 
 .page-brand .header-transparent {
   color: white;
+  height: 0px; 
+  padding: 0px 0px 0; 
 }
 .page-brand .header-transparent:before {
   background-color: #3f51b5;

@@ -1,39 +1,24 @@
-<main class="content">
-    <div class="content-header ui-content-header">
-    <h1>Administración Nómina</h1>
-    </div>
-    <div class="container">        
-        <div class="row">
-        	<div class="col-lg-10 col-lg-offset-1">
-                <section class="content-inner margin-top-no">
-                    <nav class="tab-nav tab-nav-green  ui-tab">
-                        <ul class="nav nav-justified">
-                            <li ng-class="{active: ('dashboard.nomina.inicio' | routeSegmentStartsWith)}">
-                                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.nomina.inicio' | routeSegmentUrl}}">
-                                    <span class="text-white"><span class="icon">home</span> Principal</span>
-                                </a>
-                            </li>
-                            
-                            <li ng-class="{active: ('dashboard.nomina.nomina' | routeSegmentStartsWith)}">
-                                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.nomina.nomina' | routeSegmentUrl}}">
-                                    <span class="text-white"><span class="icon">store</span> Nómina</span>
-                                </a>
-                            </li>
-
-                            <li ng-class="{active: ('dashboard.nomina.departamentos' | routeSegmentStartsWith)}">
-                                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.nomina.departamentos' | routeSegmentUrl}}">
-                                    <span class="text-white"><span class="icon">store</span> Departamentos</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </section>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1">
-                <div app-view-segment="2"></div>
-            </div>
-        </div>
-    </div>
-</main>
+<md-content layout-padding layout-wrap>
+    <section class="content-inner margin-top-no">
+        <nav class="tab-nav ui-tab">
+            <ul class="nav nav-justified">
+                <li ng-class="{active: ('dashboard.nomina.inicio' | routeSegmentStartsWith)}">
+                    <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.nomina.inicio' | routeSegmentUrl}}">
+                        <i class="material-icons">home</i> Inicio
+                    </a>
+                </li>
+                <li ng-class="{active: ('dashboard.nomina.nomina' | routeSegmentStartsWith)}">
+                    <a class="waves-attach waves-light waves-effect"  href="#{{'dashboard.nomina.nomina' | routeSegmentUrl}}">
+                        <i class="material-icons">assignment</i> Nomina
+                    </a>
+                </li>
+                <li ng-class="{active: ('dashboard.nomina.departamentos' | routeSegmentStartsWith)}">
+                    <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.nomina.departamentos' | routeSegmentUrl}}">
+                        <i class="material-icons">cloud_upload</i> Departamentos
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div app-view-segment="2"></div>
+    </section>
+</md-content>

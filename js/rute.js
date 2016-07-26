@@ -200,7 +200,8 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                         templateUrl: 'view/dashboardempresa/nomina/inicio.html',
                     })  
                     .segment('nomina', {
-                        templateUrl: 'view/dashboardempresa/nomina/nomina.html'
+                        templateUrl: 'view/dashboardempresa/nomina/nomina.html',
+                        controller:'nominaCtrl'
                     })
                     .segment('departamentos', {
                         templateUrl: 'view/dashboardempresa/nomina/departamentos.html'

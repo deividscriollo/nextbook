@@ -9,21 +9,19 @@ $("#xml_file").change(function(e){
 $scope.get_claveAcceso=function(xml){
  
 if (xml.length!=0) {
-  var xmlDoc = $.parseXML(xml);
-  $xml = $(xmlDoc);
-  $aux = $xml.find("claveAcceso").text();
-  if ($aux=="") {
-    $comprobante = $xml.find("comprobante").text();
-    xmlDoc = $.parseXML($comprobante);
-    $xml = $(xmlDoc);
-    $claveAcceso = $xml.find("claveAcceso").text();
-  }else{
-    $claveAcceso = $aux;
-  }
+  var x2js = new X2JS();
+ var xmltotal = x2js.xml_str2json(xml);
+ var llave = '';
+ for (var key in xmltotal) {
+  llave=key;
+}
+var limite=xmltotal[key].comprobante.length;
+var xmlcomprobante=xmltotal[key].comprobante.substring(47, limite-3);;
+var comprobantejson = x2js.xml_str2json(xmlcomprobante);
+$claveAcceso=comprobantejson.factura.infoTributaria.claveAcceso;
 }else{
   servicios.showModal('modal_mensaje.html',{error:'0'},'mensaje');
 }
-
 }
 
  $scope.showContent = function($fileContent){

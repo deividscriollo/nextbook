@@ -24,7 +24,7 @@ var app=angular.module	('app', 	[
 app.config(['$compileProvider', '$mdThemingProvider', function ($compileProvider, $mdThemingProvider) {
 'use strict';
 
-$compileProvider.debugInfoEnabled(false);
+$compileProvider.debugInfoEnabled(true);
 
 $mdThemingProvider.theme('default')
   .primaryPalette('indigo')

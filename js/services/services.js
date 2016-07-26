@@ -22,7 +22,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
             , appnext: function() {
                 return "http://192.168.100.16/appnext/";
-                // return "http://192.168.100.3/appnext/";
+                // return "http://192.168.100.16/appnext/";
             }
         }
     }
@@ -455,12 +455,16 @@ app.service('localizacion', function() {
 app.controller('ModalController', function($scope, $rootScope, data, tipomodal, servicios, $window, $localStorage) {
     switch(tipomodal) {
         // ------------------------------------------------- MENSAJE-------------------------
-        case 'mensaje': switch(data.error) {
+        case 'mensaje': 
+        console.log(data.error);
+        switch(data.error) {
             case '4': $scope.mensaje="Documento no existe en el SRI";
             break;
             case '5': $scope.mensaje="la Factura ya existe";
             break;
             case '0': $scope.mensaje="Documento vacío";
+            break;
+            case undefined: $scope.mensaje="Documento guardado correctamente";
             break;
         }
         angular.element("input[type='file']").val(null);
@@ -479,8 +483,9 @@ app.controller('ModalController', function($scope, $rootScope, data, tipomodal, 
         case 'share': $scope.fileUrl=data.source;
         break;
         // ------------------------------------------------- VISTA PREVIA-------------------------
-        case 'preview': // console.log(servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf");
-        $scope.pdfURL=servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf";
+        case 'preview': 
+        console.log(servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf");
+        $rootScope.pdfURL=servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf";
         break;
         // ------------------------------------IMAGEN DE PERFIL ---------------------
         case 'imgperfil': 
@@ -577,7 +582,7 @@ switch ($scope.tipo){
         });
         $scope.set_categoria=function() {
             servicios.set_categoria_sucursal().set( {
-                codigo: $localStorage.sucursal.codigo, categoria: $scope.categoria
+                codigo: $localStorage.sucursal.codigo, categoria: $scope.categoria,descripcion: $scope.descripcion
             }
             ).$promise.then(function(data) {
                 $localStorage.sucursal.categoria=$scope.categoria;
@@ -594,7 +599,7 @@ switch ($scope.tipo){
 );
 app.factory('facturanextservice', function($resource, $localStorage, servicios) {
     // console.log(servicios);
-    return $resource('http://192.168.100.3/appnext/public/getFacturas', {}
+    return $resource('http://192.168.100.16/appnext/public/getFacturas', {}
     , {
         get: {
             method: 'GET', isArray: false, params: {
@@ -607,7 +612,7 @@ app.factory('facturanextservice', function($resource, $localStorage, servicios) 
 
 );
 app.factory('UploadFac', function($resource, $localStorage) {
-    return $resource('http://192.168.100.3/appnext/public/uploadFactura', {}
+    return $resource('http://192.168.100.16/appnext/public/uploadFactura', {}
     , {
         subir: {
             method: 'POST', isArray: false, params: {

@@ -1,14 +1,12 @@
 var app = angular.module('app');
 app.controller('dashboardCtrl', function ($scope, $localStorage,servicios) {
     $scope.localStorage = $localStorage.datosE;
-    alert($localStorage.sucursal.categoria);
     if ($localStorage.sucursal.categoria==null) {
     	 servicios.showModal('modal_select_sucursal_categoria.html', {
                 states:''
             }, 'select_categoria_sucursal');
     }
 });
-
 
 app.controller('iniCtrl', function($scope, $localStorage) {
 // inicio 1

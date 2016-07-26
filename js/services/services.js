@@ -82,8 +82,21 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    }
-    ;
+    };
+    // ----------------------------------------- set imagen portada ----------------------------
+    this.set_img_portada=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/setImgPortada', {}
+        , {
+            enviar: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
     // ----------------------------------------- Add imagen perfil ----------------------------
     this.add_img_perfil=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
@@ -112,8 +125,21 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    }
-    ;
+    };
+      // ----------------------------------------- Add imagen de POrtada ----------------------------
+    this.get_img_portada=function() {
+        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
+        return $resource(this.server().appnext()+'public/getImgPortada', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    };
     // ----------------------------------------- Verificar contraseña ----------------------------
     this.verificar_pass=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
@@ -160,7 +186,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     ;
     this.mis_imgs_portadas=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
-        return $resource(this.server().appnext()+'public/loadImgsPosrtada', {}
+        return $resource(this.server().appnext()+'public/loadImgsPortada', {}
         , {
             get: {
                 method: 'GET', isArray: false, // responseType:'arraybuffer', 
@@ -457,10 +483,15 @@ app.controller('ModalController', function($scope, $rootScope, data, tipomodal, 
         $scope.pdfURL=servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf";
         break;
         // ------------------------------------IMAGEN DE PERFIL ---------------------
-        case 'imgperfil': $scope.misimagenes=data.source;
+        case 'imgperfil': 
+        $scope.misimagenes=data.source;
+        $scope.tipo=data.tipo;
+        console.log($scope.tipo);
         $scope.show_select_img=function(data) {
-            $scope.imgURL=data;
-            servicios.set_img_perfil().enviar( {
+             $scope.imgURL=data;
+switch ($scope.tipo){
+    case 'perfil':
+    servicios.set_img_perfil().enviar( {
                 img: $scope.imgURL
             }
             ).$promise.then(function(data) {
@@ -471,10 +502,30 @@ app.controller('ModalController', function($scope, $rootScope, data, tipomodal, 
                 $('.modal-backdrop').remove();
             }
             );
+    break;
+     case 'portada':
+     servicios.set_img_portada().enviar( {
+                img: $scope.imgURL
+            }
+            ).$promise.then(function(data) {
+                $localStorage.imgPortada=data.img;
+                $rootScope.imgPortada=data.img;
+                $('#modal_lista_img').modal('hide');
+                $('#modal_lista_img').remove();
+                $('.modal-backdrop').remove();
+            }
+            );
+    break;
+
+}
+
+           
+            
         }
         break;
         /////////////////////////////////////////////////////////////////// SUBIR IMAGEN PORTADA Y PERFIL /////////////////////////////
-        case 'uploadimg': switch (data.source) {
+        case 'uploadimg': 
+        switch (data.source) {
             case 'perfil': $scope.myImage='';
             $scope.myCroppedImage='';
             $scope.ctrlFn=function(arg) {

@@ -1,3 +1,4 @@
+var app = angular.module('app');
 app.controller('facturanextCtrl', function($scope, servicios) {
 
 });
@@ -77,4 +78,148 @@ app.controller('FacturaCtrl', function($scope, servicios, facturanextservice) {
 	//     console.log('test');
 	//   });
 
+});
+
+app.controller('facturasrechasadas', function($mdDialog, $nutrition, $scope, servicios, $timeout, $mdEditDialog, $q) {
+
+  var bookmark;
+  
+  $scope.selected = [];
+  
+  $scope.filter = {
+    options: {
+      debounce: 500
+    }
+  };
+
+  $scope.query = {
+    filter: '',
+    num_registros: 5,
+    pagina_actual:1,
+    limit: '5',
+    page_num: 1
+  };
+  
+  function success(desserts) {
+    $scope.desserts = desserts.respuesta;
+  }
+  
+  $scope.addititem = function (event) {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'addItemController',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      templateUrl: 'view/tabladata/add-item-dialog.html',
+      clickOutsideToClose:true,
+    }).then($scope.getDesserts);
+  };
+
+  $scope.eddititem = function (event) {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'addItemController',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      templateUrl: 'view/tabladata/add-item-dialog.html',
+      clickOutsideToClose:true,
+    })
+  };
+  
+  $scope.delete = function (event) {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'deleteController',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      locals: { desserts: $scope.selected },
+      templateUrl: 'view/tabladata/delete.html',
+    }).then($scope.getDesserts);
+  };
+  
+  $scope.getDesserts = function () {
+    $scope.promise = $nutrition.get($scope.query, success).$promise;
+  };
+  
+  $scope.removeFilter = function () {
+    $scope.filter.show = false;
+    $scope.query.filter = '';
+    
+    if($scope.filter.form.$dirty) {
+      $scope.filter.form.$setPristine();
+    }
+  };
+  'use strict';
+  
+  var bookmark;
+  
+  $scope.selected = [];
+  
+  $scope.filter = {
+    options: {
+      debounce: 500
+    }
+  };
+
+  $scope.query = {
+    filter: '',
+    num_registros: 5,
+    pagina_actual:1,
+    limit: '5',
+    // order: 'nameToLower',
+    page_num: 1
+  };
+  
+  function success(desserts) {
+    $scope.desserts = desserts.respuesta;
+  }
+  
+  // $scope.delete = function (event) {
+  //   $mdDialog.show({
+  //     clickOutsideToClose: true,
+  //     controller: 'deleteController',
+  //     controllerAs: 'ctrl',
+  //     focusOnOpen: false,
+  //     targetEvent: event,
+  //     locals: { desserts: $scope.selected },
+  //     templateUrl: 'view/tabladata/delete.html',
+  //   }).then($scope.getDesserts);
+  // };
+  
+  $scope.getDesserts = function () {
+    $scope.promise = $nutrition.get($scope.query, success).$promise;
+  };
+  
+  $scope.removeFilter = function () {
+    $scope.filter.show = false;
+    $scope.query.filter = '';
+    
+    if($scope.filter.form.$dirty) {
+      $scope.filter.form.$setPristine();
+    }
+  };
+
+  $scope.loadStuff = function () {
+    $scope.promise = $timeout(function () {
+
+    }, 2000);
+  };
+  
+  $scope.$watch('query.filter', function (newValue, oldValue) {
+    if(!oldValue) {
+      bookmark = $scope.query.page_num;
+    }
+    
+    if(newValue !== oldValue) {
+      $scope.query.page_num = 1;
+    }
+    
+    if(!newValue) {
+      $scope.query.page_num = bookmark;
+    }    
+    $scope.getDesserts();
+  });
 });

@@ -29,7 +29,7 @@ app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios,
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      templateUrl: 'view/tabladata/add-item-dialog.html',
+      templateUrl: 'view/dashboardempresa/nomina/crear_nomina.html',
       clickOutsideToClose:true,
     }).then($scope.getDesserts);
   };

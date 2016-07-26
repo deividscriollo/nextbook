@@ -1,156 +1,73 @@
-<!-- <md-dialog ng-controller="addItemController" ng-cloak>
-  <form>
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h2>Crear Nómina</h2>
-        <span flex></span>
-        <md-button class="md-icon-button" ng-click="ctrl.cancel()">
-          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
-        </md-button>
-      </div>
-    </md-toolbar>
-    <md-dialog-content>
-      <div class="md-dialog-content" style="max-width:600px;max-height:610px; ">
-         <form name="registroForm" id="registroForm">
-            <md-input-container class="md-icon-float">
-              <label>Periodicidad</label>
-              <md-icon class="fa fa-chevron-circle-right"></md-icon>
-              <md-select ng-model="data.periodicidad" name="periodicidad" required >
-                <md-option value="Diario">Diario</md-option>
-                <md-option value="Semanal">Semanal</md-option>
-                <md-option value="Quincenal">Quincenal</md-option>
-                <md-option value="Mensual">Mensual</md-option>
-              </md-select>
-              <div class="errors" ng-messages="registroForm.periodicidad.$error" ng-if="periodicidad.$dirty">
-                <div ng-message="required">Required</div>
-              </div>
-            </md-input-container>
-
-            <md-input-container class="md-icon-float md-block">
-                <label>Nombre / Descripción</label>
-                <md-icon class="fa fa-chevron-circle-right"></md-icon>
-                <input type="text" required name="descripcion" ng-model="data.descripcion" />
-                <div ng-messages="registroForm.descripcion.$error">
-                    <div ng-message="required">Nombre / Descripción Requerido</div>
-                </div>
-            </md-input-container>
-
-            <md-input-container class="md-icon-float md-block">
-                <label>Registro Patronal</label>
-                <md-icon class="fa fa-chevron-circle-right"></md-icon>
-                <input type="text" required name="registro_patronal" ng-model="data.registro_patronal" />
-                <div ng-messages="registroForm.registro_patronal.$error">
-                    <div ng-message="required">Registro Patronal Requerido</div>
-                </div>
-            </md-input-container>
-
-            <md-input-container class="md-icon-float md-block">
-                <label>Días</label>
-                <md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon>
-                <input type="number" required name="dias" ng-model="data.dias" />
-                <div ng-messages="registroForm.dias.$error">
-                    <div ng-message="required">Días Requeridos</div>
-                </div>
-            </md-input-container>
-
-            <md-input-container class="md-icon-float md-block">
-                <label>Expedido en</label>
-                <md-icon class="fa fa-chevron-circle-right"></md-icon>
-                <input type="text" required name="sucursal" ng-model="data.sucursal" />
-                <div ng-messages="registroForm.sucursal.$error">
-                    <div ng-message="required">Sucursal</div>
-                </div>
-            </md-input-container> 
-
-            <md-datepicker ng-model="data.fecha_inicio" name="fecha_inicio" md-placeholder="Fecha de Inicio"></md-datepicker>
-        </form>
-      </div>
-    </md-dialog-content>
-    <md-dialog-actions layout="row">
-      <md-button class="md-raised md-primary" type="submit" ng-click="guardar_nomina()" ng-disabled="registroForm.$invalid">Guardar <i class="fa fa-angle-double-right"></i></md-button>
-      <span flex></span>
-      <md-button ng-click="answer('not useful')">
-       Not Useful
-      </md-button>
-      <md-button ng-click="answer('useful')">
-        Useful
-      </md-button>
-    </md-dialog-actions>
-  </form>
-</md-dialog> -->
-
 <md-dialog aria-label="Mango (Fruit)">
     <form name="registroForm" id="registroForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Crear Nómina</h2>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click="cancel()">
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
                     <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
                 </md-button>
             </div>
         </md-toolbar>
         <md-dialog-content style="width:800px; max-height:810px;">
-            <md-content layout-padding layout-wrap>
-                <div layout-gt-xs="row">
-                  <md-input-container class="md-block" flex-gt-xs>
-                    <label>Periodicidad</label>
-                    <md-select ng-model="data.periodicidad" name="periodicidad" required>
-                        <md-option value="Diario">Diario</md-option>
-                        <md-option value="Semanal">Semanal</md-option>
-                        <md-option value="Quincenal">Quincenal</md-option>
-                        <md-option value="Mensual">Mensual</md-option>
-                    </md-select>
-                    <div class="errors" ng-messages="registroForm.periodicidad.$error" ng-if="periodicidad.$dirty">
-                        <div ng-message="required">Required</div>
-                    </div>
-                  </md-input-container>
-                  <md-input-container class="md-block" flex-gt-xs>
-                      <label>Nombre / Descripción</label>
-                      <input type="text" required name="descripcion" ng-model="data.descripcion" />
-                      <div ng-messages="registroForm.descripcion.$error">
-                          <div ng-message="required">Nombre / Descripción Requerido</div>
+            <div>
+              <md-content layout-padding layout-wrap>
+                  <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                      <label>Periodicidad</label>
+                      <md-select ng-model="data.periodicidad" name="periodicidad" required>
+                          <md-option value="Diario">Diario</md-option>
+                          <md-option value="Semanal">Semanal</md-option>
+                          <md-option value="Quincenal">Quincenal</md-option>
+                          <md-option value="Mensual">Mensual</md-option>
+                      </md-select>
+                      <div class="errors" ng-messages="registroForm.periodicidad.$error" ng-if="periodicidad.$dirty">
+                          <div ng-message="required">Required</div>
                       </div>
-                  </md-input-container>
-                </div>
-                <div layout-gt-xs="row">
-                  <md-input-container class="md-block" flex-gt-xs>
-                      <label>Registro Patronal</label>
-                      <input type="text" required name="registro_patronal" ng-model="data.registro_patronal" />
-                      <div ng-messages="registroForm.registro_patronal.$error">
-                          <div ng-message="required">Registro Patronal Requerido</div>
-                      </div>
-                  </md-input-container>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Nombre / Descripción</label>
+                        <input type="text" required name="descripcion" ng-model="data.descripcion" />
+                        <div ng-messages="registroForm.descripcion.$error">
+                            <div ng-message="required">Nombre / Descripción Requerido</div>
+                        </div>
+                    </md-input-container>
+                  </div>
+                  <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Registro Patronal</label>
+                        <input type="text" required name="registro_patronal" ng-model="data.registro_patronal" />
+                        <div ng-messages="registroForm.registro_patronal.$error">
+                            <div ng-message="required">Registro Patronal Requerido</div>
+                        </div>
+                    </md-input-container>
 
-                  <md-input-container class="md-block" flex-gt-xs>
-                      <label>Días</label>
-                      <input type="number" required name="dias" ng-model="data.dias" />
-                      <div ng-messages="registroForm.dias.$error">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Días</label>
+                        <input type="number" required name="dias" ng-model="data.dias" />
+                        <div ng-messages="registroForm.dias.$error">
+                            <div ng-message="required">Días Requeridos</div>
+                        </div>
+                    </md-input-container>
+                  </div>
+                  <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Expedido en</label>
+                        <input type="text" required name="sucursal" ng-model="data.sucursal" />
+                        <div ng-messages="registroForm.sucursal.$error">
+                            <div ng-message="required">Sucursal</div>
+                        </div>
+                    </md-input-container>
+                    <md-datepicker ng-model="data.data.fecha_inicio" required name="data.fecha_inicio" md-placeholder="Fecha de Inicio"></md-datepicker>
+                    <div ng-messages="registroForm.data.fecha_inicio.$error">
                           <div ng-message="required">Días Requeridos</div>
                       </div>
-                  </md-input-container>
-                </div>
-                
-
-                <div layout-gt-xs="row">
-                  <md-input-container class="md-block" flex-gt-xs>
-                    <label>Expedido en:</label>
-                    <input type="text" required name="sucursal" ng-model="data.sucursal">
-                  </md-input-container>
-                  <md-datepicker
-                    ng-model="data.fecha_inicio"                    
-                    flex-gt-xs 
-                    name="fecha_inicio" 
-                    md-placeholder="Fecha de Inicio">
-                  </md-datepicker>
-                </div>
-
-                
-            
-            </md-content>
-
+                  </div>
+              </md-content>
+            </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
+            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
             <span flex></span>
             <md-button class="md-raised md-primary" type="submit" ng-click="guardar_nomina()" ng-disabled="registroForm.$invalid">
               Guardar

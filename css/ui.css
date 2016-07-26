@@ -1,6 +1,11 @@
-.no-padding-top{
+.no-padding-top {
 	position: relative;
     top: -74px;
+}
+
+.icontabs{
+    position: relative!important;
+    top: 6px!important;
 }
 
 

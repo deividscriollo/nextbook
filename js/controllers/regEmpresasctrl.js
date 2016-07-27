@@ -1,5 +1,5 @@
  
- app.controller('EmpresasCtrl', function ($scope,loaddatosSRI, Empresa, localizacion, registros, SweetAlert) {
+ app.controller('EmpresasCtrl', function ($scope,loaddatosSRI, Empresa, servicios, registros, SweetAlert) {
     // input items generate
   
     // sweetAlert("Oops...", "Something went wrong!", "error");
@@ -51,7 +51,10 @@
     $scope.elementview=false;
     $scope.elemennotview=true;
     // asignacion de valores
-    $scope.states = localizacion.provincia();
+    servicios.get_provincias().get().$promise.then(function(data){
+        $scope.states=data.provincias;
+});
+    // $scope.states = localizacion.provincia();
     $scope.nombres_apellidos = "";
     $scope.cedula = "";
     $scope.sucursales=[];

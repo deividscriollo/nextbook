@@ -224,7 +224,23 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                 params: {
                     token: $localStorage.token,
                     sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        }
+        );
+    }
+    ;
+    // ------------------- fin
 
+    // guardar nomina
+    this.edit_nomina=function() {
+        return $resource(this.server().appnext()+'public/updateNomina', {}
+        , {
+            edit: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
                 }
             }
         }

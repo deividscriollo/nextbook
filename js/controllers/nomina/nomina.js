@@ -43,12 +43,12 @@ app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios,
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      templateUrl: 'view/tabladata/add-item-dialog.html',
+      templateUrl: 'view/dashboardempresa/nomina/crear_nomina.html',
       clickOutsideToClose:true,
-    })
+    }).then($scope.getDesserts);
   };
   
-  $scope.delete = function (event) {
+  $scope.deleteitem = function (event) {
     $mdDialog.show({
       clickOutsideToClose: true,
       controller: 'deleteController',
@@ -95,19 +95,9 @@ app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios,
   
   function success(desserts) {
     $scope.desserts = desserts.respuesta;
+    console.log(desserts.respuesta);
   }
   
-  // $scope.delete = function (event) {
-  //   $mdDialog.show({
-  //     clickOutsideToClose: true,
-  //     controller: 'deleteController',
-  //     controllerAs: 'ctrl',
-  //     focusOnOpen: false,
-  //     targetEvent: event,
-  //     locals: { desserts: $scope.selected },
-  //     templateUrl: 'view/tabladata/delete.html',
-  //   }).then($scope.getDesserts);
-  // };
   
   $scope.getDesserts = function () {
     $scope.promise = $nutrition.get($scope.query, success).$promise;
@@ -144,45 +134,40 @@ app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios,
   });
 });
 
-// app.controller('deleteController', ['$authorize', 'desserts', '$mdDialog', '$nutrition', '$scope', '$q', function ($authorize, desserts, $mdDialog, $nutrition, $scope, $q) {
-//   'use strict';
+app.controller('deleteController', function ($authorize, desserts, $mdDialog, $nutrition, $scope, $q, servicios) {
+  'use strict';
   
-//   this.cancel = $mdDialog.cancel;
+  this.cancel = $mdDialog.cancel;
   
-//   function deleteDessert(dessert, index) {
-//     var deferred = $nutrition.desserts.remove({id: dessert._id});
+  // function deleteDessert(dessert, index) {
+  //   var deferred = $nutrition.desserts.remove({id: dessert._id});
     
-//     deferred.$promise.then(function () {
-//       desserts.splice(index, 1);
-//     });
+  //   deferred.$promise.then(function () {
+  //     desserts.splice(index, 1);
+  //   });
     
-//     return deferred.$promise;
-//   }
+  //   return deferred.$promise;
+  // }
   
-//   function onComplete() {
-//     $mdDialog.hide();
-//   }
+  // function onComplete() {
+  //   $mdDialog.hide();
+  // }
   
-//   function error() {
-//     $scope.error = 'Invalid secret.';
-//   }
+  // function error() {
+  //   $scope.error = 'Invalid secret.';
+  // }
   
-//   function success() {
-//     $q.all(desserts.forEach(deleteDessert)).then(onComplete);
-//   }
+  // function success() {
+  //   $q.all(desserts.forEach(deleteDessert)).then(onComplete);
+  // }
   
-//   this.authorizeUser = function () {
-//     $authorize.get({secret: $scope.authorize.secret}, success, error);
-//   };
-// }]);
+  // this.authorizeUser = function () {
+  //   $authorize.get({secret: $scope.authorize.secret}, success, error);
+  // };
+});
 
 app.controller('addItemController', function ($mdDialog, $scope, $localStorage, servicios, $timeout, $localStorage) {
-  
-  // $scope
-  // $scope.data.dias = $localStorage.sucursal.sucursal;
-  // console.log($localStorage.sucursal.codigo);
-
-  // console.log($localStorage.sucursal.sucursal);
+  this.cancel = $mdDialog.cancel 
   
   $scope.guardar_nomina = function() {
     servicios.add_nomina().save($scope.data).$promise.then(function(data) {
@@ -201,19 +186,22 @@ app.controller('addItemController', function ($mdDialog, $scope, $localStorage, 
     }); 
   }
 
-  // this.cancel = $mdDialog.cancel;
-  
-  // function success(dessert) {
-  //   $mdDialog.hide(dessert);
-  // }
-  
-  // this.addItem = function () {
-  //   $scope.item.form.$setSubmitted();
-    
-  //   if($scope.item.form.$valid) {
-  //     $nutrition.desserts.save({dessert: $scope.dessert}, success);
-  //   }
-  // };
+  $scope.modificar_nomina = function() {
+    servicios.edit_nomina().edit($scope.data).$promise.then(function(data) {
+      if(data.respuesta == true) {
+          $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#dialogContainer')))
+            .clickOutsideToClose(true)
+            .title('NextBook')
+            .textContent('Registro Modificado Correctamente')
+            .ariaLabel('Registro Modificado Correctamente')
+            .ok('Ok!')
+            .openFrom('#left')
+         );
+      }
+    }); 
+  }
 });
 
 app.factory('$authorize', ['$resource', function ($resource) {
@@ -229,7 +217,8 @@ app.factory('$nutrition', function ($resource, $localStorage, servicios) {
       get: {
           method: 'GET', isArray: false, // responseType:'arraybuffer', 
           params: {
-              token: $localStorage.token
+              token: $localStorage.token,
+              codigo: $localStorage.sucursal.codigo
           }
       }
   });

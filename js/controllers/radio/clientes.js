@@ -16,8 +16,7 @@ app.controller('clientes', function ($scope, $localStorage, servicios, $mdDialog
             .ariaLabel('Registro Agregado Correctamente')
             .ok('Ok!')
             .openFrom('#left')
-         );        
-        // document.getElementById("clienteForm").reset();
+         ); 
       }
     });       
   }
@@ -40,18 +39,17 @@ app.controller('clientes', function ($scope, $localStorage, servicios, $mdDialog
         ); 
       } else {
         if (data.respuesta.datosEmpresa.valid == 'false' ) {
-                $scope.data.ruc_empresa = '';
-                $mdDialog.show(
-                  $mdDialog.alert()
-                  .parent(angular.element(document.querySelector('#dialogContainer')))
-                  .clickOutsideToClose(true)
-                  .title('NextBook')
-                  .textContent('Error... Ruc Empresa Invalido')
-                  .ariaLabel('Error... Ruc Empresa Invalido')
-                  .ok('Ok!')
-                  .openFrom('#left')
-               );
-                // alert('ruc incorrecto');
+              $scope.data.ruc_empresa = '';
+              $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#dialogContainer')))
+                .clickOutsideToClose(true)
+                .title('NextBook')
+                .textContent('Error... Ruc Empresa Invalido')
+                .ariaLabel('Error... Ruc Empresa Invalido')
+                .ok('Ok!')
+                .openFrom('#left')
+             );
         } else {
             $scope.data.nombre_comercial = data.respuesta.datosEmpresa.nombre_comercial;
             $scope.data.actividad_economica = data.respuesta.datosEmpresa.actividad_economica;

@@ -95,6 +95,7 @@
     
         <thead md-head md-order="query.order" md-on-reorder="getDesserts">
             <tr md-row>
+                <th md-column md-numeric>Id</th>
                 <th md-column md-numeric>Nombre / Descripción</th>
                 <th md-column md-numeric>Periodicidad</th>
                 <th md-column md-numeric>Registro Patronal</th>
@@ -105,17 +106,18 @@
         </thead>
         <tbody md-body>
             <tr md-row md-select-id="name" ng-repeat="dessert in desserts.data">
-                <td md-cell>{{dessert.dias}}</td>
-                <td md-cell>{{dessert.fecha_inicio}}</td>
-                <td md-cell>{{dessert.periodicidad}}</td>
                 <td md-cell>{{dessert.id}}</td>
+                <td md-cell>{{dessert.descripcion}}</td>
+                <td md-cell>{{dessert.periodicidad}}</td>
                 <td md-cell>{{dessert.registro_patronal}}</td>
+                <td md-cell>{{dessert.dias}}</td>
+                <td md-cell>{{dessert.fecha_inicio}}</td>  
                 <td md-cell>
-                    <md-button class="md-fab md-mini md-primary" aria-label="Use Android">
-                      <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
-                    </md-button>
-                    <md-button class="md-fab md-mini md-primary" aria-label="Use Android">
+                     <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="eddititem($event)">
                       <md-icon md-svg-src="img/icons/ic_edit_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
+                    </md-button>
+                    <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="deleteitem($event)">
+                      <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
                     </md-button>
                 </td>
             </tr>

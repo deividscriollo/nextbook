@@ -1,137 +1,70 @@
-<header class="header header-transparent header-waterfall ui-header">
-    <ul class="nav nav-list pull-left">
-        <li>
-            <a data-toggle="menu" href="#ui_menu">
-                <span class="icon icon-lg">menu</span>
-            </a>
-        </li>
-    </ul>
-    <a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix" href="index.html">Nextbook</a>
-    <span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">Cards</span>
-    <ul class="nav nav-list pull-right">
-        <li class="dropdown margin-right">
-            <a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown">
-                <span class="access-hide">John Smith</span>
-                <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="images/users/avatar-001.jpg"></span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li>
-                    <a class="padding-right-lg waves-attach" href="javascript:void(0)"><span class="icon icon-lg margin-right">account_box</span>Profile Settings</a>
-                </li>
-                <li>
-                    <a class="padding-right-lg waves-attach" href="javascript:void(0)"><span class="icon icon-lg margin-right">add_to_photos</span>Upload Photo</a>
-                </li>
-                <li>
-                    <a class="padding-right-lg waves-attach" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
+<header class="header header-transparent header-waterfall ui-header ">
+    <span class="header-logo">Nextbook, Red de Negocios</span>
+    <nav class="tab-nav pull-right hidden-xx">
+        <ul class="nav nav-list">
+            <li class="dropdown">
+                <a class="dropdown-toggle text-black waves-attach waves-effect text-write" data-toggle="dropdown">
+                    <i class="material-icons">more_vert</i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a class="padding-right-lg waves-attach waves-effect" ng-href="#/salir/159">
+                            <span class="icon icon-lg margin-right">exit_to_app</span> Cerrar Session
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 </header>
-<main class="content">
-    <div class="content-header ui-content-header">
-        <div class="container">
-            <h1 class="content-heading">Seleccionar Sucursal</h1>
+<div class="container header-dc">
+    <md-content>
+        <div layout="row" layout-align="center center">
+            <h1 layout="column" layout-align="center ">Seleccionar Sucursal</h1>
         </div>
-    </div>
-    <div class="container">
-        <section class="content-inner margin-top-no">
-            <div class="row">
-                <div class="col-lg-8 col-md-8">
-                    <div class="card card-brand-accent margin-bottom-no">
-                        <div class="card-main">
-                            <div class="card-inner">
-                                <p><i class="icon icon-lg">pages</i> mmm.. interesante usted tiene más de una sucursal, seleccione con cual le gustaría empezar a trabajar.</p>
-                            </div>
+        <div layout="row" layout-align="center center">
+            <div class="col-lg-8 col-md-8">
+                <div class="card card-brand-accent margin-bottom-no">
+                    <div class="card-main">
+                        <div class="card-inner">
+                            <p><i class="icon icon-lg">pages</i> mmm.. interesante usted tiene más de una sucursal, seleccione con cual le gustaría empezar a trabajar.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4 col-md-4">
-                    <div class="card ">
-                        <div class="card-main">
-                            <div class="card-inner">
-                                <form action="" method="POST" role="form">
-                                    <div class="form-group form-group-label">
-                                        <label class="floating-label">
-                                            <i class="icon icon-lg">search</i>
-                                            Buscar por: nombre comercial, direccion, codigo sucursal
-                                        </label>
-                                        <input class="form-control" type="text" ng-model="search">
-                                        <div class="form-help">
-                                            encontrado {{(products | filter:search).length}} de  {{products.length}}
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>                    
-                </div>
             </div>
-            <div class="ui-card-wrap">
-                <div class="row">
-                    <div ng-repeat="product in products | filter:search"> 
-                        <div class="col-lg-4 col-sm-4">
-                            <div class="card">
-                                <aside class="card-side card-side-img pull-left">
-                                    <img alt="alt text" src="images/samples/portrait.jpg">
-                                </aside>
-                                <div class="card-main">
-                                    <div class="card-inner">
-                                        <p class="card-heading">{{product.sucursal}}</p>
-                                        <p class="margin-bottom-lg text-brand">
-                                            {{product.direccion | limitTo: 65}}
-                                            {{product.direccion.length > 60 ? '...' : ''}}
-                                        </p>
-                                    </div>
-                                    <div class="card-action">
-                                    	<div class="card-action-btn pull-left">
-    										<a class="btn btn-flat btn-green waves-attach waves-effect" href="#/My-space" ng-click="SetSucursal($index)">
-    											ENTRAR
-    											<span class="icon">done</span>
-    										</a>
-    									</div>
-                                        <!-- <ul class="nav nav-list margin-no pull-right">
-                                            <li class="dropdown">
-                                                <a class="dropdown-toggle text-black waves-attach" data-toggle="dropdown"><span class="icon">more_vert</span></a>
-                                                <ul class="dropdown-menu dropdown-menu-right">
-                                                    <li>
-                                                        <span class="icon margin-right-sm">filter_1</span>
-                                                        PICHINCHA
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon margin-right-sm">filter_2</span>
-                                                        CAYAMBE
-                                                    </li>
-                                                    <li>
-                                                        <span class="icon margin-right-sm">filter_3</span>
-                                                        Codigo: 001
-                                                        Sed Ornare
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul> -->
+            <div class="col-sm-4 col-md-4">
+                <div class="card ">
+                    <div class="card-main">
+                        <div class="card-inner">
+                            <form action="" method="POST" role="form">
+                                <div class="form-group form-group-label">
+                                    <label class="floating-label">
+                                        <i class="icon icon-lg">search</i>
+                                        Buscar por: nombre comercial, direccion, codigo sucursal
+                                    </label>
+                                    <input class="form-control" type="text" ng-model="search">
+                                    <div class="form-help">
+                                        encontrado {{(products | filter:search).length}} de  {{products.length}}
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                </div>
+                </div>                    
             </div>
-        </section>
-    </div>
-</main>
-<footer class="ui-footer">
-    <div class="container">
-        <p>Material</p>
-    </div>
-</footer>
-<div class="fbtn-container">
-    <div class="fbtn-inner">
-        <a class="fbtn fbtn-lg fbtn-brand-accent waves-attach waves-circle waves-light" data-toggle="dropdown"><span class="fbtn-text fbtn-text-left">Links</span><span class="fbtn-ori icon">apps</span><span class="fbtn-sub icon">close</span></a>
-        <div class="fbtn-dropup">
-            <a class="fbtn waves-attach waves-circle" href="https://github.com/Daemonite/material" target="_blank"><span class="fbtn-text fbtn-text-left">Fork me on GitHub</span><span class="icon">code</span></a>
-            <a class="fbtn fbtn-brand waves-attach waves-circle waves-light" href="https://twitter.com/daemonites" target="_blank"><span class="fbtn-text fbtn-text-left">Follow Daemon on Twitter</span><span class="icon">share</span></a>
-            <a class="fbtn fbtn-green waves-attach waves-circle" href="http://www.daemon.com.au/" target="_blank"><span class="fbtn-text fbtn-text-left">Visit Daemon Website</span><span class="icon">link</span></a>
         </div>
-    </div>
+    </md-content>
+    <div layout="row" layout-wrap>
+        <md-card flex = 20 ng-repeat="items in products | filter:search">
+          <img src="images/samples/x1.jpg" class="md-card-image">
+          <md-card-content>
+            <p>{{items.sucursal}},</p>
+            <p>{{items.direccion}},</p>
+            <p>Codigo:{{items.codigo}}</p>
+          </md-card-content>
+          <div class="md-actions" layout="row" layout-align="end center" >
+            <md-button href="#/My-space" ng-click="SetSucursal($index)">Entrar</md-button>
+          </div>
+        </md-card>
+    </div>    
 </div>

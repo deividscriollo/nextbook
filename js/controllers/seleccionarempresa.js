@@ -15,19 +15,16 @@ var app=angular.module('app').controller('seleccionar-empresa', function ($scope
             for (var i=0; i < data.sucursales.length;i++) {
                 $scope.products.push( {
                     "sucursal": data.sucursales[i].nombre_sucursal, "codigo": data.sucursales[i].codigo, "direccion": data.sucursales[i].direccion, "estado": data.sucursales[i].estado,"categoria": data.sucursales[0].categoria
-                }
-                );
+                });
             }
         }
     }
     , function(err) {
         console.log(err);
-    }
-    );
+    });
     $scope.SetSucursal=function($index) {
         $localStorage.sucursal=$scope.products[$index];
     }
-  
 }
 
 );

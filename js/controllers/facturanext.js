@@ -5,14 +5,42 @@ app.controller('facturanextCtrl', function($scope, servicios) {
 
 
 app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice, $http, $q,ModalService) {
+  console.log('test');
+
+  'use strict';
+
+  $scope.selected = [];
+
+  $scope.query = {
+    order: 'name',
+    limit: 5,
+    page: 1
+  };
+
+  function success(desserts) {
+    $scope.desserts = desserts;
+  }
+
+  $scope.getDesserts = function () {
+    // $scope.promise = $nutrition.desserts.get($scope.query, success).$promise;
+    facturanextservice.get().$promise.then(function(data) {
+      $scope.promise = data;
+      console.log(data);
+    });
+  };
+
+
+
+
 	var t = $('#example').DataTable();
 	facturanextservice.get().$promise.then(function(data) {
+    console.log(data);
 		for (var i = 0; i < data.misfacturas.length; i++) {
 	  	  	t.row.add( [
 	            // data.misfacturas[i].id_factura,
 	            data.misfacturas[i].num_factura,
 	            data.misfacturas[i].Ruc_prov,
-	            data.misfacturas[i].ambiente = 2 ? "PRODUCCION" : "DESAROLLO",
+	            data.misfacturas[i].tipo_consumo,
 	            data.misfacturas[i].fecha_emision,
 	            data.misfacturas[i].nombre_comercial,
 	            data.misfacturas[i].tipo_doc,

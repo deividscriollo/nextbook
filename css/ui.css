@@ -1,8 +1,25 @@
+.container2 {
+    top: 100px;
+    position: relative;
+}
+
+.header-dc{
+    top: 50px;
+    position: relative;
+}
 .no-padding-top {
 	position: relative;
     top: -74px;
 }
 
+body, html {
+    background: #EEEEEE!important;
+    color: #757575!important;
+}
+md-content.md-default-theme, md-content {
+    color: #757575;
+    background-color: rgb(255,255,255);
+}
 .icontabs{
     position: relative!important;
     top: 6px!important;
@@ -20,6 +37,10 @@ md-datepicker {
     }
 }
 
+
+.layout-padding, .layout-padding-gt-sm, .layout-padding-gt-sm>*, .layout-padding-md, .layout-padding-md>*, .layout-padding>*, .layout-padding>.flex, .layout-padding>.flex-gt-sm, .layout-padding>.flex-md {
+     padding: 0px; 
+}
 
 /*validacion*/
 

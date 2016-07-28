@@ -5168,7 +5168,7 @@ input[type="checkbox"]:checked + .switch-toggle-red:active:after, input[type="ra
 .tab-nav .nav > li > .a {
   color: inherit;
   text-transform: uppercase;
-  color: #757575;
+  color: rgb(255,64,129);
   font-weight: 500;
 }
 .tab-nav .nav > li > a:after,
@@ -5659,7 +5659,8 @@ html.no-touchevents .tile-action-show {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   background-color: #f5f5f5;
-  color: #212121;
+  color: #ffffff;
+  font-weight: 500px;
   min-height: 56px;
   z-index: 30;
 }

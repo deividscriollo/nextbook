@@ -1,4 +1,4 @@
-<header class="header header-transparent header-waterfall ui-header container">
+<header class="header header-transparent header-waterfall ui-header">
     <span class="header-logo">NextBooks</span>
     <ul class="nav nav-list pull-right">
         <form name="formlogin" class="loginform">
@@ -29,38 +29,29 @@
         </form>
     </ul>
 </header>
-<main class="content">
-    <div class="content-header ui-content-header">
-        <div class="container">
-            <div class="row">
-                <div class="">
-                    <h1 class="content-heading text-center">Red de Negocios</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="">
-            <section class="content-inner margin-top-no">
-                <nav class="tab-nav ui-tab">
-                    <ul class="nav nav-justified">
-                        <li class="active" ng-class="{active: ('s1.ParaEmpresas' | routeSegmentStartsWith)}">
-                            <a class="waves-attach waves-light waves-effect" href="#{{'s1.ParaEmpresas' | routeSegmentUrl}}"><span class="text-white"><span class="icon icon-lg">domain</span> Para Empresas</span></a>
-                        </li>
-                        <li ng-class="{active: ('s1.Parati' | routeSegmentStartsWith)}">
-                            <a class="waves-attach waves-light waves-effect" href="#{{'s1.Parati' | routeSegmentUrl}}"><span class="text-white"><span class="icon icon-lg">person_outline</span> Para Ti</span></a>
-                        </li>
-                        <li ng-class="{active: ('s1.quienessomos' | routeSegmentStartsWith)}">
-                            <a class="waves-attach waves-light waves-effect" href="#{{'s1.quienessomos' | routeSegmentUrl}}"><span class="text-white"><span class="icon icon-lg">info</span> Quienes Somos</span></a>
-                        </li>
-                    </ul>
-                </nav>
-            </section>
-        </div>
-        <div class="">
-            <section>
-                <div app-view-segment="1"></div>
-            </section>
-        </div>
-    </div>
-</main>
+<div class="container2">
+    <md-content layout-padding layout-wrap>
+        <section class="margin-top-no">
+        <nav class="tab-nav ui-tab">
+            <ul class="nav nav-justified">
+                <li ng-class="{active: ('s1.ParaEmpresas' | routeSegmentStartsWith)}">
+                    <a class="waves-attach waves-light waves-effect"  href="#{{'s1.ParaEmpresas' | routeSegmentUrl}}">
+                        <i class="material-icons">dns</i> Para Empresas
+                    </a>
+                </li>
+                <li ng-class="{active: ('s1.Parati' | routeSegmentStartsWith)}">
+                    <a class="waves-attach waves-light waves-effect" href="#{{'s1.Parati' | routeSegmentUrl}}">
+                        <i class="material-icons">account_box</i> Para Ti
+                    </a>
+                </li>
+                <li ng-class="{active: ('s1.quienessomos' | routeSegmentStartsWith)}">
+                    <a class="waves-attach waves-light waves-effect" href="#{{'s1.quienessomos' | routeSegmentUrl}}">
+                        <i class="material-icons">assignment_ind</i> Quienes Somos
+                    </a>
+                </li>   
+            </ul>
+        </nav>
+    </section>
+        <div app-view-segment="1"></div>
+    </md-content>
+</div>

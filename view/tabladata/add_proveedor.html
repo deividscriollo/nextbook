@@ -1,0 +1,71 @@
+<md-dialog ng-controller="admin_ProveedorCtrl">
+    <form name="registroForm" id="registroForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Crear Nómina</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width:600px;">
+            <div>
+              <md-content layout-padding layout-wrap>
+                  <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Razon Social</label>
+                        <input type="text" required name="descripcion" ng-model="data.razon_social" />
+                        <div ng-messages="registroForm.descripcion.$error">
+                            <div ng-message="required">Razon Social Requerido</div>
+                        </div>
+                    </md-input-container>
+                  </div>
+                  <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Nombre Comercial</label>
+                        <input type="text" required name="descripcion" ng-model="data.nombre_comercial" />
+                        <div ng-messages="registroForm.descripcion.$error">
+                            <div ng-message="required">Nombre Comercial Requerido</div>
+                        </div>
+                    </md-input-container>
+                  </div>
+                  <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Ruc</label>
+                        <input type="number" required name="dias" ng-model="data.dias" />
+                        <div ng-messages="registroForm.dias.$error">
+                            <div ng-message="required">Ruc Requerido</div>
+                        </div>
+                    </md-input-container>
+                  </div>
+                  <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Dirección Matriz</label>
+                        <input type="number" required name="dias" ng-model="data.dias" />
+                        <div ng-messages="registroForm.dias.$error">
+                            <div ng-message="required">Ruc Requerido</div>
+                        </div>
+                    </md-input-container>
+                  </div>
+                  <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Dirección Establecimiento</label>
+                        <input type="number" required name="dias" ng-model="data.dias" />
+                        <div ng-messages="registroForm.dias.$error">
+                            <div ng-message="required">Dirección Establecimiento Requerido</div>
+                        </div>
+                    </md-input-container>
+                  </div>
+              </md-content>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" type="submit" ng-click="guardar_nomina()" ng-disabled="registroForm.$invalid">
+              Guardar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

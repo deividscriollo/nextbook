@@ -401,7 +401,24 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    }    ; 
+    }; 
+// ------------------------------------------------------------------- GET PROVEEDORES
+     // ------------------------------------------------
+      this.get_proveedores=function() {
+        return $resource(this.server().appnext()+'public/getProveedores', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    }; 
+
+
+
 });
 // --------------------
 // app.service('localizacion', function(servicios) {

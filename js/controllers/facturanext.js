@@ -252,7 +252,7 @@ app.controller('facturasrechasadas', function($mdDialog, $nutrition, $scope, ser
   });
 });
 
-app.controller('proveedoresCtrl', function($mdDialog, $nutrition, $scope, servicios, $timeout, $mdEditDialog, $q) {
+app.controller('proveedoresCtrl', function($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q) {
 
   var bookmark;
   
@@ -279,11 +279,11 @@ app.controller('proveedoresCtrl', function($mdDialog, $nutrition, $scope, servic
   $scope.addititem = function (event) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'addItemController',
+      controller: 'admin_ProveedorCtrl',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      templateUrl: 'view/tabladata/add-item-dialog.html',
+      templateUrl: 'view/tabladata/add_proveedor.html',
       clickOutsideToClose:true,
     }).then($scope.getDesserts);
   };
@@ -291,11 +291,11 @@ app.controller('proveedoresCtrl', function($mdDialog, $nutrition, $scope, servic
   $scope.eddititem = function (event) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'addItemController',
+      controller: 'admin_ProveedorCtrl',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      templateUrl: 'view/tabladata/add-item-dialog.html',
+      templateUrl: 'view/tabladata/add_proveedor.html',
       clickOutsideToClose:true,
     })
   };
@@ -303,7 +303,7 @@ app.controller('proveedoresCtrl', function($mdDialog, $nutrition, $scope, servic
   $scope.delete = function (event) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'deleteController',
+      controller: 'admin_ProveedorCtrl',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
@@ -313,7 +313,7 @@ app.controller('proveedoresCtrl', function($mdDialog, $nutrition, $scope, servic
   };
   
   $scope.getDesserts = function () {
-    $scope.promise = $nutrition.get($scope.query, success).$promise;
+    $scope.promise = servicios.get_proveedores().get($scope.query,success).$promise;
   };
   
   $scope.removeFilter = function () {
@@ -345,10 +345,6 @@ app.controller('proveedoresCtrl', function($mdDialog, $nutrition, $scope, servic
     page_num: 1
   };
   
-  function success(desserts) {
-    $scope.desserts = desserts.respuesta;
-  }
-  
   // $scope.delete = function (event) {
   //   $mdDialog.show({
   //     clickOutsideToClose: true,
@@ -361,11 +357,7 @@ app.controller('proveedoresCtrl', function($mdDialog, $nutrition, $scope, servic
   //   }).then($scope.getDesserts);
   // };
   
-  $scope.getDesserts = function () {
-    $scope.promise = $nutrition.get($scope.query, success).$promise;
-  };
-  
-  $scope.removeFilter = function () {
+   $scope.removeFilter = function () {
     $scope.filter.show = false;
     $scope.query.filter = '';
     
@@ -395,3 +387,13 @@ app.controller('proveedoresCtrl', function($mdDialog, $nutrition, $scope, servic
     $scope.getDesserts();
   });
 });
+
+app.controller('admin_ProveedorCtrl', function($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q) {
+console.log('add edit delete Proveedor');
+$scope.addProveedor=function(){
+  
+};
+
+
+
+  });

@@ -222,7 +222,9 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             save: {
                 method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
-                    token: $localStorage.token
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
+
                 }
             }
         }

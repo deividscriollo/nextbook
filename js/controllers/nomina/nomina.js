@@ -1,6 +1,8 @@
 var app = angular.module('app');
-app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios, $timeout, $mdEditDialog, $q) {
+app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios, $timeout, $mdEditDialog, $q, $localStorage) {
+
   var bookmark;
+  $scope.status = '';
   
   $scope.selected = [];
   
@@ -174,20 +176,32 @@ app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios,
 //   };
 // }]);
 
-app.controller('addItemController', function ($mdDialog, $scope, $localStorage, servicios, $timeout) {
+app.controller('addItemController', function ($mdDialog, $scope, $localStorage, servicios, $timeout, $localStorage) {
+  
+  // $scope
+  // $scope.data.dias = $localStorage.sucursal.sucursal;
+  // console.log($localStorage.sucursal.codigo);
+
+  // console.log($localStorage.sucursal.sucursal);
+  
   $scope.guardar_nomina = function() {
     servicios.add_nomina().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
-        alert('Registro guardado correctamente'); 
-        $mdDialog.cancel();  
-        $scope.promise = $timeout(function () {
-
-        }, 2000);     
+          $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#dialogContainer')))
+            .clickOutsideToClose(true)
+            .title('NextBook')
+            .textContent('Registro Agregado Correctamente')
+            .ariaLabel('Registro Agregado Correctamente')
+            .ok('Ok!')
+            .openFrom('#left')
+         );
       }
     }); 
   }
 
-  this.cancel = $mdDialog.cancel;
+  // this.cancel = $mdDialog.cancel;
   
   // function success(dessert) {
   //   $mdDialog.hide(dessert);

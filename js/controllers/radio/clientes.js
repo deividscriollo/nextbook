@@ -17,7 +17,7 @@ app.controller('clientes', function ($scope, $localStorage, servicios, $mdDialog
             .ok('Ok!')
             .openFrom('#left')
          );        
-        document.getElementById("clienteForm").reset();
+        // document.getElementById("clienteForm").reset();
       }
     });       
   }

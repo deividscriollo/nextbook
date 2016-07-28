@@ -521,7 +521,6 @@ app.controller('ModalController', function($scope, $rootScope, data, tipomodal, 
         case 'imgperfil': 
         $scope.misimagenes=data.source;
         $scope.tipo=data.tipo;
-        console.log($scope.tipo);
         $scope.show_select_img=function(data) {
              $scope.imgURL=data;
 switch ($scope.tipo){
@@ -561,7 +560,9 @@ switch ($scope.tipo){
         /////////////////////////////////////////////////////////////////// SUBIR IMAGEN PORTADA Y PERFIL /////////////////////////////
         case 'uploadimg': 
         switch (data.source) {
-            case 'perfil': $scope.myImage='';
+            case 'perfil':
+ $scope.estilo={'width': '150%','height': '70%'};
+             $scope.myImage='';
             $scope.myCroppedImage='';
             $scope.ctrlFn=function(arg) {
                 $scope.myImage=arg;
@@ -583,7 +584,9 @@ switch ($scope.tipo){
             }
             break;
             //////////////////////////////////////////////////////////// PORTADA //////////////////////////////////////////////
-            case 'portada': $scope.myImage='';
+            case 'portada': 
+     $scope.estilo={'width': '710px','height': '267px'};
+            $scope.myImage='';
             $scope.myCroppedImage='';
             $scope.ctrlFn=function(arg) {
                 $scope.myImage=arg;

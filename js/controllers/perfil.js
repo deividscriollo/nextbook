@@ -52,6 +52,6 @@ app.controller('perfil-inicio-Ctrl', function($scope, serviciosgenerales, $local
 	$scope.localStorage = $localStorage.datosE;
 	$scope.sucursal = $localStorage.sucursal;
 	$scope.activitidad = serviciosgenerales.letra_cadena_mayuscula($scope.localStorage.actividad_economica);
-	console.log($localStorage);
+	// console.log($localStorage);
 
 });

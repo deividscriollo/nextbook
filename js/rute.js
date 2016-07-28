@@ -176,7 +176,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .segment('proveedores', {
                         'default': true,
                         templateUrl: 'view/dashboardempresa/facturanext/proveedores.html',
-                        controller: 'appsCtrl'
+                        controller: 'proveedoresCtrl'
                     })
                 .up()
                 .segment('radio', {                 

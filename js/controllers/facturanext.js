@@ -283,20 +283,21 @@ app.controller('proveedoresCtrl', function($mdDialog, $scope, servicios, $timeou
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      templateUrl: 'view/tabladata/add_proveedor.html',
+      templateUrl: 'view/dashboardempresa/proveedores/add.html',
       clickOutsideToClose:true,
     }).then($scope.getDesserts);
   };
 
-  $scope.eddititem = function (event) {
+  $scope.eddititem = function (event,data) {
     $mdDialog.show({
       clickOutsideToClose: true,
       controller: 'admin_ProveedorCtrl',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      templateUrl: 'view/tabladata/add_proveedor.html',
+      templateUrl: 'view/dashboardempresa/proveedores/update.html',
       clickOutsideToClose:true,
+      locals: { dessert: data },
     })
   };
   
@@ -308,7 +309,7 @@ app.controller('proveedoresCtrl', function($mdDialog, $scope, servicios, $timeou
       focusOnOpen: false,
       targetEvent: event,
       locals: { desserts: $scope.selected },
-      templateUrl: 'view/tabladata/delete.html',
+      templateUrl: 'view/dashboardempresa/proveedores/delete.html',
     }).then($scope.getDesserts);
   };
   
@@ -390,10 +391,22 @@ app.controller('proveedoresCtrl', function($mdDialog, $scope, servicios, $timeou
 
 app.controller('admin_ProveedorCtrl', function($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q) {
 console.log('add edit delete Proveedor');
-$scope.addProveedor=function(){
-  
+this.cancel = $mdDialog.cancel;
+
+$scope.add_proveedor=function(){
+console.log($scope.data);
 };
 
+console.log('add edit delete Proveedor');
+// $scope.load_datos=function(obj){
+// console.log(obj);
+// };
 
+$scope.update_proveedor=function(){
+console.log($scope.data);
+};
+$scope.delete_proveedor=function(){
+console.log($scope.data);
+};
 
   });

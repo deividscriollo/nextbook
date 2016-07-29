@@ -1,0 +1,20 @@
+<md-dialog delete-dialog>
+  <md-dialog-content class="md-dialog-content">
+    <h2 class="md-title">Eliminar Proveedor</h2>
+    <p>Por favor, Ingrese nuevamente su contraseña para eliminar el registro.</p>
+    <p class="md-warn" ng-if="error" layout="row" layout-align="start center">
+      <md-icon>error_outline</md-icon>
+      <span>&nbsp; {{error}}</span>
+    </p>
+    <form name="authorize.form" ng-submit="ctrl.authorizeUser()">
+      <md-input-container layout="row">
+        <label>Password</label>
+        <input name="secret" type="password" ng-model="authorize.secret" required>
+      </md-input-container>
+    </form>
+  </md-dialog-content>
+  <div class="md-actions">
+    <md-button class="md-primary" ng-click="ctrl.authorizeUser()">Eliminar</md-button>
+    <md-button class="md-primary" ng-click="ctrl.cancel()">Cerrar</md-button>
+  </div>
+</md-dialog>

@@ -402,8 +402,8 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         }
         );
     }; 
-// ------------------------------------------------------------------- GET PROVEEDORES
-     // ------------------------------------------------
+// ------------------------------------------------------------------- PROVEEDORES
+     // ------------------------------------------------ get proveedores
       this.get_proveedores=function() {
         return $resource(this.server().appnext()+'public/getProveedores', {}
         , {
@@ -416,8 +416,50 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         }
         );
     }; 
-
-
+    //----------------------- fin
+    // ------------------------------------------------ add proveedores
+      this.add_proveedor=function() {
+        return $resource(this.server().appnext()+'public/addProveedor', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    }; 
+    //----------------------- fin
+    // ------------------------------------------------ update proveedores
+      this.update_proveedor=function() {
+        return $resource(this.server().appnext()+'public/addProveedor', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    }; 
+    //----------------------- fin
+    // ------------------------------------------------ delete proveedores
+      this.delete_proveedor=function() {
+        return $resource(this.server().appnext()+'public/addProveedor', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    }; 
+    //----------------------- fin
+    //--------------------------------------------------- FIN PROVEEDORES 
 
 });
 // --------------------
@@ -568,10 +610,7 @@ switch ($scope.tipo){
             );
     break;
 
-}
-
-           
-            
+} 
         }
         break;
         /////////////////////////////////////////////////////////////////// SUBIR IMAGEN PORTADA Y PERFIL /////////////////////////////

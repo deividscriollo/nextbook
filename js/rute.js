@@ -112,7 +112,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     })
                     .segment('maps', {
                         templateUrl: 'view/dashboardempresa/perfil/maps.html',
-                        // controller: 'appsCtrl'
+                        controller: 'maps-inicio-Ctrl'
                     })
                     .segment('Historial', {
                         templateUrl: 'view/dashboardempresa/perfil/Historial.html',

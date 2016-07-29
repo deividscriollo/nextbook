@@ -16,7 +16,7 @@ var app=angular.module	('app', 	[
 									'lfNgMdFileInput',
 									'oitozero.ngSweetAlert',
 									'md.data.table',
-									// 'ui.mask'
+									'leaflet-directive'
 								]
 						).run(function($FB) {
     $FB.init('386469651480295');

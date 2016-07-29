@@ -42,7 +42,9 @@
     "angular-input-masks": "^2.4.0",
     "angular-ui-mask": "^1.8.6",
     "ng-pattern-restrict": "^0.2.2",
-    "material-design-icons": "^2.2.3"
+    "material-design-icons": "^2.2.3",
+    "angular-leaflet-directive": "^0.10.0",
+    "leaflet": "^0.7.7"
   },
   "private": true
 }

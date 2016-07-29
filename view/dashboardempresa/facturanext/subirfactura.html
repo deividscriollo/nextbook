@@ -1,65 +1,32 @@
-<main class="content">
-	<div class="container">
-		<section class="content-inner margin-top-no">
-			<h2 class="content-sub-heading">Basic Cards</h2>
-			<div class="ui-card-wrap">
-				<div class="row">
-					<div class="col-lg-8 col-sm-8">
-						<div class="card">
-							<div class="card-main">
-								<div class="card-inner">
-									<p class="card-heading">Este número es el identificador de tu factura en el SRI.!</p>
-									<p>
-										<md-content layout-padding>
-										    <div>
-										        <form name="userForm">
-										        	<div class="row">
-										        		<div class="col-sm-8">
-												        	<md-input-container id="label_clave" class="md-block" md-cols-lg="8">
-												                <label>Ingrese clave de acceso de tu documento</label>
-												                <input id="input_clave" ng-model="data.clave" md-maxlength="49" md-select-on-focus ></input>
-												            </md-input-container>
-											            </div>
-											            <div class="col-sm-4">
-											            	<container class="md-block" md-cols-xs="1">
-												                <button class="btn btn-block btn-brand waves-attach waves-light" ng-click="btn_upload_file()" data-toggle="modal" data-target="#myModal">
-												                	<span class="icon">file_upload</span>Archivo XMl
-												                </button>
-												            </container>
-											            </div>
-										            </div>
-										            <div layout-gt-sm="row">
-										                <md-input-container class="md-block" flex-gt-sm>
-										                    <label>Tipo de Consumo</label>
-										                    <md-select ng-model="tipo">
-										                        <md-option ng-repeat="gasto in gastos" value="{{gasto.tipo}}">
-										                            {{gasto.tipo}}
-										                        </md-option>
-										                    </md-select>
-										                </md-input-container>
-										            </div>
-										        </form>
-										    </div>
-										</md-content>
-									</p>
-								</div>
-								<div class="card-action">
-									<div class="card-action-btn pull-right">
-										<button class="btn btn-brand waves-attach waves-light" ng-click="upload_xml()"><span class="icon">check</span> Guardar</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-sm-4">
-						<img width="100%" alt="150x150" src="images/facturanext/factura.png" />
-					</div>
-				</div>
-			</div>
-		</section>
+ <md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="40" layout="column">
+		<form name="userForm">
+    	    	<md-input-container id="label_clave" class="md-block" md-cols-lg="8">
+	                <label>Ingrese clave de acceso de tu documento</label>
+	                <input id="input_clave" ng-model="data.clave" md-maxlength="49" md-select-on-focus ></input>
+	            </md-input-container>
+	            <md-input-container class="md-block" flex-gt-sm>
+	                <label>Tipo de Consumo</label>
+	                <md-select ng-model="tipo">
+	                    <md-option ng-repeat="gasto in gastos" value="{{gasto.tipo}}">
+	                        {{gasto.tipo}}
+	                    </md-option>
+	                </md-select>
+	            </md-input-container>
+	            <div class="md-block" flex-gt-sm>
+	            	<button class="btn btn-brand waves-attach waves-light" ng-click="upload_xml()"><span class="icon">check</span> Guardar</button>
+	            </div>
+	    </form>
 	</div>
-</main>
-
+	<div flex-xs flex-gt-xs="20" layout="column">
+		<md-button ng-click="btn_upload_file()" data-toggle="modal" data-target="#myModal">
+			<span class="icon">file_upload</span>Archivo XMl
+		</md-button>
+	</div>
+	<div flex-xs flex-gt-xs="40" layout="column">
+		<img width="100%" alt="150x150" src="images/facturanext/factura.png" />
+	</div>    
+</md-content>
 <!-- Modal -->
 <div aria-hidden="true" class="modal modal-va-middle fade" id="myModal" role="dialog" tabindex="-1">
 		<div class="modal-dialog modal-xs">

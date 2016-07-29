@@ -36,15 +36,22 @@ app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios,
     }).then($scope.getDesserts);
   };
 
-  $scope.eddititem = function (event) {
+  function searchdata(id, data){
+
+  }
+
+  $scope.eddititem = function (data) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'addItemController',
+      controller: 'edit-item-Ctrl',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
       templateUrl: 'view/dashboardempresa/nomina/modificar_nomina.html',
       clickOutsideToClose:true,
+      locals: {
+           items: data
+         }
     }).then($scope.getDesserts);
   };
   
@@ -186,25 +193,32 @@ app.controller('addItemController', function ($mdDialog, $scope, $localStorage, 
          );
       }
     }); 
-  }
-
-  $scope.modificar_nomina = function() {
-    servicios.edit_nomina().edit($scope.data).$promise.then(function(data) {
-      if(data.respuesta == true) {
-          $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#dialogContainer')))
-            .clickOutsideToClose(true)
-            .title('NextBook')
-            .textContent('Registro Modificado Correctamente')
-            .ariaLabel('Registro Modificado Correctamente')
-            .ok('Ok!')
-            .openFrom('#left')
-         );
-      }
-    }); 
-  }
+  }  
 });
+
+app.controller('edit-item-Ctrl', function ($mdDialog, $scope, $localStorage, servicios, $timeout, $localStorage, items) {
+  console.log();
+  $scope.data = items;
+  // this.cancel = $mdDialog.cancel 
+  // $scope.modificar_nomina = function($event) {
+  //   servicios.edit_nomina().edit($scope.data).$promise.then(function(data) {
+  //     if(data.respuesta == true) {
+  //         $mdDialog.show(
+  //           $mdDialog.alert()
+  //           .parent(angular.element(document.querySelector('#dialogContainer')))
+  //           .clickOutsideToClose(true)
+  //           .title('NextBook')
+  //           .textContent('Registro Modificado Correctamente')
+  //           .ariaLabel('Registro Modificado Correctamente')
+  //           .ok('Ok!')
+  //           .openFrom('#left')
+  //        );
+  //     }
+  //   }); 
+  // }
+});
+
+
 
 app.factory('$authorize', ['$resource', function ($resource) {
   'use strict';

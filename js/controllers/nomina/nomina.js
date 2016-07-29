@@ -199,7 +199,7 @@ app.controller('addItemController', function ($mdDialog, $scope, $localStorage, 
 app.controller('edit-item-Ctrl', function ($mdDialog, $scope, $localStorage, servicios, $timeout, $localStorage, items) {
   console.log();
   $scope.data = items;
-  // this.cancel = $mdDialog.cancel 
+  this.cancel = $mdDialog.cancel 
   // $scope.modificar_nomina = function($event) {
   //   servicios.edit_nomina().edit($scope.data).$promise.then(function(data) {
   //     if(data.respuesta == true) {

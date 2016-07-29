@@ -422,8 +422,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     ;
     this.get_nomina=function() {
         return $resource(this.server().appnext()+'public/getNomina', {}
-    }
-    ;
+    };
     // ------------------------------------------------------------------- PROVEEDORES
     // ------------------------------------------------ get proveedores
     this.get_proveedores=function() {
@@ -437,8 +436,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    }
-    ;
+    };
     //----------------------- fin
     // ------------------------------------------------ add proveedores
     this.add_proveedor=function() {
@@ -452,43 +450,39 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    }
-    ;
+    };
     //----------------------- fin
     // ------------------------------------------------ update proveedores
-    this.update_proveedor=function() {
-        return $resource(this.server().appnext()+'public/addProveedor', {}
-        , {
-            get: {
-                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+      this.update_proveedor=function() {
+        return $resource(this.server().appnext()+'public/updateProveedor', {}
+        ,{
+            set: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token, codigo: $localStorage.sucursal.codigo, token: $localStorage.token
                 }
             }
         }
         );
-    }
-    ;
+    };
     //----------------------- fin
     // ------------------------------------------------ delete proveedores
-    this.delete_proveedor=function() {
-        return $resource(this.server().appnext()+'public/addProveedor', {}
+
+      this.delete_proveedor=function() {
+        return $resource(this.server().appnext()+'public/deleteProveedor', {}
         , {
-            get: {
-                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+            delete: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token
                 }
             }
         }
         );
-    }
-    ;
+    };
     //----------------------- fin
     //--------------------------------------------------- FIN PROVEEDORES 
-}
-
-);
+// });
 // --------------------
 // app.service('localizacion', function(servicios) {
 //     this.provincia=function() {
@@ -707,9 +701,8 @@ app.controller('ModalController', function($scope, $rootScope, data, tipomodal, 
         }
         break;
     }
-}
+});
 
-);
 app.factory('facturanextservice', function($resource, $localStorage, servicios) {
     // console.log(servicios);
     return $resource('http://192.168.100.16/appnext/public/getFacturas', {}
@@ -721,9 +714,8 @@ app.factory('facturanextservice', function($resource, $localStorage, servicios) 
         }
     }
     );
-}
+});
 
-);
 app.factory('UploadFac', function($resource, $localStorage) {
     return $resource('http://192.168.100.16/appnext/public/uploadFactura', {}
     , {
@@ -734,9 +726,8 @@ app.factory('UploadFac', function($resource, $localStorage) {
         }
     }
     );
-}
+});
 
-);
 ///------------------------ Leer XML----------------------------
 app.directive('onReadFile', function ($parse) {
     return {
@@ -759,35 +750,31 @@ app.directive('onReadFile', function ($parse) {
             );
         }
     }
-}
+});
 
-);
 app.factory('loaddatosSRI', function($resource) {
     return $resource("http://apiservicios.nextbook.ec/public/getDatos/:id", {
         id: "@id"
     }
     );
-}
+});
 
-);
 app.factory('Empresa', function($resource, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+"public/registroEmpresas/:id", {
         id: "@id"
     }
     );
-}
+});
 
-);
 app.factory('Persona', function($resource, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+"public/registroPersonas/:id", {
         id: "@id"
     }
     );
-}
+});
 
-);
 app.factory('LoginE', function($resource, $localStorage, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+'public/login', {}
@@ -797,9 +784,8 @@ app.factory('LoginE', function($resource, $localStorage, servicios) {
         }
     }
     );
-}
+});
 
-);
 app.factory('LogoutE', function($resource, $localStorage, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+'appnext/public/logoutE', {}
@@ -811,9 +797,8 @@ app.factory('LogoutE', function($resource, $localStorage, servicios) {
         }
     }
     );
-}
+});
 
-);
 app.factory('Sucursaless', function($resource, $localStorage, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+'public/getsucursales', {}
@@ -825,9 +810,8 @@ app.factory('Sucursaless', function($resource, $localStorage, servicios) {
         }
     }
     );
-}
+});
 
-);
 app.factory('Facturas', function($resource, $localStorage, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+'public/readFacturas', {}
@@ -839,9 +823,8 @@ app.factory('Facturas', function($resource, $localStorage, servicios) {
         }
     }
     );
-}
+});
 
-);
 app.factory('FacturasLista', function($resource, $localStorage, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+'public/getFacturas', {}
@@ -853,18 +836,15 @@ app.factory('FacturasLista', function($resource, $localStorage, servicios) {
         }
     }
     );
-}
+});
 
-);
 app.factory('consultarMovil', function($resource, $localStorage, servicios) {
     var url_server=servicios.server().appserviosnext();
     return $resource(url_server+'public/cosultarMovil', {}
-    , {
+    ,{
         validar: {
             method: 'POST', isArray: false, // params: {token: $localStorage.token}
         }
     }
     );
-}
-
-);
+});

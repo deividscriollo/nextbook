@@ -279,7 +279,7 @@ app.controller('proveedoresCtrl', function($mdDialog, $scope, servicios, $timeou
   $scope.addititem = function (event) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'admin_ProveedorCtrl',
+      controller: 'aud-proveedores',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
@@ -288,28 +288,33 @@ app.controller('proveedoresCtrl', function($mdDialog, $scope, servicios, $timeou
     }).then($scope.getDesserts);
   };
 
-  $scope.eddititem = function (event,data) {
+   $scope.eddititem = function (data) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'admin_ProveedorCtrl',
+      controller: 'aud-proveedores',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
       templateUrl: 'view/dashboardempresa/proveedores/update.html',
       clickOutsideToClose:true,
-      locals: { dessert: data },
-    })
+      locals: {
+           items: data
+         }
+    }).then($scope.getDesserts);
   };
   
-  $scope.delete = function (event) {
+  $scope.delete = function (data) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'admin_ProveedorCtrl',
+      controller: 'aud-proveedores',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
       locals: { desserts: $scope.selected },
       templateUrl: 'view/dashboardempresa/proveedores/delete.html',
+      locals: {
+           items: data
+         }
     }).then($scope.getDesserts);
   };
   
@@ -389,24 +394,42 @@ app.controller('proveedoresCtrl', function($mdDialog, $scope, servicios, $timeou
   });
 });
 
-app.controller('admin_ProveedorCtrl', function($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q) {
-console.log('add edit delete Proveedor');
-this.cancel = $mdDialog.cancel;
+app.controller('aud-proveedores', function ($mdDialog, $scope, $localStorage, servicios, $timeout, $localStorage, items) {
+  $scope.data = items;
+  this.cancel = $mdDialog.cancel;
 
-$scope.add_proveedor=function(){
-console.log($scope.data);
-};
-
-console.log('add edit delete Proveedor');
-// $scope.load_datos=function(obj){
-// console.log(obj);
-// };
-
-$scope.update_proveedor=function(){
-console.log($scope.data);
-};
-$scope.delete_proveedor=function(){
-console.log($scope.data);
-};
-
+$scope.updateProveedor=function(){
+  servicios.update_proveedor().set($scope.data).$promise.then(function(data){
+     if(data.respuesta == true) {
+          $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#dialogContainer')))
+            .clickOutsideToClose(true)
+            .title('NextBook')
+            .textContent('Registro Actualizado Correctamente')
+            .ariaLabel('Registro Actualizado Correctamente')
+            .ok('Ok!')
+            .openFrom('#left')
+         );
+      }
   });
+}
+
+$scope.deleteProveedor=function(){
+  servicios.delete_proveedor().delete({id:items}).$promise.then(function(data){
+     if(data.respuesta == true) {
+          $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#dialogContainer')))
+            .clickOutsideToClose(true)
+            .title('NextBook')
+            .textContent('Registro Eliminado Correctamente')
+            .ariaLabel('Registro Eliminado Correctamente')
+            .ok('Ok!')
+            .openFrom('#left')
+         );
+      }
+  });
+}
+
+});

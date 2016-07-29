@@ -6,15 +6,19 @@
       <md-icon>error_outline</md-icon>
       <span>&nbsp; {{error}}</span>
     </p>
-    <form name="authorize.form" ng-submit="ctrl.authorizeUser()">
+    <form name="deleteform" ng-submit="ctrl.authorizeUser()">
       <md-input-container layout="row">
         <label>Password</label>
-        <input name="secret" type="password" ng-model="authorize.secret" required>
+        <input name="clave_actual" type="password" ng-model="clave_actual" required pw-actual-check>
+        <br>
+        <div ng-messages="deleteform.clave_actual.$error" ng-show="deleteform.clave_actual.$error.pwactualmatch">
+            <div ng-message="pwactualmatch" class="my-message">Contraseña erronea</div>
+        </div>
       </md-input-container>
     </form>
   </md-dialog-content>
   <div class="md-actions">
-    <md-button class="md-primary" ng-click="ctrl.authorizeUser()">Eliminar</md-button>
+    <md-button class="md-raised md-primary" ng-click="deleteProveedor()" ng-disabled="deleteform.$invalid">Eliminar</md-button>
     <md-button class="md-primary" ng-click="ctrl.cancel()">Cerrar</md-button>
   </div>
 </md-dialog>

@@ -433,10 +433,10 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     //----------------------- fin
     // ------------------------------------------------ update proveedores
       this.update_proveedor=function() {
-        return $resource(this.server().appnext()+'public/addProveedor', {}
+        return $resource(this.server().appnext()+'public/updateProveedor', {}
         , {
-            get: {
-                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+            set: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token
                 }
@@ -447,10 +447,10 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     //----------------------- fin
     // ------------------------------------------------ delete proveedores
       this.delete_proveedor=function() {
-        return $resource(this.server().appnext()+'public/addProveedor', {}
+        return $resource(this.server().appnext()+'public/deleteProveedor', {}
         , {
-            get: {
-                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+            delete: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token
                 }

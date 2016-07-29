@@ -32,7 +32,7 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
       focusOnOpen: false,
       targetEvent: event,
       templateUrl: 'view/dashboardempresa/nomina/crear_nomina.html',
-    })
+    }).then($scope.getDesserts);
   };
 
   $scope.eddititem = function (data) {
@@ -46,7 +46,7 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
       locals: {
         items: data
       }
-    })
+    }).then($scope.getDesserts);
   };
   
   $scope.deleteitem = function (data) {
@@ -61,7 +61,7 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
       locals: {
         items: data
       }
-    })
+    }).then($scope.getDesserts);
   };
   
   $scope.getDesserts = function () {

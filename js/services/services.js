@@ -247,6 +247,22 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         );
     }
     ;
+
+    // guardar nomina
+    this.delete_nomina=function() {
+        return $resource(this.server().appnext()+'public/deleteNomina', {}
+        , {
+            delete: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        }
+        );
+    }
+    ;
     // ------------------- fin
     // guardar nomina
     this.get_nomina=function() {

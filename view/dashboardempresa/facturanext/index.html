@@ -1,39 +1,85 @@
-<md-content layout-padding layout-wrap>
-    <section class="margin-top-no">
-        <nav class="tab-nav ui-tab">
-            <ul class="nav nav-justified">
-                <li ng-class="{active: ('dashboard.facturanext.inicio' | routeSegmentStartsWith)}">
-                    <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.facturanext.inicio' | routeSegmentUrl}}">
-                        <i class="material-icons">home</i> Inicio
-                    </a>
-                </li>
-                <li ng-class="{active: ('dashboard.facturanext.misfacturas' | routeSegmentStartsWith)}">
-                    <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.facturanext.misfacturas' | routeSegmentUrl}}">
-                        <i class="material-icons">assignment</i> Mis Facturas
-                    </a>
-                </li>
-                <li ng-class="{active: ('dashboard.facturanext.subirfactura' | routeSegmentStartsWith)}">
-                    <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.facturanext.subirfactura' | routeSegmentUrl}}">
-                        <i class="material-icons">cloud_upload</i> Subir Fac. Electrónica
-                    </a>
-                </li>   
-                <li ng-class="{active: ('dashboard.facturanext.facturasrechasadas' | routeSegmentStartsWith)}">
-                    <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.facturanext.facturasrechasadas' | routeSegmentUrl}}">
-                        <i class="material-icons">speaker_notes_off</i> Fac. Rechazadas
-                    </a>
-                </li>                         
-                <li ng-class="{active: ('dashboard.facturanext.facturasfisicas' | routeSegmentStartsWith)}">
-                    <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.facturanext.facturasfisicas' | routeSegmentUrl}}">
-                        <i class="material-icons">border_color</i> Crear Fac. Fisicas
-                    </a>
-                </li>
-                <li ng-class="{active: ('dashboard.facturanext.proveedores' | routeSegmentStartsWith)}">
-                    <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.facturanext.proveedores' | routeSegmentUrl}}">
-                        <i class="material-icons">contacts</i> Proveedores
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </section>
-    <div app-view-segment="2"></div>
-</md-content>
+<section class="content-inner">
+    <div class="col-sm-3 col-lg-2 col-md-2">
+        <!-- <md-content> -->
+            <div class="menu-content">                        
+                <ul class="nav">
+                    <li>
+                        <a class="waves-attach waves-effect" href="#/My-space/Perfil-inicio">
+                            <i class="material-icons">home</i> Inicio
+                        </a>
+                    </li>
+                    <li ng-class="{active: ('dashboard.facturanext.inicio' | routeSegmentStartsWith)}">
+                        <a class="waves-attach waves-effect" href="#/My-space/Facturanext">
+                            <i class="material-icons">assignment</i> Facturanext
+                        </a>
+                    </li>
+                    <li ng-class="{active: ('dashboard.nomina.nomina' | routeSegmentStartsWith)}">
+                        <a class="waves-attach waves-effect" href="#/My-space/NominaAdmin/Nomina">
+                            <i class="material-icons">note_add</i> Nomina
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a class="waves-attach waves-effect" href="#/My-space/Perfil-inicio">
+                            <i class="material-icons">widgets</i> Apps, Colección
+                        </a>
+                    </li>
+                    <li>
+                        <a class="waves-attach waves-effect" href="#/My-space/Perfil-inicio">
+                            <i class="material-icons">account_circle</i> Perfil
+                        </a>
+                    </li>
+                    <div class="menu-logo"></div>
+                    <li>
+                        <a class="waves-attach waves-effect " href="#/My-space/Perfil-inicio">
+
+                            PERSONAS
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        <!-- </md-content> -->
+    </div>
+    <div class="col-lg-8 col-md-8 col-md-8">
+        <md-content layout-padding layout-wrap >       
+            <section class="margin-top-no">
+                <nav class="tab-nav  ui-tab">
+                    <ul class="nav nav-justified">
+                        <li ng-class="{active: ('dashboard.facturanext.inicio' | routeSegmentStartsWith)}">
+                            <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.facturanext.inicio' | routeSegmentUrl}}">
+                                <i class="material-icons">home</i> Inicio
+                            </a>
+                        </li>
+                        <li ng-class="{active: ('dashboard.facturanext.misfacturas' | routeSegmentStartsWith)}">
+                            <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.facturanext.misfacturas' | routeSegmentUrl}}">
+                                <i class="material-icons">assignment</i> Mis Facturas
+                            </a>
+                        </li>
+                        <li ng-class="{active: ('dashboard.facturanext.subirfactura' | routeSegmentStartsWith)}">
+                            <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.facturanext.subirfactura' | routeSegmentUrl}}">
+                                <i class="material-icons">cloud_upload</i> Subir Fac. Electrónica
+                            </a>
+                        </li>   
+                        <li ng-class="{active: ('dashboard.facturanext.facturasrechasadas' | routeSegmentStartsWith)}">
+                            <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.facturanext.facturasrechasadas' | routeSegmentUrl}}">
+                                <i class="material-icons">speaker_notes_off</i> Fac. Rechazadas
+                            </a>
+                        </li>                         
+                        <li ng-class="{active: ('dashboard.facturanext.facturasfisicas' | routeSegmentStartsWith)}">
+                            <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.facturanext.facturasfisicas' | routeSegmentUrl}}">
+                                <i class="material-icons">border_color</i> Crear Fac. Fisicas
+                            </a>
+                        </li>
+                        <li ng-class="{active: ('dashboard.facturanext.proveedores' | routeSegmentStartsWith)}">
+                            <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.facturanext.proveedores' | routeSegmentUrl}}">
+                                <i class="material-icons">contacts</i> Proveedores
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+            <div app-view-segment="2"></div>
+        </md-content>
+    </div>
+</section

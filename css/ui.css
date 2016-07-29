@@ -1,3 +1,95 @@
+/* ---------------------------------------------------------Inicio perfil---------------------------------------------------------------*/
+
+.nav-perfil-2-1 {
+        position: relative;
+        bottom: 72px;
+    }
+.topping{
+    position: relative;
+    top: 60px;
+}
+
+.nav-perfil-2{
+    position: absolute;
+}
+.site-name {
+    color: #fff;
+    font-size: 2em;
+    position: relative;
+    bottom: 63px;
+    left: 190px;
+}
+.site-description {
+    color: #fff;
+    font-size: 1.3em;
+    position: relative;
+    bottom: 42px;
+    left: -94px;
+}
+#header {
+    border: 1px solid #ddd;
+    /*margin-bottom: 20px;*/
+}
+.navbar {
+    border-radius: 0;
+    margin-bottom: 0;
+    border: none;
+    background: #303;
+}
+.navbar-brand {
+    width: 160px;
+    height: 160px;
+    float: left;
+    padding: 0;
+    /* margin-top: -110px; */
+    overflow: hidden;
+    border: 3px solid #eee;
+    margin-left: 15px;
+    background: #333;
+    text-align: center;
+    line-height: 160px;
+    color: #fff !important;
+    font-size: 2em;
+    position: absolute;
+    bottom: 12px;
+    cursor: pointer;
+}
+.main-menu {
+    position: absolute;
+    left: 190px;
+}
+.slider,
+.carousel {
+    max-height: 300px;
+    overflow: hidden;
+}
+.article .panel-heading,
+.article .panel-footer {
+    background-color: transparent;
+}
+.article .panel-heading h3 {
+    font-size: 2em;
+}
+
+/* ==============================================================FIN perfil==========================================================*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .container2 {
     top: 100px;
     position: relative;

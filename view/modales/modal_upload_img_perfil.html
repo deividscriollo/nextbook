@@ -8,23 +8,32 @@
             <div class="modal-inner">
               <style>
   .cropArea {
-  background: #E4E4E4;
+  border-style: dotted;
+      border-width: 1px; 
+    border-color: 660033; 
   overflow: hidden;
   width:400px;
   height:250px;
 }
-
+.punteado{ 
+  border-style: dotted; 
+    border-width: 1px; 
+    border-color: 660033; 
+    background-color: cc3366; 
+    font-family: verdana, arial; 
+    font-size: 10pt; 
+} 
   </style>
   <div class="col-lg-12">
                     <div class="col-lg-5">
                           <input type="file" on-read-file data-method="ctrlFn"/>
                         <div class="cropArea">
-                            <img-crop image="myImage" width="500px" result-image="myCroppedImage"></img-crop>
+                            <img-crop image="myImage" width="500px" result-image="myCroppedImage" area-type="square" result-image-size="1000"></img-crop>
                         </div>
                     </div>
                     <div class="col-lg-2">
                         <div>Miñatura</div>
-                        <div><img ng-src="{{myCroppedImage}}" /></div>
+                        <div class="punteado"><img ng-src="{{myCroppedImage}}" ng-style="estilo" /></div>
                     </div>
                 </div>
             </div>

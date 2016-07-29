@@ -251,3 +251,162 @@ app.controller('facturasrechasadas', function($mdDialog, $nutrition, $scope, ser
     $scope.getDesserts();
   });
 });
+
+app.controller('proveedoresCtrl', function($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q) {
+
+  var bookmark;
+  
+  $scope.selected = [];
+  
+  $scope.filter = {
+    options: {
+      debounce: 500
+    }
+  };
+
+  $scope.query = {
+    filter: '',
+    num_registros: 5,
+    pagina_actual:1,
+    limit: '5',
+    page_num: 1
+  };
+  
+  function success(desserts) {
+    $scope.desserts = desserts.respuesta;
+  }
+  
+  $scope.addititem = function (event) {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'admin_ProveedorCtrl',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      templateUrl: 'view/dashboardempresa/proveedores/add.html',
+      clickOutsideToClose:true,
+    }).then($scope.getDesserts);
+  };
+
+  $scope.eddititem = function (event,data) {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'admin_ProveedorCtrl',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      templateUrl: 'view/dashboardempresa/proveedores/update.html',
+      clickOutsideToClose:true,
+      locals: { dessert: data },
+    })
+  };
+  
+  $scope.delete = function (event) {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'admin_ProveedorCtrl',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      locals: { desserts: $scope.selected },
+      templateUrl: 'view/dashboardempresa/proveedores/delete.html',
+    }).then($scope.getDesserts);
+  };
+  
+  $scope.getDesserts = function () {
+    $scope.promise = servicios.get_proveedores().get($scope.query,success).$promise;
+  };
+  
+  $scope.removeFilter = function () {
+    $scope.filter.show = false;
+    $scope.query.filter = '';
+    
+    if($scope.filter.form.$dirty) {
+      $scope.filter.form.$setPristine();
+    }
+  };
+  'use strict';
+  
+  var bookmark;
+  
+  $scope.selected = [];
+  
+  $scope.filter = {
+    options: {
+      debounce: 500
+    }
+  };
+
+  $scope.query = {
+    filter: '',
+    num_registros: 5,
+    pagina_actual:1,
+    limit: '5',
+    // order: 'nameToLower',
+    page_num: 1
+  };
+  
+  // $scope.delete = function (event) {
+  //   $mdDialog.show({
+  //     clickOutsideToClose: true,
+  //     controller: 'deleteController',
+  //     controllerAs: 'ctrl',
+  //     focusOnOpen: false,
+  //     targetEvent: event,
+  //     locals: { desserts: $scope.selected },
+  //     templateUrl: 'view/tabladata/delete.html',
+  //   }).then($scope.getDesserts);
+  // };
+  
+   $scope.removeFilter = function () {
+    $scope.filter.show = false;
+    $scope.query.filter = '';
+    
+    if($scope.filter.form.$dirty) {
+      $scope.filter.form.$setPristine();
+    }
+  };
+
+  $scope.loadStuff = function () {
+    $scope.promise = $timeout(function () {
+
+    }, 2000);
+  };
+  
+  $scope.$watch('query.filter', function (newValue, oldValue) {
+    if(!oldValue) {
+      bookmark = $scope.query.page_num;
+    }
+    
+    if(newValue !== oldValue) {
+      $scope.query.page_num = 1;
+    }
+    
+    if(!newValue) {
+      $scope.query.page_num = bookmark;
+    }    
+    $scope.getDesserts();
+  });
+});
+
+app.controller('admin_ProveedorCtrl', function($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q) {
+console.log('add edit delete Proveedor');
+this.cancel = $mdDialog.cancel;
+
+$scope.add_proveedor=function(){
+console.log($scope.data);
+};
+
+console.log('add edit delete Proveedor');
+// $scope.load_datos=function(obj){
+// console.log(obj);
+// };
+
+$scope.update_proveedor=function(){
+console.log($scope.data);
+};
+$scope.delete_proveedor=function(){
+console.log($scope.data);
+};
+
+  });

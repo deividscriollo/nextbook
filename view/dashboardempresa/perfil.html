@@ -1,145 +1,121 @@
-<seccion id="header">
-    <div class="slider">
-	    <a href="javascript:void(0)" ng-click="show_listaimg_modal('portada')">
-	      <img src="{{imgPortada}}">
-        </a>
-    </div>
-    <!--slider-->
-    <nav class="nav-perfil-2">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-brand" ng-click="show_listaimg_modal('perfil')">
-        	<img class="img-responsive" src="{{imgPerfil}}">
-        </div>
-        <span class="site-name">{{localStorage.nombre_comercial}}</span>
-        <span class="site-description">{{datosPersona.nombres_apellidos}}</span>
-    </nav>
-    <nav class="tab-nav pull-right nav-perfil-2-1">
-        <ul class="nav nav-list">
-            <li class="dropdown margin-right">
-                <a class="dropdown-toggle padding-left-no padding-right-no waves-effect" data-toggle="dropdown">
-                    <span class="access-hide">John Smith</span>
-                    <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="{{imgPerfil}}"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
+<section class="content-inner">
+    <div class="col-sm-3 col-lg-2 col-md-2">
+        <!-- <md-content> -->
+            <div class="menu-content">                        
+                <ul class="nav">
                     <li>
-                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_listaimg_modal()"><span class="icon icon-lg margin-right">account_box</span>Seleccionar Imagen</a>
+                        <a class="waves-attach waves-effect" href="#/My-space/Perfil-inicio">
+                            <i class="material-icons">home</i> Inicio
+                        </a>
+                    </li>
+                    <li ng-class="{active: ('dashboard.facturanext.inicio' | routeSegmentStartsWith)}">
+                        <a class="waves-attach waves-effect" href="#/My-space/Facturanext">
+                            <i class="material-icons">assignment</i> Facturanext
+                        </a>
+                    </li>
+                    <li ng-class="{active: ('dashboard.nomina.nomina' | routeSegmentStartsWith)}">
+                        <a class="waves-attach waves-effect" href="#/My-space/NominaAdmin/Nomina">
+                            <i class="material-icons">note_add</i> Nomina
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a class="waves-attach waves-effect" href="#/My-space/Perfil-inicio">
+                            <i class="material-icons">widgets</i> Apps, Colección
+                        </a>
                     </li>
                     <li>
-                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal('perfil')"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Imagen</a>
+                        <a class="waves-attach waves-effect" href="#/My-space/Perfil-inicio">
+                            <i class="material-icons">account_circle</i> Perfil
+                        </a>
                     </li>
+                    <div class="menu-logo"></div>
                     <li>
-                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal('portada')"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Portada</a>
-                    </li>
-                    <li>
-                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="active">
-                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.inicio' | routeSegmentUrl}}">
-                    <span class="text-white">Perfil</span>
-                </a>
-            </li>
-            <li>
-                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.apps' | routeSegmentUrl}}">
-                    <span class="text-white ">Apps</span>
-                </a>
-            </li>
-            <li>
-                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.maps' | routeSegmentUrl}}">
-                	<span class="text-white">Maps</span>
-                </a>
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle text-black waves-attach waves-effect" data-toggle="dropdown"><span class="icon">more_vert</span></a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li>
-                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_listaimg_modal()"><span class="icon icon-lg margin-right">account_box</span>Seleccionar Imagen</a>
-                    </li>
-                    <li>
-                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal()"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Imagen</a>
-                    </li>
-                    <li>
-                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>					    
-</seccion>
+                        <a class="waves-attach waves-effect " href="#/My-space/Perfil-inicio">
 
-<section>
-<div app-view-segment="2"></div>
+                            PERSONAS
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        <!-- </md-content> -->
+    </div>
+    <div class="col-lg-8 col-md-8 col-md-8">
+        <md-content>
+            <seccion id="header">
+			    <div class="slider">
+				    <a href="javascript:void(0)" ng-click="show_listaimg_modal('portada')">
+				      <img src="{{imgPortada}}">
+			        </a>
+			    </div>
+			    <!--slider-->
+			    <nav class="nav-perfil-2">
+			        <!-- Brand and toggle get grouped for better mobile display -->
+			        <div class="navbar-brand" ng-click="show_listaimg_modal('perfil')">
+			        	<img class="img-responsive" src="{{imgPerfil}}">
+			        </div>
+			        <span class="site-name">{{localStorage.nombre_comercial}}</span>
+			        <span class="site-description">{{datosPersona.nombres_apellidos}}</span>
+			    </nav>
+			    <nav class="tab-nav pull-right nav-perfil-2-1">
+			        <ul class="nav nav-list">
+			            <li class="dropdown margin-right">
+			                <a class="dropdown-toggle padding-left-no padding-right-no waves-effect" data-toggle="dropdown">
+			                    <span class="access-hide">John Smith</span>
+			                    <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" src="{{imgPerfil}}"></span>
+			                </a>
+			                <ul class="dropdown-menu dropdown-menu-right">
+			                    <li>
+			                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_listaimg_modal()"><span class="icon icon-lg margin-right">account_box</span>Seleccionar Imagen</a>
+			                    </li>
+			                    <li>
+			                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal('perfil')"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Imagen</a>
+			                    </li>
+			                    <li>
+			                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal('portada')"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Portada</a>
+			                    </li>
+			                    <li>
+			                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
+			                    </li>
+			                </ul>
+			            </li>
+			            <li class="active">
+			                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.inicio' | routeSegmentUrl}}">
+			                    <span class="text-white">Perfil</span>
+			                </a>
+			            </li>
+			            <li>
+			                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.apps' | routeSegmentUrl}}">
+			                    <span class="text-white ">Apps</span>
+			                </a>
+			            </li>
+			            <li>
+			                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.maps' | routeSegmentUrl}}">
+			                	<span class="text-white">Maps</span>
+			                </a>
+			            </li>
+			            <li class="dropdown">
+			                <a class="dropdown-toggle text-black waves-attach waves-effect" data-toggle="dropdown"><span class="icon">more_vert</span></a>
+			                <ul class="dropdown-menu dropdown-menu-right">
+			                    <li>
+			                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_listaimg_modal()"><span class="icon icon-lg margin-right">account_box</span>Seleccionar Imagen</a>
+			                    </li>
+			                    <li>
+			                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal()"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Imagen</a>
+			                    </li>
+			                    <li>
+			                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
+			                    </li>
+			                </ul>
+			            </li>
+			        </ul>
+			    </nav>					    
+			</seccion>
+
+			<section>
+				<div app-view-segment="2"></div>
+			</section>
+        </md-content>            
+    </div>
 </section>
-<style type="text/css">
-	.nav-perfil-2-1 {
-	    position: relative;
-	    bottom: 72px;
-	}
-	.topping{
-		position: relative;
-		top: 60px;
-	}
-	
-	.nav-perfil-2{
-		position: absolute;
-	}
-	.site-name {
-	    color: #fff;
-	    font-size: 2em;
-	    position: relative;
-	    bottom: 63px;
-	    left: 190px;
-	}
-	.site-description {
-	    color: #fff;
-	    font-size: 1.3em;
-	    position: relative;
-	    bottom: 42px;
-	    left: -94px;
-	}
-	#header {
-	    border: 1px solid #ddd;
-	    /*margin-bottom: 20px;*/
-	}
-	.navbar {
-	    border-radius: 0;
-	    margin-bottom: 0;
-	    border: none;
-	    background: #303;
-	}
-	.navbar-brand {
-	    width: 160px;
-	    height: 160px;
-	    float: left;
-	    padding: 0;
-	    /* margin-top: -110px; */
-	    overflow: hidden;
-	    border: 3px solid #eee;
-	    margin-left: 15px;
-	    background: #333;
-	    text-align: center;
-	    line-height: 160px;
-	    color: #fff !important;
-	    font-size: 2em;
-	    position: absolute;
-	    bottom: 12px;
-	    cursor: pointer;
-	}
-	.main-menu {
-	    position: absolute;
-	    left: 190px;
-	}
-	.slider,
-	.carousel {
-	    max-height: 300px;
-	    overflow: hidden;
-	}
-	.article .panel-heading,
-	.article .panel-footer {
-	    background-color: transparent;
-	}
-	.article .panel-heading h3 {
-	    font-size: 2em;
-	}
-</style>

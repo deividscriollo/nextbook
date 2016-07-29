@@ -1,20 +1,37 @@
-<md-dialog delete-dialog>
-  <md-dialog-content class="md-dialog-content">
-    <h2 class="md-title">Eliminar Nómina</h2>
-    <p>Por favor, Ingrese nuevamente su contraseña para eliminar el registro.</p>
-    <p class="md-warn" ng-if="error" layout="row" layout-align="start center">
-      <md-icon>error_outline</md-icon>
-      <span>&nbsp; {{error}}</span>
-    </p>
-    <form name="authorize.form" ng-submit="ctrl.authorizeUser()">
-      <md-input-container layout="row">
-        <label>Password</label>
-        <input name="secret" type="password" ng-model="authorize.secret" required>
-      </md-input-container>
+<md-dialog>
+    <form name="deleteform" id="deleteform">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Eliminar Nómina</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="md-dialog-content">
+          <p>Por favor, Ingrese nuevamente su contraseña para eliminar el registro.</p>
+          <form name="deleteform" id="deleteform">
+            <md-input-container class="ng-hide" flex-gt-xs >
+                <label>Id Empresa:</label>
+                <input type="text" name="id" ng-model="data.id" />
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs >
+                <label>Password</label>
+                <input type="password" required name="clave_actual" ng-model="data.clave_actual" pw-actual-check />
+                <div ng-messages="deleteform.clave_actual.$error" ng-show="deleteform.clave_actual.$error.pwactualmatch">
+                  <div ng-message="pwactualmatch" class="my-message">Contraseña erronea</div>
+                </div>
+            </md-input-container>
+          </form>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" type="submit" ng-click="eliminar_nomina()" ng-disabled="deleteform.$invalid">
+              Eliminar
+            </md-button>
+        </md-dialog-actions>
     </form>
-  </md-dialog-content>
-  <div class="md-actions">
-    <md-button class="md-primary" ng-click="ctrl.authorizeUser()">Eliminar</md-button>
-    <md-button class="md-primary" ng-click="ctrl.cancel()">Cerrar</md-button>
-  </div>
 </md-dialog>

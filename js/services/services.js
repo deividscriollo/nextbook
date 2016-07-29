@@ -249,6 +249,21 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     ;
     // ------------------- fin
     // guardar nomina
+    this.delete_nomina=function() {
+        return $resource(this.server().appnext()+'public/deleteNomina', {}
+        , {
+            delete: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        }
+        );
+    }
+    ;
+    // ------------------- fin
+    // guardar nomina
     this.get_nomina=function() {
         return $resource(this.server().appnext()+'public/getNomina', {}
         , {
@@ -401,7 +416,21 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    }    ; 
+    }    ;
+
+    this.get_nomina=function() {
+        return $resource(this.server().appnext()+'public/getNomina', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token,
+                    codigo: $localStorage.sucursal.codigo
+                }
+            }
+        }
+        );
+    }    ;  
 });
 // --------------------
 // app.service('localizacion', function(servicios) {

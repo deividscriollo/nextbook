@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios, $timeout, $mdEditDialog, $q, $localStorage) {
+app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q, $localStorage) {
 
   var bookmark;
   $scope.status = '';
@@ -32,30 +32,24 @@ app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios,
       focusOnOpen: false,
       targetEvent: event,
       templateUrl: 'view/dashboardempresa/nomina/crear_nomina.html',
-      clickOutsideToClose:true,
-    }).then($scope.getDesserts);
+    })
   };
-
-  function searchdata(id, data){
-
-  }
 
   $scope.eddititem = function (data) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'edit-item-Ctrl',
+      controller: 'editItemController',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
       templateUrl: 'view/dashboardempresa/nomina/modificar_nomina.html',
-      clickOutsideToClose:true,
       locals: {
-           items: data
-         }
-    }).then($scope.getDesserts);
+        items: data
+      }
+    })
   };
   
-  $scope.deleteitem = function (event) {
+  $scope.deleteitem = function (data) {
     $mdDialog.show({
       clickOutsideToClose: true,
       controller: 'deleteController',
@@ -63,53 +57,15 @@ app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios,
       focusOnOpen: false,
       targetEvent: event,
       locals: {desserts: $scope.selected},
-      // templateUrl: 'view/tabladata/delete.html',
       templateUrl: 'view/dashboardempresa/nomina/eliminar_nomina.html',
-    }).then($scope.getDesserts);
-    console.log({desserts: $scope.selected});
+      locals: {
+        items: data
+      }
+    })
   };
   
   $scope.getDesserts = function () {
-    $scope.promise = $nutrition.get($scope.query, success).$promise;
-  };
-  
-  $scope.removeFilter = function () {
-    $scope.filter.show = false;
-    $scope.query.filter = '';
-    
-    if($scope.filter.form.$dirty) {
-      $scope.filter.form.$setPristine();
-    }
-  };
-  'use strict';
-  
-  var bookmark;
-  
-  $scope.selected = [];
-  
-  $scope.filter = {
-    options: {
-      debounce: 500
-    }
-  };
-
-  $scope.query = {
-    filter: '',
-    num_registros: 5,
-    pagina_actual:1,
-    limit: '5',
-    // order: 'nameToLower',
-    page_num: 1
-  };
-  
-  function success(desserts) {
-    $scope.desserts = desserts.respuesta;
-    console.log(desserts.respuesta);
-  }
-  
-  
-  $scope.getDesserts = function () {
-    $scope.promise = $nutrition.get($scope.query, success).$promise;
+    $scope.promise = servicios.get_nomina().get($scope.query, success).$promise;
   };
   
   $scope.removeFilter = function () {
@@ -121,12 +77,6 @@ app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios,
     }
   };
 
-  $scope.loadStuff = function () {
-    $scope.promise = $timeout(function () {
-
-    }, 2000);
-  };
-  
   $scope.$watch('query.filter', function (newValue, oldValue) {
     if(!oldValue) {
       bookmark = $scope.query.page_num;
@@ -141,43 +91,42 @@ app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios,
     }    
     $scope.getDesserts();
   });
+
+  $scope.loadStuff = function () {
+    $scope.promise = $timeout(function () {
+
+    }, 2000);
+  };
 });
 
-app.controller('deleteController', function ($authorize, desserts, $mdDialog, $nutrition, $scope, $q, servicios) {
-  'use strict';
+app.controller('deleteController', function ($mdDialog, $scope, $q, servicios, $timeout, items, $localStorage) { 
+  $scope.data = {}; 
+  $scope.data.id = items.id;
   
   this.cancel = $mdDialog.cancel;
-  
-  // function deleteDessert(dessert, index) {
-  //   var deferred = $nutrition.desserts.remove({id: dessert._id});
-    
-  //   deferred.$promise.then(function () {
-  //     desserts.splice(index, 1);
-  //   });
-    
-  //   return deferred.$promise;
-  // }
-  
-  // function onComplete() {
-  //   $mdDialog.hide();
-  // }
-  
-  // function error() {
-  //   $scope.error = 'Invalid secret.';
-  // }
-  
-  // function success() {
-  //   $q.all(desserts.forEach(deleteDessert)).then(onComplete);
-  // }
-  
-  // this.authorizeUser = function () {
-  //   $authorize.get({secret: $scope.authorize.secret}, success, error);
-  // };
+  $scope.eliminar_nomina = function() {
+    servicios.delete_nomina().delete($scope.data).$promise.then(function(data) {
+      if(data.respuesta == true) {
+          $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#dialogContainer')))
+            .clickOutsideToClose(true)
+            .title('NextBook')
+            .textContent('Registro Eliminado Correctamente')
+            .ariaLabel('Registro Eliminado Correctamente')
+            .ok('Ok!')
+            .openFrom('#left')
+         );
+      }
+    }); 
+  } 
 });
 
-app.controller('addItemController', function ($mdDialog, $scope, $localStorage, servicios, $timeout, $localStorage) {
-  this.cancel = $mdDialog.cancel 
+app.controller('addItemController', function ($mdDialog, $scope, servicios, $timeout, $localStorage) {
+  $scope.data = {}; 
+  $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal; 
   
+  this.cancel = $mdDialog.cancel
   $scope.guardar_nomina = function() {
     servicios.add_nomina().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
@@ -196,46 +145,32 @@ app.controller('addItemController', function ($mdDialog, $scope, $localStorage, 
   }  
 });
 
-app.controller('edit-item-Ctrl', function ($mdDialog, $scope, $localStorage, servicios, $timeout, $localStorage, items) {
-  console.log();
-  $scope.data = items;
+app.controller('editItemController', function ($mdDialog, $scope, $localStorage, servicios, $timeout, items) {
+  $scope.data = {}; 
+
+  $scope.data.id = items.id;
+  $scope.data.periodicidad = items.periodicidad;
+  $scope.data.descripcion = items.descripcion;
+  $scope.data.registro_patronal = items.registro_patronal;
+  $scope.data.dias = items.dias;
+  $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal;
+  // $scope.data.fecha_inicio = parseDate(items.fecha_inicio);
+
   this.cancel = $mdDialog.cancel 
-  // $scope.modificar_nomina = function($event) {
-  //   servicios.edit_nomina().edit($scope.data).$promise.then(function(data) {
-  //     if(data.respuesta == true) {
-  //         $mdDialog.show(
-  //           $mdDialog.alert()
-  //           .parent(angular.element(document.querySelector('#dialogContainer')))
-  //           .clickOutsideToClose(true)
-  //           .title('NextBook')
-  //           .textContent('Registro Modificado Correctamente')
-  //           .ariaLabel('Registro Modificado Correctamente')
-  //           .ok('Ok!')
-  //           .openFrom('#left')
-  //        );
-  //     }
-  //   }); 
-  // }
-});
-
-
-
-app.factory('$authorize', ['$resource', function ($resource) {
-  'use strict';
-  return $resource('https://infinite-earth-4803.herokuapp.com/authorize/:secret');
-}]);
-
-app.factory('$nutrition', function ($resource, $localStorage, servicios) {
-  'use strict';
-  var url_server = servicios.server().appnext();
-  return $resource(url_server+'public/getNomina', {}
-    ,{
-      get: {
-          method: 'GET', isArray: false, // responseType:'arraybuffer', 
-          params: {
-              token: $localStorage.token,
-              codigo: $localStorage.sucursal.codigo
-          }
+  $scope.modificar_nomina = function($event) {
+    servicios.edit_nomina().edit($scope.data).$promise.then(function(data) {
+      if(data.respuesta == true) {
+          $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#dialogContainer')))
+            .clickOutsideToClose(true)
+            .title('NextBook')
+            .textContent('Registro Modificado Correctamente')
+            .ariaLabel('Registro Modificado Correctamente')
+            .ok('Ok!')
+            .openFrom('#left')
+         );
       }
-  });
+    }); 
+  }
 });

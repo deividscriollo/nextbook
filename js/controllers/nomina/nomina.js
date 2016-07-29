@@ -43,7 +43,7 @@ app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios,
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      templateUrl: 'view/dashboardempresa/nomina/crear_nomina.html',
+      templateUrl: 'view/dashboardempresa/nomina/modificar_nomina.html',
       clickOutsideToClose:true,
     }).then($scope.getDesserts);
   };

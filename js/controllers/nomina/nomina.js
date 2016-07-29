@@ -55,9 +55,11 @@ app.controller('nominaCtrl', function ($mdDialog, $nutrition, $scope, servicios,
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      locals: { desserts: $scope.selected },
-      templateUrl: 'view/tabladata/delete.html',
+      locals: {desserts: $scope.selected},
+      // templateUrl: 'view/tabladata/delete.html',
+      templateUrl: 'view/dashboardempresa/nomina/eliminar_nomina.html',
     }).then($scope.getDesserts);
+    console.log({desserts: $scope.selected});
   };
   
   $scope.getDesserts = function () {

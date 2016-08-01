@@ -98,30 +98,6 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
     }, 2000);
   };
 });
-
-app.controller('deleteController', function ($mdDialog, $scope, $q, servicios, $timeout, items, $localStorage) { 
-  $scope.data = {}; 
-  $scope.data.id = items.id;
-  
-  this.cancel = $mdDialog.cancel;
-  $scope.eliminar_nomina = function() {
-    servicios.delete_nomina().delete($scope.data).$promise.then(function(data) {
-      if(data.respuesta == true) {
-          $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#dialogContainer')))
-            .clickOutsideToClose(true)
-            .title('NextBook')
-            .textContent('Registro Eliminado Correctamente')
-            .ariaLabel('Registro Eliminado Correctamente')
-            .ok('Ok!')
-            .openFrom('#left')
-         );
-      }
-    }); 
-  } 
-});
-
 app.controller('addItemController', function ($mdDialog, $scope, servicios, $timeout, $localStorage) {
   $scope.data = {}; 
   $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal; 
@@ -153,8 +129,17 @@ app.controller('editItemController', function ($mdDialog, $scope, $localStorage,
   $scope.data.descripcion = items.descripcion;
   $scope.data.registro_patronal = items.registro_patronal;
   $scope.data.dias = items.dias;
-  $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal;
-  // $scope.data.fecha_inicio = parseDate(items.fecha_inicio);
+  if ($localStorage.sucursal.sucursal == "") {
+      $scope.data.sucursal_nombre = "Principal";
+  } else {
+      $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal;
+  }
+
+
+  console.log(new Date(items.fecha_inicio));
+  $scope.data.fecha_inicio = new Date(items.fecha_inicio);
+  
+
 
   this.cancel = $mdDialog.cancel 
   $scope.modificar_nomina = function($event) {
@@ -173,4 +158,27 @@ app.controller('editItemController', function ($mdDialog, $scope, $localStorage,
       }
     }); 
   }
+});
+
+app.controller('deleteController', function ($mdDialog, $scope, $q, servicios, $timeout, items, $localStorage) { 
+  $scope.data = {}; 
+  $scope.data.id = items.id;
+  
+  this.cancel = $mdDialog.cancel;
+  $scope.eliminar_nomina = function() {
+    servicios.delete_nomina().delete($scope.data).$promise.then(function(data) {
+      if(data.respuesta == true) {
+          $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#dialogContainer')))
+            .clickOutsideToClose(true)
+            .title('NextBook')
+            .textContent('Registro Eliminado Correctamente')
+            .ariaLabel('Registro Eliminado Correctamente')
+            .ok('Ok!')
+            .openFrom('#left')
+         );
+      }
+    }); 
+  } 
 });

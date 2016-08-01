@@ -13,8 +13,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    }
-    ;
+    };
     this.server=function() {
         return {
             appserviosnext: function() {
@@ -82,7 +81,8 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    };
+    }
+    ;
     // ----------------------------------------- set imagen portada ----------------------------
     this.set_img_portada=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
@@ -96,7 +96,8 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    };
+    }
+    ;
     // ----------------------------------------- Add imagen perfil ----------------------------
     this.add_img_perfil=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
@@ -125,8 +126,9 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    };
-      // ----------------------------------------- Add imagen de POrtada ----------------------------
+    }
+    ;
+    // ----------------------------------------- Add imagen de POrtada ----------------------------
     this.get_img_portada=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
         return $resource(this.server().appnext()+'public/getImgPortada', {}
@@ -139,7 +141,8 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    };
+    }
+    ;
     // ----------------------------------------- Verificar contraseña ----------------------------
     this.verificar_pass=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
@@ -222,8 +225,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             save: {
                 method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
-                    token: $localStorage.token,
-                    sucursal: $localStorage.sucursal.codigo
+                    token: $localStorage.token, sucursal: $localStorage.sucursal.codigo
                 }
             }
         }
@@ -231,7 +233,6 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     }
     ;
     // ------------------- fin
-
     // guardar nomina
     this.edit_nomina=function() {
         return $resource(this.server().appnext()+'public/updateNomina', {}
@@ -239,8 +240,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             edit: {
                 method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
-                    token: $localStorage.token,
-                    sucursal: $localStorage.sucursal.codigo
+                    token: $localStorage.token, sucursal: $localStorage.sucursal.codigo
                 }
             }
         }
@@ -387,10 +387,11 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    }    ;
+    }
+    ;
     // ------------------- fin
     // ------------------------------------------------
-      this.get_provincias=function() {
+    this.get_provincias=function() {
         return $resource(this.server().appnext()+'public/getProvincias', {}
         , {
             get: {
@@ -401,10 +402,11 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    }; 
-// ------------------------------------------------------------------- PROVEEDORES
-     // ------------------------------------------------ get proveedores
-      this.get_proveedores=function() {
+    }
+    ;
+    // ------------------------------------------------------------------- PROVEEDORES
+    // ------------------------------------------------ get proveedores
+    this.get_proveedores=function() {
         return $resource(this.server().appnext()+'public/getProveedores', {}
         , {
             get: {
@@ -415,10 +417,11 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    }; 
+    }
+    ;
     //----------------------- fin
     // ------------------------------------------------ add proveedores
-      this.add_proveedor=function() {
+    this.add_proveedor=function() {
         return $resource(this.server().appnext()+'public/addProveedor', {}
         , {
             get: {
@@ -429,10 +432,11 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    }; 
+    }
+    ;
     //----------------------- fin
     // ------------------------------------------------ update proveedores
-      this.update_proveedor=function() {
+    this.update_proveedor=function() {
         return $resource(this.server().appnext()+'public/updateProveedor', {}
         , {
             set: {
@@ -443,10 +447,11 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    }; 
+    }
+    ;
     //----------------------- fin
     // ------------------------------------------------ delete proveedores
-      this.delete_proveedor=function() {
+    this.delete_proveedor=function() {
         return $resource(this.server().appnext()+'public/deleteProveedor', {}
         , {
             delete: {
@@ -457,11 +462,13 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         }
         );
-    }; 
+    }
+    ;
     //----------------------- fin ----
     //--------------------------------------------------- FIN PROVEEDORES 
+}
 
-});
+);
 // --------------------
 // app.service('localizacion', function(servicios) {
 //     this.provincia=function() {
@@ -543,8 +550,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
 app.controller('ModalController', function($scope, $rootScope, data, tipomodal, servicios, $window, $localStorage) {
     switch(tipomodal) {
         // ------------------------------------------------- MENSAJE-------------------------
-        case 'mensaje': 
-        console.log(data.error);
+        case 'mensaje': console.log(data.error);
         switch(data.error) {
             case '4': $scope.mensaje="Documento no existe en el SRI";
             break;
@@ -571,54 +577,49 @@ app.controller('ModalController', function($scope, $rootScope, data, tipomodal, 
         case 'share': $scope.fileUrl=data.source;
         break;
         // ------------------------------------------------- VISTA PREVIA-------------------------
-        case 'preview': 
-        $scope.pdfURL=servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf";
-
-                console.log($scope.pdfURL);
+        case 'preview': $scope.pdfURL=servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf";
+        console.log($scope.pdfURL);
         break;
         // ------------------------------------IMAGEN DE PERFIL ---------------------
-        case 'imgperfil': 
-        $scope.misimagenes=data.source;
+        case 'imgperfil': $scope.misimagenes=data.source;
         $scope.tipo=data.tipo;
         $scope.show_select_img=function(data) {
-             $scope.imgURL=data;
-switch ($scope.tipo){
-    case 'perfil':
-    servicios.set_img_perfil().enviar( {
-                img: $scope.imgURL
+            $scope.imgURL=data;
+            switch ($scope.tipo) {
+                case 'perfil': servicios.set_img_perfil().enviar( {
+                    img: $scope.imgURL
+                }
+                ).$promise.then(function(data) {
+                    $localStorage.imgPerfil=data.img;
+                    $rootScope.imgPerfil=data.img;
+                    $('#modal_lista_img').modal('hide');
+                    $('#modal_lista_img').remove();
+                    $('.modal-backdrop').remove();
+                }
+                );
+                break;
+                case 'portada': servicios.set_img_portada().enviar( {
+                    img: $scope.imgURL
+                }
+                ).$promise.then(function(data) {
+                    $localStorage.imgPortada=data.img;
+                    $rootScope.imgPortada=data.img;
+                    $('#modal_lista_img').modal('hide');
+                    $('#modal_lista_img').remove();
+                    $('.modal-backdrop').remove();
+                }
+                );
+                break;
             }
-            ).$promise.then(function(data) {
-                $localStorage.imgPerfil=data.img;
-                $rootScope.imgPerfil=data.img;
-                $('#modal_lista_img').modal('hide');
-                $('#modal_lista_img').remove();
-                $('.modal-backdrop').remove();
-            }
-            );
-    break;
-     case 'portada':
-     servicios.set_img_portada().enviar( {
-                img: $scope.imgURL
-            }
-            ).$promise.then(function(data) {
-                $localStorage.imgPortada=data.img;
-                $rootScope.imgPortada=data.img;
-                $('#modal_lista_img').modal('hide');
-                $('#modal_lista_img').remove();
-                $('.modal-backdrop').remove();
-            }
-            );
-    break;
-
-} 
         }
         break;
         /////////////////////////////////////////////////////////////////// SUBIR IMAGEN PORTADA Y PERFIL /////////////////////////////
-        case 'uploadimg': 
-        switch (data.source) {
-            case 'perfil':
- $scope.estilo={'width': '150%','height': '70%'};
-             $scope.myImage='';
+        case 'uploadimg': switch (data.source) {
+            case 'perfil': $scope.estilo= {
+                'width': '150%', 'height': '70%'
+            }
+            ;
+            $scope.myImage='';
             $scope.myCroppedImage='';
             $scope.ctrlFn=function(arg) {
                 $scope.myImage=arg;
@@ -640,8 +641,10 @@ switch ($scope.tipo){
             }
             break;
             //////////////////////////////////////////////////////////// PORTADA //////////////////////////////////////////////
-            case 'portada': 
-     $scope.estilo={'width': '710px','height': '267px'};
+            case 'portada': $scope.estilo= {
+                'width': '710px', 'height': '267px'
+            }
+            ;
             $scope.myImage='';
             $scope.myCroppedImage='';
             $scope.ctrlFn=function(arg) {
@@ -668,10 +671,11 @@ switch ($scope.tipo){
         // ------------------------------------SELECCIONAR CATEGORIA DE SUCURSAL ---------------------
         case 'select_categoria_sucursal': servicios.get_categorias_sucursal().get().$promise.then(function(data) {
             $scope.states=data.categorias;
-        });
+        }
+        );
         $scope.set_categoria=function() {
             servicios.set_categoria_sucursal().set( {
-                codigo: $localStorage.sucursal.codigo, categoria: $scope.categoria,descripcion: $scope.descripcion
+                codigo: $localStorage.sucursal.codigo, categoria: $scope.categoria, descripcion: $scope.descripcion
             }
             ).$promise.then(function(data) {
                 $localStorage.sucursal.categoria=$scope.categoria;

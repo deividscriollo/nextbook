@@ -26,7 +26,7 @@ app.controller('MainCtrl', function($scope, $routeSegment, $localStorage,servici
     })
     $scope.ingresar = function() {
         $scope.data['tipo'] = "E";
-        var obj = {'email':$scope.email, 'password':$scope.password, 'tipo':'E' };
+        var obj = {'email':$scope.email+'001@facturanext.com', 'password':$scope.password, 'tipo':'E' };
         LoginE.ingresar(obj).$promise.then(function(data) {
             // console.log(data[0]);
             $localStorage.token = data[0].token;
@@ -77,4 +77,26 @@ app.controller('MainCtrl', function($scope, $routeSegment, $localStorage,servici
         $scope.email = res;
 
     }
+});
+app.controller('appsCtrl', function($scope, $routeSegment, $localStorage,servicios, $location, loader, LoginE) {
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+                mysrclat = position.coords.latitude; 
+                mysrclong = position.coords.longitude;
+                console.log(mysrclat);
+                console.log(mysrclong);
+                angular.extend($scope, {
+                    center: {
+                        lat: mysrclat,
+                        lng: mysrclong,
+                        zoom: 15
+                    }
+                });
+        });
+        
+    }
+
+    
 });

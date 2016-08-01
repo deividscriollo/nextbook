@@ -285,6 +285,9 @@ app.controller('proveedoresCtrl', function($mdDialog, $scope, servicios, $timeou
       targetEvent: event,
       templateUrl: 'view/dashboardempresa/proveedores/add.html',
       clickOutsideToClose:true,
+      locals: {
+           items: ''
+         }
     }).then($scope.getDesserts);
   };
 
@@ -397,6 +400,23 @@ app.controller('proveedoresCtrl', function($mdDialog, $scope, servicios, $timeou
 app.controller('aud-proveedores', function ($mdDialog, $scope, $localStorage, servicios, $timeout, $localStorage, items) {
   $scope.data = items;
   this.cancel = $mdDialog.cancel;
+
+  $scope.add_proveedor=function(){
+  servicios.add_proveedor().set($scope.data).$promise.then(function(data){
+     if(data.respuesta == true) {
+          $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#dialogContainer')))
+            .clickOutsideToClose(true)
+            .title('NextBook')
+            .textContent('Registro Ingresado Correctamente')
+            .ariaLabel('Registro Ingresado Correctamente')
+            .ok('Ok!')
+            .openFrom('#left')
+         );
+      }
+  });
+}
 
 $scope.updateProveedor=function(){
   servicios.update_proveedor().set($scope.data).$promise.then(function(data){

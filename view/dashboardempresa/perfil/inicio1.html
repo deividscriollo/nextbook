@@ -1,4 +1,4 @@
-<div class="col-sm-3">
+<div class="col-sm-3" ng-controller="info_perfilCtrl">
     <div class="card">
         <div class="card-main">
             <div class="card-img">
@@ -8,7 +8,7 @@
             <div class="card-action">
             	<div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
             		Actividad
-					<md-button class="md-icon-button" aria-label="More">
+					<md-button class="md-icon-button" aria-label="More" ng-click="editinfo()">
 				        <!-- <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
 				        <ng-md-icon icon="edit"></ng-md-icon>
 				    </md-button>
@@ -40,9 +40,9 @@
             </div>
             <div class="card-inner">
             	<ul>
-            		<li>0987113522 claro</li>
-            		<li>0987113522 Movi</li>
-            		<li>0987113522 cnt</li>
+            		<li ng-repeat="telefono in telefonos">{{telefono.dato}}</li>
+<!--             		<li>0987113522 Movi</li>
+            		<li>0987113522 cnt</li> -->
             	</ul>
             </div>
             <div class="card-action">
@@ -57,7 +57,7 @@
             <div class="card-inner">
             	<ul>
             		<li>empresa@empresa.com</li>
-            		<li>10040348055001@facturanext.com</li>
+            		<li>{{email}}</li>
             	</ul>                	
             </div>
 

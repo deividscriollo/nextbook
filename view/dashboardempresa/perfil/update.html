@@ -1,8 +1,8 @@
-<md-dialog >
+<md-dialog>
     <form name="registroForm" id="registroForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Crear Nómina</h2>
+                <h2>Editar Proveedor</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="ctrl.cancel()">
                     <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
@@ -63,7 +63,7 @@
         <md-dialog-actions layout="row">
             <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
             <span flex></span>
-            <md-button class="md-raised md-primary" type="submit" ng-click="add_proveedor()" ng-disabled="registroForm.$invalid">
+            <md-button class="md-raised md-primary" type="submit" ng-click="updateProveedor()" ng-disabled="registroForm.$invalid">
               Guardar
             </md-button>
         </md-dialog-actions>

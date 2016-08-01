@@ -1,0 +1,62 @@
+<md-dialog>
+    <form name="registroForm" id="registroForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Actualizar Información</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width:600px;">
+            <div>
+              <md-content layout-padding layout-wrap>
+                  <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Actividad</label>
+                        <input type="text" required name="actividad" ng-model="data.actividad" />
+                        <div ng-messages="registroForm.actividad.$error">
+                            <div ng-message="required">Actividad Requerida</div>
+                        </div>
+                    </md-input-container>
+                  </div>
+                  <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Dirección</label>
+                        <input type="text" required name="direccion" ng-model="data.direccion" />
+                        <div ng-messages="registroForm.direccion.$error">
+                            <div ng-message="required">Dirección Requerido</div>
+                        </div>
+                    </md-input-container>
+                  </div>
+                  <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs ng-repeat="telefono in telefonos">
+                        <label>Teléfonos</label>
+                        <input type="text" required name="{{'telefono'+telefono.$index}}" ng-model="telefono.dato" value="aaaa" />
+                        <div ng-messages="registroForm.telefonos.$error">
+                            <div ng-message="required">Teléfonos Requeridos</div>
+                        </div>
+                    </md-input-container>
+                  </div>
+                  <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Correo Electrónico</label>
+                        <input type="text" required name="email" ng-model="data.email" />
+                        <div ng-messages="registroForm.email.$error">
+                            <div ng-message="required">Correo Electronico Requerido</div>
+                        </div>
+                    </md-input-container>
+                  </div>
+              </md-content>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" type="submit" ng-click="UpdateInfo()" ng-disabled="registroForm.$invalid">
+              Guardar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

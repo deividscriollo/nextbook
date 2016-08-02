@@ -487,6 +487,70 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     }  ;
     //----------------------- fin ----
 
+    //----------------------------------------------------- DEPARTAMENTOS ----------------
+    // ------------------------------------------------ get ------------------------------
+    this.get_departamentos=function() {
+        return $resource(this.server().appnext()+'public/getDepartamentos', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token,
+                    codigo: $localStorage.sucursal.codigo
+                }
+            }
+        }
+        );
+    }  ;
+    //----------------------- fin ----
+    // ------------------------------------------------ Add ------------------------------
+    this.add_departamento=function() {
+        return $resource(this.server().appnext()+'public/addDepartamento', {}
+        , {
+            set: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token,
+                    codigo: $localStorage.sucursal.codigo
+                }
+            }
+        }
+        );
+    }  ;
+    //----------------------- fin ----
+    // ------------------------------------------------ Update ------------------------------
+    this.update_departamento=function() {
+        return $resource(this.server().appnext()+'public/updateDepartamento', {}
+        , {
+            set: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token,
+                    codigo: $localStorage.sucursal.codigo
+                }
+            }
+        }
+        );
+    }  ;
+    //----------------------- fin ----
+
+    // ------------------------------------------------ Add ------------------------------
+    this.delete_departamento=function() {
+        return $resource(this.server().appnext()+'public/deleteDepartamento', {}
+        , {
+            set: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token,
+                    codigo: $localStorage.sucursal.codigo
+                }
+            }
+        }
+        );
+    }  ;
+    //----------------------- fin ----
+
+
 });
 
 

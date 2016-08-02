@@ -54,6 +54,5 @@ app.controller('perfil-inicio-Ctrl', function($scope, serviciosgenerales, $local
 	$scope.activitidad = serviciosgenerales.letra_cadena_mayuscula($scope.localStorage.actividad_economica);
     $scope.telefonos=$localStorage.datosE.extras;
     $scope.email=$localStorage.datosE.Ruc+'@facturanext.com';
-	// console.log($localStorage);
 
 });

@@ -20,7 +20,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                 return "http://apiservicios.nextbook.ec/";
             }
             , appnext: function() {
-                return "http://192.168.100.16/appnext/";
+                return "http://servicios.nextbook.ec/";
                 // return "http://192.168.100.16/appnext/";
             }
         }
@@ -213,7 +213,8 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             save: {
                 method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
-                    token: $localStorage.token, sucursal: $localStorage.sucursal.codigo
+                    token: $localStorage.token, 
+                    sucursal: $localStorage.sucursal.codigo
                 }
             }
         });
@@ -253,26 +254,14 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             get: {
                 method: 'GET', isArray: false, // responseType:'arraybuffer', 
                 params: {
-                    token: $localStorage.token
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
                 }
             }
         });
     };
     // ------------------- fin
-    // // ----------------------------------------- guardar datos de persona que registra ----------------------------
-    // this.get_Nomina=function() {
-    //     return $resource(this.server().appnext()+'public/getNomina', {}
-    //     , {
-    //         get: {
-    //             method: 'GET', isArray: false, // responseType:'arraybuffer', 
-    //             params: {
-    //                 token: $localStorage.token
-    //             }
-    //         }
-    //     }
-    //     );
-    // };
-    // // ------------------- fin
+
     // comparar repetidos clientes
     this.repeat_cliente=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
@@ -422,21 +411,6 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
 
     };
 
-    this.get_nomina=function() {
-        return $resource(this.server().appnext()+'public/getNomina', {}
-
-        , {
-            get: {
-                method: 'GET', isArray: false, // responseType:'arraybuffer', 
-                params: {
-
-                    token: $localStorage.token
-                }
-            }
-        }
-        );
-    }
-    ;
     //----------------------- fin
     // ------------------------------------------------ update proveedores
     this.update_proveedor=function() {
@@ -704,7 +678,8 @@ $scope.estilo= {
 });
 
 app.factory('facturanextservice', function($resource, $localStorage, servicios) {
-    return $resource('http://192.168.100.16/appnext/public/getFacturas', {}
+    var url_server=servicios.server().appnext();
+    return $resource(url_server+'public/getFacturas', {}
     , {
         get: {
             method: 'GET', isArray: false, params: {
@@ -716,7 +691,8 @@ app.factory('facturanextservice', function($resource, $localStorage, servicios) 
 });
 
 app.factory('UploadFac', function($resource, $localStorage) {
-    return $resource('http://192.168.100.16/appnext/public/uploadFactura', {}
+    var url_server=servicios.server().appnext();
+    return $resource(url_server+'public/uploadFactura', {}
     , {
         subir: {
             method: 'POST', isArray: false, params: {

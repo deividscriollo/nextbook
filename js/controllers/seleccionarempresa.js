@@ -24,6 +24,7 @@ var app=angular.module('app').controller('seleccionar-empresa', function ($scope
     });
     $scope.SetSucursal=function($index) {
         $localStorage.sucursal=$scope.products[$index];
+        $location.path('/My-space/Inicio');
     }
 }
 

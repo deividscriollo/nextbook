@@ -35,7 +35,7 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
     }).then($scope.getDesserts);
   };
 
-  $scope.eddititem = function (data) {
+  $scope.eddititem = function (data, event) {
     $mdDialog.show({
       clickOutsideToClose: true,
       controller: 'editItemNomina',
@@ -43,9 +43,7 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
       focusOnOpen: false,
       targetEvent: event,
       templateUrl: 'view/dashboardempresa/nomina/modificar_nomina.html',
-      locals: {
-        items: data
-      }
+      locals: {items: data},
     }).then($scope.getDesserts);
   };
   
@@ -98,12 +96,13 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
     }, 2000);
   };
 });
+
 app.controller('addItemNomina', function ($mdDialog, $scope, servicios, $timeout, $localStorage) {
   $scope.data = {}; 
   $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal; 
   
   this.cancel = $mdDialog.cancel
-  $scope.guardar = function() {
+  $scope.guardar_nomina = function() {
     servicios.add_nomina().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
           $mdDialog.show(
@@ -121,7 +120,7 @@ app.controller('addItemNomina', function ($mdDialog, $scope, servicios, $timeout
   }  
 });
 
-app.controller('editItemNomina', function ($mdDialog, $scope, $localStorage, servicios, $timeout, items) {
+app.controller('editItemNomina', function ($mdDialog, $scope, servicios, $timeout, $localStorage, items) {
   $scope.data = {}; 
 
   $scope.data.id = items.id;
@@ -135,12 +134,8 @@ app.controller('editItemNomina', function ($mdDialog, $scope, $localStorage, ser
       $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal;
   }
 
-
-  console.log(new Date(items.fecha_inicio));
   $scope.data.fecha_inicio = new Date(items.fecha_inicio);
   
-
-
   this.cancel = $mdDialog.cancel 
   $scope.modificar_nomina = function($event) {
     servicios.edit_nomina().edit($scope.data).$promise.then(function(data) {

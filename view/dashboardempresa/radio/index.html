@@ -1,38 +1,35 @@
-<main class="content">
-    <div class="content-header ui-content-header">
-    <h1>Administración Radio</h1>
-    </div>
-    <div class="container">        
-        <div class="row">
-        	<div class="col-lg-10 col-lg-offset-1">
-                <section class="content-inner margin-top-no">
-                    <nav class="tab-nav tab-nav-green  ui-tab">
-                        <ul class="nav nav-justified">
-                            <li ng-class="{active: ('dashboard.radio.inicio' | routeSegmentStartsWith)}">
-                                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.radio.inicio' | routeSegmentUrl}}">
-                                    <span class="text-white"><ng-md-icon icon="local_post_office" style="fill: pink" size="20"></ng-md-icon> Principal</span>
-                                    <!-- <ng-md-icon icon="local_post_office" style="fill: pink" size="20"></ng-md-icon> -->
-                                </a>
-                            </li>
-                            <li ng-class="{active: ('dashboard.radio.clientes' | routeSegmentStartsWith)}">
-                                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.radio.clientes' | routeSegmentUrl}}">
-                                    <span class="text-white"><span class="icon">store</span> Clientes</span>
-                                </a>
-                            </li>
-                            <!-- <li ng-class="{active: ('dashboard.radio.nomina' | routeSegmentStartsWith)}">
-                                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.radio.nomina' | routeSegmentUrl}}">
-                                    <span class="text-white"><span class="icon">store</span> Nómina</span>
-                                </a>
-                            </li> -->
-                        </ul>
-                    </nav>
-                </section>
+<section class="content-inner">
+    <div class="col-sm-3 col-lg-2 col-md-2">
+            <div class="menu-content">                        
+                <ul class="nav">
+                    <li ng-class="{active: ('dashboard.radio.inicio' | routeSegmentStartsWith)}">
+                        <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.radio.inicio' | routeSegmentUrl}}">
+                            <i class="material-icons">home</i> Inicio
+                        </a>
+                    </li>
+                    <li ng-class="{active: ('dashboard.radio.clientes' | routeSegmentStartsWith)}">
+                        <a class="waves-attach waves-light waves-effect"  href="#{{'dashboard.radio.clientes' | routeSegmentUrl}}">
+                            <i class="material-icons">local_post_office</i> Clientes
+                        </a>
+                    </li>
+                   <!--  <li ng-class="{active: ('dashboard.nomina.departamentos' | routeSegmentStartsWith)}">
+                        <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.nomina.departamentos' | routeSegmentUrl}}">
+                            <i class="material-icons">cloud_upload</i> Departamentos
+                        </a>
+                    </li>
+
+                    <li ng-class="{active: ('dashboard.nomina.departamentos' | routeSegmentStartsWith)}">
+                        <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.nomina.departamentos' | routeSegmentUrl}}">
+                            <i class="material-icons">cloud_upload</i> Cargos
+                        </a>
+                    </li> -->
+                </ul>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-10 col-lg-offset-1">
-                <div app-view-segment="2"></div>
-            </div>
-        </div>
     </div>
-</main>
+
+    <div class="col-lg-8 col-md-8 col-md-8">
+        <md-content layout-padding layout-wrap >       
+            <div app-view-segment="2"></div>
+        </md-content>
+    </div>
+</section

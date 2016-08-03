@@ -100,11 +100,9 @@ app.controller('departamentosCtrl', function ($mdDialog, $scope, servicios, $tim
 });
 
 app.controller('addItemDepartamentos', function ($mdDialog, $scope, servicios, $timeout, $localStorage) {
-  $scope.data = {}; 
-  $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal; 
-  
+ 
   this.cancel = $mdDialog.cancel
-  $scope.guardar = function() {
+  $scope.guardar_departamento = function() {
     servicios.add_departamento().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
           $mdDialog.show(
@@ -126,22 +124,11 @@ app.controller('editItemDepartamentos', function ($mdDialog, $scope, $localStora
   $scope.data = {}; 
 
   $scope.data.id = items.id;
-  $scope.data.periodicidad = items.periodicidad;
+  $scope.data.codigo = items.codigo;
   $scope.data.descripcion = items.descripcion;
-  $scope.data.registro_patronal = items.registro_patronal;
-  $scope.data.dias = items.dias;
-  if ($localStorage.sucursal.sucursal == "") {
-      $scope.data.sucursal_nombre = "Principal";
-  } else {
-      $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal;
-  }
-
-
-  console.log(new Date(items.fecha_inicio));
-  $scope.data.fecha_inicio = new Date(items.fecha_inicio);
   
   this.cancel = $mdDialog.cancel 
-  $scope.modificar_nomina = function($event) {
+  $scope.modificar_departamento = function($event) {
     servicios.edit_nomina().edit($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
           $mdDialog.show(
@@ -153,7 +140,7 @@ app.controller('editItemDepartamentos', function ($mdDialog, $scope, $localStora
             .ariaLabel('Registro Modificado Correctamente')
             .ok('Ok!')
             .openFrom('#left')
-         );
+          );
       }
     }); 
   }
@@ -164,7 +151,7 @@ app.controller('deleteItemDepartamentos', function ($mdDialog, $scope, $q, servi
   $scope.data.id = items.id;
   
   this.cancel = $mdDialog.cancel;
-  $scope.eliminar_nomina = function() {
+  $scope.eliminar_departamento = function() {
     servicios.delete_nomina().delete($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
           $mdDialog.show(

@@ -96,20 +96,13 @@
                     <th md-column md-numeric>Código</th>
                     <th md-column md-numeric>Nombre / Descripción</th>
                     <th md-column md-numeric>Fecha Creación</th>
-                    <!-- <th md-column md-numeric>Periodicidad</th>
-                    <th md-column md-numeric>Registro Patronal</th>
-                    <th md-column md-numeric>Días</th>
-                    <th md-column md-numeric>Fecha Inicio</th>
-                    <th md-column md-numeric>Action</th> -->
                 </tr>
             </thead>
             <tbody md-body>
                 <tr md-row md-select-id="name" ng-repeat="dessert in desserts.data">
+                    <td md-cell>{{dessert.codigo}}</td>
                     <td md-cell>{{dessert.descripcion}}</td>
-                    <td md-cell>{{dessert.periodicidad}}</td>
-                    <td md-cell>{{dessert.registro_patronal}}</td>
-                    <!-- <td md-cell>{{dessert.dias}}</td>
-                    <td md-cell>{{dessert.fecha_inicio}}</td>   -->
+                    <td md-cell>{{dessert.created_at}}</td>
                     <td md-cell>
                          <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="eddititem(dessert)">
                           <md-icon md-svg-src="img/icons/ic_edit_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>

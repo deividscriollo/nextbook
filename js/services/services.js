@@ -192,6 +192,18 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         });
     };
+
+     this.repeat_cliente=function() {
+        return $resource(this.server().appnext()+'public/buscarCliente', {}
+        , {
+            repeat: {
+                method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
     // ------------------------------------------ Fin ---------------------------------------
 
 
@@ -303,20 +315,6 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     };
     //----------------------- fin -----------------------------
 
-    // comparar repetidos clientes
-    this.repeat_cliente=function() {
-        // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
-        return $resource(this.server().appnext()+'public/buscarCliente', {}
-        , {
-            repeat: {
-                method: 'GET', isArray: false, // responseType:'arraybuffer', 
-                params: {
-                    token: $localStorage.token
-                }
-            }
-        });
-    };
-    // Fin
     // Fin creacion servicios clientes
     ////////////////////////////////////////////////////////////////////////
     this.gastos=function() {

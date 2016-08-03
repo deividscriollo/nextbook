@@ -23,6 +23,10 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                 // return "http://servicios.nextbook.ec/";
                 return "http://192.168.100.16/appnext/";
             }
+            , appnextPersonas: function() {
+                return "http://appnextp.nextbook.ec/";
+                // return "http://192.168.100.16/appnextP/";
+            }
         }
     };
 
@@ -50,7 +54,8 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                     token: $localStorage.token
                 }
             }
-        });
+        }
+        );
     };
 
     this.Download_link=function() {
@@ -62,9 +67,9 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                     token: $localStorage.token
                 }
             }
-        });
+        }
+        );
     };
-
     // ----------------------------------------- set get imagen perfil ----------------------------
     this.set_img_perfil=function() {
         return $resource(this.server().appnext()+'public/setImgPerfil', {}
@@ -75,8 +80,11 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                     token: $localStorage.token
                 }
             }
-        });
-    };
+
+        }
+        );
+    }
+    ;
 
     // ----------------------------------------- set imagen portada ----------------------------
     this.set_img_portada=function() {
@@ -88,8 +96,11 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                     token: $localStorage.token
                 }
             }
-        });
-    };
+
+        }
+        );
+    }
+    ;
 
     // ----------------------------------------- Add imagen perfil ----------------------------
     this.add_img_perfil=function() {
@@ -103,7 +114,6 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         });
     };
-
     // ----------------------------------------- Add imagen de POrtada ----------------------------
     this.add_img_portada=function() {
         return $resource(this.server().appnext()+'public/addImgPortada', {}
@@ -114,8 +124,11 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                     token: $localStorage.token
                 }
             }
-        });
-    };
+
+        }
+        );
+    }
+    ;
 
     // ----------------------------------------- Add imagen de POrtada ----------------------------
     this.get_img_portada=function() {
@@ -127,8 +140,11 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                     token: $localStorage.token
                 }
             }
-        });
-    };
+
+        }
+        );
+    }  ;
+
 
     // ----------------------------------------- Verificar contraseña ----------------------------
     this.verificar_pass=function() {
@@ -180,18 +196,20 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         });
     };
 
-    // ------------------------------------------------ Clientes ---------------------------
+    // servicios creacion clientes
+    // guardar clientes
     this.add_cliente=function() {
         return $resource(this.server().appnext()+'public/addCliente', {}
         , {
             save: {
-                method: 'POST', isArray: false,
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token
                 }
             }
         });
     };
+<<<<<<< HEAD
 
      this.repeat_cliente=function() {
         return $resource(this.server().appnext()+'public/buscarCliente', {}
@@ -208,11 +226,15 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
 
 
     // ------------------------------------------------ Nómina ------------------------------
+=======
+    // Fin
+    // guardar nomina
+>>>>>>> origin/master
     this.add_nomina=function() {
         return $resource(this.server().appnext()+'public/addNomina', {}
         , {
             save: {
-                method: 'POST', isArray: false, 
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token, 
                     sucursal: $localStorage.sucursal.codigo
@@ -220,25 +242,26 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         });
     };
-
+    // ------------------- fin
+    // guardar nomina
     this.edit_nomina=function() {
         return $resource(this.server().appnext()+'public/updateNomina', {}
         , {
             edit: {
-                method: 'POST', isArray: false, 
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
-                    token: $localStorage.token, 
-                    sucursal: $localStorage.sucursal.codigo
+                    token: $localStorage.token, sucursal: $localStorage.sucursal.codigo
                 }
             }
         });
     };
 
+    // guardar nomina
     this.delete_nomina=function() {
         return $resource(this.server().appnext()+'public/deleteNomina', {}
         , {
             delete: {
-                method: 'POST', isArray: false, 
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token,
                     sucursal: $localStorage.sucursal.codigo
@@ -246,12 +269,13 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         });
     };
-
+    // ------------------- fin
+    // guardar nomina
     this.get_nomina=function() {
         return $resource(this.server().appnext()+'public/getNomina', {}
         , {
             get: {
-                method: 'GET', isArray: false, 
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token,
                     sucursal: $localStorage.sucursal.codigo
@@ -259,61 +283,70 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         });
     };
-    // --------------------------------------- Fin ------------------------------------------------
+    // ------------------- fin
 
-    // ------------------------------------------------ Departamento ------------------------------
+   
+    // ------------------------------------------------ Add ------------------------------
     this.add_departamento=function() {
         return $resource(this.server().appnext()+'public/addDepartamento', {}
         , {
             save: {
-                method: 'POST', isArray: false, 
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token,
-                    sucursal: $localStorage.sucursal.codigo
+                    codigo: $localStorage.sucursal.codigo
                 }
             }
-        });
+        }
+        );
     };
-
-    this.edit_departamento=function() {
+    //----------------------- fin ----
+    // ------------------------------------------------ Update ------------------------------
+    this.update_departamento=function() {
         return $resource(this.server().appnext()+'public/updateDepartamento', {}
         , {
-            edit: {
-                method: 'POST', isArray: false,
+            set: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token,
-                    sucursal: $localStorage.sucursal.codigo
+                    codigo: $localStorage.sucursal.codigo
                 }
             }
-        });
+        }
+        );
     };
+    //----------------------- fin ----
 
+    // ------------------------------------------------ Add ------------------------------
     this.delete_departamento=function() {
         return $resource(this.server().appnext()+'public/deleteDepartamento', {}
         , {
-            delete: {
-                method: 'POST', isArray: false,  
+            set: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token,
-                    sucursal: $localStorage.sucursal.codigo
+                    codigo: $localStorage.sucursal.codigo
                 }
             }
-        });
+        }
+        );
     };
 
+     // ------------------------------------------------ get ------------------------------
     this.get_departamentos=function() {
         return $resource(this.server().appnext()+'public/getDepartamentos', {}
         , {
             get: {
-                method: 'GET', isArray: false, 
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token,
-                    sucursal: $localStorage.sucursal.codigo
+                    codigo: $localStorage.sucursal.codigo
                 }
             }
-        });
-    };
-    //----------------------- fin -----------------------------
+        }
+        );
+    }  ;
+    //----------------------- fin ----
 
     // Fin creacion servicios clientes
     ////////////////////////////////////////////////////////////////////////
@@ -499,12 +532,18 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         );
     }  ;
     //----------------------- fin ----
-
-    //----------------------------------------------------- DEPARTAMENTOS ----------------
-    
+//----------------------------------------------------- REGISTRO PERSONAS ----------------
+    // ------------------------------------------------ update ------------------------------
+    this.registrarPersona=function() {
+        return $resource(this.server().appnextPersonas()+'public/registroPersonas', {}
+        , {
+            save: {
+                method: 'POST', isArray: false
+            }
+        }
+        );
+    }  ;
     //----------------------- fin ----
-
-
 });
 
 
@@ -722,14 +761,14 @@ app.factory('Empresa', function($resource, servicios) {
     );
 });
 
-app.factory('Persona', function($resource, servicios) {
+/*app.factory('Persona', function($resource, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+"public/registroPersonas/:id", {
         id: "@id"
     }
     );
 });
-
+*/
 app.factory('LoginE', function($resource, $localStorage, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+'public/login', {}

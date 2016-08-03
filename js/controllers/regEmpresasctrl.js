@@ -135,7 +135,7 @@
                 $scope.elemennotview=true;
                 $scope.elementview=false;                
                 $scope.ruc = null;
-                reset();
+               // reset();
             }else{
                 SweetAlert.swal("Lo sentimos!", "Intente mas Tarde.", "error");      
             }   

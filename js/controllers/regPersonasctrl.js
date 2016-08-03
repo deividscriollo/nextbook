@@ -1,4 +1,4 @@
-app.controller('PersonasCtrl', function ($scope,loaddatosSRI, Persona) {
+app.controller('PersonasCtrl', function ($scope,loaddatosSRI, servicios, SweetAlert) {
  	 // console.log('Personas');
 
     $scope.cargadatos = function(estado) {
@@ -12,15 +12,24 @@ app.controller('PersonasCtrl', function ($scope,loaddatosSRI, Persona) {
                 $scope.data.canton = data.canton;
                 $scope.data.parroquia = data.parroquia;
                 $scope.data.zona = data.zona;
-                console.log(data);
             }, function(err) {
                 console.log(err.data.error);
             });
         } 
     }
     $scope.registrar = function() {
-        Persona.save($scope.data);
-        console.log($scope.data);
+        servicios.registrarPersona().save($scope.data).$promise.then(function(result){
+        if (result.respuesta==true) {
+                SweetAlert.swal("Registro Correcto", "En hora buena registro correcto revise su correo para activar su cuenta.", "success");
+                $scope.elemennotview=true;
+                $scope.elementview=false;                
+                $scope.ruc = null;
+                //reset();
+            }else{
+                SweetAlert.swal("Lo sentimos!", "Intente mas Tarde.", "error");      
+            }  
+        });
+
     }
 
 });

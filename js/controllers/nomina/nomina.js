@@ -27,7 +27,7 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
   $scope.addititem = function (event) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'addItemController',
+      controller: 'addItemNomina',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
@@ -38,7 +38,7 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
   $scope.eddititem = function (data) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'editItemController',
+      controller: 'editItemNomina',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
@@ -52,7 +52,7 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
   $scope.deleteitem = function (data) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'deleteController',
+      controller: 'deleteItemNomina',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
@@ -98,12 +98,12 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
     }, 2000);
   };
 });
-app.controller('addItemController', function ($mdDialog, $scope, servicios, $timeout, $localStorage) {
+app.controller('addItemNomina', function ($mdDialog, $scope, servicios, $timeout, $localStorage) {
   $scope.data = {}; 
   $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal; 
   
   this.cancel = $mdDialog.cancel
-  $scope.guardar_nomina = function() {
+  $scope.guardar = function() {
     servicios.add_nomina().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
           $mdDialog.show(
@@ -121,7 +121,7 @@ app.controller('addItemController', function ($mdDialog, $scope, servicios, $tim
   }  
 });
 
-app.controller('editItemController', function ($mdDialog, $scope, $localStorage, servicios, $timeout, items) {
+app.controller('editItemNomina', function ($mdDialog, $scope, $localStorage, servicios, $timeout, items) {
   $scope.data = {}; 
 
   $scope.data.id = items.id;
@@ -160,7 +160,7 @@ app.controller('editItemController', function ($mdDialog, $scope, $localStorage,
   }
 });
 
-app.controller('deleteController', function ($mdDialog, $scope, $q, servicios, $timeout, items, $localStorage) { 
+app.controller('deleteItemNomina', function ($mdDialog, $scope, $q, servicios, $timeout, items, $localStorage) { 
   $scope.data = {}; 
   $scope.data.id = items.id;
   

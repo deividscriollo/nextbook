@@ -1,0 +1,46 @@
+<md-dialog ng-controller="editItemDepartamentos">
+    <form name="registroForm" id="registroForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Modificar Departamento</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width:600px;">
+          <div>
+            <md-content layout-padding layout-wrap>
+                <div layout-gt-xs="row">
+                  <md-input-container class="ng-hide" flex-gt-xs >
+                      <label>Id Departamento:</label>
+                      <input type="text" name="id" ng-model="data.id" />
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-xs >
+                      <label>Código Departamento</label>
+                      <input type="text" required name="codigo" ng-model="data.codigo" />
+                      <div ng-messages="registroForm.codigo.$error">
+                          <div ng-message="required">Código / Descripción Requerido</div>
+                      </div>
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-xs >
+                      <label>Nombre / Descripción</label>
+                      <input type="text" required name="descripcion" ng-model="data.descripcion" />
+                      <div ng-messages="registroForm.descripcion.$error">
+                          <div ng-message="required">Nombre / Descripción Requerido</div>
+                      </div>
+                  </md-input-container>
+                </div>
+            </md-content>
+          </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" type="submit" ng-click="modificar()" ng-disabled="registroForm.$invalid">
+              Modificar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

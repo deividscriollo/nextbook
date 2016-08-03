@@ -20,8 +20,8 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                 return "http://apiservicios.nextbook.ec/";
             }
             , appnext: function() {
-                return "http://servicios.nextbook.ec/";
-                // return "http://192.168.100.16/appnext/";
+                // return "http://servicios.nextbook.ec/";
+                return "http://192.168.100.16/appnext/";
             }
         }
     };
@@ -262,6 +262,69 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     };
     // ------------------- fin
 
+   
+    // ------------------------------------------------ Add ------------------------------
+    this.add_departamento=function() {
+        return $resource(this.server().appnext()+'public/addDepartamento', {}
+        , {
+            set: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token,
+                    codigo: $localStorage.sucursal.codigo
+                }
+            }
+        }
+        );
+    };
+    //----------------------- fin ----
+    // ------------------------------------------------ Update ------------------------------
+    this.update_departamento=function() {
+        return $resource(this.server().appnext()+'public/updateDepartamento', {}
+        , {
+            set: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token,
+                    codigo: $localStorage.sucursal.codigo
+                }
+            }
+        }
+        );
+    };
+    //----------------------- fin ----
+
+    // ------------------------------------------------ Add ------------------------------
+    this.delete_departamento=function() {
+        return $resource(this.server().appnext()+'public/deleteDepartamento', {}
+        , {
+            set: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token,
+                    codigo: $localStorage.sucursal.codigo
+                }
+            }
+        }
+        );
+    };
+
+     // ------------------------------------------------ get ------------------------------
+    this.get_departamentos=function() {
+        return $resource(this.server().appnext()+'public/getDepartamentos', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token,
+                    codigo: $localStorage.sucursal.codigo
+                }
+            }
+        }
+        );
+    }  ;
+    //----------------------- fin ----
+
     // comparar repetidos clientes
     this.repeat_cliente=function() {
         // return $http.get(this.server().appnext()+'public/Downloadfac', {}, {responseType:'arraybuffer'})
@@ -462,66 +525,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     //----------------------- fin ----
 
     //----------------------------------------------------- DEPARTAMENTOS ----------------
-    // ------------------------------------------------ get ------------------------------
-    this.get_departamentos=function() {
-        return $resource(this.server().appnext()+'public/getDepartamentos', {}
-        , {
-            get: {
-                method: 'GET', isArray: false, // responseType:'arraybuffer', 
-                params: {
-                    token: $localStorage.token,
-                    codigo: $localStorage.sucursal.codigo
-                }
-            }
-        }
-        );
-    }  ;
-    //----------------------- fin ----
-    // ------------------------------------------------ Add ------------------------------
-    this.add_departamento=function() {
-        return $resource(this.server().appnext()+'public/addDepartamento', {}
-        , {
-            set: {
-                method: 'POST', isArray: false, // responseType:'arraybuffer', 
-                params: {
-                    token: $localStorage.token,
-                    codigo: $localStorage.sucursal.codigo
-                }
-            }
-        }
-        );
-    }  ;
-    //----------------------- fin ----
-    // ------------------------------------------------ Update ------------------------------
-    this.update_departamento=function() {
-        return $resource(this.server().appnext()+'public/updateDepartamento', {}
-        , {
-            set: {
-                method: 'POST', isArray: false, // responseType:'arraybuffer', 
-                params: {
-                    token: $localStorage.token,
-                    codigo: $localStorage.sucursal.codigo
-                }
-            }
-        }
-        );
-    }  ;
-    //----------------------- fin ----
-
-    // ------------------------------------------------ Add ------------------------------
-    this.delete_departamento=function() {
-        return $resource(this.server().appnext()+'public/deleteDepartamento', {}
-        , {
-            set: {
-                method: 'POST', isArray: false, // responseType:'arraybuffer', 
-                params: {
-                    token: $localStorage.token,
-                    codigo: $localStorage.sucursal.codigo
-                }
-            }
-        }
-        );
-    }  ;
+    
     //----------------------- fin ----
 
 

@@ -23,6 +23,10 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                 // return "http://servicios.nextbook.ec/";
                 return "http://192.168.100.16/appnext/";
             }
+            , appnextPersonas: function() {
+                return "http://appnextp.nextbook.ec/";
+                // return "http://192.168.100.16/appnextP/";
+            }
         }
     };
 
@@ -267,7 +271,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     this.add_departamento=function() {
         return $resource(this.server().appnext()+'public/addDepartamento', {}
         , {
-            set: {
+            save: {
                 method: 'POST', isArray: false, // responseType:'arraybuffer', 
                 params: {
                     token: $localStorage.token,
@@ -523,12 +527,18 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         );
     }  ;
     //----------------------- fin ----
-
-    //----------------------------------------------------- DEPARTAMENTOS ----------------
-    
+//----------------------------------------------------- REGISTRO PERSONAS ----------------
+    // ------------------------------------------------ update ------------------------------
+    this.registrarPersona=function() {
+        return $resource(this.server().appnextPersonas()+'public/registroPersonas', {}
+        , {
+            save: {
+                method: 'POST', isArray: false
+            }
+        }
+        );
+    }  ;
     //----------------------- fin ----
-
-
 });
 
 
@@ -746,14 +756,14 @@ app.factory('Empresa', function($resource, servicios) {
     );
 });
 
-app.factory('Persona', function($resource, servicios) {
+/*app.factory('Persona', function($resource, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+"public/registroPersonas/:id", {
         id: "@id"
     }
     );
 });
-
+*/
 app.factory('LoginE', function($resource, $localStorage, servicios) {
     var url_server=servicios.server().appnext();
     return $resource(url_server+'public/login', {}

@@ -154,7 +154,7 @@ app.controller('editItemNomina', function ($mdDialog, $scope, servicios, $timeou
   }
 });
 
-app.controller('deleteItemNomina', function ($mdDialog, $scope, $q, servicios, $timeout, items, $localStorage) { 
+app.controller('deleteItemNomina', function ($mdDialog, $scope, servicios, $timeout, $localStorage, items) { 
   $scope.data = {}; 
   $scope.data.id = items.id;
   

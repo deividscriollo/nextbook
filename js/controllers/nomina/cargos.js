@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q, $localStorage) {
+app.controller('cargosCtrl', function ($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q, $localStorage) {
 
   var bookmark;
   $scope.status = '';
@@ -38,19 +38,11 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
   $scope.eddititem = function (data, event) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      scope: $scope,        // use parent scope in template
-      preserveScope: true,  // do not forget this if use parent scope
-      templateUrl: 'view/dashboardempresa/nomina/modificar_nomina.html',
-      // controller: 'editItemNomina',
-      controller: function editItemNomina($scope, $mdDialog) {
-        // $scope.closeDialog = function() {
-        //   $mdDialog.hide();
-        // } 
-      },
+      controller: 'editItemNomina',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      
+      templateUrl: 'view/dashboardempresa/nomina/modificar_nomina.html',
       locals: {items: data},
     }).then($scope.getDesserts);
   };
@@ -128,40 +120,40 @@ app.controller('addItemNomina', function ($mdDialog, $scope, servicios, $timeout
   }  
 });
 
-// app.controller('editItemNomina', function ($mdDialog, $scope, servicios, $timeout, $localStorage, items) {
-//   $scope.data = {}; 
+app.controller('editItemNomina', function ($mdDialog, $scope, servicios, $timeout, $localStorage, items) {
+  $scope.data = {}; 
 
-//   $scope.data.id = items.id;
-//   $scope.data.periodicidad = items.periodicidad;
-//   $scope.data.descripcion = items.descripcion;
-//   $scope.data.registro_patronal = items.registro_patronal;
-//   $scope.data.dias = items.dias;
-//   if ($localStorage.sucursal.sucursal == "") {
-//       $scope.data.sucursal_nombre = "Principal";
-//   } else {
-//       $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal;
-//   }
+  $scope.data.id = items.id;
+  $scope.data.periodicidad = items.periodicidad;
+  $scope.data.descripcion = items.descripcion;
+  $scope.data.registro_patronal = items.registro_patronal;
+  $scope.data.dias = items.dias;
+  if ($localStorage.sucursal.sucursal == "") {
+      $scope.data.sucursal_nombre = "Principal";
+  } else {
+      $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal;
+  }
 
-//   $scope.data.fecha_inicio = new Date(items.fecha_inicio);
+  $scope.data.fecha_inicio = new Date(items.fecha_inicio);
   
-//   this.cancel = $mdDialog.cancel 
-//   $scope.modificar_nomina = function($event) {
-//     servicios.edit_nomina().edit($scope.data).$promise.then(function(data) {
-//       if(data.respuesta == true) {
-//           $mdDialog.show(
-//             $mdDialog.alert()
-//             .parent(angular.element(document.querySelector('#dialogContainer')))
-//             .clickOutsideToClose(true)
-//             .title('NextBook')
-//             .textContent('Registro Modificado Correctamente')
-//             .ariaLabel('Registro Modificado Correctamente')
-//             .ok('Ok!')
-//             .openFrom('#left')
-//          );
-//       }
-//     }); 
-//   }
-// });
+  this.cancel = $mdDialog.cancel 
+  $scope.modificar_nomina = function($event) {
+    servicios.edit_nomina().edit($scope.data).$promise.then(function(data) {
+      if(data.respuesta == true) {
+          $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#dialogContainer')))
+            .clickOutsideToClose(true)
+            .title('NextBook')
+            .textContent('Registro Modificado Correctamente')
+            .ariaLabel('Registro Modificado Correctamente')
+            .ok('Ok!')
+            .openFrom('#left')
+         );
+      }
+    }); 
+  }
+});
 
 app.controller('deleteItemNomina', function ($mdDialog, $scope, $q, servicios, $timeout, items, $localStorage) { 
   $scope.data = {}; 

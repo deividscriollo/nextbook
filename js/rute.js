@@ -47,6 +47,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 .when('/My-space/NominaAdmin',      'dashboard.nomina.inicio')
                 .when('/My-space/NominaAdmin/Nomina',      'dashboard.nomina.nomina')
                 .when('/My-space/NominaAdmin/Departamentos',      'dashboard.nomina.departamentos')
+                .when('/My-space/NominaAdmin/Cargos',      'dashboard.nomina.cargos')
 
             .segment('salir', {
                 // templateUrl: 'view/home.html',
@@ -205,6 +206,9 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     })
                     .segment('departamentos', {
                         templateUrl: 'view/dashboardempresa/nomina/departamentos.html'
+                    })
+                    .segment('cargos', {
+                        templateUrl: 'view/dashboardempresa/nomina/cargos.html'
                     })
                 .up()   
             .up()

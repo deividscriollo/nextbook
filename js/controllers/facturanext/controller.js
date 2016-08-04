@@ -32,35 +32,35 @@ app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice
 
 
 
-	var t = $('#example').DataTable();
-	facturanextservice.get().$promise.then(function(data) {
+  var t = $('#example').DataTable();
+  facturanextservice.get().$promise.then(function(data) {
     console.log(data);
-		for (var i = 0; i < data.misfacturas.length; i++) {
-	  	  	t.row.add( [
-	            // data.misfacturas[i].id_factura,
-	            data.misfacturas[i].num_factura,
-	            data.misfacturas[i].Ruc_prov,
-	            data.misfacturas[i].tipo_consumo,
-	            data.misfacturas[i].fecha_emision,
-	            data.misfacturas[i].nombre_comercial,
-	            data.misfacturas[i].tipo_doc,
-	            data.misfacturas[i].total,
-	            '<a href="#/My-space/Facturanext/MisFacturas" onclick="angular.element(this).scope().show_Download_modal('+"'"+data.misfacturas[i].id_factura+"'"+')"><span class="icon text-green icon-lg">file_download</span></a>\
-	            <a href="#/My-space/Facturanext/MisFacturas" onclick="angular.element(this).scope().show_Share_modal('+"'"+data.misfacturas[i].id_factura+"'"+')"><span class="icon text-green icon-lg">insert_link</span></a>\
-	            <a href="#/My-space/Facturanext/MisFacturas" onclick="angular.element(this).scope().show_preview_modal('+"'"+data.misfacturas[i].id_factura+"'"+')"><span class="icon text-green icon-lg">visibility</span></a>'
-        	] ).draw( false );
-	  	}
-	});
+    for (var i = 0; i < data.misfacturas.length; i++) {
+          t.row.add( [
+              // data.misfacturas[i].id_factura,
+              data.misfacturas[i].num_factura,
+              data.misfacturas[i].Ruc_prov,
+              data.misfacturas[i].tipo_consumo,
+              data.misfacturas[i].fecha_emision,
+              data.misfacturas[i].nombre_comercial,
+              data.misfacturas[i].tipo_doc,
+              data.misfacturas[i].total,
+              '<a href="#/My-space/Facturanext/MisFacturas" onclick="angular.element(this).scope().show_Download_modal('+"'"+data.misfacturas[i].id_factura+"'"+')"><span class="icon text-green icon-lg">file_download</span></a>\
+              <a href="#/My-space/Facturanext/MisFacturas" onclick="angular.element(this).scope().show_Share_modal('+"'"+data.misfacturas[i].id_factura+"'"+')"><span class="icon text-green icon-lg">insert_link</span></a>\
+              <a href="#/My-space/Facturanext/MisFacturas" onclick="angular.element(this).scope().show_preview_modal('+"'"+data.misfacturas[i].id_factura+"'"+')"><span class="icon text-green icon-lg">visibility</span></a>'
+          ] ).draw( false );
+      }
+  });
 
-	$scope.show_Download_modal=function(data){
-		servicios.showModal('modal_download.html',{source:data},'download');
-	}
-	$scope.show_Share_modal=function(data){
-		servicios.showModal('modal_share.html',{source:data},'share');
-	}
-	$scope.show_preview_modal=function(data){
-		servicios.showModal('modal_preview.html',{source:data},'preview');
-	}
+  $scope.show_Download_modal=function(data){
+    servicios.showModal('modal_download.html',{source:data},'download');
+  }
+  $scope.show_Share_modal=function(data){
+    servicios.showModal('modal_share.html',{source:data},'share');
+  }
+  $scope.show_preview_modal=function(data){
+    servicios.showModal('modal_preview.html',{source:data},'preview');
+  }
 // $scope.show_Download_modal();
 
 });
@@ -81,10 +81,10 @@ app.controller('FacturaCtrl', function($scope, servicios, facturanextservice) {
  //        DTColumnBuilder.newColumn('lastName').withTitle('Last name').notVisible()
  //    ];
 
- // 	facturanextservice.misfacturas().salir()
+ //   facturanextservice.misfacturas().salir()
  //                // then() called when son gets back
  //                .the(function(data) {
- //                	console.log(data);
+ //                 console.log(data);
  //                    // // promise fulfilled
  //                    // if (data.forecast==='good') {
  //                    //     prepareFishingTrip();
@@ -99,12 +99,12 @@ app.controller('FacturaCtrl', function($scope, servicios, facturanextservice) {
 
 
  //    // is the same as
-	// var promise = facturanextservice.misfacturas().salir();
+  // var promise = facturanextservice.misfacturas().salir();
 
-	// promise.then(
-	//   function(payload) {
-	//     console.log('test');
-	//   });
+  // promise.then(
+  //   function(payload) {
+  //     console.log('test');
+  //   });
 
 });
 

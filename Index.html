@@ -62,9 +62,6 @@
     <link rel="stylesheet" href="bower_components/lf-ng-md-file-input/dist/lf-ng-md-file-input.css"/>
     <!-- crop img -->
     <link rel="stylesheet" href="bower_components/ng-img-crop/compile/unminified/ng-img-crop.css"/>
-    <!-- lz-string -->
-    <link rel="stylesheet" href="bower_components/lz-string/libs/lz-string.css"/>
-
     <!-- general angular script -->
     <!-- angular  -->
     <script src="bower_components/angular/angular.min.js"></script>        
@@ -109,6 +106,9 @@
     <!-- maps -->
     <script type="text/javascript" src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
     <script type="text/javascript" src="bower_components/leaflet/dist/leaflet.js"></script>
+
+    <!-- XML2JSON -->
+    <script src="bower_components/xml2json/xml2json.js"></script>
     
           
     <!-- init app -->
@@ -128,7 +128,7 @@
     <!-- controller app -->
     <script src="js/controllers/controllers.js"></script>
     <script src="js/controllers/seleccionarempresa.js"></script>
-    <script src="js/controllers/facturanext.js"></script>
+    
     <script src="js/controllers/dashboard.js"></script>
     <script src="js/controllers/perfil.js"></script>
     <script src="js/controllers/cambiopassword.js"></script>    
@@ -136,11 +136,17 @@
     <!-- mensaje respuestas -->
     <script src="js/controllers/mensajeria.js"></script>
 
+
+    <!-- facturanet dependencias -->
+    <script src="js/controllers/facturanext/controller.js"></script>
+
     <!-- radio admin -->
+    <script src="js/controllers/radio/servicios.js"></script>
     <script src="js/controllers/radio/inicio_radio.js"></script>
     <script src="js/controllers/radio/clientes.js"></script>
 
-    <!-- nomina admin -->
+    <!-- nomina dependencias -->
+    <script src="js/controllers/nomina/servicios.js"></script>
     <script src="js/controllers/nomina/inicio_nomina.js"></script>
     <script src="js/controllers/nomina/nomina.js"></script>
     <script src="js/controllers/nomina/departamentos.js"></script>
@@ -151,9 +157,6 @@
 
     <!-- controller perfil -->
     <script src="js/services/serviciosgenerales.js"></script>
-
-    <!-- XML2JSON -->
-    <script src="bower_components/xml2json/xml2json.js"></script>
 
     <!-- configurcion procesos iniciales -->
     <script src="script/base.js"></script>

@@ -41,7 +41,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
         });
     };
 
-    this.get_nomina = function() {
+    this.get_nominas = function() {
         return $resource(servicios.server().mod_radio()+'public/getNomina', {}
         , {
             get: {
@@ -97,6 +97,60 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
 
     this.get_departamentos = function() {
         return $resource(servicios.server().mod_radio()+'public/getDepartamentos', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+    //----------------------- fin -----------------------------
+
+    // ------------------------------------------------ Departamento ------------------------------
+    this.add_cargo = function() {
+        return $resource(servicios.server().mod_radio()+'public/addCargo', {}
+        , {
+            save: {
+                method: 'POST', isArray: false, 
+                params: {
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.edit_cargo = function() {
+        return $resource(servicios.server().mod_radio()+'public/updateCargo', {}
+        , {
+            edit: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.delete_cargo = function() {
+        return $resource(servicios.server().mod_radio()+'public/deleteCargo', {}
+        , {
+            delete: {
+                method: 'POST', isArray: false,  
+                params: {
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.get_cargos = function() {
+        return $resource(servicios.server().mod_radio()+'public/getCargos', {}
         , {
             get: {
                 method: 'GET', isArray: false, 

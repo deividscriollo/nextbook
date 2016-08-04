@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('cargosCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $mdEditDialog, $q, $localStorage) {
+app.controller('cargosCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
 
   var bookmark;
   $scope.status = '';
@@ -63,7 +63,7 @@ app.controller('cargosCtrl', function ($mdDialog, $scope, serviciosnomina, servi
   };
   
   $scope.getDesserts = function () {
-    $scope.promise = serviciosnomina.get_nomina().get($scope.query, success).$promise;
+    $scope.promise = serviciosnomina.get_cargos().get($scope.query, success).$promise;
   };
   
   $scope.removeFilter = function () {
@@ -92,7 +92,6 @@ app.controller('cargosCtrl', function ($mdDialog, $scope, serviciosnomina, servi
 
   $scope.loadStuff = function () {
     $scope.promise = $timeout(function () {
-
     }, 2000);
   };
 });
@@ -172,7 +171,7 @@ app.controller('deleteItemNomina', function ($mdDialog, $scope, $q, servicios, $
             .ariaLabel('Registro Eliminado Correctamente')
             .ok('Ok!')
             .openFrom('#left')
-         );
+          );
       }
     }); 
   } 

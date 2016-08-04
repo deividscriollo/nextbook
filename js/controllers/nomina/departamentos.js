@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('departamentosCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $mdEditDialog, $q, $localStorage) {
+app.controller('departamentosCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
 
   var bookmark;
   $scope.status = '';
@@ -120,7 +120,7 @@ app.controller('addItemDepartamentos', function ($mdDialog, $scope, servicios, $
   }  
 });
 
-app.controller('editItemDepartamentos', function ($mdDialog, $scope, $localStorage, servicios, $timeout, items) {
+app.controller('editItemDepartamentos', function ($mdDialog, $scope, servicios, $timeout, $localStorage, items) {
   $scope.data = {}; 
 
   $scope.data.id = items.id;
@@ -146,7 +146,7 @@ app.controller('editItemDepartamentos', function ($mdDialog, $scope, $localStora
   }
 });
 
-app.controller('deleteItemDepartamentos', function ($mdDialog, $scope, $q, servicios, $timeout, items, $localStorage) { 
+app.controller('deleteItemDepartamentos', function ($mdDialog, $scope, servicios, $timeout, $localStorage, items) { 
   $scope.data = {}; 
   $scope.data.id = items.id;
   

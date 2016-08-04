@@ -22,6 +22,9 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             , appnext: function() {
                 // return "http://servicios.nextbook.ec/";
                 return "http://192.168.100.16/appnext/";
+            },appnextPersonas: function() {
+                // return "http://appnextp.nextbook.ec/";
+                return "http://192.168.100.16/appnext/";
             }
         }
     };
@@ -205,7 +208,6 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         });
     };
     // ------------------------------------------ Fin ---------------------------------------
-
 
     // ------------------------------------------------ Nómina ------------------------------
     this.add_nomina=function() {
@@ -500,8 +502,17 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     }  ;
     //----------------------- fin ----
 
-    //----------------------------------------------------- DEPARTAMENTOS ----------------
-    
+    //----------------------------------------------------- REGISTRO PERSONAS ----------------
+    // ------------------------------------------------ update ------------------------------
+    this.registrarPersona=function() {
+        return $resource(this.server().appnextPersonas()+'public/registroPersonas', {}
+        , {
+            save: {
+                method: 'POST', isArray: false
+            }
+        }
+        );
+    }  ;
     //----------------------- fin ----
 
 

@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('departamentosCtrl', function ($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q, $localStorage) {
+app.controller('departamentosCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $mdEditDialog, $q, $localStorage) {
 
   var bookmark;
   $scope.status = '';
@@ -65,7 +65,7 @@ app.controller('departamentosCtrl', function ($mdDialog, $scope, servicios, $tim
   };
   
   $scope.getDesserts = function () {
-    $scope.promise = servicios.get_departamentos().get($scope.query, success).$promise;
+    $scope.promise = serviciosnomina.get_departamentos().get($scope.query, success).$promise;
   };
   
   $scope.removeFilter = function () {

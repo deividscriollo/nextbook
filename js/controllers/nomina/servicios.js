@@ -2,8 +2,8 @@ var app = angular.module('app');
 app.service('serviciosnomina', function($resource, $localStorage, $location, ModalService, $http, servicios) {
 
     // ------------------------------------------------ Nómina ------------------------------
-    this.add_nomina=function() {
-        return $resource(this.server().appnext()+'public/addNomina', {}
+    this.add_nomina = function() {
+        return $resource(servicios.server().mod_radio()+'public/addNomina', {}
         , {
             save: {
                 method: 'POST', isArray: false, 
@@ -15,8 +15,8 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
         });
     };
 
-    this.edit_nomina=function() {
-        return $resource(this.server().appnext()+'public/updateNomina', {}
+    this.edit_nomina = function() {
+        return $resource(servicios.server().mod_radio()+'public/updateNomina', {}
         , {
             edit: {
                 method: 'POST', isArray: false, 
@@ -28,8 +28,8 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
         });
     };
 
-    this.delete_nomina=function() {
-        return $resource(this.server().appnext()+'public/deleteNomina', {}
+    this.delete_nomina = function() {
+        return $resource(servicios.server().mod_radio()+'public/deleteNomina', {}
         , {
             delete: {
                 method: 'POST', isArray: false, 
@@ -41,8 +41,8 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
         });
     };
 
-    this.get_nomina=function() {
-        return $resource(this.server().appnext()+'public/getNomina', {}
+    this.get_nomina = function() {
+        return $resource(servicios.server().mod_radio()+'public/getNomina', {}
         , {
             get: {
                 method: 'GET', isArray: false, 
@@ -56,8 +56,8 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
     // --------------------------------------- Fin ------------------------------------------------
 
     // ------------------------------------------------ Departamento ------------------------------
-    this.add_departamento=function() {
-        return $resource(this.server().appnext()+'public/addDepartamento', {}
+    this.add_departamento = function() {
+        return $resource(servicios.server().mod_radio()+'public/addDepartamento', {}
         , {
             save: {
                 method: 'POST', isArray: false, 
@@ -69,8 +69,8 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
         });
     };
 
-    this.edit_departamento=function() {
-        return $resource(this.server().appnext()+'public/updateDepartamento', {}
+    this.edit_departamento = function() {
+        return $resource(servicios.server().mod_radio()+'public/updateDepartamento', {}
         , {
             edit: {
                 method: 'POST', isArray: false,
@@ -82,8 +82,8 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
         });
     };
 
-    this.delete_departamento=function() {
-        return $resource(this.server().appnext()+'public/deleteDepartamento', {}
+    this.delete_departamento = function() {
+        return $resource(servicios.server().mod_radio()+'public/deleteDepartamento', {}
         , {
             delete: {
                 method: 'POST', isArray: false,  
@@ -95,8 +95,8 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
         });
     };
 
-    this.get_departamentos=function() {
-        return $resource(this.server().appnext()+'public/getDepartamentos', {}
+    this.get_departamentos = function() {
+        return $resource(servicios.server().mod_radio()+'public/getDepartamentos', {}
         , {
             get: {
                 method: 'GET', isArray: false, 

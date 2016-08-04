@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q, $localStorage) {
+app.controller('nominaCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $mdEditDialog, $q, $localStorage) {
 
   var bookmark;
   $scope.status = '';
@@ -42,7 +42,7 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
       preserveScope: true,  // do not forget this if use parent scope
       templateUrl: 'view/dashboardempresa/nomina/modificar_nomina.html',
       // controller: 'editItemNomina',
-      controller: function editItemNomina($scope, $mdDialog) {
+      controller: function editItemNomina($mdDialog, $scope, servicios_nomina, $timeout, $localStorage, items) {
         // $scope.closeDialog = function() {
         //   $mdDialog.hide();
         // } 
@@ -71,7 +71,7 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, servicios, $timeout, $
   };
   
   $scope.getDesserts = function () {
-    $scope.promise = servicios.get_nomina().get($scope.query, success).$promise;
+    $scope.promise = serviciosnomina.get_nomina().get($scope.query, success).$promise;
   };
   
   $scope.removeFilter = function () {

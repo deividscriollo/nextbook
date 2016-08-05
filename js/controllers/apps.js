@@ -22,22 +22,22 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
 
 app.controller('AccesoNomina', function ($mdDialog, $scope, servicios, $timeout, $localStorage) { 
     $scope.data = {}; 
-    $scope.data.correo = $localStorage.datosPersona.correo; 
+    $scope.data.email = $localStorage.datosPersona.correo; 
     this.cancel = $mdDialog.cancel;
 
-    $scope.eliminar_nomina = function() {
-        servicios.delete_nomina().delete($scope.data).$promise.then(function(data) {
+    $scope.confirmar_pass = function() {
+        servicios.login_radio().set($scope.data).$promise.then(function(data) {
           if(data.respuesta == true) {
               $mdDialog.show(
                 $mdDialog.alert()
                 .parent(angular.element(document.querySelector('#dialogContainer')))
                 .clickOutsideToClose(true)
                 .title('NextBook')
-                .textContent('Registro Eliminado Correctamente')
-                .ariaLabel('Registro Eliminado Correctamente')
+                .textContent('Contraseña Correcta')
+                .ariaLabel('Contraseña Correcta')
                 .ok('Ok!')
                 .openFrom('#left')
-             );
+            );
           }
         }); 
       } 

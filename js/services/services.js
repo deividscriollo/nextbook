@@ -384,6 +384,18 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     }  ;
     //----------------------- fin ----
 
+        //----------------------------------------------------- LOGIN MOD RADIO----------------
+    this.login_radio=function() {
+        return $resource(this.server().mod_radio()+'public/login', {}
+        , {
+            set: {
+                method: 'POST', isArray: false
+            }
+        }
+        );
+    }  ;
+    //----------------------- fin ----
+
 
 });
 

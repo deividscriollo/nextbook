@@ -1,0 +1,40 @@
+<md-dialog>
+    <form name="accesoform" id="accesoform">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Ingrese Nuevamente Contraseña</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="md-dialog-content">
+          <p>Por favor, Ingrese nuevamente su contraseña para acceder al servicio.</p>
+          <form name="accesoform" id="accesoform">
+            <md-input-container class="md-block" flex-gt-xs >
+                <label>Correo</label>
+                <input type="text" required name="email" ng-model="data.email" pw-actual-check disabled />
+                <div ng-messages="accesoform.email.$error" ng-show="accesoform.email.$error.pwactualmatch">
+                  <div ng-message="pwactualmatch" class="my-message">Ruc erronea</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-xs >
+                <label>Password</label>
+                <input type="password" required name="password" ng-model="data.password" pw-actual-check />
+                <div ng-messages="accesoform.password.$error" ng-show="accesoform.password.$error.pwactualmatch">
+                  <div ng-message="pwactualmatch" class="my-message">Contraseña erronea</div>
+                </div>
+            </md-input-container>
+          </form>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" type="submit" ng-click="confirmar_pass()" ng-disabled="accesoform.$invalid">
+              Confirmar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

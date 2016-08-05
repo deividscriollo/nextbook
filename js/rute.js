@@ -123,13 +123,13 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 .segment('ini', {
                     
                     templateUrl: 'view/dashboardempresa/inicio.html',
-                    controller: 'inicioCtrl'
+                    // controller: 'inicioCtrl'
                 })
                 .within()
                     .segment('inicio', {
                         'default': true,
                         templateUrl: 'view/dashboardempresa/inicio2.html',
-                        controller: 'appsCtrl'
+                        // controller: 'appsCtrl'
                     })
                     .segment('apps', {
                         templateUrl: 'view/dashboardempresa/apps.html',
@@ -137,11 +137,11 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     })
                     .segment('maps', {
                         templateUrl: 'view/dashboardempresa/maps.html',
-                        controller: 'appsCtrl'
+                        // controller: 'appsCtrl'
                     })
                     .segment('record', {
                         templateUrl: 'view/dashboardempresa/record.html',
-                        controller: 'recordCtrl'
+                        // controller: 'recordCtrl'
                     })
                 .up()
                 .segment('facturanext', {
@@ -202,7 +202,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     })  
                     .segment('nomina', {
                         templateUrl: 'view/dashboardempresa/nomina/nomina.html',
-                        controller:'nominaCtrl'
+                        // controller:'nominaCtrl'
                     })
                     .segment('departamentos', {
                         templateUrl: 'view/dashboardempresa/nomina/departamentos.html'

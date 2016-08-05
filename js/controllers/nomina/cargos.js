@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('cargosCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
+  app.controller('cargosCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
 
   var bookmark;
   $scope.status = '';
@@ -22,7 +22,7 @@ app.controller('cargosCtrl', function ($mdDialog, $scope, serviciosnomina, servi
   
   function success(desserts) {
     $scope.desserts = desserts.respuesta;
-    console.log(desserts);
+    // console.log(desserts);
   }
   
   $scope.addititem = function (event) {

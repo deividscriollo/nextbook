@@ -8,7 +8,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
             save: {
                 method: 'POST', isArray: false, 
                 params: {
-                    token: $localStorage.token, 
+                    token: $localStorage.tokenradio, 
                     sucursal: $localStorage.sucursal.codigo
                 }
             }
@@ -21,7 +21,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
             edit: {
                 method: 'POST', isArray: false, 
                 params: {
-                    token: $localStorage.token, 
+                    token: $localStorage.tokenradio, 
                     sucursal: $localStorage.sucursal.codigo
                 }
             }
@@ -34,7 +34,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
             delete: {
                 method: 'POST', isArray: false, 
                 params: {
-                    token: $localStorage.token,
+                    token: $localStorage.tokenradio,
                     sucursal: $localStorage.sucursal.codigo
                 }
             }
@@ -47,7 +47,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
             get: {
                 method: 'GET', isArray: false, 
                 params: {
-                    token: $localStorage.token,
+                    token: $localStorage.tokenradio,
                     sucursal: $localStorage.sucursal.codigo
                 }
             }
@@ -62,7 +62,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
             save: {
                 method: 'POST', isArray: false, 
                 params: {
-                    token: $localStorage.token,
+                    token: $localStorage.tokenradio,
                     sucursal: $localStorage.sucursal.codigo
                 }
             }
@@ -75,7 +75,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
             edit: {
                 method: 'POST', isArray: false,
                 params: {
-                    token: $localStorage.token,
+                    token: $localStorage.tokenradio,
                     sucursal: $localStorage.sucursal.codigo
                 }
             }
@@ -88,7 +88,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
             delete: {
                 method: 'POST', isArray: false,  
                 params: {
-                    token: $localStorage.token,
+                    token: $localStorage.tokenradio,
                     sucursal: $localStorage.sucursal.codigo
                 }
             }
@@ -101,7 +101,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
             get: {
                 method: 'GET', isArray: false, 
                 params: {
-                    token: $localStorage.token,
+                    token: $localStorage.tokenradio,
                     sucursal: $localStorage.sucursal.codigo
                 }
             }
@@ -116,7 +116,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
             save: {
                 method: 'POST', isArray: false, 
                 params: {
-                    token: $localStorage.token,
+                    token: $localStorage.tokenradio,
                     sucursal: $localStorage.sucursal.codigo
                 }
             }
@@ -129,7 +129,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
             edit: {
                 method: 'POST', isArray: false,
                 params: {
-                    token: $localStorage.token,
+                    token: $localStorage.tokenradio,
                     sucursal: $localStorage.sucursal.codigo
                 }
             }
@@ -142,7 +142,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
             delete: {
                 method: 'POST', isArray: false,  
                 params: {
-                    token: $localStorage.token,
+                    token: $localStorage.tokenradio,
                     sucursal: $localStorage.sucursal.codigo
                 }
             }
@@ -155,7 +155,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
             get: {
                 method: 'GET', isArray: false, 
                 params: {
-                    token: $localStorage.token,
+                    token: $localStorage.tokenradio,
                     sucursal: $localStorage.sucursal.codigo
                 }
             }

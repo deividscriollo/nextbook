@@ -1,8 +1,8 @@
-<md-dialog ng-controller="addItemDepartamento">
+<md-dialog ng-controller="addItemCargo">
     <form name="registroForm" id="registroForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Crear Departamentos</h2>
+                <h2>Crear Cargos</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="ctrl.cancel()">
                     <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
@@ -28,13 +28,22 @@
                       </div>
                   </md-input-container>
                 </div>
+                <div layout-gt-xs="row">
+                  <md-input-container class="md-block" flex-gt-xs >
+                      <label>Monto Cargo</label>
+                      <input type="text" required name="monto_cargo" ng-model="data.monto_cargo" />
+                      <div ng-messages="registroForm.monto_cargo.$error">
+                          <div ng-message="required">Monto Cargo Requerido</div>
+                      </div>
+                  </md-input-container>
+                </div>
             </md-content>
           </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
             <span flex></span>
-            <md-button class="md-raised md-primary" type="submit" ng-click="guardar_departamento()" ng-disabled="registroForm.$invalid">
+            <md-button class="md-raised md-primary" type="submit" ng-click="guardar_cargo()" ng-disabled="registroForm.$invalid">
               Guardar
             </md-button>
         </md-dialog-actions>

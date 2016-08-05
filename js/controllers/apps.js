@@ -20,7 +20,7 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
       };
 });
 
-app.controller('AccesoNomina', function ($mdDialog, $scope, servicios, $timeout, $localStorage) { 
+app.controller('AccesoNomina', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $location) { 
     $scope.data = {}; 
     $scope.data.email = $localStorage.datosPersona.correo; 
     this.cancel = $mdDialog.cancel;
@@ -28,22 +28,22 @@ app.controller('AccesoNomina', function ($mdDialog, $scope, servicios, $timeout,
     $scope.confirmar_pass = function() {
         servicios.login_radio().set($scope.data).$promise.then(function(data) {
           if(data.respuesta == true) {
+            $localStorage.tokenradio = data.token.token;
               $mdDialog.show(
                 $mdDialog.alert()
                 .parent(angular.element(document.querySelector('#dialogContainer')))
                 .clickOutsideToClose(true)
                 .title('NextBook')
-                .textContent('Contraseña Correcta')
-                .ariaLabel('Contraseña Correcta')
+                .textContent('Servicio Nómina')
+                .ariaLabel('Servicio Nómina')
                 .ok('Ok!')
                 .openFrom('#left')
             );
+            $location.path('/My-space/NominaAdmin');
           }
         }); 
       } 
 });
-
-
 
 app.controller('mapsCtrl', function($scope, $routeSegment) {
         

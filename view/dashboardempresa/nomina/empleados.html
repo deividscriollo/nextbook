@@ -1,0 +1,310 @@
+<div class="card" ng-controller="empleados">
+    <div class="card-main">
+        <div class="card-header">
+            <div class="card-header-side pull-left">
+                <div class="avatar">
+                    <img alt="John Smith Avatar" src="images/users/x2.jpg">
+                </div>
+            </div>
+            
+            <div class="card-inner">
+                <span class="card-heading">Registro Empleados</span>
+            </div>
+        </div>
+        <div class="card-img">
+            <p class="card-img-heading">Some Text!</p>
+        </div>
+
+        <div class="card-inner">
+            <div class="row">
+                <form name="empleadosForm" id="empleadosForm">
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Código Empleado</label>
+                                <input type="text" name="codigo_personal" id="codigo_personal" ng-model="data.codigo_personal" />
+                                <div ng-messages="empleadosForm.codigo_personal.$error">
+                                    <div ng-message="required">Campo Requerido</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Cédula de Identidad</label>
+                                <input md-maxlength="10" type="text" required name="cedula_identificacion" id="cedula_identificacion" ng-model="data.cedula_identificacion" />
+                                <div ng-messages="empleadosForm.cedula_identificacion.$error">
+                                    <div ng-message="required">Cédula de Identidad Requerido</div>
+                                    <div ng-message="md-maxlength">La cédula tiene que ser de menos de 10 caracteres</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Edad</label>
+                                <input type="text" required name="edad" ng-model="data.edad" />
+                                <div ng-messages="empleadosForm.edad.$error">
+                                    <div ng-message="required">Edad Requerido</div>
+                                </div>
+                            </md-input-container>  
+                        </div>
+
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Fecha Aplicación</label>
+                                <input type="text"  required name="fecha_aplicacion" ng-model="data.fecha_aplicacion" />
+                                <div  class="error" ng-messages="empleadosForm.fecha_aplicacion.$error">
+                                    <div ng-message="required">Fecha Aplicación Requerido</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Nombres Completos</label>
+                                <input type="text" required name="nombres_completos" ng-model="data.nombres_completos" />
+                                <div ng-messages="empleadosForm.nombres_completos.$error">
+                                    <div ng-message="required">Nombres Completos Requerido</div>
+                                </div>
+                            </md-input-container>   
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Teléfono Fijo</label>
+                                <input type="text" name="telf_fijo" ng-model="data.telf_fijo">
+                            </md-input-container>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <md-checkbox ng-model="data.relacion_dependencia"  style="margin: 17px;">Relación Dependencia</md-checkbox>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Fecha de Nacimiento</label>
+                                <input type="text" required name="fecha_nacimiento" ng-model="data.fecha_nacimiento">
+                                <div ng-messages="empleadosForm.fecha_nacimiento.$error">
+                                    <div ng-message="required">Fecha de Nacimiento Requerido</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Teléfono Celular</label>
+                                <input type="text" required name="telf_celular" ng-model="data.telf_celular">
+                                <div ng-messages="empleadosForm.telf_celular.$error">
+                                    <div ng-message="required">Teléfono Celular Requerido</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Estado Civil</label>
+                                <md-select ng-model="data.estado_civil" name="estado_civil" required>
+                                    <md-option value="Diario">Diario</md-option>
+                                    <md-option value="Semanal">Semanal</md-option>
+                                    <md-option value="Quincenal">Quincenal</md-option>
+                                    <md-option value="Mensual">Mensual</md-option>
+                                </md-select>
+                                <div ng-messages="empleadosForm.estado_civil.$error">
+                                    <div ng-message="required">Estado Civil Requerido</div>
+                                </div>
+                            </md-input-container>   
+                        </div>
+
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Cargas Familiares</label>
+                                <input type="text" name="cargas_familiares" ng-model="data.cargas_familiares" required />
+                                <div ng-messages="empleadosForm.cargas_familiares.$error">
+                                    <div ng-message="required">Cargas Familiares Requerido</div>
+                                </div>
+                            </md-input-container>  
+                        </div>
+
+                        <div class="col-sm-4">
+                             <md-input-container class="md-icon-float md-block">
+                                <label>Correo</label>
+                                <input type="email" required name="email" ng-model="data.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+                                <div ng-messages="empleadosForm.email.$error">
+                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                        Su correo electrónico debe tener entre 10 y 100 caracteres de longitud y se ven como una dirección de correo electrónico.
+                                    </div>
+                                </div>
+                            </md-input-container>   
+                        </div>
+                    </div> 
+
+                    <div class="col-sm-12">
+                        <md-radio-group ng-model="data.instruccion">
+                            <div class="col-sm-2">
+                                <md-input-container class="md-icon-float md-block">
+                                    <md-radio-button value="Primaria">Primaria</md-radio-button>
+                                </md-input-container>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <md-input-container class="md-icon-float md-block">
+                                    <md-radio-button value="Ciclo Básico">Ciclo Básico</md-radio-button>
+                                </md-input-container>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <md-input-container class="md-icon-float md-block">
+                                    <md-radio-button value="Bachiller">Bachiller</md-radio-button>
+                                </md-input-container>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <md-input-container class="md-icon-float md-block">
+                                    <md-radio-button value="Universitario">Universitario</md-radio-button>
+                                </md-input-container>
+                            </div>
+                        </md-radio-group>
+
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Especialidad</label>
+                                <input type="text" required name="especialidad" ng-model="data.especialidad">
+                                <div ng-messages="empleadosForm.especialidad.$error">
+                                    <div ng-message="required">Especialidad Requerido</div>
+                                </div>
+                            </md-input-container>    
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <md-radio-group ng-model="data.tipo_vivienda">
+                            <div class="col-sm-2">
+                                <md-input-container class="md-icon-float md-block">
+                                    <md-radio-button value="Vivienda Propia">Vivienda Propia</md-radio-button>
+                                </md-input-container>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <md-input-container class="md-icon-float md-block">
+                                    <md-radio-button value="Vivienda en Arriendo">Vivienda en Arriendo</md-radio-button>
+                                </md-input-container>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <md-input-container class="md-icon-float md-block">
+                                    <md-radio-button value="Vivienda familiar">Vivienda familiar</md-radio-button>
+                                </md-input-container>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <md-input-container class="md-icon-float md-block">
+                                    <md-radio-button value=" Otra"> Otra</md-radio-button>
+                                </md-input-container>
+                            </div>
+                        </md-radio-group>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Provincia</label>
+                                <input type="text" required name="provincia" ng-model="data.provincia" />
+                                <div ng-messages="empleadosForm.provincia.$error">
+                                    <div ng-message="required">Provincia Requerido</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Sector</label>
+                                <input type="text" required name="sector" ng-model="data.sector" />
+                                <div ng-messages="empleadosForm.sector.$error">
+                                    <div ng-message="required">Sector Requerido</div>
+                                </div>
+                            </md-input-container>  
+                        </div>
+
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Cantón</label>
+                                <input type="text" required name="canton" ng-model="data.canton" />
+                                <div ng-messages="empleadosForm.canton.$error">
+                                    <div ng-message="required">Cantón Requerido</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Dirección</label>
+                                <input type="text" required name="direccion" ng-model="data.direccion" />
+                                <div ng-messages="empleadosForm.direccion.$error">
+                                    <div ng-message="required">Dirección Requerido</div>
+                                </div>
+                            </md-input-container>  
+                        </div>
+
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Parroquia</label>
+                                <input type="text" required name="parroquia" ng-model="data.parroquia" />
+                                <div ng-messages="empleadosForm.parroquia.$error">
+                                    <div ng-message="required">Parroquia Requerido</div>
+                                </div>
+                            </md-input-container> 
+                        </div>  
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Tipo de Sangre</label>
+                                <md-select ng-model="data.tipo_sangre" name="tipo_sangre" required>
+                                    <md-option value="A+">A+</md-option>
+                                    <md-option value="A-">A-</md-option>
+                                    <md-option value="B+">B+</md-option>
+                                    <md-option value="B-">B-</md-option>
+                                    <md-option value="AB+">AB+</md-option>
+                                    <md-option value="AB-">AB-</md-option>
+                                    <md-option value="O+">O+</md-option>
+                                    <md-option value="O-">O-</md-option>
+                                </md-select>
+                                <div ng-messages="empleadosForm.tipo_sangre.$error">
+                                    <div ng-message="required">Estado Civil Requerido</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Fecha Inicio Trabajo</label>
+                                <input type="text"  required name="fecha_ing_trab" ng-model="data.fecha_ing_trab" />
+                                <div  class="error" ng-messages="empleadosForm.fecha_ing_trab.$error">
+                                    <div ng-message="required">Fecha Inicio Trabajo Requerido</div>
+                                </div>
+                            </md-input-container> 
+                        </div>
+
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Alérgico Antibióticos</label>
+                                <input type="text" name="alergia_antibio" ng-model="data.alergia_antibio" />
+                                <div ng-messages="empleadosForm.alergia_antibio.$error">
+                                    <div ng-message="required">Alérgico Antibióticos Requerido</div>
+                                </div>
+                            </md-input-container> 
+                        </div>
+
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Enfermedad Específica</label>
+                                <input type="text" name="enfermedad" ng-model="data.enfermedad" />
+                                <div ng-messages="empleadosForm.enfermedad.$error">
+                                    <div ng-message="required">Enfermedad Específica Requerido</div>
+                                </div>
+                            </md-input-container> 
+                        </div>  
+                    </div>   
+                </form>
+            </div>  
+
+            <div class="row">
+                <div class="card-action">
+                    <div class="card-action-btn pull-right">
+                        <md-button class="md-raised md-primary" type="submit" ng-click="guardar_empleado()" ng-disabled="empleadosForm.$invalid">Guardar <i class="fa fa-angle-double-right"></i></md-button>
+                        <md-button class="md-raised md-warn" type="reset">Limpiar <i class="fa fa-trash-o"></i></md-button>
+                        <md-button class="md-primary md-raised" ng-click="showAdvanced($event)">Buscar</md-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

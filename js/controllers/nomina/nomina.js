@@ -128,11 +128,13 @@ app.controller('editItemNomina', function ($mdDialog, $scope, serviciosnomina, s
   $scope.data.descripcion = items.descripcion;
   $scope.data.registro_patronal = items.registro_patronal;
   $scope.data.dias = items.dias;
-  if ($localStorage.sucursal.sucursal == "") {
-      $scope.data.sucursal_nombre = "Principal";
-  } else {
-      $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal;
-  }
+  // if ($localStorage.sucursal.sucursal == "") {
+  //     $scope.data.sucursal_nombre = "Principal";
+  // } else {
+      $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal; 
+  // }
+
+  console.log($localStorage.sucursal.sucursal);
 
   $scope.data.fecha_inicio = new Date(items.fecha_inicio);
   

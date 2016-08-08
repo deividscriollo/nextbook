@@ -24,6 +24,12 @@
                             <i class="material-icons">cloud_upload</i> Cargos
                         </a>
                     </li>
+
+                    <li ng-class="{active: ('dashboard.nomina.empleados' | routeSegmentStartsWith)}">
+                        <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.nomina.empleados' | routeSegmentUrl}}">
+                            <i class="material-icons">cloud_upload</i> Empleados
+                        </a>
+                    </li>
                 </ul>
             </div>
         <!-- </md-content> -->

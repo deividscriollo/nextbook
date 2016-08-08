@@ -1,16 +1,55 @@
 var app = angular.module('app');
-app.controller('dashboardCtrl', function ($scope, $localStorage,servicios) {
+app.controller('dashboardCtrl', function ($scope, $localStorage,servicios, $mdDialog, $location, $mdSidenav) {
     $scope.localStorage = $localStorage.datosE;
     if ($localStorage.sucursal.categoria==null||$localStorage.sucursal.categoria=='') {
     	 servicios.showModal('modal_select_sucursal_categoria.html', {
                 states:''
             }, 'select_categoria_sucursal');
     }
-});
+    $scope.toggleSidenav = function(menuId) {
+	    $mdSidenav(menuId).toggle();
+	};
+	$scope.menu = 	[
+					    {
+					      link : '/My-space',
+					      title: 'Inicio',
+					      icon: 'dashboard'
+					    },
+					    // {
+					    //   link : '/My-space',
+					    //   title: 'Nomina',
+					    //   icon: 'donut_small'
+					    // },
+					    // {
+					    //   link : '/My-space',
+					    //   title: 'Departamentos',
+					    //   icon: 'dns'
+					    // },
+					    // {
+					    //   link : '/My-space',
+					    //   title: 'Cargos',
+					    //   icon: 'extension'
+					    // }
+					];
 
-app.controller('iniCtrl', function($scope, $localStorage) {
-// inicio 1
-    
+	$scope.tabs =	[
+						{icon:'home',title:'Inicio',link:'#/My-space'},
+						{icon:'assignment',title:'Apps, Colección',link:'#/My-space/Apss'},
+						{icon:'note_add',title:'Apps, Colección',link:''},
+						{icon:'location_on',title:'Localizacion',link:''},
+						{icon:'history',title:'Otras Empresas',link:''}
+					];
+	$scope.navigateTo = function(valor) {
+		$location.path(valor);
+	};
+
+	$scope.tabnavigation = function(valor){
+		$location.path(valor);
+		// console.log(valor);
+	}
+	 // $scope.currentNavItem = 'page1';
+
+
 });
 
 

@@ -21,7 +21,6 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/CambioPass',      'cambio-pass-registro-persona')
             .when('/FacturaNext',      'factura-next')
 
-
             // dashboard general
             .when('/My-space',      'dashboard')
                 .when('/My-space/Perfil-inicio',      'dashboard.perfil.inicio')

@@ -21,15 +21,18 @@ var app=angular.module	('app', 	[
 						).run(function($FB) {
     $FB.init('386469651480295');
 });
-app.config(['$compileProvider', '$mdThemingProvider', function ($compileProvider, $mdThemingProvider) {
-'use strict';
+app.config(['$compileProvider', '$mdThemingProvider', function ($compileProvider, $mdThemingProvider, $mdIconProvider) {
+	'use strict';
 
-$compileProvider.debugInfoEnabled(true);
+	$compileProvider.debugInfoEnabled(true);
 
-$mdThemingProvider.theme('default')
-  .primaryPalette('indigo')
-  .accentPalette('pink');
+	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette('pink');
+
+	
+
 }]);
+
+
 
 // app.config(['uiMask.ConfigProvider', function(uiMaskConfigProvider) {
 //   uiMaskConfigProvider.maskDefinitions({'A': /[a-z], '*': /[a-zA-Z0-9]/''});

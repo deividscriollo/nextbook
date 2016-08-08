@@ -1,5 +1,6 @@
 var app = angular.module('app');
 app.controller('nominaCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
+  
   var bookmark;
   $scope.status = '';
   
@@ -91,7 +92,7 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, serviciosnomina, servi
 
   $scope.loadStuff = function () {
     $scope.promise = $timeout(function () {
-
+      $scope.getDesserts;
     }, 2000);
   };
 });

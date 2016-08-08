@@ -136,7 +136,7 @@ app.directive('pwActualCheck', function(servicios) {
         link: function(scope, elem, attrs, ctrl) {
             elem.on('blur', function(value) {
                 scope.$apply(function() {
-                    servicios.verificar_pass().get({
+                    servicios.verificar_pass().post({
                         "pass": elem.val()
                     }).$promise.then(function(data) {
                         // console.log(data.respuesta);

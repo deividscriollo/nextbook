@@ -109,7 +109,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
     };
     //----------------------- fin -----------------------------
 
-    // ------------------------------------------------ Departamento ------------------------------
+    // ------------------------------------------------ Cargo ------------------------------
     this.add_cargo = function() {
         return $resource(servicios.server().mod_radio()+'public/addCargo', {}
         , {
@@ -162,4 +162,18 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
         });
     };
     //----------------------- fin -----------------------------
+
+    // ------------------------------------------------ Cargo ------------------------------
+    this.add_empleado = function() {
+        return $resource(servicios.server().mod_radio()+'public/addEmpleado', {}
+        , {
+            save: {
+                method: 'POST', isArray: false, 
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
 });

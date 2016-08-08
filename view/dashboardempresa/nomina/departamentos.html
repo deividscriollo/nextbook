@@ -96,6 +96,7 @@
                     <th md-column md-numeric>Código</th>
                     <th md-column md-numeric>Nombre / Descripción</th>
                     <th md-column md-numeric>Fecha Creación</th>
+                    <th md-column md-numeric>Acción</th>
                 </tr>
             </thead>
             <tbody md-body>
@@ -117,7 +118,7 @@
     </md-table-container>
     <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}" md-limit="query.num_registros" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{desserts.total}}" md-on-paginate="getDesserts" md-page-select>
     </md-table-pagination>
-    <!-- <style type="text/css">
+    <style type="text/css">
         md-toolbar.md-table-toolbar form > input {
           width: 100%;
           margin: 0;
@@ -168,5 +169,5 @@
         md-toolbar.md-table-toolbar form > input:focus {
           outline: none;
         }
-    </style> -->
+    </style>
 </div>

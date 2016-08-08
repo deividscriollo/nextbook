@@ -22,7 +22,6 @@ var app = angular.module('app');
   
   function success(desserts) {
     $scope.desserts = desserts.respuesta;
-    // console.log(desserts);
   }
   
   $scope.addititem = function (event) {

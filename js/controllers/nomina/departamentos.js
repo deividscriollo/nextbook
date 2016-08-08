@@ -27,7 +27,7 @@ app.controller('departamentosCtrl', function ($mdDialog, $scope, serviciosnomina
   $scope.addititem = function (event) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'addItemDepartamentos',
+      controller: 'addItemDepartamento',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
@@ -99,7 +99,7 @@ app.controller('departamentosCtrl', function ($mdDialog, $scope, serviciosnomina
   };
 });
 
-app.controller('addItemDepartamentos', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
+app.controller('addItemDepartamento', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
  
   this.cancel = $mdDialog.cancel
   $scope.guardar_departamento = function() {

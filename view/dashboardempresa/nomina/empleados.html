@@ -263,14 +263,6 @@
                                     <div ng-message="required">Estado Civil Requerido</div>
                                 </div>
                             </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Fecha Inicio Trabajo</label>
-                                <input type="text"  required name="fecha_ing_trab" ng-model="data.fecha_ing_trab" />
-                                <div  class="error" ng-messages="empleadosForm.fecha_ing_trab.$error">
-                                    <div ng-message="required">Fecha Inicio Trabajo Requerido</div>
-                                </div>
-                            </md-input-container> 
                         </div>
 
                         <div class="col-sm-4">
@@ -291,6 +283,58 @@
                                     <div ng-message="required">Enfermedad Específica Requerido</div>
                                 </div>
                             </md-input-container> 
+                        </div>  
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Nómina</label>
+                                <md-select ng-model="data.nominas" name="nominas" required>
+                                    <md-option ng-repeat="nomina in nominas" value="{{nomina.id}}">
+                                        {{nomina.descripcion}}
+                                    </md-option>
+                                </md-select>
+                                <div ng-messages="empleadosForm.nominas.$error">
+                                    <div ng-message="required">Nómina Requerido</div>
+                                </div>
+                            </md-input-container>
+
+                            <md-input-container class="ng-hide">
+                                <label>Fecha Inicio Trabajo</label>
+                                <input type="text"  required name="fecha_ing_trab" ng-model="data.fecha_ing_trab" />
+                                <div  class="error" ng-messages="empleadosForm.fecha_ing_trab.$error">
+                                    <div ng-message="required">Fecha Inicio Trabajo Requerido</div>
+                                </div>
+                            </md-input-container> 
+                        </div>
+
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Departamentos</label>
+                                <md-select ng-model="data.departamentos" name="departamentos" required>
+                                    <md-option ng-repeat="departamento in departamentos" value="{{departamento.id}}">
+                                        {{departamento.descripcion}}
+                                    </md-option>
+                                </md-select>
+                                <div ng-messages="empleadosForm.departamentos.$error">
+                                    <div ng-message="required">Departamento Requerido</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>Cargos</label>
+                                <md-select ng-model="data.cargos" name="cargos" required>
+                                    <md-option ng-repeat="cargo in cargos" value="{{cargo.id}}">
+                                        {{cargo.descripcion}}
+                                    </md-option>
+                                </md-select>
+                                <div ng-messages="empleadosForm.cargos.$error">
+                                    <div ng-message="required">Cargo Requerido</div>
+                                </div>
+                            </md-input-container>
                         </div>  
                     </div>   
                 </form>

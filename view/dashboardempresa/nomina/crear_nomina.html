@@ -21,8 +21,8 @@
                         <md-option value="Quincenal">Quincenal</md-option>
                         <md-option value="Mensual">Mensual</md-option>
                     </md-select>
-                    <div class="errors" ng-messages="registroForm.periodicidad.$error" ng-if="periodicidad.$dirty">
-                        <div ng-message="required">Required</div>
+                    <div ng-messages="registroForm.periodicidad.$error" >
+                        <div ng-message="required">Periodicidad Requerido</div>
                     </div>
                   </md-input-container>
                   <md-input-container class="md-block" flex-gt-xs >
@@ -46,22 +46,34 @@
                       <label>Días</label>
                       <input type="number" required name="dias" ng-model="data.dias" />
                       <div ng-messages="registroForm.dias.$error">
-                          <div ng-message="required">Días Requeridos</div>
+                          <div ng-message="required">Días Requerido</div>
                       </div>
                   </md-input-container>
                 </div>
+
                 <div layout-gt-xs="row">
                   <md-input-container class="md-block" flex-gt-xs>
                       <label>Expedido en</label>
-                      <input type="text" required name="sucursal_nombre" id="sucursal_nombre" ng-model="data.sucursal_nombre" />
+                      <input type="text" required name="sucursal_nombre" ng-model="data.sucursal_nombre" />
                       <div ng-messages="registroForm.sucursal_nombre.$error">
                           <div ng-message="required">Sucursal</div>
                       </div>
                   </md-input-container>
+
+                  <md-input-container class="md-block" flex-gt-xs>
+                      <label>Horas Laborables</label>
+                      <input type="number" required name="horas_laborar" ng-model="data.horas_laborar" />
+                      <div ng-messages="registroForm.horas_laborar.$error">
+                          <div ng-message="required">Horas Laborables Requerido</div>
+                      </div>
+                  </md-input-container>
+                </div>
+
+                <div layout-gt-xs="row">
                   <md-datepicker ng-model="data.fecha_inicio" required name="data.fecha_inicio" md-placeholder="Fecha de Inicio"></md-datepicker>
                   <div ng-messages="registroForm.data.fecha_inicio.$error">
-                        <div ng-message="required">Días Requeridos</div>
-                    </div>
+                      <div ng-message="required">Fecha Inicio Requerido</div>
+                  </div>
                 </div>
             </md-content>
           </div>

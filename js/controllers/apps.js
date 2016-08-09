@@ -139,6 +139,9 @@ app.factory('Reddit', function(servicios) {
       if (items.length==0) {
         this.busy = true;
       }else this.busy = false;
+      this.after = parseInt(this.items.length/10);
+      // console.log(this.after);
+      this.busy = false;
     }.bind(this));
   };
 

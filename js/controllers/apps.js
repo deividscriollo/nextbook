@@ -111,11 +111,9 @@ app.controller('MainCtrl', function($scope, $routeSegment, $localStorage,servici
         $scope.email = res;
     }
 
-$scope.reddit = new Reddit();
+    $scope.reddit = new Reddit();
 
 });
-
-
 
 // Reddit constructor function to encapsulate HTTP and pagination logic
 app.factory('Reddit', function(servicios) {
@@ -123,19 +121,24 @@ app.factory('Reddit', function(servicios) {
     this.items = [];
     this.busy = false;
     this.after = '';
+    this.page =1;
   };
+    console.log(this.query);
 
   Reddit.prototype.nextPage = function() {
     if (this.busy) return;
     this.busy = true;
-    servicios.buscar_empresas().get({page:this.after}).$promise.then(function(data) {
+    servicios.buscar_empresas().get({page:this.page}).$promise.then(function(data) {
       var items = data.respuesta;
       for (var i = 0; i < items.length; i++) {
         this.items.push(items[i]);
       }
-      this.after = parseInt(this.items.length/10);
-      console.log(this.after);
-      this.busy = false;
+      this.page = this.page+1;
+      this.after="t3_" + this.items[this.items.length - 1].Ruc;
+      console.log(data.respuesta);
+      if (items.length==0) {
+        this.busy = true;
+      }else this.busy = false;
     }.bind(this));
   };
 

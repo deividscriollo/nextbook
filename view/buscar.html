@@ -25,16 +25,16 @@
 							<div class="card-inner">
 								<div class="form-group form-group-label form-group-brand">
 									<label class="floating-label" for="ui_floating_label_example_brand">Buscar, empresas, servicios, locales comerciales</label>
-									<input class="form-control" id="ui_floating_label_example_brand" type="text">
+									<input class="form-control" ng-model="query" id="ui_floating_label_example_brand" type="text">
 									<div class="form-help">
 										<code>.form-group-brand</code>
 									</div>
 								</div>
 
-<!--   <div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1'>
-    <div ng-repeat='item in reddit.items'>
+  <div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1'>
+    <div ng-repeat='item in reddit.items | filter:query'>
       <span class='score'>{{$index}}</span>
-      <span class='score'>{{item.id_empresa}}</span>
+      <span class='score'>{{item.Ruc}}</span>
       <span class='title'>
         <a ng-href='{{item.url}}' target='_blank'>{{item.nombre_comercial}}</a>
       </span>
@@ -42,8 +42,8 @@
       </small>
       <div style='clear: both;'></div>
     </div>
-    <div ng-show='reddit.busy'>Loading data...</div>
-  </div> -->
+    <!-- <div ng-show='reddit.busy'>Loading data...</div> -->
+  </div>
 
 							</div>
 						</div>

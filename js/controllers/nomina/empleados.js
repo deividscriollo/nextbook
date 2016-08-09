@@ -1,10 +1,29 @@
 var app = angular.module('app');
 app.controller('empleados', function ($scope, $localStorage, serviciosnomina, servicios, $mdDialog) {
+  // $scope.nominas=data.respuesta;
   $scope.data = {
     cb1: true
   };
 
   $scope.status = '';
+
+  // combo nomina
+  serviciosnomina.cmbnomina().get().$promise.then(function(data) {
+      $scope.nominas = data.respuesta; 
+  });
+  // fin
+
+  // combo nomina
+  serviciosnomina.cmbdepartamento().get().$promise.then(function(data) {
+      $scope.departamentos = data.respuesta; 
+  });
+  // fin
+
+  // combo nomina
+  serviciosnomina.cmbcargo().get().$promise.then(function(data) {
+      $scope.cargos = data.respuesta; 
+  });
+  // fin
 
   // guardar empleados
   $scope.guardar_empleado = function() {

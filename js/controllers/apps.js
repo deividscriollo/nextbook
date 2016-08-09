@@ -134,7 +134,7 @@ app.factory('Reddit', function(servicios) {
         this.items.push(items[i]);
       }
       this.after = parseInt(this.items.length/10);
-      console.log(this.after);
+      // console.log(this.after);
       this.busy = false;
     }.bind(this));
   };

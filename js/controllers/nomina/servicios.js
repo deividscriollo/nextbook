@@ -163,7 +163,7 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
     };
     //----------------------- fin -----------------------------
 
-    // ------------------------------------------------ Cargo ------------------------------
+    // ------------------------------------------------ Empleado ------------------------------
     this.add_empleado = function() {
         return $resource(servicios.server().mod_radio()+'public/addEmpleado', {}
         , {
@@ -176,4 +176,46 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
             }
         });
     };
+
+    this.cmbnomina = function() {
+        return $resource(servicios.server().mod_radio()+'public/cmbNomina', {}
+        , {
+            get: {
+                method: 'GET', isArray: false,
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.cmbdepartamento = function() {
+        return $resource(servicios.server().mod_radio()+'public/cmbDepartamentos', {}
+        ,{
+            get: {
+                method: 'GET', isArray: false,
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.cmbcargo = function() {
+        return $resource(servicios.server().mod_radio()+'public/cmbCargos', {}
+        ,{
+            get: {
+                method: 'GET', isArray: false,
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+
+    //----------------------- fin -----------------------------
 });

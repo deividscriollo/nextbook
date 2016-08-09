@@ -123,8 +123,6 @@ app.factory('Reddit', function(servicios) {
     this.after = '';
     this.page =1;
   };
-    console.log(this.query);
-
   Reddit.prototype.nextPage = function() {
     if (this.busy) return;
     this.busy = true;
@@ -135,13 +133,9 @@ app.factory('Reddit', function(servicios) {
       }
       this.page = this.page+1;
       this.after="t3_" + this.items[this.items.length - 1].Ruc;
-      console.log(data.respuesta);
       if (items.length==0) {
         this.busy = true;
       }else this.busy = false;
-      this.after = parseInt(this.items.length/10);
-      // console.log(this.after);
-      this.busy = false;
     }.bind(this));
   };
 

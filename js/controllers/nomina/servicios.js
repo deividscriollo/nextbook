@@ -216,6 +216,30 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
         });
     };
 
+    this.codigo_personal = function() {
+        return $resource(servicios.server().mod_radio()+'public/getCodpersonal', {}
+        ,{
+            get: {
+                method: 'GET', isArray: false,
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
 
+    this.repeat_empleado = function() {
+        return $resource(servicios.server().mod_radio()+'public/buscarEmpleado', {}
+        ,{
+            repeat: {
+                method: 'GET', isArray: false,
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
     //----------------------- fin -----------------------------
 });

@@ -3,7 +3,7 @@ app.service('serviciosradio', function($resource, $localStorage, $location, Moda
 
 	// ------------------------------------------------ Clientes ---------------------------
     this.add_cliente=function() {
-        return $resource(this.server().appnext()+'public/addCliente', {}
+        return $resource(servicios.server().mod_radio()+'public/addCliente', {}
         ,{
             save: {
                 method: 'POST', isArray: false,
@@ -15,7 +15,7 @@ app.service('serviciosradio', function($resource, $localStorage, $location, Moda
     };
     
     this.repeat_cliente=function() {
-        return $resource(this.server().appnext()+'public/buscarCliente', {}
+        return $resource(servicios.server().mod_radio()+'public/buscarCliente', {}
         , {
             repeat: {
                 method: 'GET', isArray: false,

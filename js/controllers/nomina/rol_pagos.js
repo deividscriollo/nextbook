@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('empleados', function ($scope, $localStorage, serviciosnomina, servicios, $mdDialog) {
+app.controller('rol_pagos', function ($scope, $localStorage, serviciosnomina, servicios, $mdDialog) {
   $scope.data = {
     cb1: true
   };
@@ -30,7 +30,7 @@ app.controller('empleados', function ($scope, $localStorage, serviciosnomina, se
   });
   // fin
 
-  // comparar empleados consulta service web
+  // comparar rol pagos consulta service web
   $scope.comparar_empleado = function() {
     serviciosnomina.repeat_empleado().repeat($scope.data).$promise.then(function(data) {
       console.log(data);
@@ -69,7 +69,7 @@ app.controller('empleados', function ($scope, $localStorage, serviciosnomina, se
     })
   }
 
-  // guardar empleados
+  // guardar rol pagos
   $scope.guardar_empleado = function() {
     serviciosnomina.add_empleado().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {

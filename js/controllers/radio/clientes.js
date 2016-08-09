@@ -1,11 +1,11 @@
 var app = angular.module('app');
-app.controller('clientes', function ($scope, $localStorage, servicios, $mdDialog) {
+app.controller('clientes', function ($scope, $localStorage, serviciosradio, servicios, $mdDialog) {
 
   $scope.status = '';
 
   // guardar clientes
   $scope.guardar_cliente = function() {
-    servicios.add_cliente().save($scope.data).$promise.then(function(data) {
+    serviciosradio.add_cliente().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
           $mdDialog.show(
             $mdDialog.alert()
@@ -24,7 +24,7 @@ app.controller('clientes', function ($scope, $localStorage, servicios, $mdDialog
 
   // comparar clientes consulta service web
   $scope.comparar_cliente = function() {
-    servicios.repeat_cliente().repeat($scope.data).$promise.then(function(data) {
+    serviciosradio.repeat_cliente().repeat($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
         $scope.data.ruc_empresa = '';
         $mdDialog.show(

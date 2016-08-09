@@ -396,6 +396,17 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     }  ;
     //----------------------- fin ----
 
+        //----------------------------------------------------- BUSQUEDA DE EMPRESAS----------------
+    this.buscar_empresas=function() {
+        return $resource(this.server().appnext()+'public/buscarEmpresas', {}
+        , {
+            get: {
+                method: 'GET', isArray: false
+            }
+        }
+        );
+    }  ;
+    //----------------------- fin ----
 
 });
 

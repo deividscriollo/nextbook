@@ -1,4 +1,5 @@
 var app=angular.module	('app', 	[ 
+									'infinite-scroll',
 									'ngImgCrop',
 									'ngPDFViewer',
 									'djds4rce.angular-socialshare',

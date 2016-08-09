@@ -54,7 +54,7 @@ app.controller('recordCtrl', function($scope, $routeSegment) {
     $scope.$routeSegment = $routeSegment;
 });
 
-app.controller('MainCtrl', function($scope, $routeSegment, $localStorage,servicios, $location, loader, LoginE) {
+app.controller('MainCtrl', function($scope, $routeSegment, $localStorage,servicios, $location, loader, LoginE,Reddit) {
     $scope.data = '';
     $scope.$routeSegment = $routeSegment;
     $scope.loader = loader;
@@ -110,7 +110,38 @@ app.controller('MainCtrl', function($scope, $routeSegment, $localStorage,servici
         var res = correo.replace("@facturanext.com", "");
         $scope.email = res;
     }
+
+$scope.reddit = new Reddit();
+
 });
+
+
+
+// Reddit constructor function to encapsulate HTTP and pagination logic
+// app.factory('Reddit', function(servicios) {
+//   var Reddit = function() {
+//     this.items = [];
+//     this.busy = false;
+//     this.after = '';
+//   };
+
+//   Reddit.prototype.nextPage = function() {
+//     if (this.busy) return;
+//     this.busy = true;
+//     servicios.buscar_empresas().get({page:this.after}).$promise.then(function(data) {
+//       var items = data.respuesta;
+//       for (var i = 0; i < items.length; i++) {
+//         this.items.push(items[i]);
+//       }
+//       this.after = parseInt(this.items.length/10);
+//       console.log(this.after);
+//       this.busy = false;
+//     }.bind(this));
+//   };
+
+//   return Reddit;
+// });
+
 // app.controller('appsCtrl', function($scope, $routeSegment, $localStorage,servicios, $location, loader, LoginE) {
 //     if (navigator.geolocation) {
 //         navigator.geolocation.getCurrentPosition(function (position) {

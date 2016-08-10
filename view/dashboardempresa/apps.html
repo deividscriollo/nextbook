@@ -1,172 +1,197 @@
-<div class="row">
-	<div class="col-sm-3">
-		<div class="card">
-			<div class="card-main">
-				<div class="card-header">
-					<div class="card-header-side pull-left">
-						<div class="avatar">
-							<img alt="John Smith Avatar" src="images/users/avatar-001.jpg">
+<div flex md-scroll-y>
+	<div layout="row" layout-fill flex-gt-md="80">
+        <div layout="row" flex>
+            <div class="parent" layout="column" ng-repeat="item in menucard" flex>
+                <md-card class="card">
+                	<md-card-header>
+			          <md-card-avatar>
+			            <img class="md-user-avatar" src="images/samples/mat2.jpg"/>
+			          </md-card-avatar>
+			          <md-card-header-text>
+			            <span class="md-title">{{item.titulo}}</span>
+			            <span class="md-subhead">{{item.descripcion}}</span>
+			          </md-card-header-text>
+			        </md-card-header>
+                    <img ng-src="images/samples/x4.jpg" class="md-card-image" alt="Washed Out">
+                    <md-card-actions layout="row" layout-align="end center">
+			          <md-button class="md-raised md-primary" ng-click="modal(item.evento, event)">Entrar</md-button>
+			        </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+    </div>
+	<!-- <div class="row">
+		<div class="col-sm-3">
+			<div class="card">
+				<div class="card-main">
+					<div class="card-header">
+						<div class="card-header-side pull-left">
+							<div class="avatar">
+								<img alt="John Smith Avatar" src="images/users/avatar-001.jpg">
+							</div>
+						</div>
+						<div class="card-inner">
+							<span class="card-heading">FacturaNext</span>
 						</div>
 					</div>
-					<div class="card-inner">
-						<span class="card-heading">FacturaNext</span>
+					<div class="card-img">
+						<img alt="alt text" src="images/samples/x2.jpg" style="width: 100%;">
+						<p class="card-img-heading">Repositorio Facturas Electronicas</p>
 					</div>
-				</div>
-				<div class="card-img">
-					<img alt="alt text" src="images/samples/x2.jpg" style="width: 100%;">
-					<p class="card-img-heading">Repositorio Facturas Electronicas</p>
-				</div>
-				
-				<div class="card-action">
-					<div class="card-action-btn pull-left">
-						<a class="btn btn-flat waves-attach" href="#{{'dashboard.facturanext.inicio' | routeSegmentUrl}}"><span class="icon">check</span> Entrar</a>
+					
+					<div class="card-action">
+						<div class="card-action-btn pull-left">
+							<a class="btn btn-flat waves-attach" href="#{{'dashboard.facturanext.inicio' | routeSegmentUrl}}"><span class="icon">check</span> Entrar</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="col-sm-3">
-		<div class="card">
-			<div class="card-main">
-				<div class="card-header">
-					<div class="card-header-side pull-left">
-						<div class="avatar">
-							<img alt="John Smith Avatar" src="images/users/avatar-001.jpg">
+		<div class="col-sm-3">
+			<div class="card">
+				<div class="card-main">
+					<div class="card-header">
+						<div class="card-header-side pull-left">
+							<div class="avatar">
+								<img alt="John Smith Avatar" src="images/users/avatar-001.jpg">
+							</div>
+						</div>
+						<div class="card-inner">
+							<span class="card-heading">Clientes</span>
 						</div>
 					</div>
-					<div class="card-inner">
-						<span class="card-heading">Clientes</span>
+					<div class="card-img">
+						<img alt="alt text" src="images/samples/x3.jpg" style="width: 100%;">
+						<p class="card-img-heading">Administración Radio</p>
 					</div>
-				</div>
-				<div class="card-img">
-					<img alt="alt text" src="images/samples/x3.jpg" style="width: 100%;">
-					<p class="card-img-heading">Administración Radio</p>
-				</div>
-				
-				<div class="card-action">
-					<div class="card-action-btn pull-left">
-						<a class="btn btn-flat waves-attach" href="#{{'dashboard.radio.inicio' | routeSegmentUrl}}"><span class="icon">check</span> Entrar</a>
+					
+					<div class="card-action">
+						<div class="card-action-btn pull-left">
+							<a class="btn btn-flat waves-attach" href="#{{'dashboard.radio.inicio' | routeSegmentUrl}}"><span class="icon">check</span> Entrar</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="col-sm-3">
-		<div class="card">
-			<div class="card-main">
-				<div class="card-header">
-					<div class="card-header-side pull-left">
-						<div class="avatar">
-							<img alt="John Smith Avatar" src="images/users/avatar-001.jpg">
+		<div class="col-sm-3">
+			<div class="card">
+				<div class="card-main">
+					<div class="card-header">
+						<div class="card-header-side pull-left">
+							<div class="avatar">
+								<img alt="John Smith Avatar" src="images/users/avatar-001.jpg">
+							</div>
+						</div>
+						<div class="card-inner">
+							<span class="card-heading">Nómina</span>
 						</div>
 					</div>
-					<div class="card-inner">
-						<span class="card-heading">Nómina</span>
+					<div class="card-img">
+						<img alt="alt text" src="images/samples/x4.jpg" style="width: 100%;">
+						<p class="card-img-heading">Generar Nóminas Personal</p>
 					</div>
-				</div>
-				<div class="card-img">
-					<img alt="alt text" src="images/samples/x4.jpg" style="width: 100%;">
-					<p class="card-img-heading">Generar Nóminas Personal</p>
-				</div>
-				
-				<div class="card-action">
-					<div class="card-action-btn pull-right">
-						<md-button class="md-raised md-primary" type="submit" ng-click="modal_nomina()">
-			              Ingresar
-			            </md-button>
+					
+					<div class="card-action">
+						<div class="card-action-btn pull-right">
+							<md-button class="md-raised md-primary" type="submit" ng-click="modal_nomina()">
+				              Ingresar
+				            </md-button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="col-sm-3">
-		<div class="card">
-			<div class="card-main">
-				<div class="card-header">
-					<div class="card-header-side pull-left">
-						<div class="avatar">
-							<img alt="John Smith Avatar" src="images/users/avatar-001.jpg">
+		<div class="col-sm-3">
+			<div class="card">
+				<div class="card-main">
+					<div class="card-header">
+						<div class="card-header-side pull-left">
+							<div class="avatar">
+								<img alt="John Smith Avatar" src="images/users/avatar-001.jpg">
+							</div>
+						</div>
+						<div class="card-inner">
+							<span class="card-heading">Ruc</span>
 						</div>
 					</div>
-					<div class="card-inner">
-						<span class="card-heading">Ruc</span>
+					<div class="card-img">
+						<img alt="alt text" src="images/samples/x5.jpg" style="width: 100%;">
+						<p class="card-img-heading">Consultar informacionde Sus clientes</p>
 					</div>
-				</div>
-				<div class="card-img">
-					<img alt="alt text" src="images/samples/x5.jpg" style="width: 100%;">
-					<p class="card-img-heading">Consultar informacionde Sus clientes</p>
-				</div>
-				
-				<div class="card-action">
-					<div class="card-action-btn pull-left">
-						<a class="btn btn-flat waves-attach" href="javascript:void(0)"><span class="icon">check</span>&nbsp;Button</a>
+					
+					<div class="card-action">
+						<div class="card-action-btn pull-left">
+							<a class="btn btn-flat waves-attach" href="javascript:void(0)"><span class="icon">check</span>&nbsp;Button</a>
+						</div>
+						<ul class="nav nav-list margin-no pull-right">
+							<li class="dropdown">
+								<a class="dropdown-toggle text-black waves-attach" data-toggle="dropdown"><span class="icon">keyboard_arrow_down</span></a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li>
+										<a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">filter_1</span>&nbsp;Lorem Ipsum</a>
+									</li>
+									<li>
+										<a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">filter_2</span>&nbsp;Consectetur Adipiscing</a>
+									</li>
+									<li>
+										<a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">filter_3</span>&nbsp;Sed Ornare</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</div>
-					<ul class="nav nav-list margin-no pull-right">
-						<li class="dropdown">
-							<a class="dropdown-toggle text-black waves-attach" data-toggle="dropdown"><span class="icon">keyboard_arrow_down</span></a>
-							<ul class="dropdown-menu dropdown-menu-right">
-								<li>
-									<a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">filter_1</span>&nbsp;Lorem Ipsum</a>
-								</li>
-								<li>
-									<a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">filter_2</span>&nbsp;Consectetur Adipiscing</a>
-								</li>
-								<li>
-									<a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">filter_3</span>&nbsp;Sed Ornare</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col-sm-3">
-		<div class="card">
-			<div class="card-main">
-				<div class="card-header">
-					<div class="card-header-side pull-left">
-						<div class="avatar">
-							<img alt="John Smith Avatar" src="images/users/avatar-001.jpg">
+		<div class="col-sm-3">
+			<div class="card">
+				<div class="card-main">
+					<div class="card-header">
+						<div class="card-header-side pull-left">
+							<div class="avatar">
+								<img alt="John Smith Avatar" src="images/users/avatar-001.jpg">
+							</div>
+						</div>
+						<div class="card-inner">
+							<span class="card-heading">Record Policial</span>
 						</div>
 					</div>
-					<div class="card-inner">
-						<span class="card-heading">Record Policial</span>
+					<div class="card-img">
+						<img alt="alt text" src="images/samples/x6.jpg" style="width: 100%;">
+						<p class="card-img-heading">Consultar Horial Delictivo</p>
 					</div>
-				</div>
-				<div class="card-img">
-					<img alt="alt text" src="images/samples/x6.jpg" style="width: 100%;">
-					<p class="card-img-heading">Consultar Horial Delictivo</p>
-				</div>
-				
-				<div class="card-action">
-					<div class="card-action-btn pull-left">
-						<a class="btn btn-flat waves-attach" href="javascript:void(0)"><span class="icon">check</span>&nbsp;Button</a>
+					
+					<div class="card-action">
+						<div class="card-action-btn pull-left">
+							<a class="btn btn-flat waves-attach" href="javascript:void(0)"><span class="icon">check</span>&nbsp;Button</a>
+						</div>
+						<ul class="nav nav-list margin-no pull-right">
+							<li class="dropdown">
+								<a class="dropdown-toggle text-black waves-attach" data-toggle="dropdown"><span class="icon">keyboard_arrow_down</span></a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li>
+										<a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">filter_1</span>&nbsp;Lorem Ipsum</a>
+									</li>
+									<li>
+										<a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">filter_2</span>&nbsp;Consectetur Adipiscing</a>
+									</li>
+									<li>
+										<a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">filter_3</span>&nbsp;Sed Ornare</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</div>
-					<ul class="nav nav-list margin-no pull-right">
-						<li class="dropdown">
-							<a class="dropdown-toggle text-black waves-attach" data-toggle="dropdown"><span class="icon">keyboard_arrow_down</span></a>
-							<ul class="dropdown-menu dropdown-menu-right">
-								<li>
-									<a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">filter_1</span>&nbsp;Lorem Ipsum</a>
-								</li>
-								<li>
-									<a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">filter_2</span>&nbsp;Consectetur Adipiscing</a>
-								</li>
-								<li>
-									<a class="waves-attach" href="javascript:void(0)"><span class="icon margin-right-sm">filter_3</span>&nbsp;Sed Ornare</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>	
+	</div> -->
+</div>
+
+
 <!-- <content layout="row" layout-fill layout-padding flex-gt-md="80">
     <md-card flex-gt-sm="70" flex-gt-md="80">
         <md-card-content>
@@ -255,4 +280,4 @@
           </md-list>
         </md-card-content>
     </md-card>
-</content> -->
+</content>

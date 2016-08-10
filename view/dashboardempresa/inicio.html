@@ -1,9 +1,6 @@
-<div flex md-scroll-y>
-    
-    <md-tabs md-stretch-tabs class="md-primary">
-        <md-tab  ng-repeat="item in tabs" ng-click="tabnavigation(item.link)">
-            <ng-md-icon icon="home"></ng-md-icon> {{item.title}}
-        </md-tab>
-    </md-tabs>
-    <div app-view-segment="2"></div>
-</div>
+<md-tabs md-stretch-tabs class="md-primary">
+    <md-tab  ng-repeat="item in tabs" ng-click="tabnavigation(item.link)">
+        <ng-md-icon icon="home"></ng-md-icon> {{item.title}}
+    </md-tab>
+</md-tabs>
+<div app-view-segment="2"></div>

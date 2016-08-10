@@ -122,20 +122,14 @@ app.controller('addItemNomina', function ($mdDialog, $scope, serviciosnomina, se
 
 app.controller('editItemNomina', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) {
   $scope.data = {}; 
+  $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal; 
 
   $scope.data.id = items.id;
   $scope.data.periodicidad = items.periodicidad;
   $scope.data.descripcion = items.descripcion;
   $scope.data.registro_patronal = items.registro_patronal;
   $scope.data.dias = items.dias;
-  // if ($localStorage.sucursal.sucursal == "") {
-  //     $scope.data.sucursal_nombre = "Principal";
-  // } else {
-      $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal; 
-  // }
-
-  console.log($localStorage.sucursal.sucursal);
-
+  $scope.data.horas_laborar = items.horas_laborar;
   $scope.data.fecha_inicio = new Date(items.fecha_inicio);
   
   this.cancel = $mdDialog.cancel 

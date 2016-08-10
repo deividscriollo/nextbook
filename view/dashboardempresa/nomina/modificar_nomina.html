@@ -62,10 +62,21 @@
                           <div ng-message="required">Sucursal</div>
                       </div>
                   </md-input-container>
-                  <md-datepicker required name="data.fecha_inicio" ng-model="data.fecha_inicio" md-placeholder="Fecha de Inicio"></md-datepicker>
+
+                  <md-input-container class="md-block" flex-gt-xs>
+                      <label>Horas Laborables</label>
+                      <input type="text" required name="horas_laborar" ng-model="data.horas_laborar" />
+                      <div ng-messages="registroForm.horas_laborar.$error">
+                          <div ng-message="required">Horas Laborables Requerido</div>
+                      </div>
+                  </md-input-container>
+                </div>
+
+                <div layout-gt-xs="row">
+                  <md-datepicker ng-model="data.fecha_inicio" required name="data.fecha_inicio" md-placeholder="Fecha de Inicio"></md-datepicker>
                   <div ng-messages="registroForm.data.fecha_inicio.$error">
-                        <div ng-message="required">Días Requeridos</div>
-                    </div>
+                      <div ng-message="required">Fecha Inicio Requerido</div>
+                  </div>
                 </div>
             </md-content>
           </div>

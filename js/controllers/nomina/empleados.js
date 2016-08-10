@@ -1,10 +1,6 @@
 var app = angular.module('app');
 app.controller('empleados', function ($scope, $localStorage, serviciosnomina, servicios, $mdDialog) {
-  $scope.data = {
-    cb1: true
-  };
-
-  $scope.status = '';
+  $scope.data = {};
 
   // codigo personal
   serviciosnomina.codigo_personal().get().$promise.then(function(data) {

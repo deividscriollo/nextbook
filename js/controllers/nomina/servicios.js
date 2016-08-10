@@ -242,4 +242,60 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
         });
     };
     //----------------------- fin -----------------------------
+
+    // ------------------------------------------------ Rol Pagos ------------------------------
+    this.codigo_rol = function() {
+        return $resource(servicios.server().mod_radio()+'public/getCodrol', {}
+        ,{
+            get: {
+                method: 'GET', isArray: false,
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    // ------------------------------------------------ Cargo ------------------------------
+    this.change_nomina = function() {
+        return $resource(servicios.server().mod_radio()+'public/getEmpleadosByNomina', {}
+        , {
+            send: {
+                method: 'POST', isArray: false, 
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.get_empleados = function() {
+        return $resource(servicios.server().mod_radio()+'public/getEmpleados', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.get_datos_empleados = function() {
+        return $resource(servicios.server().mod_radio()+'public/getEmpleadosById', {}
+        , {
+            send: {
+                method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    //----------------------- fin -----------------------------
 });

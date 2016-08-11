@@ -5,7 +5,7 @@ app.factory("MyService", function() {
   };
 });
 
-app.controller('rol_pagosCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, $location, MyService) {
+app.controller('nomina_rolCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, $location, MyService) {
   $scope.data = {};
   $scope.data.nombres_completos = MyService.datos.name;
 

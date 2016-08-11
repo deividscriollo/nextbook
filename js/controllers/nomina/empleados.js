@@ -1,28 +1,28 @@
 var app = angular.module('app');
-app.controller('empleados', function ($scope, $localStorage, serviciosnomina, servicios, $mdDialog) {
+app.controller('empleados', function ($scope, $localStorage, serviciosnomina, servicios, $mdDialog, $location) {
   $scope.data = {};
 
   // codigo personal
   serviciosnomina.codigo_personal().get().$promise.then(function(data) {
-      $scope.data.codigo_personal = data.codigo; 
+    $scope.data.codigo_personal = data.codigo; 
   });
   // fin
 
   // combo nomina
   serviciosnomina.cmbnomina().get().$promise.then(function(data) {
-      $scope.nominas = data.respuesta; 
+    $scope.nominas = data.respuesta; 
   });
   // fin
 
   // combo nomina
   serviciosnomina.cmbdepartamento().get().$promise.then(function(data) {
-      $scope.departamentos = data.respuesta; 
+    $scope.departamentos = data.respuesta; 
   });
   // fin
 
   // combo nomina
   serviciosnomina.cmbcargo().get().$promise.then(function(data) {
-      $scope.cargos = data.respuesta; 
+    $scope.cargos = data.respuesta; 
   });
   // fin
 
@@ -78,7 +78,8 @@ app.controller('empleados', function ($scope, $localStorage, serviciosnomina, se
             .ariaLabel('Registro Agregado Correctamente')
             .ok('Ok!')
             .openFrom('#left')
-         ); 
+         );
+        $location.url("/My-space/NominaAdmin/Empleados"); 
       }
     });       
   }

@@ -31,9 +31,21 @@
                         </a>
                     </li>
 
-                    <li ng-class="{active: ('dashboard.nomina.nomina_roles' | routeSegmentStartsWith)}">
-                        <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.nomina.nomina_roles' | routeSegmentUrl}}">
+                    <li ng-class="{active: ('dashboard.nomina.listado_empleado' | routeSegmentStartsWith)}">
+                        <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.nomina.listado_empleado' | routeSegmentUrl}}">
+                            <i class="material-icons">cloud_upload</i> Lista Empleados
+                        </a>
+                    </li>
+
+                    <li ng-class="{active: ('dashboard.nomina.personal_roles' | routeSegmentStartsWith)}">
+                        <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.nomina.personal_roles' | routeSegmentUrl}}">
                             <i class="material-icons">cloud_upload</i> Rol Pagos
+                        </a>
+                    </li>
+
+                    <li ng-class="{active: ('dashboard.nomina.listado_roles' | routeSegmentStartsWith)}">
+                        <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.nomina.listado_roles' | routeSegmentUrl}}">
+                            <i class="material-icons">cloud_upload</i> Lista Rol Pagos
                         </a>
                     </li>
                 </ul>

@@ -1,0 +1,75 @@
+<div ng-controller="listado_rolesCtrl">    
+    <div>
+        <div class="col-sm-12">
+            <div class="col-sm-4">
+                <md-input-container class="md-icon-float md-block">
+                    <label>Nómina</label>
+                    <md-select ng-model="data.id_nomina" name="id_nomina" required ng-change="update(nomina)">
+                        <md-option ng-repeat="nomina in nominas" value="{{nomina.id}}">
+                            {{nomina.descripcion}}
+                        </md-option>
+                    </md-select>
+                    <div ng-messages="empleadosForm.nominas.$error">
+                        <div ng-message="required">Nómina Requerido</div>
+                    </div>
+                </md-input-container>   
+            </div>    
+        </div>
+
+        <md-toolbar ng-hide="selected.length || filter.show">
+          <div class="md-toolbar-tools">
+            Lista Roles de Pagos
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="filter.show = true">
+                <md-icon>search</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="loadStuff($event)">
+                <md-icon>autorenew</md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+        <md-toolbar class="md-table-toolbar md-default" ng-show="filter.show && !selected.length">
+            <div class="md-toolbar-tools">
+                <md-icon>search</md-icon>
+                <form flex name="filter.form">
+                    <input type="text" ng-model="query.filter" ng-model-options="filter.options" placeholder="Buscar, Nomina Patronal">
+                </form>
+                <md-button class="md-icon-button" ng-click="removeFilter()">
+                    <md-icon>close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-table-container>
+            <table md-table ng-model="selected" md-progress="promise">
+            
+                <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                    <tr md-row>
+                        <th md-column md-numeric>Código Rol</th>
+                        <th md-column md-numeric>Cédula / Identificación</th>
+                        <th md-column md-numeric>Nombres Completos</th>
+                        <th md-column md-numeric>Fecha Creación</th>
+                        <th md-column md-numeric>Monto Pagar</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="dessert in desserts.data">
+                        <td md-cell>{{dessert.codigo_rol}}</td>
+                        <td md-cell>{{dessert.cedula_identificacion}}</td>
+                        <td md-cell>{{dessert.nombres_completos}}</td>
+                        <td md-cell>{{dessert.fecha_rol}}</td> 
+                        <td md-cell>{{dessert.neto_pagar}}</td>
+                        <td md-cell>
+                             <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="iditem(dessert)">
+                              <md-icon md-svg-src="img/icons/ic_edit_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
+                            </md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+        <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}" md-limit="query.num_registros" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{desserts.total}}" md-on-paginate="getDesserts" md-page-select>
+        </md-table-pagination>
+    </div>
+
+</div>

@@ -1,16 +1,5 @@
-<div ng-controller="nomina_rolCtrl">    
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <h2>Empleados</h2>
-            <span flex></span>
-            <md-button class="md-icon-button" ng-click="ctrl.cancel()">
-                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
-            </md-button>
-        </div>
-    </md-toolbar>
-
-    <md-dialog-content style="width:900px;">
-      <div>
+<div ng-controller="personal_rolCtrl">    
+    <div>
         <div class="col-sm-12">
             <div class="col-sm-4">
                 <md-input-container class="md-icon-float md-block">
@@ -29,7 +18,7 @@
 
         <md-toolbar ng-hide="selected.length || filter.show">
           <div class="md-toolbar-tools">
-            Empleados
+            Roles de Pagos Empleados
             <span flex></span>
             <md-button class="md-icon-button" ng-click="filter.show = true">
                 <md-icon>search</md-icon>
@@ -51,17 +40,8 @@
             </div>
         </md-toolbar>
 
-        <md-toolbar class="md-table-toolbar alternate" ng-show="selected.length">
-            <div class="md-toolbar-tools" layout-align="space-between">
-                <div>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</div>
-                <md-button class="md-icon-button" ng-click="delete($event)">
-                    <md-icon>delete</md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
-
         <md-table-container>
-            <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+            <table md-table ng-model="selected" md-progress="promise">
             
                 <thead md-head md-order="query.order" md-on-reorder="getDesserts">
                     <tr md-row>
@@ -71,7 +51,7 @@
                     </tr>
                 </thead>
                 <tbody md-body>
-                    <tr md-row md-select-id="name" ng-repeat="dessert in desserts.data">
+                    <tr md-row ng-repeat="dessert in desserts.data">
                         <td md-cell>{{dessert.cedula_identificacion}}</td>
                         <td md-cell>{{dessert.nombres_completos}}</td>
                         <td md-cell>{{dessert.sueldo}}</td> 
@@ -86,13 +66,6 @@
         </md-table-container>
         <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}" md-limit="query.num_registros" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{desserts.total}}" md-on-paginate="getDesserts" md-page-select>
         </md-table-pagination>
-      </div>
-    </md-dialog-content>
-    <md-dialog-actions layout="row">
-        <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
-        <span flex></span>
-        <md-button class="md-raised md-primary" type="submit" ng-click="guardar_nomina()" ng-disabled="registroForm.$invalid">
-          Guardar
-        </md-button>
-    </md-dialog-actions>
+    </div>
+
 </div>

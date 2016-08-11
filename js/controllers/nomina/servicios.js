@@ -2,6 +2,19 @@ var app = angular.module('app');
 app.service('serviciosnomina', function($resource, $localStorage, $location, ModalService, $http, servicios) {
 
     // ------------------------------------------------ Nómina ------------------------------
+    this.codigo_nomina = function() {
+        return $resource(servicios.server().mod_radio()+'public/getCodnomina', {}
+        ,{
+            get: {
+                method: 'GET', isArray: false,
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
     this.add_nomina = function() {
         return $resource(servicios.server().mod_radio()+'public/addNomina', {}
         , {
@@ -56,6 +69,19 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
     // --------------------------------------- Fin ------------------------------------------------
 
     // ------------------------------------------------ Departamento ------------------------------
+    this.codigo_departamento = function() {
+        return $resource(servicios.server().mod_radio()+'public/getCoddepartamento', {}
+        ,{
+            get: {
+                method: 'GET', isArray: false,
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
     this.add_departamento = function() {
         return $resource(servicios.server().mod_radio()+'public/addDepartamento', {}
         , {
@@ -110,6 +136,19 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
     //----------------------- fin -----------------------------
 
     // ------------------------------------------------ Cargo ------------------------------
+    this.codigo_cargos = function() {
+        return $resource(servicios.server().mod_radio()+'public/getCodcargo', {}
+        ,{
+            get: {
+                method: 'GET', isArray: false,
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
     this.add_cargo = function() {
         return $resource(servicios.server().mod_radio()+'public/addCargo', {}
         , {
@@ -244,6 +283,19 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
     //----------------------- fin -----------------------------
 
     // ------------------------------------------------ Rol Pagos ------------------------------
+    this.add_rol_pagos = function() {
+        return $resource(servicios.server().mod_radio()+'public/addRol', {}
+        , {
+            save: {
+                method: 'POST', isArray: false, 
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
     this.codigo_rol = function() {
         return $resource(servicios.server().mod_radio()+'public/getCodrol', {}
         ,{
@@ -286,6 +338,48 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
 
     this.get_datos_empleados = function() {
         return $resource(servicios.server().mod_radio()+'public/getEmpleadosById', {}
+        , {
+            send: {
+                method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    // llamar datos roles
+    this.get_roles = function() {
+        return $resource(servicios.server().mod_radio()+'public/getRoles', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    // llamar datos empleados
+    this.get_empleados_modificar = function() {
+        return $resource(servicios.server().mod_radio()+'public/getAllEmpleados', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    // llamar datos empleados id
+    this.get_empleados_modificar_id = function() {
+        return $resource(servicios.server().mod_radio()+'public/getDatosEmpleado', {}
         , {
             send: {
                 method: 'GET', isArray: false, 

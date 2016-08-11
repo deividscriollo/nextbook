@@ -11,6 +11,7 @@
                 <span class="card-heading">Registro Roles Pagos</span>
             </div>
         </div>
+
         <div class="card-img">
             <p class="card-img-heading">Some Text!</p>
         </div>
@@ -41,6 +42,14 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="col-sm-4">
+                            <md-input-container class="ng-hide">
+                                <label>Id Empleado</label>
+                                <input type="text" required name="id_empleado" ng-model="data.id_empleado" />
+                                <div ng-messages="rolForm.id_empleado.$error">
+                                    <div ng-message="required">Id Empleado Requerido</div>
+                                </div>
+                            </md-input-container>
+
                             <md-input-container class="md-icon-float md-block">
                                 <label>Cédula de Identidad</label>
                                 <input md-maxlength="10" type="text" required name="cedula_identificacion" ng-model="data.cedula_identificacion" ng-blur="comparar_empleado()" />
@@ -52,8 +61,8 @@
 
                             <md-input-container class="md-icon-float md-block">
                                 <label>Departamento</label>
-                                <input type="text" required name="nomina" ng-model="data.nomina" />
-                                <div ng-messages="rolForm.nomina.$error">
+                                <input type="text" required name="departamento" ng-model="data.departamento" />
+                                <div ng-messages="rolForm.departamento.$error">
                                     <div ng-message="required">Departamento Requerido</div>
                                 </div>
                             </md-input-container>  
@@ -88,8 +97,8 @@
 
                             <md-input-container class="md-icon-float md-block">
                                 <label>Sueldo</label>
-                                <input type="text" required name="sueldo_mes" ng-model="data.sueldo_mes">
-                                <div ng-messages="rolForm.sueldo_mes.$error">
+                                <input type="text" required name="sueldo" ng-model="data.sueldo">
+                                <div ng-messages="rolForm.sueldo.$error">
                                     <div ng-message="required">Sueldo Requerido</div>
                                 </div>
                             </md-input-container>
@@ -282,6 +291,7 @@
                 <div class="card-action">
                     <div class="card-action-btn pull-right">
                         <md-button class="md-raised md-primary" type="submit" ng-click="guardar_rol()" ng-disabled="rolForm.$invalid">Guardar <i class="fa fa-angle-double-right"></i></md-button>
+                        <md-button class="md-raised md-primary" type="submit" ng-click="calcular_rol()" >Calcular <i class="fa fa-angle-double-right"></i></md-button>
                         <md-button class="md-raised md-warn" type="reset">Limpiar <i class="fa fa-trash-o"></i></md-button>
                         <md-button class="md-primary md-raised" ng-click="addititem($event)">Buscar</md-button>
                     </div>

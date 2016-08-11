@@ -35,10 +35,10 @@ app.controller('departamentosCtrl', function ($mdDialog, $scope, serviciosnomina
     }).then($scope.getDesserts);
   };
 
-  $scope.eddititem = function (data) {
+  $scope.eddititem = function (data, event) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'editItemDepartamentos',
+      controller: 'editItemDepartamento',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
@@ -52,7 +52,7 @@ app.controller('departamentosCtrl', function ($mdDialog, $scope, serviciosnomina
   $scope.deleteitem = function (data) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'deleteItemDepartamentos',
+      controller: 'deleteItemDepartamento',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
@@ -100,71 +100,78 @@ app.controller('departamentosCtrl', function ($mdDialog, $scope, serviciosnomina
 });
 
 app.controller('addItemDepartamento', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
+  // codigo departamentos
+  serviciosnomina.codigo_departamento().get().$promise.then(function(data) {
+    $scope.data = {
+      codigo: data.codigo 
+    }
+  });
+  // fin
  
   this.cancel = $mdDialog.cancel
-  $scope.guardar_departamento = function() {
-    serviciosnomina.add_departamento().save($scope.data).$promise.then(function(data) {
-      if(data.respuesta == true) {
-          $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#dialogContainer')))
-            .clickOutsideToClose(true)
-            .title('NextBook')
-            .textContent('Registro Agregado Correctamente')
-            .ariaLabel('Registro Agregado Correctamente')
-            .ok('Ok!')
-            .openFrom('#left')
-         );
-      }
-    }); 
-  }  
+  // $scope.guardar_departamento = function() {
+  //   serviciosnomina.add_departamento().save($scope.data).$promise.then(function(data) {
+  //     if(data.respuesta == true) {
+  //         $mdDialog.show(
+  //           $mdDialog.alert()
+  //           .parent(angular.element(document.querySelector('#dialogContainer')))
+  //           .clickOutsideToClose(true)
+  //           .title('NextBook')
+  //           .textContent('Registro Agregado Correctamente')
+  //           .ariaLabel('Registro Agregado Correctamente')
+  //           .ok('Ok!')
+  //           .openFrom('#left')
+  //        );
+  //     }
+  //   }); 
+  // }  
 });
 
-app.controller('editItemDepartamentos', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) {
-  $scope.data = {}; 
+app.controller('editItemDepartamento', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) {
+  // $scope.data = {}; 
 
-  $scope.data.id = items.id;
-  $scope.data.codigo = items.codigo;
-  $scope.data.descripcion = items.descripcion;
+  // $scope.data.id = items.id;
+  // $scope.data.codigo = items.codigo;
+  // $scope.data.descripcion = items.descripcion;
   
-  this.cancel = $mdDialog.cancel 
-  $scope.modificar_departamento = function($event) {
-    serviciosnomina.edit_nomina().edit($scope.data).$promise.then(function(data) {
-      if(data.respuesta == true) {
-          $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#dialogContainer')))
-            .clickOutsideToClose(true)
-            .title('NextBook')
-            .textContent('Registro Modificado Correctamente')
-            .ariaLabel('Registro Modificado Correctamente')
-            .ok('Ok!')
-            .openFrom('#left')
-          );
-      }
-    }); 
-  }
+  // this.cancel = $mdDialog.cancel 
+  // $scope.modificar_departamento = function($event) {
+  //   serviciosnomina.edit_nomina().edit($scope.data).$promise.then(function(data) {
+  //     if(data.respuesta == true) {
+  //         $mdDialog.show(
+  //           $mdDialog.alert()
+  //           .parent(angular.element(document.querySelector('#dialogContainer')))
+  //           .clickOutsideToClose(true)
+  //           .title('NextBook')
+  //           .textContent('Registro Modificado Correctamente')
+  //           .ariaLabel('Registro Modificado Correctamente')
+  //           .ok('Ok!')
+  //           .openFrom('#left')
+  //         );
+  //     }
+  //   }); 
+  // }
 });
 
-app.controller('deleteItemDepartamentos', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) { 
-  $scope.data = {}; 
-  $scope.data.id = items.id;
+app.controller('deleteItemDepartamento', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) { 
+  // $scope.data = {}; 
+  // $scope.data.id = items.id;
   
-  this.cancel = $mdDialog.cancel;
-  $scope.eliminar_departamento = function() {
-    serviciosnomina.delete_nomina().delete($scope.data).$promise.then(function(data) {
-      if(data.respuesta == true) {
-          $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#dialogContainer')))
-            .clickOutsideToClose(true)
-            .title('NextBook')
-            .textContent('Registro Eliminado Correctamente')
-            .ariaLabel('Registro Eliminado Correctamente')
-            .ok('Ok!')
-            .openFrom('#left')
-         );
-      }
-    }); 
-  } 
+  // this.cancel = $mdDialog.cancel;
+  // $scope.eliminar_departamento = function() {
+  //   serviciosnomina.delete_nomina().delete($scope.data).$promise.then(function(data) {
+  //     if(data.respuesta == true) {
+  //         $mdDialog.show(
+  //           $mdDialog.alert()
+  //           .parent(angular.element(document.querySelector('#dialogContainer')))
+  //           .clickOutsideToClose(true)
+  //           .title('NextBook')
+  //           .textContent('Registro Eliminado Correctamente')
+  //           .ariaLabel('Registro Eliminado Correctamente')
+  //           .ok('Ok!')
+  //           .openFrom('#left')
+  //        );
+  //     }
+  //   }); 
+  // } 
 });

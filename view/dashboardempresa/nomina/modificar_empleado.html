@@ -1,4 +1,4 @@
-<div class="card" ng-controller="empleados">
+<div class="card" ng-controller="modificar_empleados">
     <div class="card-main">
         <div class="card-header">
             <div class="card-header-side pull-left">
@@ -8,7 +8,7 @@
             </div>
             
             <div class="card-inner">
-                <span class="card-heading">Registro Empleados</span>
+                <span class="card-heading">Modificar Empleados</span>
             </div>
         </div>
 
@@ -29,9 +29,17 @@
                                 </div>
                             </md-input-container>
 
+                            <md-input-container class="ng-hide">
+                                <label>Id Empleado</label>
+                                <input  type="text" name="id" ng-model="data.id" />
+                                <div ng-messages="empleadosForm.id.$error">
+                                    <div ng-message="required">Id Empleado Requerido</div>
+                                </div>
+                            </md-input-container>
+
                             <md-input-container class="md-icon-float md-block">
                                 <label>Cédula de Identidad</label>
-                                <input md-maxlength="10" type="text" required name="cedula_identificacion" id="cedula_identificacion" ng-model="data.cedula_identificacion" ng-blur="comparar_empleado()" />
+                                <input md-maxlength="10" type="text" required name="cedula_identificacion" id="cedula_identificacion" ng-model="data.cedula_identificacion" />
                                 <div ng-messages="empleadosForm.cedula_identificacion.$error">
                                     <div ng-message="required">Cédula de Identidad Requerido</div>
                                     <div ng-message="md-maxlength">La cédula tiene que ser de menos de 10 caracteres</div>
@@ -376,7 +384,7 @@
             <div class="row">
                 <div class="card-action">
                     <div class="card-action-btn pull-right">
-                        <md-button class="md-raised md-primary" type="submit" ng-click="guardar_empleado()" ng-disabled="empleadosForm.$invalid">Guardar <i class="fa fa-angle-double-right"></i></md-button>
+                        <md-button class="md-raised md-primary" type="submit" ng-click="modificar_empleado()" ng-disabled="empleadosForm.$invalid">Modificar <i class="fa fa-angle-double-right"></i></md-button>
                         <md-button class="md-raised md-warn" type="reset">Limpiar <i class="fa fa-trash-o"></i></md-button>
                     </div>
                 </div>

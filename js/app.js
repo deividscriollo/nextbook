@@ -19,7 +19,8 @@ var app=angular.module	('app', 	[
 									'md.data.table',
 									'leaflet-directive'
 								]
-						).run(function($FB) {
+						);
+app.run(function($FB) {
     $FB.init('386469651480295');
 });
 app.config(['$compileProvider', '$mdThemingProvider', function ($compileProvider, $mdThemingProvider, $mdIconProvider) {
@@ -28,9 +29,6 @@ app.config(['$compileProvider', '$mdThemingProvider', function ($compileProvider
 	$compileProvider.debugInfoEnabled(true);
 
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette('pink');
-
-	
-
 }]);
 
 

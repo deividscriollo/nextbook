@@ -61,8 +61,9 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             })
             // perfil general            
             .segment('sbuscar', {
-                templateUrl: 'view/buscar.html',
-                controller: 'MainCtrl'})
+                templateUrl: 'view/buscar/index.html',
+                controller: 'buscarCtrl'
+            })
             .segment('s1', {
                 templateUrl: 'view/home.html',
                 controller: 'MainCtrl'})

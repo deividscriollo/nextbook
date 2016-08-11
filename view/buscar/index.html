@@ -1,0 +1,38 @@
+<md-content>
+    <md-toolbar>
+      	<div class="md-toolbar-tools">        
+	        <span flex></span>
+	        <md-button class="md-accent md-raised" aria-label="Learn More">
+	          Iniciar Sesion
+	        </md-button>
+      	</div>
+    </md-toolbar>
+</md-content>
+<div layout="row" layout-align="center center">
+	<div layout="column" class="loginBox md-whiteframe-z1">
+	 	<md-card>
+	        <img ng-src="images/buscar/publi1.png" class="md-card-image" alt="Washed Out">
+	        <md-card-content>
+				<md-content layout="column" class="md-padding">
+				<md-input-container>
+				<label>Empresas, Servicios</label>
+				<input type="email" ng-model="username"/>
+				</md-input-container>
+	        </md-card-content>
+    	</md-card>
+    </div>
+</div>
+
+
+<style type="text/css">
+	.loginBox {
+	  max-width:  90%;
+	  width: 500px;
+	  position: relative;
+	  top:100px;
+	}
+
+	.stretch input  {
+	  width: 100%
+	}
+</style>

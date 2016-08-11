@@ -1,60 +1,37 @@
-<header class="header header-transparent header-waterfall ui-header">
-    <div class="container">
-        <span class="header-logo">NextBooks</span>
-        <ul class="nav nav-list pull-right">
-            <form name="formlogin" class="loginform">
-                <div layout="row">
-                    <div>
-                        <md-input-container style="width: 100px!important">
-                            <label class="text-white2">Ruc</label>
-                            <input id="email" name="email" ng-model="email" type="text" autocomplete="off" required maxlength="10" ng-pattern="/[0-9-.]/">
-                            <div ng-messages="formlogin.email.$error" ng-show="formlogin.email.$dirty">
-                                <div ng-message="required" class="my-message">requerido</div>
-                                <div ng-message="pattern" class="my-message">Solo numeros</div>
-                            </div>
-                        </md-input-container>
-                        <label class="logindc">001@facturanext.com</label>
-                        <md-input-container>
-                            <label class="text-white2">Password</label>
-                            <input id="password" name="password" ng-model="password" type="password" autocomplete="off" required md-theme="alt">
-                            <div ng-messages="formlogin.password.$error" ng-show="formlogin.password.$dirty">
-                                <div ng-message="required" class="my-message">requerido</div>
-                            </div>
-                        </md-input-container>
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h3>Nextbook, Red de Negocios</h3>
+        <span flex></span>
+        <form name="formlogin" layout="row" ng-submit="ingresar()">
+            <div>
+                <md-input-container class="inputuser">
+                    <label>Ruc</label>
+                    <input id="email" name="email" ng-model="email" type="text" autocomplete="off" required maxlength="10" ng-pattern="/[0-9-.]/">
+                    <div ng-messages="formlogin.email.$error" ng-show="formlogin.email.$dirty">
+                        <div ng-message="required" class="my-message">requerido</div>
+                        <div ng-message="pattern" class="my-message">Solo numeros</div>
                     </div>
-                    <div>
-                        <md-button class="md-raised md-accent" ng-disabled="formlogin.$invalid" ng-click="ingresar()">
-                        <md-icon class="material-icons">security</md-icon> Entrar
-                    </md-button>    
-                    </div>                
-                </div>
-            </form>
-        </ul>
+                </md-input-container>
+                <label class="suffix">001@facturanext.com</label>
+                <md-input-container class="inputpass">
+                    <label class="text-white2">Password</label>
+                    <input id="password" name="password" ng-model="password" type="password" autocomplete="off" required md-theme="alt">
+                    <div ng-messages="formlogin.password.$error" ng-show="formlogin.password.$dirty">
+                        <div ng-message="required" class="my-message">requerido</div>
+                    </div>
+                </md-input-container>
+                <md-button class="md-raised md-accent" ng-disabled="formlogin.$invalid" type="submit">
+                    <md-icon class="material-icons">security</md-icon> Entrar
+                </md-button>
+            </div>
+        </form>
     </div>
-</header>
-<div class="container container2">
-    <md-content layout-padding layout-wrap>
-        <section class="margin-top-no">
-        <nav class="tab-nav ui-tab">
-            <ul class="nav nav-justified">
-                <li ng-class="{active: ('s1.ParaEmpresas' | routeSegmentStartsWith)}">
-                    <a class="waves-attach waves-light waves-effect"  href="#{{'s1.ParaEmpresas' | routeSegmentUrl}}">
-                        <i class="material-icons">dns</i> Para Empresas
-                    </a>
-                </li>
-                <li ng-class="{active: ('s1.Parati' | routeSegmentStartsWith)}">
-                    <a class="waves-attach waves-light waves-effect" href="#{{'s1.Parati' | routeSegmentUrl}}">
-                        <i class="material-icons">account_box</i> Para Ti
-                    </a>
-                </li>
-                <li ng-class="{active: ('s1.quienessomos' | routeSegmentStartsWith)}">
-                    <a class="waves-attach waves-light waves-effect" href="#{{'s1.quienessomos' | routeSegmentUrl}}">
-                        <i class="material-icons">assignment_ind</i> Quienes Somos
-                    </a>
-                </li>   
-            </ul>
-        </nav>
-    </section>
-        <div app-view-segment="1"></div>
-    </md-content>
-</div>
+    <md-tabs md-dynamic-height="" md-border-bottom="" md-selected="selectedIndex" md-center-tabs="true">
+        <md-tab ng-repeat="tab in tabs" ng-click="tabnavigation(tab.url)">
+            <md-tab-label>
+                <md-icon>{{tab.icon}}</md-icon> {{tab.title}}
+            </md-tab-label>
+        </md-tab>
+    </md-tabs>
+</md-toolbar>
+<div app-view-segment="1"></div>

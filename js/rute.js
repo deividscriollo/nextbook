@@ -63,15 +63,15 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 templateUrl: 'view/mensajes.html',
                 controller: 'mensajeCtrl',
             })
-            // perfil general            
+            // perfil general
             .segment('sbuscar', {
                 templateUrl: 'view/buscar/index.html',
                 controller: 'buscarCtrl'
             })
             .segment('s1', {
                 templateUrl: 'view/home.html',
-                controller: 'MainCtrl'})
-                
+                controller: 'homeCtrl'
+            })                
             .within()
                 .segment('inicio', {
                     templateUrl: 'view/empresas.html'

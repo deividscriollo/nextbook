@@ -1,5 +1,23 @@
-/*form search*/
 
+
+
+/*tab center*/
+.tabsdemoDynamicHeight md-content {
+    background-color: transparent !important;
+}
+
+.tabsdemoDynamicHeight md-content md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1;
+}
+
+.tabsdemoDynamicHeight md-content md-tabs md-tabs-canvas {
+    background: white;
+}
+
+.tabsdemoDynamicHeight md-content h1:first-child {
+    margin-top: 0;
+}
 
 /*login inicio*/
 .logindc{
@@ -215,17 +233,62 @@ md-option {
     height: 25px!important;
 }
 
-.loginform md-input-container.md-default-theme .md-input, .loginform md-input-container .md-input {
-    color: rgba(255,255,255,0.6);
-    border-color: rgba(255,255,255,0.6);
-    /*text-shadow: ;*/
+
+/*form login*/
+
+/*user*/
+    .inputuser{
+        width: 90px!important;
+        position: relative;
+        top: 10px;
+    }
+
+    .inputuser label{
+        color: #EEEEEE;
+        font-size: 14px;
+    }
+    /*md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label, md-input-container:not(.md-input-invalid).md-input-has-value label {
+    color: rgba(0,0,0,0.54);
+    position: relative;
+    top: 10px;
+    color: #FFF;
+    font-size: 11PX;
+}*/
+    .inputuser .md-input {
+        color: #CCCCCC;
+        font-size: 14px;
+        position: relative;
+        top: 3px;
+    }
+    .suffix{
+        color: #EEEEEE;
+        position: relative;
+        top: 1px;
+        left: -9px;
+        font-size: 14px;
+    }
+/*pass*/
+.inputpass{
+    width: 120px!important;
+    position: relative;
+    top: 10px;
 }
-.text-white2{
-	color: rgba(255,255,255,0.6);
+.inputpass label{
+    color: #EEEEEE;
+    font-size: 14px;
 }
 
 
+input-container.md-input-invalid .md-input {
+    border-color: rgb(221,44,0);
+}
 
-.text-blue{
-    columns: green!important;
+.inputpass .md-default-theme .md-input, md-input-container .md-input {
+    color: #757575;
+    border-color: rgba(0,0,0,0.12);
+}
+
+.md-default-theme .md-input, md-input-container .md-input {
+    color: #757575;
+    border-color: rgba(0,0,0,0.12);
 }

@@ -21,7 +21,7 @@ var app=angular.module	('app', 	[
 								]
 						);
 app.run(function($FB) {
-    $FB.init('386469651480295');
+    // $FB.init('386469651480295');
 });
 app.config(['$compileProvider', '$mdThemingProvider', function ($compileProvider, $mdThemingProvider, $mdIconProvider) {
 	'use strict';

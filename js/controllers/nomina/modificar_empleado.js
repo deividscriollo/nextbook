@@ -37,8 +37,6 @@ app.controller('modificar_empleados', function ($mdDialog, $scope, serviciosnomi
     $scope.data.relacion_dependencia= true;
   }
 
-  
-
   if(MyService.datos.respuesta.instruccion == "Primaria") {
     $scope.data.instruccion = "Primaria";
   }

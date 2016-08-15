@@ -11,25 +11,45 @@ app.controller('dashboardCtrl', function ($scope, $localStorage,servicios, $mdDi
 	};
 	$scope.menu = 	[
 					    {
-					      link : '/My-space',
+					      link : '/My-space/Inicio',
 					      title: 'Inicio',
 					      icon: 'dashboard'
 					    },
-					    // {
-					    //   link : '/My-space',
-					    //   title: 'Nomina',
-					    //   icon: 'donut_small'
-					    // },
-					    // {
-					    //   link : '/My-space',
-					    //   title: 'Departamentos',
-					    //   icon: 'dns'
-					    // },
-					    // {
-					    //   link : '/My-space',
-					    //   title: 'Cargos',
-					    //   icon: 'extension'
-					    // }
+					    {
+					      link : '/My-space/NominaAdmin/Nomina',
+					      title: 'Nomina',
+					      icon: 'donut_small'
+					    },
+					    {
+					      link : '/My-space/NominaAdmin/Departamentos',
+					      title: 'Departamentos',
+					      icon: 'dns'
+					    },
+					    {
+					      link : '/My-space/NominaAdmin/Cargos',
+					      title: 'Cargos',
+					      icon: 'extension' 
+					    },
+					    {
+					      link : '/My-space/NominaAdmin/Empleados',
+					      title: 'Empleados',
+					      icon: 'dns'
+					    },
+					    {
+					      link : '/My-space/NominaAdmin/Listado_Empleado',
+					      title: 'Lista de Empleados',
+					      icon: 'dns'
+					    },
+					    {
+					      link : '/My-space/NominaAdmin/Nomina_Pagos',
+					      title: 'Generar Rol de Pagos',
+					      icon: 'dns'
+					    },
+					    {
+					      link : '/My-space/NominaAdmin/Listado_Roles',
+					      title: 'Lista Roles de Pagos',
+					      icon: 'dns'
+					    },
 					];
 
 	$scope.tabs =	[

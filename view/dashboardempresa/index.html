@@ -1,26 +1,19 @@
 <div layout="row">
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="md-tall md-hue-2">
+        <md-toolbar class="md-tall">
             <span flex></span>
             <div layout="column" class="md-toolbar-tools-bottom inset">
-                <span class="avatar avatar-sm">
-                    <img alt="imagen logotipo" ng-src="{{imgPerfil}}">
-                </span>
-                <span></span>
-                <div>{{localStorage.nombre_comercial}}</div>
-                <div>{{localStorage.actividad_economica}}</div>
+              <user-avatar></user-avatar>
+              <span>{{localStorage.nombre_comercial | lowercase}},</span>
+              <div>{{localStorage.actividad_economica | lowercase}}</div>
             </div>
-        </md-toolbar>
+          </md-toolbar>
         <md-list ng-cloak>
               <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in menu">
                 <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
                 <p> {{ item.title }} </p>
               </md-list-item>
-              <md-divider></md-divider>
-              <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in menunomina">
-                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                <p> {{ item.title }} </p>
-              </md-list-item>
+              
         </md-list>
     </md-sidenav>
 
@@ -66,7 +59,9 @@
                     </md-item-template>
                   </md-autocomplete>
                 </form>
-                
+                <md-button href="#/My-space/Perfil-inicio">
+                    Perfil
+                </md-button>
                 <md-button href="#/My-space/Inicio">
                     Inicio
                 </md-button>

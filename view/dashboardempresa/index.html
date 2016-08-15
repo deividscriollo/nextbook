@@ -3,7 +3,9 @@
         <md-toolbar class="md-tall md-hue-2">
             <span flex></span>
             <div layout="column" class="md-toolbar-tools-bottom inset">
-                <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" ng-src="{{imgPerfil}}"></span>
+                <span class="avatar avatar-sm">
+                    <img alt="imagen logotipo" ng-src="{{imgPerfil}}">
+                </span>
                 <span></span>
                 <div>{{localStorage.nombre_comercial}}</div>
                 <div>{{localStorage.actividad_economica}}</div>
@@ -14,7 +16,11 @@
                 <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
                 <p> {{ item.title }} </p>
               </md-list-item>
-              <md-divider></md-divider>          
+              <md-divider></md-divider>
+              <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in menunomina">
+                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                <p> {{ item.title }} </p>
+              </md-list-item>
         </md-list>
     </md-sidenav>
 

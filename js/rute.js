@@ -210,7 +210,8 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 .up()
                 .segment('nomina', {                 
                     templateUrl: 'view/dashboardempresa/nomina/index.html',
-                    'default': true,
+                    controller:'nominageneralCtrl',
+                    'default': true
                 })
                 .within()
                     .segment('inicio', {

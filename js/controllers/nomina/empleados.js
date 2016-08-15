@@ -65,6 +65,10 @@ app.controller('empleados', function ($scope, $localStorage, serviciosnomina, se
     })
   }
 
+  $scope.cargar_imagen = function(data) {
+    console.log(data);
+
+  }
   // guardar empleados
   $scope.guardar_empleado = function() {
     serviciosnomina.add_empleado().save($scope.data).$promise.then(function(data) {
@@ -79,7 +83,7 @@ app.controller('empleados', function ($scope, $localStorage, serviciosnomina, se
             .ok('Ok!')
             .openFrom('#left')
          );
-        $location.url("/My-space/NominaAdmin/Empleados"); 
+        $location.url("/My-space/NominaAdmin/Empleados");
       }
     });       
   }

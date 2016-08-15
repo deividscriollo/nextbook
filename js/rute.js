@@ -51,11 +51,12 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 .when('/My-space/NominaAdmin/Departamentos',      'dashboard.nomina.departamentos')
                 .when('/My-space/NominaAdmin/Cargos',      'dashboard.nomina.cargos')
                 .when('/My-space/NominaAdmin/Empleados',      'dashboard.nomina.empleados')
-                .when('/My-space/NominaAdmin/Modificar_Empleado',      'dashboard.nomina.modificar_empleado')
                 .when('/My-space/NominaAdmin/Listado_Empleado',      'dashboard.nomina.listado_empleado')
+                .when('/My-space/NominaAdmin/Modificar_Empleado',      'dashboard.nomina.modificar_empleado')
                 .when('/My-space/NominaAdmin/Nomina_Pagos',      'dashboard.nomina.personal_roles')
                 .when('/My-space/NominaAdmin/Rol_Pagos',      'dashboard.nomina.rol_pagos')
                 .when('/My-space/NominaAdmin/Listado_Roles',      'dashboard.nomina.listado_roles')
+                .when('/My-space/NominaAdmin/Modificar_Rol',      'dashboard.nomina.modificar_rol')
 
             .segment('salir', {
                 // templateUrl: 'view/home.html',
@@ -217,31 +218,33 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     })  
                     .segment('nomina', {
                         templateUrl: 'view/dashboardempresa/nomina/nomina.html',
-                        // controller:'nominaCtrl'
                     })
                     .segment('departamentos', {
-                        templateUrl: 'view/dashboardempresa/nomina/departamentos.html'
+                        templateUrl: 'view/dashboardempresa/nomina/departamentos.html',
                     })
                     .segment('cargos', {
-                        templateUrl: 'view/dashboardempresa/nomina/cargos.html'
+                        templateUrl: 'view/dashboardempresa/nomina/cargos.html',
                     })
                     .segment('empleados', {
-                        templateUrl: 'view/dashboardempresa/nomina/empleados.html'
+                        templateUrl: 'view/dashboardempresa/nomina/empleados.html',
                     })
                     .segment('listado_empleado', {
-                        templateUrl: 'view/dashboardempresa/nomina/listado_empleado.html'
+                        templateUrl: 'view/dashboardempresa/nomina/listado_empleado.html',
                     })
                     .segment('modificar_empleado', {
-                        templateUrl: 'view/dashboardempresa/nomina/modificar_empleado.html'
+                        templateUrl: 'view/dashboardempresa/nomina/modificar_empleado.html',
                     })
                     .segment('personal_roles', {
-                        templateUrl: 'view/dashboardempresa/nomina/personal_roles.html'
+                        templateUrl: 'view/dashboardempresa/nomina/personal_roles.html',
                     })
                     .segment('rol_pagos', {
-                        templateUrl: 'view/dashboardempresa/nomina/rol_pagos.html'
+                        templateUrl: 'view/dashboardempresa/nomina/rol_pagos.html',
                     })
                     .segment('listado_roles', {
-                        templateUrl: 'view/dashboardempresa/nomina/listado_roles.html'
+                        templateUrl: 'view/dashboardempresa/nomina/listado_roles.html',
+                    })
+                    .segment('modificar_rol', {
+                        templateUrl: 'view/dashboardempresa/nomina/modificar_rol.html',
                     })
                 .up()   
             .up()

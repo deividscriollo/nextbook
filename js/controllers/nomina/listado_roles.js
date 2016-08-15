@@ -15,10 +15,10 @@ app.controller('listado_rolesCtrl', function ($mdDialog, $scope, serviciosnomina
     $scope.selected = [];
 
     $scope.iditem =  function (data) {
-      serviciosnomina.get_datos_empleados().send({id_empleado:data.id}).$promise.then(function(data) {
+      serviciosnomina.get_datos_roles().send({id:data.id}).$promise.then(function(data) {
         MyService.datos = data;
-        $location.url("/My-space/NominaAdmin/Rol_Pagos");
-     }); 
+        $location.url("/My-space/NominaAdmin/Modificar_Rol");
+      }); 
     }
   
     $scope.filter = {

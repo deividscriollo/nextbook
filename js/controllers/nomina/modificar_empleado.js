@@ -1,7 +1,7 @@
 var app = angular.module('app');
 
 app.controller('modificar_empleados', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, MyService, $location) {
- 
+  console.log(MyService.datos); 
 
   $scope.data = {
     id: MyService.datos.respuesta.id,
@@ -30,8 +30,46 @@ app.controller('modificar_empleados', function ($mdDialog, $scope, serviciosnomi
     id_cargo: MyService.datos.respuesta.id_cargo,
     tipo_contrato: MyService.datos.respuesta.tipo_contrato,
     jornada: MyService.datos.respuesta.jornada,
-    fecha_ing_trab: MyService.datos.respuesta.fecha_ing_trab
+    fecha_ing_trab: MyService.datos.respuesta.fecha_ing_trab,
   };
+
+  if(MyService.datos.respuesta.relacion_dependencia == "1") {
+    $scope.data.relacion_dependencia= true;
+  }
+
+  
+
+  if(MyService.datos.respuesta.instruccion == "Primaria") {
+    $scope.data.instruccion = "Primaria";
+  }
+
+  if(MyService.datos.respuesta.instruccion == "Ciclo Básico") {
+    $scope.data.instruccion = "Ciclo Básico";
+  }
+
+  if(MyService.datos.respuesta.instruccion == "Bachiller") {
+    $scope.data.instruccion = "Bachiller";
+  }
+
+  if(MyService.datos.respuesta.instruccion == "Universitario") {
+    $scope.data.instruccion = "Universitario";
+  }
+
+  if(MyService.datos.respuesta.tipo_vivienda == "Vivienda Propia") {
+    $scope.data.tipo_vivienda = "Vivienda Propia";
+  }
+
+  if(MyService.datos.respuesta.tipo_vivienda == "Vivienda en Arriendo") {
+    $scope.data.tipo_vivienda = "Vivienda en Arriendo";
+  }
+
+  if(MyService.datos.respuesta.tipo_vivienda == "Vivienda familiar") {
+    $scope.data.tipo_vivienda = "Vivienda familiar";
+  }
+
+  if(MyService.datos.respuesta.tipo_vivienda == "Otra") {
+    $scope.data.tipo_vivienda = "Otra";
+  }
 
   // combo nomina
   serviciosnomina.cmbnomina().get().$promise.then(function(data) {
@@ -51,60 +89,21 @@ app.controller('modificar_empleados', function ($mdDialog, $scope, serviciosnomi
   });
   // fin
 
-  // comparar empleados consulta service web
-  // $scope.comparar_empleado = function() {
-  //   serviciosnomina.repeat_empleado().repeat($scope.data).$promise.then(function(data) {
-  //     console.log(data);
-  //     if(data.respuesta == true) {
-  //       $scope.data.cedula_identificacion = '';
-  //       $mdDialog.show(
-  //           $mdDialog.alert()
-  //           .parent(angular.element(document.querySelector('#dialogContainer')))
-  //           .clickOutsideToClose(true)
-  //           .title('NextBook')
-  //           .textContent('Error... Empleado ya Registrado')
-  //           .ariaLabel('Error... Empleado ya Registrado')
-  //           .ok('Ok!')
-  //           .openFrom('#left')
-  //       ); 
-  //     } else {
-  //       if (data.respuesta.valid == 'false' ) {
-  //             $scope.data.cedula_identificacion = '';
-  //             $mdDialog.show(
-  //               $mdDialog.alert()
-  //               .parent(angular.element(document.querySelector('#dialogContainer')))
-  //               .clickOutsideToClose(true)
-  //               .title('NextBook')
-  //               .textContent('Error... Cédula Invalida')
-  //               .ariaLabel('Error... Cédula Invalida')
-  //               .ok('Ok!')
-  //               .openFrom('#left')
-  //            );
-  //       } else {
-  //           $scope.data.nombres_completos = data.respuesta.nombres_apellidos;
-  //           $scope.data.provincia = data.respuesta.provincia;
-  //           $scope.data.parroquia = data.respuesta.parroquia;
-  //           $scope.data.canton = data.respuesta.canton;          
-  //       } 
-  //     }
-  //   })
-  // }
-
   // guardar empleados
   $scope.modificar_empleado = function() {
-    serviciosnomina.add_empleado().save($scope.data).$promise.then(function(data) {
+    serviciosnomina.edit_empleado().edit($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
           $mdDialog.show(
             $mdDialog.alert()
             .parent(angular.element(document.querySelector('#dialogContainer')))
             .clickOutsideToClose(true)
             .title('NextBook')
-            .textContent('Registro Agregado Correctamente')
-            .ariaLabel('Registro Agregado Correctamente')
+            .textContent('Registro Modificado Correctamente')
+            .ariaLabel('Registro Modificado Correctamente')
             .ok('Ok!')
             .openFrom('#left')
          );
-        $location.url("/My-space/NominaAdmin/Empleados"); 
+        $location.url("/My-space/NominaAdmin/Listado_Empleado"); 
       }
     });       
   }

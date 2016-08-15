@@ -1,7 +1,6 @@
 var app = angular.module('app');
 
 app.controller('rol_pagosCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, MyService, $location) {
-  console.log(MyService.datos);
 
   $scope.data = {
     id_empleado: MyService.datos.respuesta.id,
@@ -32,12 +31,14 @@ app.controller('rol_pagosCtrl', function ($mdDialog, $scope, serviciosnomina, se
     neto_pagar: "0.000"
   };
 
+  $scope.data.relacion_dependencia = true;
+
   // codigo personal
   serviciosnomina.codigo_rol().get().$promise.then(function(data) {
     $scope.data.codigo_rol = data.codigo; 
   });
-  // fin
 
+  // calcular rol
   $scope.calcular_rol = function() {
     $scope.data.sueldo_mes = ((($scope.data.sueldo / 30 ) / 8) * 30 * $scope.data.horas).toFixed(3);
     $scope.data.horas_extras = ((($scope.data.sueldo / 15) / 8) * $scope.data.extras).toFixed(3);

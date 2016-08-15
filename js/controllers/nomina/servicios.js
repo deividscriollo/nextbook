@@ -216,6 +216,19 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
         });
     };
 
+    this.edit_empleado = function() {
+        return $resource(servicios.server().mod_radio()+'public/updateEmpleado', {}
+        , {
+            edit: {
+                method: 'POST', isArray: false,
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
     this.cmbnomina = function() {
         return $resource(servicios.server().mod_radio()+'public/cmbNomina', {}
         , {
@@ -383,6 +396,32 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
         , {
             send: {
                 method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.get_datos_roles = function() {
+        return $resource(servicios.server().mod_radio()+'public/getDatosRolByID', {}
+        , {
+            send: {
+                method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.edit_rol = function() {
+        return $resource(servicios.server().mod_radio()+'public/updateRol', {}
+        , {
+            edit: {
+                method: 'POST', isArray: false,
                 params: {
                     token: $localStorage.tokenradio,
                     sucursal: $localStorage.sucursal.codigo

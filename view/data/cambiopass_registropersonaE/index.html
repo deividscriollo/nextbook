@@ -1,99 +1,99 @@
-<header class="header header-transparent header-waterfall ui-header ">
-    <span class="header-logo">Nextbook, Red de Negocios</span>
-    <nav class="tab-nav pull-right hidden-xx">
-        <ul class="nav nav-list">
-            <li class="dropdown">
-                <a class="dropdown-toggle text-black waves-attach waves-effect text-write" data-toggle="dropdown">
-                    <i class="material-icons">more_vert</i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                    <li>
-                        <a class="padding-right-lg waves-attach waves-effect" ng-href="#/salir/159">
-                            <span class="icon icon-lg margin-right">exit_to_app</span> Cerrar Session
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-</header>
-<div class="container header-dc">
-    <md-card>
-        <form name="form_pass">
-        <md-card-title>
-            <div flex-xs flex-gt-xs="40" layout="column">
-            <md-card-title-media>
-                <img ng-src="images/samples/update.jpg" class="md-card-image" alt="Washed Out">
-            </md-card-title-media>
-            </div>
-            <div flex-xs flex-gt-xs="60" layout="column">
-                <md-content layout-padding layout-wrap layout="row">
-                    <div flex-xs flex-gt-xs="50" layout="column">
-                        <span class="md-headline">Datos Personales</span>
-                        <md-input-container id="label_clave" class="md-block" md-cols-lg="5">
-                            <label>Nombres</label>
-                            <input name="nombres" ng-model="data.nombres" md-select-on-focus ng-required="true">
-                            <div ng-messages="form_pass.nombres.$error" ng-show="form_pass.nombres.$require">
-                                <div ng-message="required" class="my-message">requerido</div>
-                            </div>
-                        </md-input-container>
-                        <md-input-container id="label_clave" class="md-block" md-cols-lg="5">
-                            <label>Apellidos</label>
-                            <input type="text" id="apellidos" name="apellidos" ng-model="data.apellidos" ng-required="true" />
-                            <div ng-messages="form_pass.apellidos.$error.require" ng-show="form_pass.apellidos.$require">
-                                <div ng-message="required" class="my-message">requerido</div>
-                            </div>
-                        </md-input-container>
-                        
-                        <md-datepicker id="fecha_nac" name="fecha_nac" ng-model="data.fecha_nac" required md-placeholder="F. Nacimiento"></md-datepicker>
-                        <div ng-messages="form_pass.fecha_nac.$error" ng-show="form_pass.fecha_nac.$require">
-                            <div ng-message="required" class="my-message">requerido</div>
-                        </div>
-                        <md-input-container id="label_clave" class="md-block" md-cols-lg="5">
-                            <label>Teléfono</label>
-                            <input type="text" id="telefono" name="telefono" ng-model="data.telefono" ng-required="true" />
-                            <div ng-messages="form_pass.telefono.$error" ng-show="form_pass.telefono.$require">
-                                <div ng-message="required" class="my-message">requerido</div>
-                            </div>
-                        </md-input-container>
-                    </div>
-                    <div flex-xs flex-gt-xs="50" layout="column">
-                        <span class="md-headline">Cambiar Contraseña</span>
-                        <md-input-container id="label_clave" class="md-block" md-cols-lg="5">
-                            <label>Contraseña actual</label>
-                            <input type="password" name="clave_actual" ng-blur="verificar_pass()" ng-model="data.clave_actual" md-select-on-focus ng-required="true" pw-actual-check>
-                            <div ng-messages="form_pass.clave_actual.$error" ng-show="form_pass.clave_actual.$dirty">
-                                <div ng-message="required" class="my-message">requerido</div>
-                            </div>
-                            <div ng-messages="form_pass.clave_actual.$error" ng-show="form_pass.clave_actual.$error.pwactualmatch">
-                                <div ng-message="pwactualmatch" class="my-message">Contraseña erronea</div>
-                            </div>
-                        </md-input-container>
-
-                        <md-input-container id="label_clave" class="md-block" md-cols-lg="5">
-                            <label>Nueva Contraseña</label>
-                            <input type="password" id="pw1" name="pw1" ng-model="pw1" ng-required/>
-                            <div ng-messages="form_pass.pw1.$error" ng-show="form_pass.pw1.$dirty">
-                                <div ng-message="required" class="my-message">requerido</div>
-                            </div>
-                        </md-input-container>
-                        <md-input-container class="md-block" md-cols-lg="5">
-                            <label>Repita su contraseña</label>
-                            <input type="password" id="pw2" name="pw2" ng-model="data.pw2" ng-required pw-check="pw1" />
-
-                            <div ng-messages="form_pass.pw2.$error" ng-show="form_pass.pw2.$error.pwmatch">
-                                <div ng-message="required" class="my-message">requerido</div>
-                                <div ng-messages="pwmatch" class="my-message">Contraseñas no coinciden</div>
-                            </div>
-
-                        </md-input-container>
-                    </div>                
-                </md-content>            
-            </div>
-        </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-raised md-primary" ng-click="cambiar_datos()" ng-disabled="form_pass.$invalid">Siguiente</md-button>
-        </md-card-actions>
-        </form>
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h3>Nextbook, Red de Negocios</h3>
+        <span flex></span>
+        <md-menu md-position-mode="target-right target">
+            <md-button aria-label="Open demo menu" class="md-icon-button launch" ng-click="$mdOpenMenu($event)">
+                <ng-md-icon icon="more_vert"></ng-md-icon>
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item>
+                    <md-button ng-href="#/salir/341234">
+                        <p flex>Cerrar Sesión</p>
+                        <ng-md-icon icon="exit_to_app"></ng-md-icon>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </div>
+</md-toolbar>
+<div layout="row" layout-align="center center">
+    <md-card flex-gt-sm="100" flex-gt-md="20">
+        <md-card-header>
+            <md-card-avatar>
+                <img class="md-user-avatar" src="images/samples/mat2.jpg" />
+            </md-card-avatar>
+            <md-card-header-text>
+                <span class="md-title">{{data.nombres}}</span>
+                <span class="md-subhead">{{data.apellidos}}</span>
+            </md-card-header-text>
+        </md-card-header>
+        <img src="images/samples/x5.jpg" class="md-card-image">
     </md-card>
+    <md-content layout-padding flex-gt-sm="100" flex-gt-md="30">
+        <form name="form_pass">
+            <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
+                <div flex-gt-sm="100">
+                    Actualizacion de datos personales
+                </div>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <md-icon class="md-accent">airplay</md-icon>
+                    <label>Nombres</label>
+                    <input type="text" name="nombres" ng-model="data.nombres" ng-required="true" autocomplete="off">
+                    <div ng-messages="form_pass.nombres.$error" ng-show="form_pass.nombres.$require">
+                        <div ng-message="required" class="my-message">requerido</div>
+                    </div>
+                </md-input-container>
+                <div flex="5" hide-xs hide-sm>
+                    <!-- Spacer //-->
+                </div>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <md-icon class="md-accent">airplay</md-icon>
+                    <label>Apellidos</label>
+                    <input name="apellidos" ng-model="data.apellidos" ng-required="true" autocomplete="off">
+                    <div ng-messages="form_pass.apellidos.$error.require" ng-show="form_pass.apellidos.$require">
+                        <div ng-message="required" class="my-message">requerido</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <md-icon class="md-accent">airplay</md-icon>
+                    <label>Teléfono</label>
+                    <input name="telefono" ng-model="data.telefono" ng-required="true" ng-pattern="/^[0-9]{10}$/" autocomplete="off">
+                    <div class="hint" ng-show="showHints">0999999999</div>
+                    <div ng-messages="form_pass.telefono.$error" ng-show="form_pass.telefono.$require">
+                        <div ng-message="required" class="my-message">requerido</div>
+                    </div>
+                    <div ng-messages="form_pass.telefono.$error" ng-hide="showHints">
+                        <div ng-message="pattern">0999999999 - Por favor Ingrese Un numero de telefono valido.</div>
+                    </div>
+                </md-input-container>
+                <md-datepicker id="fecha_nac" name="fecha_nac" ng-model="data.fecha_nac" ng-required="true" md-placeholder="F. Nacimiento"></md-datepicker>
+                <div ng-messages="form_pass.fecha_nac.$error" ng-show="form_pass.fecha_nac.$require">
+                    <div ng-message="required" class="my-message">requerido</div>
+                </div>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <md-icon class="md-accent">airplay</md-icon>
+                    <label>Ingrese su nueva contraseña</label>
+                    <input type="password" id="pw1" name="pw1" ng-model="pw1" ng-required="true">
+                    <div ng-messages="form_pass.pw1.$error" ng-show="form_pass.pw1.$dirty">
+                        <div ng-message="required" class="my-message">requerido</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+                <md-button class="md-raised md-primary" ng-click="cambiar_datos()" ng-disabled="form_pass.$invalid">Siguiente</md-button>
+            </div>
+        </form>
+    </md-content>
 </div>
+
+<style type="text/css">
+    .inputdemoBasicUsage .md-datepicker-button {
+  width: 36px; }
+</style>

@@ -8,6 +8,9 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/salir/:id',          'salir')
             .when('/',          'sbuscar')
             .when('/Home',          's1')
+
+
+            .when('/activarcuenta/:cuenta&:code&:correo',          'activarcuenta')
             // respuesta mensajeria
             .when('/Mensaje',    'mensaje')
             // procesos inicial
@@ -59,6 +62,12 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 controller: 'salirCtrl',
                 dependencies: ['id']
             })
+            .segment('activarcuenta', {
+                // templateUrl: 'view/home.html',
+                controller: 'activarcuentaCtrl',
+                dependencies: ['cuenta','code', 'correo']
+            })
+            
             .segment('mensaje', {
                 templateUrl: 'view/mensajes.html',
                 controller: 'mensajeCtrl',

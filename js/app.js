@@ -25,10 +25,12 @@ app.run(function($FB) {
 });
 app.config(['$compileProvider', '$mdThemingProvider', function ($compileProvider, $mdThemingProvider, $mdIconProvider) {
 	'use strict';
-
+	// general theme
 	$compileProvider.debugInfoEnabled(true);
-
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette('pink');
+
+
+	
 }]);
 
 

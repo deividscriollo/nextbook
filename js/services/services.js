@@ -71,6 +71,15 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         });
     };
 
+    this.activar_cuenta=function(parametros) {
+        return $resource(this.server().appnext()+'public/activar_cuenta', {}
+        , {
+            enviar: {
+                method: 'GET', isArray: false
+            }
+        });
+    };
+
     // ----------------------------------------- set get imagen perfil ----------------------------
     this.set_img_perfil=function() {
         return $resource(this.server().appnext()+'public/setImgPerfil', {}

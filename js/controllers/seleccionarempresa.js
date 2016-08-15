@@ -3,6 +3,10 @@ var app=angular.module('app').controller('seleccionar-empresa', function ($scope
 
     $scope.products=[];
     Sucursaless.get().$promise.then(function(data) {
+        $scope.datam = {
+                    photos3p: partition(data.sucursales, data.sucursales.length / 4)
+                };
+        console.log($scope.datam);
         if (data.sucursales.length==1) {
             $scope.products.push( {
                 "sucursal": data.sucursales[0].nombre_sucursal, "codigo": data.sucursales[0].codigo, "direccion": data.sucursales[0].direccion, "estado": data.sucursales[0].estado,"categoria": data.sucursales[0].categoria
@@ -22,6 +26,14 @@ var app=angular.module('app').controller('seleccionar-empresa', function ($scope
     , function(err) {
         console.log(err);
     });
+
+    var partition = function (input, size) {
+        var newArr = [];
+        for (var i = 0; i < input.length; i += size) {
+            newArr.push(input.slice(i, i + size));
+        }
+        return newArr;
+    }
     $scope.SetSucursal=function($index) {
         $localStorage.sucursal=$scope.products[$index];
         $location.path('/My-space/Inicio');

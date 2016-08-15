@@ -27,16 +27,5 @@ app.config(['$compileProvider', '$mdThemingProvider', function ($compileProvider
 	'use strict';
 	// general theme
 	$compileProvider.debugInfoEnabled(true);
-	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette('pink');
-
-
-	
+	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette('pink');	
 }]);
-
-
-
-// app.config(['uiMask.ConfigProvider', function(uiMaskConfigProvider) {
-//   uiMaskConfigProvider.maskDefinitions({'A': /[a-z], '*': /[a-zA-Z0-9]/''});
-//   uiMaskConfigProvider.clearOnBlur(false);
-//   uiMaskConfigProvider.eventsToHandle(['input', 'keyup', 'click']);
-// }]);

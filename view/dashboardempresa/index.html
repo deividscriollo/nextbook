@@ -13,7 +13,6 @@
                 <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
                 <p> {{ item.title }} </p>
               </md-list-item>
-              
         </md-list>
     </md-sidenav>
 
@@ -65,9 +64,21 @@
                 <md-button href="#/My-space/Inicio">
                     Inicio
                 </md-button>
-                <md-button aria-label="Open Settings" class="md-icon-button launch">
-                    <ng-md-icon icon="more_vert"></ng-md-icon>
-                </md-button>
+                <md-menu md-position-mode="target-right target" >
+                    <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                        <ng-md-icon icon="more_vert"></ng-md-icon>
+                    </md-button>
+                    <md-menu-content width="4" >
+                        <md-menu-item>
+                          <md-button ng-href="#/salir/341234">
+                              <div layout="row" flex>
+                                <p flex>Cerrar Sesión</p>
+                                <ng-md-icon icon="exit_to_app"></ng-md-icon>
+                              </div>
+                          </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
             </div>
         </md-toolbar>    
         <!-- <md-content flex md-scroll-y>

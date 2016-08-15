@@ -31,7 +31,7 @@
         <img src="images/samples/x5.jpg" class="md-card-image">
     </md-card>
     <md-content layout-padding flex-gt-sm="100" flex-gt-md="30">
-        <form name="form_pass">
+        <form name="form_pass" ng-submit="cambiar_datos()">
             <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
                 <div flex-gt-sm="100">
                     Actualizacion de datos personales
@@ -80,14 +80,14 @@
                 <md-input-container class="md-block" flex-gt-sm>
                     <md-icon class="md-accent">airplay</md-icon>
                     <label>Ingrese su nueva contraseña</label>
-                    <input type="password" id="pw1" name="pw1" ng-model="pw1" ng-required="true">
+                    <input type="password" id="pw1" name="pw1" ng-model="data.newpass" ng-required="true">
                     <div ng-messages="form_pass.pw1.$error" ng-show="form_pass.pw1.$dirty">
                         <div ng-message="required" class="my-message">requerido</div>
                     </div>
                 </md-input-container>
             </div>
             <div layout-gt-sm="row">
-                <md-button class="md-raised md-primary" ng-click="cambiar_datos()" ng-disabled="form_pass.$invalid">Siguiente</md-button>
+                <md-button class="md-raised md-primary" type="submit" ng-disabled="form_pass.$invalid">Siguiente</md-button>
             </div>
         </form>
     </md-content>

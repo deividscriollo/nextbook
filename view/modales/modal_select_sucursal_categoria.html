@@ -1,11 +1,16 @@
-<div class="modal modal-va-middle fade" id="modal_select_categoria">
-  	<div class="modal-dialog modal-xs">
-    	<div class="modal-content">
-    	    <div class="modal-heading">¿A QUÉ SE DEDICA TU EMPRESA?</div>
-    		<div class="modal-inner">
-                            <md-input-container class="md-block" flex-gt-xs >
+<md-dialog aria-label="Mango (Fruit)" ng-cloak>
+    <form ng-submit="set_categoria()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Actualziación Información</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <h2>¿Hablanos un poco, a que se dedíca tu empresa?</h2>
+                <md-input-container class="md-block" flex-gt-xs>
                     <label class="text-brand">Categorías</label>
-                    <md-select  name="myselect" id="categoria" ng-change="update()" ng-model="categoria" required>
+                    <md-select name="myselect" id="categoria" ng-change="update()" ng-model="data_cat.categoria" required>
                         <md-option ng-repeat="state in states" value="{{state.id}}">
                             {{state.nombre}}
                         </md-option>
@@ -13,16 +18,17 @@
                     <div ng-messages="formreg.myOption.$error">
                         <div ng-message="required">myselect is required.</div>
                     </div>
-            </md-input-container>
-            <div class="form-group form-group-label">
-    <label class="floating-label" for="...">Descripción</label>
-    <textarea class="form-control textarea-autosize" id="descripcion" rows="5" ng-model="descripcion" rows="1"></textarea>
-</div>	
-    		</div>
-    		<div class="modal-footer">
-    			<p class="text-right"><a class="btn btn-green waves-attach waves-light" ng-click="set_categoria()">ACEPTAR</a></p>
-    		</div>
-    	</div>
-    </div>
-</div>
-
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-xs>
+                    <label class="floating-label" for="...">Descripción</label>
+                    <textarea class="form-control textarea-autosize" id="descripcion" rows="5" ng-model="data_cat.descripcion" rows="1"></textarea>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button class="md-accent md-raised" type="submit">
+                Guardar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

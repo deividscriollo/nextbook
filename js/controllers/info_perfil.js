@@ -1,7 +1,9 @@
 var app = angular.module('app');
 app.controller('info_perfilCtrl', function($mdDialog,servicios,$scope, $routeSegment) {
 console.log('info perfil');
-
+  $scope.tabs = [
+                  {title:'hola', link:'mide'}
+                ];
  $scope.editinfo = function (event) {
     $mdDialog.show({
       clickOutsideToClose: true,

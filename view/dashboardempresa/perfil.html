@@ -1,46 +1,39 @@
-<section class="content-inner">
-    <div class="col-sm-3 col-lg-2 col-md-2">
-        <!-- <md-content> -->
-            <div class="menu-content">                        
-                <ul class="nav">
-                    <li>
-                        <a class="waves-attach waves-effect" href="#/My-space/Perfil-inicio">
-                            <i class="material-icons">home</i> Inicio
-                        </a>
-                    </li>
-                    <li ng-class="{active: ('dashboard.facturanext.inicio' | routeSegmentStartsWith)}">
-                        <a class="waves-attach waves-effect" href="#/My-space/Facturanext">
-                            <i class="material-icons">assignment</i> Facturanext
-                        </a>
-                    </li>
-                    <li ng-class="{active: ('dashboard.nomina.nomina' | routeSegmentStartsWith)}">
-                        <a class="waves-attach waves-effect" href="#/My-space/NominaAdmin/Nomina">
-                            <i class="material-icons">note_add</i> Nomina
-                        </a>
-                    </li>
-                    
-                    <li>
-                        <a class="waves-attach waves-effect" href="#/My-space/Perfil-inicio">
-                            <i class="material-icons">widgets</i> Apps, Colección
-                        </a>
-                    </li>
-                    <li>
-                        <a class="waves-attach waves-effect" href="#/My-space/Perfil-inicio">
-                            <i class="material-icons">account_circle</i> Perfil
-                        </a>
-                    </li>
-                    <div class="menu-logo"></div>
-                    <li>
-                        <a class="waves-attach waves-effect " href="#/My-space/Perfil-inicio">
-
-                            PERSONAS
-
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        <!-- </md-content> -->
+<div  layout="row" layout-fill flex-gt-md="80">
+    <div flex-xs layout="column" flex-gt-md="70">
+      <md-card>
+        <img ng-src="{{imgPortada}}" class="md-card-image" alt="Washed Out">
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Action 1</md-button>
+          <md-button>Action 2</md-button>
+          {{tabs.title}}
+          	<md-tab  ng-repeat="item in tabs" ng-click="tabnavigation(item.link)">
+	        	<ng-md-icon icon="home"></ng-md-icon> {{item.title}}
+	    	</md-tab>
+        </md-card-actions>
+        <md-card-content app-view-segment="2">
+        </md-card-content>        
+      </md-card>
     </div>
+    <div flex-xs layout="column" flex-gt-md="30">
+      <md-card>
+        <img ng-src="{{imgPortada}}" class="md-card-image" alt="Washed Out">
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Action 1</md-button>
+          <md-button>Action 2</md-button>
+          {{tabs.title}}
+          	<md-tab  ng-repeat="item in tabs" ng-click="tabnavigation(item.link)">
+	        	<ng-md-icon icon="home"></ng-md-icon> {{item.title}}
+	    	</md-tab>
+        </md-card-actions>
+        <md-card-content app-view-segment="2">
+        </md-card-content>        
+      </md-card>
+    </div>
+</div>
+
+
+<section class="content-inner">
+   
     <div class="col-lg-8 col-md-8 col-md-8">
         <md-content>
             <seccion id="header">

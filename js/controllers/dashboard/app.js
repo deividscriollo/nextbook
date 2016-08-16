@@ -1,10 +1,28 @@
 var app = angular.module('app');
+app.controller('modal_select_sucursal_categoriactrl', function ($scope, $localStorage,servicios, $mdDialog, $location, $mdSidenav) {
+	servicios.get_categorias_sucursal().get().$promise.then(function(data) {
+            $scope.states=data.categorias;
+    });
+	$scope.set_categoria=function() {
+
+		$scope.data_cat["codigo"] = $localStorage.sucursal.codigo;
+        servicios.set_categoria_sucursal().set($scope.data_cat).$promise.then(function(data) {
+        	console.log(data);
+            // $localStorage.sucursal.categoria = $scope.categoria;
+        });
+    }
+});
+
+
 app.controller('dashboardCtrl', function ($scope, $localStorage,servicios, $mdDialog, $location, $mdSidenav) {
     $scope.localStorage = $localStorage.datosE;
     if ($localStorage.sucursal.categoria==null||$localStorage.sucursal.categoria=='') {
-    	 servicios.showModal('modal_select_sucursal_categoria.html', {
-                states:''
-            }, 'select_categoria_sucursal');
+    	$mdDialog.show({
+	      controller: 'modal_select_sucursal_categoriactrl',
+	      templateUrl: 'view/modales/modal_select_sucursal_categoria.html',
+	      parent: angular.element(document.body),
+	      clickOutsideToClose:true,
+	    })
     }
     $scope.toggleSidenav = function(menuId) {
 	    $mdSidenav(menuId).toggle();

@@ -6,8 +6,7 @@ app.controller('modal_select_sucursal_categoriactrl', function ($scope, $localSt
     });
 
 	$scope.set_categoria = function() {
-		$scope.data_cat["codigo"] = $localStorage.sucursal.codigo;
-        servicios.set_categoria_sucursal().set($scope.data_cat).$promise.then(function(data) {
+        servicios.set_categoria_sucursal().set().$promise.then(function(data) {
         	if(data.respuesta == true) {
 		        $mdDialog.show(
 		            $mdDialog.alert()

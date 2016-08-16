@@ -1,6 +1,8 @@
 var app = angular.module('app');
 
 app.controller('subir_FacturasCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage) {
+
+	$scope.gastos = servicios.gastos();
 	// $scope.guardar_proveedor = function(){
 	//   	serviciosfacturanext.add_proveedor().save($scope.data).$promise.then(function(data) {
 	//      	if(data.respuesta == true) {

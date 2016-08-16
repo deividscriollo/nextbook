@@ -35,7 +35,6 @@ app.controller('listado_empleadoCtrl', function ($mdDialog, $scope, serviciosnom
 
     function success(desserts) {
       $scope.desserts = desserts.respuesta;
-      console.log('test');
     }
     
     $scope.removeFilter = function () {

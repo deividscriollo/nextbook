@@ -1,16 +1,16 @@
 <md-content flex-gt-md="100" ng-controller="personal_rolCtrl">    
     <div flex-gt-sm="70" flex-gt-md="20">
-    <md-input-container class="md-icon-float md-block">
-        <label>Nómina</label>
-        <md-select ng-model="data.id_nomina" name="id_nomina" required ng-change="update(nomina)">
-            <md-option ng-repeat="nomina in nominas" value="{{nomina.id}}">
-                {{nomina.descripcion}}
-            </md-option>
-        </md-select>
-        <div ng-messages="empleadosForm.nominas.$error">
-            <div ng-message="required">Nómina Requerido</div>
-        </div>
-    </md-input-container>   
+        <md-input-container class="md-icon-float md-block">
+            <label>Nómina</label>
+            <md-select ng-model="data.id_nomina" name="id_nomina" required ng-change="update(nomina)">
+                <md-option ng-repeat="nomina in nominas" value="{{nomina.id}}">
+                    {{nomina.descripcion}}
+                </md-option>
+            </md-select>
+            <div ng-messages="empleadosForm.nominas.$error">
+                <div ng-message="required">Nómina Requerido</div>
+            </div>
+        </md-input-container>   
     </div>
     <md-toolbar ng-hide="selected.length || filter.show">
       <div class="md-toolbar-tools">
@@ -50,6 +50,7 @@
             </thead>
             <tbody md-body>
                 <tr md-row ng-repeat="dessert in desserts.data">
+                    <td md-cell>{{dessert.codigo_personal}}</td>
                     <td md-cell>{{dessert.cedula_identificacion}}</td>
                     <td md-cell>{{dessert.nombres_completos}}</td>
                     <td md-cell>{{dessert.sueldo}}</td> 

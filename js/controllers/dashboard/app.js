@@ -43,7 +43,7 @@ app.controller('dashboardCtrl', function ($scope, $localStorage,servicios, $mdDi
 
 	$scope.menu = 	[
 					    {
-					      link : '/My-space/Inicio',
+					      link : '/My-space/NominaAdmin',
 					      title: 'Inicio',
 					      icon: 'dashboard'
 					    },

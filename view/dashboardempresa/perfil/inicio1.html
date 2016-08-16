@@ -1,136 +1,36 @@
-<div class="col-sm-3" ng-controller="info_perfilCtrl">
-    <div class="card">
-        <div class="card-main">
-            <div class="card-img">
-                <img alt="alt text" src="images/samples/x2.jpg" style="width: 100%;">
-                <p class="card-img-heading pull-right">Información</p>
-            </div>
-            <div class="card-action">
-            	<div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
-            		Actividad
-					<md-button class="md-icon-button" aria-label="More" ng-click="editinfo()">
-				        <!-- <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
-				        <ng-md-icon icon="edit"></ng-md-icon>
-				    </md-button>
-				</div>
-            </div>
-            <div class="card-inner">
-            	<p>{{activitidad}}</p>
-            </div>
-            <div class="card-action">
-            	<div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
-            		Dirección
-					<md-button class="md-icon-button" aria-label="More">
-				        <!-- <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
-				        <ng-md-icon icon="add_location"></ng-md-icon>
-				    </md-button>
-				</div>
-            </div>
-            <div class="card-inner">
-            	{{sucursal.direccion}}
-            </div>
-            <div class="card-action">
-            	<div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
-            		Teléfonos
-					<md-button class="md-icon-button" aria-label="More">
-				        <!-- <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
-				        <ng-md-icon icon="phone"></ng-md-icon>
-				    </md-button>
-				</div>
-            </div>
-            <div class="card-inner">
-            	<ul>
-            		<li ng-repeat="telefono in telefonos">{{telefono.dato}}</li>
-<!--             		<li>0987113522 Movi</li>
-            		<li>0987113522 cnt</li> -->
-            	</ul>
-            </div>
-            <div class="card-action">
-            	<div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
-            		correo electrónico
-					<md-button class="md-icon-button" aria-label="More">
-				        <!-- <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon> -->
-				        <ng-md-icon icon="contact_mail"></ng-md-icon>
-				    </md-button>
-				</div>
-            </div>
-            <div class="card-inner">
-            	<ul>
-            		<li>empresa@empresa.com</li>
-            		<li>{{email}}</li>
-            	</ul>                	
-            </div>
-
+<div flex-xs layout="column" flex-gt-md="30" ng-controller="info_perfilCtrl">
+    <md-card>
+        <md-card-actions layout="row" layout-align="center center">
+          <md-button class="md-accent md-raised" ng-click="editinfo()">
+                Editar
+            </md-button>
+        </md-card-actions>
+        <div layout="row" layout-align="center center">
+            {{localStorage.nombre_comercial}}
         </div>
-    </div>   
+        <md-card-content>
+            <p>{{activitidad}}</p>
+            <md-list>
+              <md-subheader class="md-no-sticky">Telefonos</md-subheader>
+                <md-list-item class="md-2-line" ng-repeat="telefono in telefonos">
+                  <ng-md-icon class="md-accent" icon="phone"></ng-md-icon>
+                  <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
+                    <h3>{{telefono.dato}} </h3>
+                    <p> {{telefono.tipo}} </p>
+                  </div>
+                  <md-button class="md-secondary md-icon-button" ng-click="doSecondaryAction($event)" ng-if="phone.options.actionIcon" aria-label="call">
+                    <md-icon md-svg-icon="{{phone.options.actionIcon}}"></md-icon>
+                  </md-button>
+                </md-list-item>
+            </md-list>  
+        </md-card-content>
+        <md-card-content>
+            {{sucursal.direccion}}
+        </md-card-content>
+    </md-card>
 </div>
-<div class="col-sm-7">
-    <div class="card">
-        <div class="card-main">
-            <div class="card-img">
-                <img alt="alt text" src="images/samples/x3.jpg" style="width: 500px;">
-                <p class="card-img-heading">Contenido</p>
-            </div>
-            <div class="card-inner">
-                <p>
-                    Lorem ipsum dolor sit amet.
-                    <br> Consectetur adipiscing elit.
-                </p>
-                {{localStorage.nombre_comercial}}
-            </div>
-            <div class="card-action">
-                <div class="card-action-btn pull-left">
-                    <a class="btn btn-flat waves-attach">
-                        <span class="icon">account_circle</span>&nbsp;
-                        <span ng-if="localStorage.nombre_comercial != 'no disponible'">
-                            {{localStorage.nombre_comercial}}
-                        </span>
-                        <span ng-if="localStorage.nombre_comercial == 'no disponible'">
-                            {{localStorage.razon_social}}
-                        </span>
-                    </a>
-                </div>
-                <div class="card-action-btn pull-left">
-                    <a class="btn btn-flat waves-attach">
-                        <span class="icon">check</span>&nbsp;Button
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-sm-2">
-    <div class="card">
-        <div class="card-main">
-            <div class="card-img">
-                <img alt="alt text" src="images/samples/x4.jpg" style="width: 100%;">
-                <p class="card-img-heading">Publicidad</p>
-            </div>
-            <div class="card-inner">
-                <p>
-                    Lorem ipsum dolor sit amet.
-                    <br> Consectetur adipiscing elit.
-                </p>
-                {{localStorage.nombre_comercial}}
-            </div>
-            <div class="card-action">
-                <div class="card-action-btn pull-left">
-                    <a class="btn btn-flat waves-attach">
-                        <span class="icon">account_circle</span>&nbsp;
-                        <span ng-if="localStorage.nombre_comercial != 'no disponible'">
-                            {{localStorage.nombre_comercial}}
-                        </span>
-                        <span ng-if="localStorage.nombre_comercial == 'no disponible'">
-                            {{localStorage.razon_social}}
-                        </span>
-                    </a>
-                </div>
-                <div class="card-action-btn pull-left">
-                    <a class="btn btn-flat waves-attach">
-                        <span class="icon">check</span>&nbsp;Button
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+<div flex-xs layout="column" flex-gt-md="70">
+    <md-card>
+    Area publicaciones,  en proceso
+    </md-card>
 </div>

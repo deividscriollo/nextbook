@@ -1,114 +1,56 @@
 <div  layout="row" layout-fill flex-gt-md="80">
     <div flex-xs layout="column" flex-gt-md="70">
       <md-card>
-        <img ng-src="{{imgPortada}}" class="md-card-image" alt="Washed Out">
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button>Action 1</md-button>
-          <md-button>Action 2</md-button>
-          {{tabs.title}}
-          	<md-tab  ng-repeat="item in tabs" ng-click="tabnavigation(item.link)">
-	        	<ng-md-icon icon="home"></ng-md-icon> {{item.title}}
-	    	</md-tab>
-        </md-card-actions>
-        <md-card-content app-view-segment="2">
-        </md-card-content>        
+        <div class="div-controlcar-img">
+        	<img ng-src="{{imgPortada}}" class="md-card-image" alt="Banner Perfil">
+        	<div class="header-card-perfil-nombrecomercial">{{localStorage.nombre_comercial}}</div>
+        	<div class="header-card-perfil">
+	      		<span flex></span>
+	        	<md-button class="md-icon-button" aria-label="More">
+			        <ng-md-icon class="md-accent" icon="border_color"></ng-md-icon>
+			   	</md-button>
+			   	<md-button class="md-icon-button" aria-label="More">
+			        <ng-md-icon class="md-accent" icon="cloud_upload"></ng-md-icon>
+			   	</md-button>
+	        </div>
+        </div>
       </md-card>
+      <div layout="row" app-view-segment="2"></div>
     </div>
     <div flex-xs layout="column" flex-gt-md="30">
       <md-card>
-        <img ng-src="{{imgPortada}}" class="md-card-image" alt="Washed Out">
-        <md-card-actions layout="row" layout-align="end center">
-          <md-button>Action 1</md-button>
-          <md-button>Action 2</md-button>
-          {{tabs.title}}
-          	<md-tab  ng-repeat="item in tabs" ng-click="tabnavigation(item.link)">
-	        	<ng-md-icon icon="home"></ng-md-icon> {{item.title}}
-	    	</md-tab>
+      	<div layout="row" layout-align="center center">
+        	<img ng-src="{{imgPortada}}" class="avatar" alt="Avatar Perfil">
+        </div>
+        <md-card-actions layout="row" layout-align="center center">
+          <md-button class="md-icon-button" aria-label="More">
+		        <ng-md-icon class="md-accent" icon="border_color"></ng-md-icon>
+		   	</md-button>
+		   	<md-button class="md-icon-button" aria-label="More">
+		        <ng-md-icon class="md-accent" icon="cloud_upload"></ng-md-icon>
+		   	</md-button>
         </md-card-actions>
-        <md-card-content app-view-segment="2">
-        </md-card-content>        
+        <div layout="row" layout-align="center center">
+        	{{datosPersona.nombres_apellidos}}
+        </div>
+        <md-card-content>
+
+        	<md-list>
+        		<md-list-item class="md-3-line md-long-text">
+		          <img ng-src="{{todos[1].face}}?25" class="md-avatar" alt="{{todos[1].who}}" />
+		          <div class="md-list-item-text">
+		            <h3>{{ todos[1].who }}</h3>
+		            <p>
+		              {{activitidad}}
+		            </p>
+		          </div>
+		        </md-list-item>
+		        <md-divider ></md-divider>
+		    </md-list>
+        </md-card-content>
+        
+        <img ng-src="{{imgPortada}}" class="md-card-image" alt="Banner Perfil">
       </md-card>
     </div>
 </div>
 
-
-<section class="content-inner">
-   
-    <div class="col-lg-8 col-md-8 col-md-8">
-        <md-content>
-            <seccion id="header">
-			    <div class="slider">
-				    <a href="javascript:void(0)" ng-click="show_listaimg_modal('portada')">
-				      <img src="{{imgPortada}}" style="width: 100%; height: 500px;">
-			        </a>
-			    </div>
-			    <!--slider-->
-			    <nav class="nav-perfil-2">
-			        <!-- Brand and toggle get grouped for better mobile display -->
-			        <div class="navbar-brand" ng-click="show_listaimg_modal('perfil')">
-			        	<img class="img-responsive" src="{{imgPerfil}}">
-			        </div>
-			        <span class="site-name">{{localStorage.nombre_comercial}}</span>
-			        <span class="site-description">{{datosPersona.nombres_apellidos}}</span>
-			    </nav>
-			    <nav class="tab-nav pull-right nav-perfil-2-1">
-			        <ul class="nav nav-list">
-			            <li class="dropdown margin-right">
-			                <a class="dropdown-toggle padding-left-no padding-right-no waves-effect" data-toggle="dropdown">
-			                    <span class="access-hide">John Smith</span>
-			                    <span class="avatar avatar-sm"><img alt="alt text for John Smith avatar" ng-src="{{imgPerfil}}"></span>
-			                </a>
-			                <ul class="dropdown-menu dropdown-menu-right">
-			                    <li>
-			                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_listaimg_modal()"><span class="icon icon-lg margin-right">account_box</span>Seleccionar Imagen</a>
-			                    </li>
-			                    <li>
-			                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal('perfil')"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Imagen</a>
-			                    </li>
-			                    <li>
-			                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal('portada')"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Portada</a>
-			                    </li>
-			                    <li>
-			                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
-			                    </li>
-			                </ul>
-			            </li>
-			            <li class="active">
-			                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.inicio' | routeSegmentUrl}}">
-			                    <span class="text-white">Perfil</span>
-			                </a>
-			            </li>
-			            <li>
-			                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.apps' | routeSegmentUrl}}">
-			                    <span class="text-white ">Apps</span>
-			                </a>
-			            </li>
-			            <li>
-			                <a class="waves-attach waves-light waves-effect" href="#{{'dashboard.perfil.maps' | routeSegmentUrl}}">
-			                	<span class="text-white">Maps</span>
-			                </a>
-			            </li>
-			            <li class="dropdown">
-			                <a class="dropdown-toggle text-black waves-attach waves-effect" data-toggle="dropdown"><span class="icon">more_vert</span></a>
-			                <ul class="dropdown-menu dropdown-menu-right">
-			                    <li>
-			                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_listaimg_modal()"><span class="icon icon-lg margin-right">account_box</span>Seleccionar Imagen</a>
-			                    </li>
-			                    <li>
-			                        <a class="padding-right-lg waves-attach waves-effect" href="javascript:void(0)" ng-click="show_upload_img_modal()"><span class="icon icon-lg margin-right">add_to_photos</span>Subir Imagen</a>
-			                    </li>
-			                    <li>
-			                        <a class="padding-right-lg waves-attach waves-effect" href="page-login.html"><span class="icon icon-lg margin-right">exit_to_app</span>Logout</a>
-			                    </li>
-			                </ul>
-			            </li>
-			        </ul>
-			    </nav>					    
-			</seccion>
-
-			<section>
-				<div app-view-segment="2"></div>
-			</section>
-        </md-content>            
-    </div>
-</section>

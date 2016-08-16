@@ -1,6 +1,36 @@
 var app = angular.module('app');
 app.controller('facturanextCtrl', function($scope, servicios) {
-
+  $scope.tabs = [
+                  {icon:'home',title:'Facturanext Inicio',link:'/My-space/Facturanext'},
+                  {icon:'assignment',title:'Mis Facturas',link:'/My-space/Facturanext/MisFacturas'},
+                  {icon:'cloud_upload',title:'Subir Fac. Electrónica',link:'/My-space/Facturanext/SubirFacturas'},
+                  {icon:'speaker_notes_off',title:'Fac. Rechazadas',link:'/My-space/Facturanext/FacurasRechazadas'},
+                  {icon:'border_color',title:'Crear Fac. Fisicas',link:'/My-space/Facturanext/FacturasFisicas'},
+                  {icon:'contacts',title:'Proveedores',link:'/My-space/Facturanext/Proveedores'},
+                  
+                ];
+  $scope.menucard =   [
+                    {
+                      link : '#/My-space/Facturanext',
+                      title: 'Inicio',
+                      icon: 'dashboard'
+                    },
+                    {
+                      link : '#/My-space/Facturanext/MisFacturas',
+                      title: 'Mis Facturas',
+                      icon: 'donut_small'
+                    },
+                    {
+                      link : '#/My-space/Facturanext/SubirFacturas',
+                      title: 'Subir Facturas',
+                      icon: 'dns'
+                    },
+                    {
+                      link : '#/My-space/Facturanext/FacurasRechazadas',
+                      title: 'Facuras Rechazadas',
+                      icon: 'extension'
+                    }
+                ];
 });
 
 app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice, $http) {

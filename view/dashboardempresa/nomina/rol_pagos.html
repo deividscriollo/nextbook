@@ -1,292 +1,233 @@
-<div class="card" ng-controller="rol_pagosCtrl">
-    <div class="card-main">
-        <div class="card-header">            
-            <div class="card-inner">
-                <span class="card-heading">Registro Roles Pagos</span>
-            </div>
-        </div>
-
-        <div class="card-inner">
-            <div class="row">
-                <form name="rolForm" id="rolForm">
-                    <div class="col-sm-12">
-                        <div class="col-sm-4">
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Código Rol Pago</label>
-                                <input type="text" name="codigo_rol" id="codigo_rol" ng-model="data.codigo_rol" disabled />
-                                <div ng-messages="rolForm.codigo_rol.$error">
-                                    <div ng-message="required">Código Rol Requerido</div>
-                                </div>
-                            </md-input-container>   
-                        </div>
-
-                        <div class="col-sm-4">
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Fecha Rol</label>
-                                <input type="text"  required name="fecha_rol" ng-model="data.fecha_rol" />
-                                <div  class="error" ng-messages="rolForm.fecha_rol.$error">
-                                    <div ng-message="required">Fecha Rol Requerido</div>
-                                </div>
-                            </md-input-container>
-                        </div>    
-                    </div>
-                    
-                    <div class="col-sm-12">
-                        <div class="col-sm-4">
-                            <md-input-container class="ng-hide">
-                                <label>Id Empleado</label>
-                                <input type="text" required name="id_empleado" ng-model="data.id_empleado" />
-                                <div ng-messages="rolForm.id_empleado.$error">
-                                    <div ng-message="required">Id Empleado Requerido</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Cédula de Identidad</label>
-                                <input md-maxlength="10" type="text" required name="cedula_identificacion" ng-model="data.cedula_identificacion" ng-blur="comparar_empleado()" />
-                                <div ng-messages="rolForm.cedula_identificacion.$error">
-                                    <div ng-message="required">Cédula de Identidad Requerido</div>
-                                    <div ng-message="md-maxlength">La cédula tiene que ser de menos de 10 caracteres</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Departamento</label>
-                                <input type="text" required name="departamento" ng-model="data.departamento" />
-                                <div ng-messages="rolForm.departamento.$error">
-                                    <div ng-message="required">Departamento Requerido</div>
-                                </div>
-                            </md-input-container>  
-                        </div>
-
-                        <div class="col-sm-4">
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Nombres Completos</label>
-                                <input type="text" required name="nombres_completos" ng-model="data.nombres_completos" />
-                                <div ng-messages="rolForm.nombres_completos.$error">
-                                    <div ng-message="required">Nombres Completos Requerido</div>
-                                </div>
-                            </md-input-container>   
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Cargo</label>
-                                <input type="text" required name="cargo" ng-model="data.cargo" />
-                                <div ng-messages="rolForm.cargo.$error">
-                                    <div ng-message="required">Cargo Requerido</div>
-                                </div>
-                            </md-input-container> 
-                        </div>
-
-                        <div class="col-sm-4">
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Dirección</label>
-                                <input type="text" required name="direccion" ng-model="data.direccion">
-                                <div ng-messages="rolForm.direccion.$error">
-                                    <div ng-message="required">Direccíon Requerido</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Sueldo</label>
-                                <input type="text" required name="sueldo" ng-model="data.sueldo">
-                                <div ng-messages="rolForm.sueldo.$error">
-                                    <div ng-message="required">Sueldo Requerido</div>
-                                </div>
-                            </md-input-container>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                        <md-radio-group ng-model="data.instruccion">
-                            <div class="col-sm-3">
-                                <md-input-container class="md-icon-float md-block">
-                                    <label>Horas Diarias</label>
-                                    <input type="text" required name="horas" ng-model="data.horas">
-                                    <div ng-messages="rolForm.horas.$error">
-                                        <div ng-message="required">Horas Requerido</div>
-                                    </div>
-                                </md-input-container>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <md-input-container class="md-icon-float md-block">
-                                    <label>Días Laborados</label>
-                                    <input type="text" required name="dias_laborados" ng-model="data.dias_laborados">
-                                    <div ng-messages="rolForm.dias_laborados.$error">
-                                        <div ng-message="required">Días Laborados Requerido</div>
-                                    </div>
-                                </md-input-container>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <md-input-container class="md-icon-float md-block">
-                                    <label>Días no Laborados</label>
-                                    <input type="text" required name="dias_no_laborados" ng-model="data.dias_no_laborados">
-                                    <div ng-messages="rolForm.dias_no_laborados.$error">
-                                        <div ng-message="required">Días no Laborados Requerido</div>
-                                    </div>
-                                </md-input-container>
-                            </div>
-
-                            <div class="col-sm-3">
-                                <md-input-container class="md-icon-float md-block">
-                                    <label>Horas Extras</label>
-                                    <input type="text" required name="extras" ng-model="data.extras">
-                                    <div ng-messages="rolForm.extras.$error">
-                                        <div ng-message="required">Días no Laborados Requerido</div>
-                                    </div>
-                                </md-input-container>
-                            </div>
-                        </md-radio-group>
-                    </div>
-
-                    <div class="col-sm-12">
-                        <div class="col-sm-4">
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Sueldo Mes</label>
-                                <input type="text" required name="sueldo_mes" ng-model="data.sueldo_mes" />
-                                <div ng-messages="rolForm.sueldo_mes.$error">
-                                    <div ng-message="required">Sueldo Mes Requerido</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Horas Extras</label>
-                                <input type="text" required name="horas_extras" ng-model="data.horas_extras" />
-                                <div ng-messages="rolForm.horas_extras.$error">
-                                    <div ng-message="required">Horas Extras Requerido</div>
-                                </div>
-                            </md-input-container>  
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Comisiones</label>
-                                <input type="text" required name="comisiones" ng-model="data.comisiones" />
-                                <div ng-messages="rolForm.comisiones.$error">
-                                    <div ng-message="required">Comisiones Requerido</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Décimo Tercero</label>
-                                <input type="text" required name="decimo_tercero" ng-model="data.decimo_tercero" />
-                                <div ng-messages="rolForm.decimo_tercero.$error">
-                                    <div ng-message="required">Décimo Tercero Requerido</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Décimo Cuarto</label>
-                                <input type="text" required name="decimo_cuarto" ng-model="data.decimo_cuarto" />
-                                <div ng-messages="rolForm.decimo_cuarto.$error">
-                                    <div ng-message="required">Décimo Cuarto Requerido</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Total Ingresos</label>
-                                <input type="text" required name="total_ingresos" ng-model="data.total_ingresos" />
-                                <div ng-messages="rolForm.total_ingresos.$error">
-                                    <div ng-message="required">Total Ingresos Requerido</div>
-                                </div>
-                            </md-input-container>   
-                        </div>
-
-                        <div class="col-sm-4"></div>
-
-                        <div class="col-sm-4">
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Aporte al IESS</label>
-                                <input type="text" required name="aporte_iess" ng-model="data.aporte_iess" />
-                                <div ng-messages="rolForm.aporte_iess.$error">
-                                    <div ng-message="required">Aporte al IESS Requerido</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Préstamos quirografarios</label>
-                                <input type="text" required name="quirografarios" ng-model="data.quirografarios" />
-                                <div ng-messages="rolForm.quirografarios.$error">
-                                    <div ng-message="required">Préstamos quirografarios Requerido</div>
-                                </div>
-                            </md-input-container>  
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Préstamos y Anticipos</label>
-                                <input type="text" required name="anticipos" ng-model="data.anticipos" />
-                                <div ng-messages="rolForm.anticipos.$error">
-                                    <div ng-message="required">Préstamos y Anticipos</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Atrasos</label>
-                                <input type="text" required name="atrasos" ng-model="data.atrasos" />
-                                <div ng-messages="rolForm.atrasos.$error">
-                                    <div ng-message="required">Atrasos Requerido</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Permisos</label>
-                                <input type="text" required name="permisos" ng-model="data.permisos" />
-                                <div ng-messages="rolForm.permisos.$error">
-                                    <div ng-message="required">Permisos Requerido</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Faltas</label>
-                                <input type="text" required name="faltas" ng-model="data.faltas" />
-                                <div ng-messages="rolForm.faltas.$error">
-                                    <div ng-message="required">Faltas Requerido</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Multas</label>
-                                <input type="text" required name="multas" ng-model="data.multas" />
-                                <div ng-messages="rolForm.multas.$error">
-                                    <div ng-message="required">Multas Requerido</div>
-                                </div>
-                            </md-input-container>
-
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Total Descuentos</label>
-                                <input type="text" required name="total_descuentos" ng-model="data.total_descuentos" />
-                                <div ng-messages="rolForm.total_descuentos.$error">
-                                    <div ng-message="required">Total Descuentos Requerido</div>
-                                </div>
-                            </md-input-container>    
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                        <div class="col-sm-4"></div>
-
-                        <div class="col-sm-4">
-                            <md-input-container class="md-icon-float md-block">
-                                <label>Neto a Pagar</label>
-                                <input type="text" required name="neto_pagar" ng-model="data.neto_pagar" />
-                                <div ng-messages="rolForm.neto_pagar.$error">
-                                    <div ng-message="required">Neto a Pagar Requerido</div>
-                                </div>
-                            </md-input-container> 
-                        </div>
-
-                        <div class="col-sm-4"></div>  
-                    </div>  
-                </form>
-            </div>  
-
-            <div class="row">
-                <div class="card-action">
-                    <div class="card-action-btn pull-right">
-                        <md-button class="md-raised md-primary" type="submit" ng-click="guardar_rol()" ng-disabled="rolForm.$invalid">Guardar <i class="fa fa-angle-double-right"></i></md-button>
-                        <md-button class="md-raised md-primary" type="submit" ng-click="calcular_rol()" >Calcular <i class="fa fa-angle-double-right"></i></md-button>
-                        <md-button class="md-raised md-warn" type="reset">Limpiar <i class="fa fa-trash-o"></i></md-button>
-                    </div>
+<md-content layout-padding flex-gt-md="100" ng-controller="rol_pagosCtrl">
+    <form name="rolForm" id="rolForm" ng-submit="guardar_rol()">
+        <div layout-gt-sm="row">
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Código Rol Pago</label>
+                <input type="text" name="codigo_rol" id="codigo_rol" ng-model="data.codigo_rol" disabled />
+                <div ng-messages="rolForm.codigo_rol.$error">
+                    <div ng-message="required">Código Rol Requerido</div>
                 </div>
-            </div>
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Fecha Rol</label>
+                <input type="text"  required name="fecha_rol" ng-model="data.fecha_rol" />
+                <div  class="error" ng-messages="rolForm.fecha_rol.$error">
+                    <div ng-message="required">Fecha Rol Requerido</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Cédula de Identidad</label>
+                <input md-maxlength="10" type="text" required name="cedula_identificacion" ng-model="data.cedula_identificacion" ng-blur="comparar_empleado()" />
+                <div ng-messages="rolForm.cedula_identificacion.$error">
+                    <div ng-message="required">Cédula de Identidad Requerido</div>
+                    <div ng-message="md-maxlength">La cédula tiene que ser de menos de 10 caracteres</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Departamento</label>
+                <input type="text" required name="departamento" ng-model="data.departamento" />
+                <div ng-messages="rolForm.departamento.$error">
+                    <div ng-message="required">Departamento Requerido</div>
+                </div>
+            </md-input-container> 
         </div>
-    </div>
-</div>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Nombres Completos</label>
+                <input type="text" required name="nombres_completos" ng-model="data.nombres_completos" />
+                <div ng-messages="rolForm.nombres_completos.$error">
+                    <div ng-message="required">Nombres Completos Requerido</div>
+                </div>
+            </md-input-container>   
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Cargo</label>
+                <input type="text" required name="cargo" ng-model="data.cargo" />
+                <div ng-messages="rolForm.cargo.$error">
+                    <div ng-message="required">Cargo Requerido</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Dirección</label>
+                <input type="text" required name="direccion" ng-model="data.direccion">
+                <div ng-messages="rolForm.direccion.$error">
+                    <div ng-message="required">Direccíon Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Sueldo</label>
+                <input type="text" required name="sueldo" ng-model="data.sueldo">
+                <div ng-messages="rolForm.sueldo.$error">
+                    <div ng-message="required">Sueldo Requerido</div>
+                </div>
+            </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+            <md-radio-group ng-model="data.instruccion" layout="row" flex-gt-md="100">
+                <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                    <label>Horas Diarias</label>
+                    <input type="text" required name="horas" ng-model="data.horas">
+                    <div ng-messages="rolForm.horas.$error">
+                        <div ng-message="required">Horas Requerido</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                    <label>Días Laborados</label>
+                    <input type="text" required name="dias_laborados" ng-model="data.dias_laborados">
+                    <div ng-messages="rolForm.dias_laborados.$error">
+                        <div ng-message="required">Días Laborados Requerido</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                    <label>Días no Laborados</label>
+                    <input type="text" required name="dias_no_laborados" ng-model="data.dias_no_laborados">
+                    <div ng-messages="rolForm.dias_no_laborados.$error">
+                        <div ng-message="required">Días no Laborados Requerido</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                    <label>Horas Extras</label>
+                    <input type="text" required name="extras" ng-model="data.extras">
+                    <div ng-messages="rolForm.extras.$error">
+                        <div ng-message="required">Días no Laborados Requerido</div>
+                    </div>
+                </md-input-container>
+            </md-radio-group>
+        </div>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Sueldo Mes</label>
+                <input type="text" required name="sueldo_mes" ng-model="data.sueldo_mes" />
+                <div ng-messages="rolForm.sueldo_mes.$error">
+                    <div ng-message="required">Sueldo Mes Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Horas Extras</label>
+                <input type="text" required name="horas_extras" ng-model="data.horas_extras" />
+                <div ng-messages="rolForm.horas_extras.$error">
+                    <div ng-message="required">Horas Extras Requerido</div>
+                </div>
+            </md-input-container>  
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Comisiones</label>
+                <input type="text" required name="comisiones" ng-model="data.comisiones" />
+                <div ng-messages="rolForm.comisiones.$error">
+                    <div ng-message="required">Comisiones Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Décimo Tercero</label>
+                <input type="text" required name="decimo_tercero" ng-model="data.decimo_tercero" />
+                <div ng-messages="rolForm.decimo_tercero.$error">
+                    <div ng-message="required">Décimo Tercero Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Décimo Cuarto</label>
+                <input type="text" required name="decimo_cuarto" ng-model="data.decimo_cuarto" />
+                <div ng-messages="rolForm.decimo_cuarto.$error">
+                    <div ng-message="required">Décimo Cuarto Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Total Ingresos</label>
+                <input type="text" required name="total_ingresos" ng-model="data.total_ingresos" />
+                <div ng-messages="rolForm.total_ingresos.$error">
+                    <div ng-message="required">Total Ingresos Requerido</div>
+                </div>
+            </md-input-container> 
+        </div>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Aporte al IESS</label>
+                <input type="text" required name="aporte_iess" ng-model="data.aporte_iess" />
+                <div ng-messages="rolForm.aporte_iess.$error">
+                    <div ng-message="required">Aporte al IESS Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Préstamos quirografarios</label>
+                <input type="text" required name="quirografarios" ng-model="data.quirografarios" />
+                <div ng-messages="rolForm.quirografarios.$error">
+                    <div ng-message="required">Préstamos quirografarios Requerido</div>
+                </div>
+            </md-input-container>  
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Préstamos y Anticipos</label>
+                <input type="text" required name="anticipos" ng-model="data.anticipos" />
+                <div ng-messages="rolForm.anticipos.$error">
+                    <div ng-message="required">Préstamos y Anticipos</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Atrasos</label>
+                <input type="text" required name="atrasos" ng-model="data.atrasos" />
+                <div ng-messages="rolForm.atrasos.$error">
+                    <div ng-message="required">Atrasos Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Permisos</label>
+                <input type="text" required name="permisos" ng-model="data.permisos" />
+                <div ng-messages="rolForm.permisos.$error">
+                    <div ng-message="required">Permisos Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Faltas</label>
+                <input type="text" required name="faltas" ng-model="data.faltas" />
+                <div ng-messages="rolForm.faltas.$error">
+                    <div ng-message="required">Faltas Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Multas</label>
+                <input type="text" required name="multas" ng-model="data.multas" />
+                <div ng-messages="rolForm.multas.$error">
+                    <div ng-message="required">Multas Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Total Descuentos</label>
+                <input type="text" required name="total_descuentos" ng-model="data.total_descuentos" />
+                <div ng-messages="rolForm.total_descuentos.$error">
+                    <div ng-message="required">Total Descuentos Requerido</div>
+                </div>
+            </md-input-container>  
+        </div>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <label>Neto a Pagar</label>
+                <input type="text" required name="neto_pagar" ng-model="data.neto_pagar" />
+                <div ng-messages="rolForm.neto_pagar.$error">
+                    <div ng-message="required">Neto a Pagar Requerido</div>
+                </div>
+            </md-input-container> 
+        </div>
+        <div layout-gt-sm="row">
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="rolForm.$invalid">
+                Guardar<i class="fa fa-angle-double-right"></i>
+            </md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-click="calcular_rol()" >
+                Calcular <i class="fa fa-angle-double-right"></i>
+            </md-button>
+            <md-button class="md-raised md-accent" type="reset">
+                Limpiar <i class="fa fa-trash-o"></i>
+            </md-button>
+        </div>
+    </form>
+</md-content>

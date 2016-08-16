@@ -1,6 +1,8 @@
-<md-tabs md-stretch-tabs class="md-primary">
-    <md-tab  ng-repeat="item in tabs" ng-click="tabnavigation(item.link)">
-        <ng-md-icon icon="home"></ng-md-icon> {{item.title}}
+<md-tabs md-dynamic-height="" class="md-primary" md-border-bottom="" md-selected="selectedIndex" md-center-tabs="true">
+    <md-tab ng-repeat="tab in tabs" ng-click="tabnavigation(tab.link)">
+        <md-tab-label>
+            <md-icon>{{tab.icon}}</md-icon> {{tab.title}}
+        </md-tab-label>
     </md-tab>
 </md-tabs>
 <div app-view-segment="2"></div>

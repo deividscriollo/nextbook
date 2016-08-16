@@ -109,22 +109,22 @@ app.controller('addItemDepartamento', function ($mdDialog, $scope, serviciosnomi
   // fin
  
   this.cancel = $mdDialog.cancel
-  // $scope.guardar_departamento = function() {
-  //   serviciosnomina.add_departamento().save($scope.data).$promise.then(function(data) {
-  //     if(data.respuesta == true) {
-  //         $mdDialog.show(
-  //           $mdDialog.alert()
-  //           .parent(angular.element(document.querySelector('#dialogContainer')))
-  //           .clickOutsideToClose(true)
-  //           .title('NextBook')
-  //           .textContent('Registro Agregado Correctamente')
-  //           .ariaLabel('Registro Agregado Correctamente')
-  //           .ok('Ok!')
-  //           .openFrom('#left')
-  //        );
-  //     }
-  //   }); 
-  // }  
+  $scope.guardar_departamento = function() {
+    serviciosnomina.add_departamento().save($scope.data).$promise.then(function(data) {
+      if(data.respuesta == true) {
+          $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#dialogContainer')))
+            .clickOutsideToClose(true)
+            .title('NextBook')
+            .textContent('Registro Agregado Correctamente')
+            .ariaLabel('Registro Agregado Correctamente')
+            .ok('Ok!')
+            .openFrom('#left')
+         );
+      }
+    }); 
+  }  
 });
 
 app.controller('editItemDepartamento', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) {

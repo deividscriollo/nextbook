@@ -104,27 +104,24 @@ app.controller('addItemCargo', function ($mdDialog, $scope, serviciosnomina, ser
     }
   });
   // fin
-
-  // $scope.data = {}; 
-  // $scope.data.sucursal_nombre = $localStorage.sucursal.sucursal; 
   
   this.cancel = $mdDialog.cancel
-  // $scope.guardar_cargo = function() {
-  //   serviciosnomina.add_cargo().save($scope.data).$promise.then(function(data) {
-  //     if(data.respuesta == true) {
-  //         $mdDialog.show(
-  //           $mdDialog.alert()
-  //           .parent(angular.element(document.querySelector('#dialogContainer')))
-  //           .clickOutsideToClose(true)
-  //           .title('NextBook')
-  //           .textContent('Registro Agregado Correctamente')
-  //           .ariaLabel('Registro Agregado Correctamente')
-  //           .ok('Ok!')
-  //           .openFrom('#left')
-  //        );
-  //     }
-  //   }); 
-  // }  
+  $scope.guardar_cargo = function() {
+    serviciosnomina.add_cargo().save($scope.data).$promise.then(function(data) {
+      if(data.respuesta == true) {
+          $mdDialog.show(
+            $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#dialogContainer')))
+            .clickOutsideToClose(true)
+            .title('NextBook')
+            .textContent('Registro Agregado Correctamente')
+            .ariaLabel('Registro Agregado Correctamente')
+            .ok('Ok!')
+            .openFrom('#left')
+         );
+      }
+    }); 
+  }  
 });
 
 app.controller('editItemCargo', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) {

@@ -202,6 +202,60 @@ app.service('serviciosnomina', function($resource, $localStorage, $location, Mod
     };
     //----------------------- fin -----------------------------
 
+    // ------------------------------------------------ Bancos ------------------------------
+    this.add_banco = function() {
+        return $resource(servicios.server().mod_radio()+'public/addBanco', {}
+        , {
+            save: {
+                method: 'POST', isArray: false, 
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    // this.edit_cargo = function() {
+    //     return $resource(servicios.server().mod_radio()+'public/updateCargo', {}
+    //     , {
+    //         edit: {
+    //             method: 'POST', isArray: false,
+    //             params: {
+    //                 token: $localStorage.tokenradio,
+    //                 sucursal: $localStorage.sucursal.codigo
+    //             }
+    //         }
+    //     });
+    // };
+
+    // this.delete_cargo = function() {
+    //     return $resource(servicios.server().mod_radio()+'public/deleteCargo', {}
+    //     , {
+    //         delete: {
+    //             method: 'POST', isArray: false,  
+    //             params: {
+    //                 token: $localStorage.tokenradio,
+    //                 sucursal: $localStorage.sucursal.codigo
+    //             }
+    //         }
+    //     });
+    // };
+
+    this.get_bancos = function() {
+        return $resource(servicios.server().mod_radio()+'public/getBancos', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.tokenradio,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+    //----------------------- fin -----------------------------
+
     // ------------------------------------------------ Empleado ------------------------------
     this.add_empleado = function() {
         return $resource(servicios.server().mod_radio()+'public/addEmpleado', {}

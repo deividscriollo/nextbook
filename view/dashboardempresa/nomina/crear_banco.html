@@ -1,0 +1,78 @@
+<md-dialog ng-controller="addItemBancos">
+    <form name="registroForm" id="registroForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Crear Bancos</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width:600px;">
+          <div>
+            <md-content layout-padding layout-wrap>
+                <div layout-gt-xs="row">
+                  <md-input-container class="md-block" flex-gt-xs >
+                      <label>Nombre Banco</label>
+                      <input type="text" required name="nombre_banco" ng-model="data.nombre_banco" />
+                      <div ng-messages="registroForm.nombre_banco.$error">
+                          <div ng-message="required">Nombre Banco Requerido</div>
+                      </div>
+                  </md-input-container>
+
+                  <md-input-container class="md-block" flex-gt-xs >
+                      <label>Sucursal</label>
+                      <input type="text" required name="sucursal_banco" ng-model="data.sucursal_banco" />
+                      <div ng-messages="registroForm.sucursal_banco.$error">
+                          <div ng-message="required">Sucursal Requerido</div>
+                      </div>
+                  </md-input-container>
+                </div>
+                <div layout-gt-xs="row">
+                  <md-input-container class="md-block" flex-gt-xs >
+                      <label>Ciudad</label>
+                      <input type="text" required name="ciudad_banco" ng-model="data.ciudad_banco" />
+                      <div ng-messages="registroForm.ciudad_banco.$error">
+                          <div ng-message="required">Ciudad Requerido</div>
+                      </div>
+                  </md-input-container>
+
+                  <md-input-container class="md-block" flex-gt-xs>
+                      <label>Dirección</label>
+                      <input type="text" required name="direccion_banco" ng-model="data.direccion_banco" />
+                      <div ng-messages="registroForm.direccion_banco.$error">
+                          <div ng-message="required">Dirección Patronal Requerido</div>
+                      </div>
+                  </md-input-container>
+                </div>
+
+                <div layout-gt-xs="row">
+                  <md-input-container class="md-block" flex-gt-xs>
+                      <label>Teléfono</label>
+                      <input type="text" required name="telefono_banco" ng-model="data.telefono_banco" />
+                      <div ng-messages="registroForm.telefono_banco.$error">
+                          <div ng-message="required">Teléfono Requerido</div>
+                      </div>
+                  </md-input-container>
+
+                  <md-input-container class="md-block" flex-gt-xs>
+                      <label>Correo</label>
+                      <input type="text" required name="email_banco" ng-model="data.email_banco" />
+                      <div ng-messages="registroForm.email_banco.$error">
+                          <div ng-message="required">Correo Requerido</div>
+                      </div>
+                  </md-input-container>
+                </div>
+            </md-content>
+          </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" type="submit" ng-click="guardar_banco()" ng-disabled="registroForm.$invalid">
+              Guardar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

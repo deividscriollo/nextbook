@@ -29,7 +29,7 @@ app.controller('bancosCtrl', function ($mdDialog, $scope, serviciosnomina, servi
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      templateUrl: 'view/dashboardempresa/nomina/crear_nomina.html',
+      templateUrl: 'view/dashboardempresa/nomina/crear_banco.html',
     }).then($scope.getDesserts);
   };
 
@@ -61,7 +61,7 @@ app.controller('bancosCtrl', function ($mdDialog, $scope, serviciosnomina, servi
   };
   
   $scope.getDesserts = function () {
-    $scope.promise = serviciosnomina.get_nominas().get($scope.query, success).$promise;
+    $scope.promise = serviciosnomina.get_bancos().get($scope.query, success).$promise;
   };
   
   $scope.removeFilter = function () {
@@ -97,8 +97,8 @@ app.controller('bancosCtrl', function ($mdDialog, $scope, serviciosnomina, servi
 
 app.controller('addItemBancos', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) { 
   this.cancel = $mdDialog.cancel
-  $scope.guardar_nomina = function() {
-    serviciosnomina.add_nomina().save($scope.data).$promise.then(function(data) {
+  $scope.guardar_banco = function() {
+    serviciosnomina.add_banco().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
           $mdDialog.show(
             $mdDialog.alert()

@@ -1,4 +1,4 @@
-<div ng-controller="listado_empleadoCtrl">    
+<md-content flex-gt-md="100" ng-controller="listado_empleadoCtrl">    
     <md-toolbar ng-hide="selected.length || filter.show">
       <div class="md-toolbar-tools">
         Lista Empleados
@@ -56,4 +56,4 @@
     </md-table-container>
     <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}" md-limit="query.num_registros" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{desserts.total}}" md-on-paginate="getDesserts" md-page-select>
     </md-table-pagination>
-</div>
+</md-content>

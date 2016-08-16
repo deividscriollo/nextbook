@@ -7,7 +7,7 @@ app.controller('modal_select_sucursal_categoriactrl', function ($scope, $localSt
 
 		$scope.data_cat["codigo"] = $localStorage.sucursal.codigo;
         servicios.set_categoria_sucursal().set($scope.data_cat).$promise.then(function(data) {
-        	console.log(data);
+        	// console.log(data);
             // $localStorage.sucursal.categoria = $scope.categoria;
         });
     }
@@ -16,17 +16,22 @@ app.controller('modal_select_sucursal_categoriactrl', function ($scope, $localSt
 
 app.controller('dashboardCtrl', function ($scope, $localStorage,servicios, $mdDialog, $location, $mdSidenav) {
     $scope.localStorage = $localStorage.datosE;
-    if ($localStorage.sucursal.categoria==null||$localStorage.sucursal.categoria=='') {
+    if ($localStorage.sucursal.categoria == null||$localStorage.sucursal.categoria == '') {
     	$mdDialog.show({
-	      controller: 'modal_select_sucursal_categoriactrl',
-	      templateUrl: 'view/modales/modal_select_sucursal_categoria.html',
-	      parent: angular.element(document.body),
-	      clickOutsideToClose:true,
+    		clickOutsideToClose: true,
+	      	controller: 'modal_select_sucursal_categoriactrl',
+	      	controllerAs: 'ctrl',
+	      	focusOnOpen: false,
+      		targetEvent: event,
+	      	templateUrl: 'view/modales/modal_select_sucursal_categoria.html',
+	      	parent: angular.element(document.body)
+	  
 	    })
     }
     $scope.toggleSidenav = function(menuId) {
 	    $mdSidenav(menuId).toggle();
 	};
+
 	$scope.menu = 	[
 					    {
 					      link : '/My-space/Inicio',
@@ -46,6 +51,11 @@ app.controller('dashboardCtrl', function ($scope, $localStorage,servicios, $mdDi
 					    {
 					      link : '/My-space/NominaAdmin/Cargos',
 					      title: 'Cargos',
+					      icon: 'extension' 
+					    },
+					    {
+					      link : '/My-space/NominaAdmin/Bancos',
+					      title: 'Bancos',
 					      icon: 'extension' 
 					    },
 					    {

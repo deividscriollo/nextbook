@@ -14,9 +14,17 @@
             <md-content layout-padding layout-wrap>
                 <div layout-gt-xs="row">
                   <md-input-container class="ng-hide" flex-gt-xs >
-                      <label>Id Empresa:</label>
+                      <label>Id Nómina:</label>
                       <input type="text" name="id" ng-model="data.id" />
                   </md-input-container>
+                  <md-input-container class="md-block" flex-gt-xs >
+                      <label>Código Nómina</label>
+                      <input type="text" required name="codigo" ng-model="data.codigo" />
+                      <div ng-messages="registroForm.codigo.$error">
+                          <div ng-message="required">Código Requerido</div>
+                      </div>
+                  </md-input-container>
+                  
                   <md-input-container class="md-block" flex-gt-xs>
                     <label>Periodicidad</label>
                     <md-select ng-model="data.periodicidad" name="periodicidad" required>
@@ -29,6 +37,9 @@
                         <div ng-message="required">Required</div>
                     </div>
                   </md-input-container>
+                </div>
+
+                <div layout-gt-xs="row">
                   <md-input-container class="md-block" flex-gt-xs >
                       <label>Nombre / Descripción</label>
                       <input type="text" required name="descripcion" ng-model="data.descripcion" />
@@ -36,8 +47,7 @@
                           <div ng-message="required">Nombre / Descripción Requerido</div>
                       </div>
                   </md-input-container>
-                </div>
-                <div layout-gt-xs="row">
+
                   <md-input-container class="md-block" flex-gt-xs>
                       <label>Registro Patronal</label>
                       <input type="text" required name="registro_patronal" ng-model="data.registro_patronal" />
@@ -45,21 +55,13 @@
                           <div ng-message="required">Registro Patronal Requerido</div>
                       </div>
                   </md-input-container>
-
+                </div>
+                <div layout-gt-xs="row">
                   <md-input-container class="md-block" flex-gt-xs>
                       <label>Días</label>
                       <input type="text" required name="dias" ng-model="data.dias" />
                       <div ng-messages="registroForm.dias.$error">
                           <div ng-message="required">Días Requeridos</div>
-                      </div>
-                  </md-input-container>
-                </div>
-                <div layout-gt-xs="row">
-                  <md-input-container class="md-block" flex-gt-xs>
-                      <label>Expedido en</label>
-                      <input type="text" required name="sucursal_nombre" ng-model="data.sucursal_nombre" />
-                      <div ng-messages="registroForm.sucursal_nombre.$error">
-                          <div ng-message="required">Sucursal</div>
                       </div>
                   </md-input-container>
 

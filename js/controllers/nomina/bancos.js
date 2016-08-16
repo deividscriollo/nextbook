@@ -1,15 +1,7 @@
 var app = angular.module('app');
-app.controller('nominaCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
-  
-  //  // codigo nomina
-  // serviciosnomina.codigo_nomina().get().$promise.then(function(data) {
-  //   $scope.data.codigo_personal = data.codigo; 
-  // });
-  // // fin
+app.controller('bancosCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
 
   var bookmark;
-  $scope.status = '';
-  
   $scope.selected = [];
   
   $scope.filter = {
@@ -103,11 +95,7 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, serviciosnomina, servi
   };
 });
 
-app.controller('addItemNomina', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
-  $scope.data = {
-    sucursal_nombre: $localStorage.sucursal.sucursal  
-  }; 
-  
+app.controller('addItemBancos', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) { 
   this.cancel = $mdDialog.cancel
   $scope.guardar_nomina = function() {
     serviciosnomina.add_nomina().save($scope.data).$promise.then(function(data) {
@@ -127,14 +115,13 @@ app.controller('addItemNomina', function ($mdDialog, $scope, serviciosnomina, se
   }  
 });
 
-app.controller('editItemNomina', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) {
+app.controller('editItemBancos', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) {
   $scope.data = {
     id: items.id,
     periodicidad: items.periodicidad,
     descripcion: items.descripcion,
     registro_patronal: items.registro_patronal,
     dias: items.dias,
-    sucursal_nombre: $localStorage.sucursal.sucursal,
     horas_laborar: items.horas_laborar,
     fecha_inicio: new Date(items.fecha_inicio)      
   }; 
@@ -158,7 +145,7 @@ app.controller('editItemNomina', function ($mdDialog, $scope, serviciosnomina, s
   }
 });
 
-app.controller('deleteItemNomina', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) { 
+app.controller('deleteItemBancos', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) { 
   $scope.data = {}; 
   $scope.data.id = items.id;
   

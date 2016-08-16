@@ -1,15 +1,7 @@
 var app = angular.module('app');
 app.controller('nominaCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
   
-  //  // codigo nomina
-  // serviciosnomina.codigo_nomina().get().$promise.then(function(data) {
-  //   $scope.data.codigo_personal = data.codigo; 
-  // });
-  // // fin
-
   var bookmark;
-  $scope.status = '';
-  
   $scope.selected = [];
   
   $scope.filter = {
@@ -104,9 +96,13 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, serviciosnomina, servi
 });
 
 app.controller('addItemNomina', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
-  $scope.data = {
-    sucursal_nombre: $localStorage.sucursal.sucursal  
-  }; 
+  // codigo nomina
+  serviciosnomina.codigo_nomina().get().$promise.then(function(data) {
+    $scope.data = {
+      codigo: data.codigo 
+    }
+  });
+  // fin
   
   this.cancel = $mdDialog.cancel
   $scope.guardar_nomina = function() {
@@ -121,8 +117,8 @@ app.controller('addItemNomina', function ($mdDialog, $scope, serviciosnomina, se
             .ariaLabel('Registro Agregado Correctamente')
             .ok('Ok!')
             .openFrom('#left')
-         );
-      }
+          );
+        }
     }); 
   }  
 });

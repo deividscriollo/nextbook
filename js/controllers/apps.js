@@ -8,34 +8,35 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
     $scope.$routeSegment = $routeSegment;
     $scope.menucard = [
                         {id:'1',titulo:'Facturanext', descripcion:'Repositorio de facturas'},
-                        {id:'1',titulo:'Nomina General', descripcion:'Administracióon de nomina', evento:'nomina'},
-                        {id:'1',titulo:'Clientes', descripcion:'Administracion Clientes', evento:'clientes'}
+                        {id:'1',titulo:'Nomina General', descripcion:'Administración de nomina', evento:'nomina'},
+                        {id:'1',titulo:'Radio', descripcion:'Administración Radio', evento:'clientes'}
                       ];
 
-    $scope.modal = function(tipo, event){
+    $scope.modal = function(tipo, event) {
       if (tipo=='nomina') {
         $scope.modal_nomina(event);
       }
     }
 
     $scope.modal_nomina = function (event) {
-        $mdDialog.show({
-          clickOutsideToClose: true,
-          controller: 'AccesoNomina',
-          controllerAs: 'ctrl',
-          focusOnOpen: false,
-          targetEvent: event,
-          locals: {desserts: $scope.selected},
-          templateUrl: 'view/dashboardempresa/login_nomina.html',
-        }).then($scope.getDesserts);
+      $mdDialog.show({
+        clickOutsideToClose: true,
+        controller: 'AccesoNomina',
+        controllerAs: 'ctrl',
+        focusOnOpen: false,
+        targetEvent: event,
+        locals: {desserts: $scope.selected},
+        templateUrl: 'view/dashboardempresa/login_nomina.html',
+      })
     };
 
     this.tiles = buildGridModel({
-            icon : "avatar:svg-",
-            title: "Svg-",
-            background: ""
-          });
-    function buildGridModel(tileTmpl){
+      icon : "avatar:svg-",
+      title: "Svg-",
+      background: ""
+    });
+
+    function buildGridModel(tileTmpl) {
       var it, results = [ ];
       for (var j=0; j<11; j++) {
         it = angular.extend({},tileTmpl);
@@ -76,32 +77,31 @@ app.controller('AccesoNomina', function ($mdDialog, $scope, servicios, $timeout,
     this.cancel = $mdDialog.cancel;
 
     $scope.confirmar_pass = function() {
-        servicios.login_radio().set($scope.data).$promise.then(function(data) {
-          if(data.respuesta == true) {
-            $localStorage.tokenradio = data.token.token;
-              $mdDialog.show(
-                $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#dialogContainer')))
-                .clickOutsideToClose(true)
-                .title('NextBook')
-                .textContent('Servicio Nómina')
-                .ariaLabel('Servicio Nómina')
-                .ok('Ok!')
-                .openFrom('#left')
-            );
-            $location.path('/My-space/NominaAdmin');
-          }
-        }); 
-      } 
+      servicios.login_radio().set($scope.data).$promise.then(function(data) {
+        if(data.respuesta == true) {
+          $localStorage.tokenradio = data.token.token;
+            $mdDialog.show(
+              $mdDialog.alert()
+              .parent(angular.element(document.querySelector('#dialogContainer')))
+              .clickOutsideToClose(true)
+              .title('NextBook')
+              .textContent('Servicio Nómina')
+              .ariaLabel('Servicio Nómina')
+              .ok('Ok!')
+              .openFrom('#left')
+          );
+          $location.path('/My-space/NominaAdmin');
+        }
+      }); 
+    } 
 });
 
-app.controller('mapsCtrl', function($scope, $routeSegment) {
-        
-    $scope.$routeSegment = $routeSegment;
+app.controller('mapsCtrl', function($scope, $routeSegment) {  
+  $scope.$routeSegment = $routeSegment;
 });
-app.controller('recordCtrl', function($scope, $routeSegment) {
-        
-    $scope.$routeSegment = $routeSegment;
+
+app.controller('recordCtrl', function($scope, $routeSegment) {       
+  $scope.$routeSegment = $routeSegment;
 });
 
 // app.controller('MainCtrl', function($scope, $routeSegment, $localStorage,servicios, $location, loader, LoginE,Reddit) {

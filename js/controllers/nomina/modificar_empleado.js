@@ -1,7 +1,6 @@
 var app = angular.module('app');
 
 app.controller('modificar_empleados', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, MyService, $location) {
-  console.log(MyService.datos); 
 
   $scope.data = {
     id: MyService.datos.respuesta.id,

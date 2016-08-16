@@ -44,49 +44,14 @@ app.controller('dashboardCtrl', function ($scope, $localStorage,servicios, $mdDi
 	$scope.menu = 	[
 					    {
 					      link : '/My-space/NominaAdmin',
-					      title: 'Inicio',
+					      title: 'Inicio Nomina General',
 					      icon: 'dashboard'
 					    },
 					    {
-					      link : '/My-space/NominaAdmin/Nomina',
-					      title: 'Nomina',
+					      link : '/My-space/Facturanext',
+					      title: 'Facturanext',
 					      icon: 'donut_small'
-					    },
-					    {
-					      link : '/My-space/NominaAdmin/Departamentos',
-					      title: 'Departamentos',
-					      icon: 'dns'
-					    },
-					    {
-					      link : '/My-space/NominaAdmin/Cargos',
-					      title: 'Cargos',
-					      icon: 'extension' 
-					    },
-					    {
-					      link : '/My-space/NominaAdmin/Bancos',
-					      title: 'Bancos',
-					      icon: 'extension' 
-					    },
-					    {
-					      link : '/My-space/NominaAdmin/Empleados',
-					      title: 'Empleados',
-					      icon: 'dns'
-					    },
-					    {
-					      link : '/My-space/NominaAdmin/Listado_Empleado',
-					      title: 'Lista de Empleados',
-					      icon: 'dns'
-					    },
-					    {
-					      link : '/My-space/NominaAdmin/Nomina_Pagos',
-					      title: 'Generar Rol de Pagos',
-					      icon: 'dns'
-					    },
-					    {
-					      link : '/My-space/NominaAdmin/Listado_Roles',
-					      title: 'Lista Roles de Pagos',
-					      icon: 'dns'
-					    },
+					    }
 					];
 
 	$scope.tabs =	[

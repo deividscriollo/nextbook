@@ -318,18 +318,18 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     };
     //----------------------- fin
     // ------------------------------------------------ add proveedores
-    this.add_proveedor=function() {
-        return $resource(this.server().appnext()+'public/addProveedor', {}
-        , {
-            set: {
-                method: 'POST', isArray: false, // responseType:'arraybuffer', 
-                params: {
-                    token: $localStorage.token
-                }
-            }
-        });
+    // this.add_proveedor=function() {
+    //     return $resource(this.server().appnext()+'public/addProveedor', {}
+    //     , {
+    //         set: {
+    //             method: 'POST', isArray: false, // responseType:'arraybuffer', 
+    //             params: {
+    //                 token: $localStorage.token
+    //             }
+    //         }
+    //     });
 
-    };
+    // };
 
     //----------------------- fin
     // ------------------------------------------------ update proveedores

@@ -3,7 +3,6 @@ app.controller('facturanextCtrl', function($scope, servicios) {
 
 });
 
-
 app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice, $http, $q,ModalService) {
   console.log('test');
 
@@ -28,9 +27,6 @@ app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice
       console.log(data);
     });
   };
-
-
-
 
   var t = $('#example').DataTable();
   facturanextservice.get().$promise.then(function(data) {
@@ -252,150 +248,150 @@ app.controller('facturasrechasadas', function($mdDialog, $nutrition, $scope, ser
   });
 });
 
-app.controller('proveedoresCtrl', function($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q) {
+// app.controller('proveedoresCtrl', function($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q) {
 
-  var bookmark;
+//   var bookmark;
   
-  $scope.selected = [];
+//   $scope.selected = [];
   
-  $scope.filter = {
-    options: {
-      debounce: 500
-    }
-  };
+//   $scope.filter = {
+//     options: {
+//       debounce: 500
+//     }
+//   };
 
-  $scope.query = {
-    filter: '',
-    num_registros: 5,
-    pagina_actual:1,
-    limit: '5',
-    page_num: 1
-  };
+//   $scope.query = {
+//     filter: '',
+//     num_registros: 5,
+//     pagina_actual:1,
+//     limit: '5',
+//     page_num: 1
+//   };
   
-  function success(desserts) {
-    $scope.desserts = desserts.respuesta;
-  }
+//   function success(desserts) {
+//     $scope.desserts = desserts.respuesta;
+//   }
   
-  $scope.addititem = function (event) {
-    $mdDialog.show({
-      clickOutsideToClose: true,
-      controller: 'aud-proveedores',
-      controllerAs: 'ctrl',
-      focusOnOpen: false,
-      targetEvent: event,
-      templateUrl: 'view/dashboardempresa/proveedores/add.html',
-      clickOutsideToClose:true,
-      locals: {
-           items: ''
-         }
-    }).then($scope.getDesserts);
-  };
+//   $scope.addititem = function (event) {
+//     $mdDialog.show({
+//       clickOutsideToClose: true,
+//       controller: 'aud-proveedores',
+//       controllerAs: 'ctrl',
+//       focusOnOpen: false,
+//       targetEvent: event,
+//       templateUrl: 'view/dashboardempresa/proveedores/add.html',
+//       clickOutsideToClose:true,
+//       locals: {
+//            items: ''
+//          }
+//     }).then($scope.getDesserts);
+//   };
 
-   $scope.eddititem = function (data) {
-    $mdDialog.show({
-      clickOutsideToClose: true,
-      controller: 'aud-proveedores',
-      controllerAs: 'ctrl',
-      focusOnOpen: false,
-      targetEvent: event,
-      templateUrl: 'view/dashboardempresa/proveedores/update.html',
-      clickOutsideToClose:true,
-      locals: {
-           items: data
-         }
-    }).then($scope.getDesserts);
-  };
+//    $scope.eddititem = function (data) {
+//     $mdDialog.show({
+//       clickOutsideToClose: true,
+//       controller: 'aud-proveedores',
+//       controllerAs: 'ctrl',
+//       focusOnOpen: false,
+//       targetEvent: event,
+//       templateUrl: 'view/dashboardempresa/proveedores/update.html',
+//       clickOutsideToClose:true,
+//       locals: {
+//            items: data
+//          }
+//     }).then($scope.getDesserts);
+//   };
   
-  $scope.delete = function (data) {
-    $mdDialog.show({
-      clickOutsideToClose: true,
-      controller: 'aud-proveedores',
-      controllerAs: 'ctrl',
-      focusOnOpen: false,
-      targetEvent: event,
-      locals: { desserts: $scope.selected },
-      templateUrl: 'view/dashboardempresa/proveedores/delete.html',
-      locals: {
-           items: data
-         }
-    }).then($scope.getDesserts);
-  };
+//   $scope.delete = function (data) {
+//     $mdDialog.show({
+//       clickOutsideToClose: true,
+//       controller: 'aud-proveedores',
+//       controllerAs: 'ctrl',
+//       focusOnOpen: false,
+//       targetEvent: event,
+//       locals: { desserts: $scope.selected },
+//       templateUrl: 'view/dashboardempresa/proveedores/delete.html',
+//       locals: {
+//            items: data
+//          }
+//     }).then($scope.getDesserts);
+//   };
   
-  $scope.getDesserts = function () {
-    $scope.promise = servicios.get_proveedores().get($scope.query,success).$promise;
-  };
+//   $scope.getDesserts = function () {
+//     $scope.promise = servicios.get_proveedores().get($scope.query,success).$promise;
+//   };
   
-  $scope.removeFilter = function () {
-    $scope.filter.show = false;
-    $scope.query.filter = '';
+//   $scope.removeFilter = function () {
+//     $scope.filter.show = false;
+//     $scope.query.filter = '';
     
-    if($scope.filter.form.$dirty) {
-      $scope.filter.form.$setPristine();
-    }
-  };
-  'use strict';
+//     if($scope.filter.form.$dirty) {
+//       $scope.filter.form.$setPristine();
+//     }
+//   };
+//   'use strict';
   
-  var bookmark;
+//   var bookmark;
   
-  $scope.selected = [];
+//   $scope.selected = [];
   
-  $scope.filter = {
-    options: {
-      debounce: 500
-    }
-  };
+//   $scope.filter = {
+//     options: {
+//       debounce: 500
+//     }
+//   };
 
-  $scope.query = {
-    filter: '',
-    num_registros: 5,
-    pagina_actual:1,
-    limit: '5',
-    // order: 'nameToLower',
-    page_num: 1
-  };
+//   $scope.query = {
+//     filter: '',
+//     num_registros: 5,
+//     pagina_actual:1,
+//     limit: '5',
+//     // order: 'nameToLower',
+//     page_num: 1
+//   };
   
-  // $scope.delete = function (event) {
-  //   $mdDialog.show({
-  //     clickOutsideToClose: true,
-  //     controller: 'deleteController',
-  //     controllerAs: 'ctrl',
-  //     focusOnOpen: false,
-  //     targetEvent: event,
-  //     locals: { desserts: $scope.selected },
-  //     templateUrl: 'view/tabladata/delete.html',
-  //   }).then($scope.getDesserts);
-  // };
+//   // $scope.delete = function (event) {
+//   //   $mdDialog.show({
+//   //     clickOutsideToClose: true,
+//   //     controller: 'deleteController',
+//   //     controllerAs: 'ctrl',
+//   //     focusOnOpen: false,
+//   //     targetEvent: event,
+//   //     locals: { desserts: $scope.selected },
+//   //     templateUrl: 'view/tabladata/delete.html',
+//   //   }).then($scope.getDesserts);
+//   // };
   
-   $scope.removeFilter = function () {
-    $scope.filter.show = false;
-    $scope.query.filter = '';
+//    $scope.removeFilter = function () {
+//     $scope.filter.show = false;
+//     $scope.query.filter = '';
     
-    if($scope.filter.form.$dirty) {
-      $scope.filter.form.$setPristine();
-    }
-  };
+//     if($scope.filter.form.$dirty) {
+//       $scope.filter.form.$setPristine();
+//     }
+//   };
 
-  $scope.loadStuff = function () {
-    $scope.promise = $timeout(function () {
+//   $scope.loadStuff = function () {
+//     $scope.promise = $timeout(function () {
 
-    }, 2000);
-  };
+//     }, 2000);
+//   };
   
-  $scope.$watch('query.filter', function (newValue, oldValue) {
-    if(!oldValue) {
-      bookmark = $scope.query.page_num;
-    }
+//   $scope.$watch('query.filter', function (newValue, oldValue) {
+//     if(!oldValue) {
+//       bookmark = $scope.query.page_num;
+//     }
     
-    if(newValue !== oldValue) {
-      $scope.query.page_num = 1;
-    }
+//     if(newValue !== oldValue) {
+//       $scope.query.page_num = 1;
+//     }
     
-    if(!newValue) {
-      $scope.query.page_num = bookmark;
-    }    
-    $scope.getDesserts();
-  });
-});
+//     if(!newValue) {
+//       $scope.query.page_num = bookmark;
+//     }    
+//     $scope.getDesserts();
+//   });
+// });
 
 app.controller('aud-proveedores', function ($mdDialog, $scope, $localStorage, servicios, $timeout, $localStorage, items) {
   $scope.data = items;

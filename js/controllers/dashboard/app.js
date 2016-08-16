@@ -91,7 +91,7 @@ app.controller('dashboardCtrl', function ($scope, $localStorage,servicios, $mdDi
 
 	$scope.tabs =	[
 						{icon:'home',title:'Inicio',link:'/My-space/Inicio'},
-						{icon:'assignment',title:'Apps, Colección',link:'/My-space/Apss'},
+						{icon:'assignment',title:'Servicios',link:'/My-space/Apss'},
 						{icon:'note_add',title:'Apps, Colección',link:''},
 						{icon:'location_on',title:'Localizacion',link:''},
 						{icon:'history',title:'Otras Empresas',link:''}

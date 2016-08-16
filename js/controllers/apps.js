@@ -4,10 +4,10 @@ app.controller('inicioCtrl', function($scope, $routeSegment) {
     // console.log('test');
 });
 
-app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window) {     
+app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location) {     
     $scope.$routeSegment = $routeSegment;
     $scope.menucard = [
-                        {id:'1',titulo:'Facturanext', descripcion:'Repositorio de facturas'},
+                        {id:'1',titulo:'Facturanext', descripcion:'Repositorio de facturas', evento:'facturanext'},
                         {id:'1',titulo:'Nomina General', descripcion:'Administración de nomina', evento:'nomina'},
                         {id:'1',titulo:'Radio', descripcion:'Administración Radio', evento:'clientes'}
                       ];
@@ -15,6 +15,12 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
     $scope.modal = function(tipo, event) {
       if (tipo=='nomina') {
         $scope.modal_nomina(event);
+      }
+
+      if (tipo=='facturanext') {
+        $location.path('/My-space/Facturanext');
+        console.log('test');
+        // $scope.modal_nomina(event);
       }
     }
 

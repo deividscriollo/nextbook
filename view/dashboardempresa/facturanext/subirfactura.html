@@ -1,4 +1,4 @@
- <md-content class="md-padding" layout-xs="column" layout="row">
+ <md-content class="md-padding" layout-xs="column" layout="row" ng-controller="subir_FacturasCtrl">
     <div flex-xs flex-gt-xs="40" layout="column">
 		<form name="userForm">
     	    	<md-input-container id="label_clave" class="md-block" md-cols-lg="8">
@@ -29,15 +29,15 @@
 </md-content>
 <!-- Modal -->
 <div aria-hidden="true" class="modal modal-va-middle fade" id="myModal" role="dialog" tabindex="-1">
-		<div class="modal-dialog modal-xs">
-			<div class="modal-content">
-				<div class="modal-inner">
-					<p class="h5 margin-top-sm text-black-hint">SELECCIONE EL ARCHIVO</p>
-				<input type="file" ng-model="xml_file" on-read-file="showContent($fileContent)" />
-				</div>
-				<div class="modal-footer">
-					<p class="text-right"><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal">CANCELAR</a><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" ng-click="set_clave()" data-dismiss="modal">ACEPTAR</a></p>
-				</div>
+	<div class="modal-dialog modal-xs">
+		<div class="modal-content">
+			<div class="modal-inner">
+				<p class="h5 margin-top-sm text-black-hint">SELECCIONE EL ARCHIVO</p>
+			<input type="file" ng-model="xml_file" on-read-file="showContent($fileContent)" />
+			</div>
+			<div class="modal-footer">
+				<p class="text-right"><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal">CANCELAR</a><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" ng-click="set_clave()" data-dismiss="modal">ACEPTAR</a></p>
 			</div>
 		</div>
 	</div>
+</div>

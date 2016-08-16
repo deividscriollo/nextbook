@@ -36,7 +36,7 @@ app.controller('subir_FacturasCtrl', function($mdDialog, $scope, serviciosfactur
 app.controller('addItemXml', function ($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage) {
   
   	this.cancel = $mdDialog.cancel
-  	$scope.files="";
+  	$scope.files = "";
 
   	// $("#xml_file").change(function(e){
    //  	$scope.files = this.files;
@@ -56,12 +56,12 @@ app.controller('addItemXml', function ($mdDialog, $scope, serviciosfacturanext, 
 			var comprobantejson = x2js.xml_str2json(xmlcomprobante);
 			$claveAcceso = comprobantejson.factura.infoTributaria.claveAcceso;
 		} else {
-		  	servicios.showModal('modal_mensaje.html',{error:'0'},'mensaje');
+		  	// servicios.showModal('modal_mensaje.html',{error:'0'},'mensaje');
 		}
 	}
 
    $scope.showContent = function($fileContent) {
-       console.log($fileContent);
+       // console.log($fileContent);
 		$scope.get_claveAcceso($fileContent);
     };
 

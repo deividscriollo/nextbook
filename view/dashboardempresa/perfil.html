@@ -7,10 +7,10 @@
         	<div class="header-card-perfil">
 	      		<span flex></span>
 	        	<md-button class="md-icon-button" aria-label="More">
-			        <ng-md-icon class="md-accent" icon="border_color"></ng-md-icon>
+			        <ng-md-icon class="md-accent" icon="border_color" ng-click="show_listaimg_modal('portada')"></ng-md-icon>
 			   	</md-button>
 			   	<md-button class="md-icon-button" aria-label="More">
-			        <ng-md-icon class="md-accent" icon="cloud_upload"></ng-md-icon>
+			        <ng-md-icon class="md-accent" icon="cloud_upload" ng-click="show_upload_img_modal('portada')"></ng-md-icon>
 			   	</md-button>
 	        </div>
         </div>
@@ -20,14 +20,14 @@
     <div flex-xs layout="column" flex-gt-md="30">
       <md-card>
       	<div layout="row" layout-align="center center">
-        	<img ng-src="{{imgPortada}}" class="avatar" alt="Avatar Perfil">
+        	<img ng-src="{{imgPerfil}}" class="avatar" alt="Avatar Perfil">
         </div>
         <md-card-actions layout="row" layout-align="center center">
           <md-button class="md-icon-button" aria-label="More">
-		        <ng-md-icon class="md-accent" icon="border_color"></ng-md-icon>
+		        <ng-md-icon class="md-accent" icon="border_color" ng-click="show_listaimg_modal('perfil')"></ng-md-icon>
 		   	</md-button>
 		   	<md-button class="md-icon-button" aria-label="More">
-		        <ng-md-icon class="md-accent" icon="cloud_upload"></ng-md-icon>
+		        <ng-md-icon class="md-accent" icon="cloud_upload" ng-click="show_upload_img_modal('perfil')"></ng-md-icon>
 		   	</md-button>
         </md-card-actions>
         <div layout="row" layout-align="center center">

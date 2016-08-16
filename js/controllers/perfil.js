@@ -1,4 +1,4 @@
-app.controller('perfilCtrl', function($scope, $rootScope, servicios, $localStorage) {
+app.controller('perfilCtrl', function($scope, $mdDialog,$rootScope, servicios, $localStorage) {
     
     $scope.datosPersona = $localStorage.datosPersona;
 
@@ -15,35 +15,54 @@ app.controller('perfilCtrl', function($scope, $rootScope, servicios, $localStora
     }
 
     $scope.show_listaimg_modal = function(tipolista) {
-
         switch(tipolista) {
             case 'perfil':
             servicios.mis_imgs_perfil().get().$promise.then(function(data) {
-            // $scope.misimagenes=data.imgs;
-            servicios.showModal('modal_select_img.html', {
-                source: data.imgs,
-                tipo:'perfil'
-            }, 'imgperfil');
+
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'imagenesCtrl',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      locals: {imgs: data.imgs,tipoimg: tipolista},
+      templateUrl: 'view/dashboardempresa/perfil/modales/mis_imagenes_perfil.html',
+      clickOutsideToClose:true,
+    })
             });
+
             break;
             case 'portada':
              servicios.mis_imgs_portadas().get().$promise.then(function(data) {
             // $scope.misimagenes=data.imgs;
-            servicios.showModal('modal_select_img.html', {
-                source: data.imgs,
-                tipo:'portada'
-            }, 'imgperfil');
+                $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'imagenesCtrl',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      locals: {imgs: data.imgs,tipoimg: tipolista},
+      templateUrl: 'view/dashboardempresa/perfil/modales/mis_imagenes_perfil.html',
+      clickOutsideToClose:true,
+    })
             });
             break;
-
         }
         // $scope.misimagenes="";
     }
 
     $scope.show_upload_img_modal = function(tipo) {
-        servicios.showModal('modal_upload_img_perfil.html', {
-            source: tipo
-        }, 'uploadimg');
+       $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'imagenesCtrl',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      locals: {imgs: [],tipoimg: tipo},
+      templateUrl: 'view/dashboardempresa/perfil/modales/upload_img_perfil.html',
+      clickOutsideToClose:true,
+    })
+
     }
     $scope.currentNavItem = 'page1';
 });
@@ -55,4 +74,122 @@ app.controller('perfil-inicio-Ctrl', function($scope, serviciosgenerales, $local
     $scope.telefonos=$localStorage.datosE.extras;
     $scope.email=$localStorage.datosE.Ruc+'@facturanext.com';
 
+});
+
+app.controller('imagenesCtrl', function($scope,$mdDialog, servicios,$localStorage,imgs,tipoimg,$rootScope) {
+     this.cancel = $mdDialog.cancel;
+     if (imgs.length==0) {
+         $scope.mensaje="No se han encontrado imagenes :(";
+     }else 
+     {
+        $scope.misimagenes=imgs;
+    }
+            $scope.myImage='';
+            $scope.myCroppedImage='';
+switch(tipoimg) {
+        case 'perfil':
+            $scope.estilo= {
+                'width': '144%', 'height': '50%'
+            }
+            break;
+        case 'portada':
+            $scope.estilo= {
+                'width': '710px', 'height': '267px'
+            }   ;
+            break;
+    }
+
+$scope.Updateimg=function(idimg){
+    switch(tipoimg) {
+        case 'perfil':
+        console.log(idimg);
+        servicios.set_img_perfil().enviar( {
+                    img: idimg
+                }
+                ).$promise.then(function(data) {
+                    $localStorage.imgPerfil=data.img;
+                    $rootScope.imgPerfil=data.img;
+                $mdDialog.show(
+                    $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#dialogContainer')))
+                    .clickOutsideToClose(true)
+                    .title('NextBook')
+                    .textContent('Imágen de perfil actualizada correctamente')
+                    .ariaLabel('Imágen de perfil actualizada correctamente')
+                    .ok('Ok!')
+                );
+
+                });
+
+            break;
+        case 'portada':
+        servicios.set_img_portada().enviar( {
+                    img: idimg
+                }
+                ).$promise.then(function(data) {
+                    $localStorage.imgPortada=data.img;
+                    $rootScope.imgPortada=data.img;
+                    $mdDialog.show(
+                    $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#dialogContainer')))
+                    .clickOutsideToClose(true)
+                    .title('NextBook')
+                    .textContent('Imágen de portada actualizada correctamente')
+                    .ariaLabel('Imágen de portada actualizada correctamente')
+                    .ok('Ok!')
+                );
+                }
+                );
+            break;
+    }
+}
+
+$scope.Uploadimgs=function(){
+    switch(tipoimg) {
+        case 'perfil':
+                var imgData=btoa($scope.myCroppedImage);
+                servicios.add_img_perfil().enviar( {
+                    img: imgData
+                }
+                ).$promise.then(function(data) {
+                    $localStorage.imgPerfil=servicios.server().appnext()+servicios.dir_img().perfil()+$localStorage.datosE.id_empresa+"/"+data.img;
+                    $rootScope.imgPerfil=servicios.server().appnext()+servicios.dir_img().perfil()+$localStorage.datosE.id_empresa+"/"+data.img;
+                    $mdDialog.show(
+                    $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#dialogContainer')))
+                    .clickOutsideToClose(true)
+                    .title('NextBook')
+                    .textContent('Se ha actualizado correctamente')
+                    .ariaLabel('Se ha actualizado correctamente')
+                    .ok('Ok!')
+                );
+                }
+                );        
+   
+            break;
+        case 'portada':
+
+                var imgData=btoa($scope.myCroppedImage);
+                servicios.add_img_portada().enviar( {
+                    img: imgData
+                }
+                ).$promise.then(function(data) {
+                    $localStorage.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+$localStorage.datosE.id_empresa+"/"+data.img;
+                    $rootScope.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+$localStorage.datosE.id_empresa+"/"+data.img;
+                  $mdDialog.show(
+                    $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#dialogContainer')))
+                    .clickOutsideToClose(true)
+                    .title('NextBook')
+                    .textContent('Se ha actualizado correctamente')
+                    .ariaLabel('Se ha actualizado correctamente')
+                    .ok('Ok!')
+                );
+                }
+                );
+
+       
+            break;
+    }
+}
 });

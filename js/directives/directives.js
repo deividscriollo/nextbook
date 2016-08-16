@@ -159,32 +159,24 @@ app.directive('pwActualCheck', function(servicios) {
 });
 
 
-app.directive('onReadFile', function ($parse) {
+app.directive("fileread", [function () {
     return {
-        restrict: 'A',
         scope: {
-            fromDirectiveFn: '=method'
+            fileread: "="
         },
-        link: function(scope, element, attrs) {
-            var fn = $parse(attrs.onReadFile);
-            
-            element.on('change', function(onChangeEvent) {
+        link: function (scope, element, attributes) {
+            element.bind("change", function (changeEvent) {
                 var reader = new FileReader();
-                
-                reader.onloadend = function(onLoadEvent) {
-                    scope.hello = onLoadEvent.target.result;
-                    scope.fromDirectiveFn(scope.hello);
-                    // scope.$apply(function() {
-                    //     fn(scope, {$fileContent:onLoadEvent.target.result});
-                    // });
-                };
-
-                reader.readAsDataURL((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+                reader.onload = function (loadEvent) {
+                    scope.$apply(function () {
+                        scope.fileread = loadEvent.target.result;
+                    });
+                }
+                reader.readAsDataURL(changeEvent.target.files[0]);
             });
-
         }
-    };
-});
+    }
+}]);
 
 app.directive('operadoraValidation', function(consultarMovil) {
     return {

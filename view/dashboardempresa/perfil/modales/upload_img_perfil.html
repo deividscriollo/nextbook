@@ -1,0 +1,58 @@
+<md-dialog>
+              <style>
+  .cropArea {
+  border-style: dotted;
+      border-width: 1px; 
+    border-color: 660033; 
+  overflow: hidden;
+  width:400px;
+  height:250px;
+}
+.punteado{ 
+  border-style: dotted; 
+    border-width: 1px; 
+    border-color: 660033; 
+    background-color: cc3366; 
+    font-family: verdana, arial; 
+    font-size: 10pt; 
+} 
+  </style>
+    <form name="uploadform" id="uploadform">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Añadir imágen</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width:600px;">
+            <div>
+              <md-content layout-padding layout-wrap>
+                
+                 <div class="col-lg-12">
+                    <div class="col-lg-5">
+                          <input type="file" fileread="vm.img" />
+                        <div class="cropArea">
+                            <img-crop image="vm.img" width="500px" result-image="myCroppedImage" area-type="square" result-image-size="300"></img-crop>
+                        </div>
+                    </div>
+                    <div class="col-lg-2" ng-show="mini">
+                        <div>Miñatura</div>
+                        <div class="punteado"><img ng-src="{{myCroppedImage}}" ng-style="estilo" /></div>
+                    </div>
+                </div>
+
+              </md-content>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" type="submit" ng-click="Uploadimgs()" ng-disabled="uploadform.$invalid">
+              Guardar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

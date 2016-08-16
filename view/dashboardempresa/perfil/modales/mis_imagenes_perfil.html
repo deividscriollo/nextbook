@@ -1,0 +1,38 @@
+<md-dialog>
+    <form name="registroForm" id="registroForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Mis imágenes de perfil</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width:600px;">
+            <div>
+              <md-content layout-padding layout-wrap>
+                  <div layout-gt-xs="row" ng-show="mensaje">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>{{mensaje}}</label>
+                    </md-input-container>
+                  </div>
+                  <div layout-gt-xs="row" ng-show="misimagenes">
+                    <md-input-container class="md-block" flex-gt-xs>
+                    <div ng-repeat="imagen in misimagenes">
+                        <a href="javascript:void(0)" ng-click="Updateimg(imagen.img)"><img class="img-responsive" ng-src="{{imagen.img}}"></a>
+                    </div>
+                    </md-input-container>
+                  </div>
+              </md-content>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" type="submit" ng-click="Updateimg()" ng-disabled="registroForm.$invalid">
+              Guardar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

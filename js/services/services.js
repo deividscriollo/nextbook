@@ -421,154 +421,157 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
 });
 
 
-app.controller('ModalController', function($scope, $rootScope, data, tipomodal, servicios, $window, $localStorage) {
-    switch(tipomodal) {
-        // ------------------------------------------------- MENSAJE-------------------------
-        case 'mensaje': console.log(data.error);
-        switch(data.error) {
-            case '4': $scope.mensaje="Documento no existe en el SRI";
-            break;
-            case '5': $scope.mensaje="la Factura ya existe";
-            break;
-            case '0': $scope.mensaje="Documento vacío";
-            break;
-            case undefined: $scope.mensaje="Documento guardado correctamente";
-            break;
-        }
-        angular.element("input[type='file']").val(null);
-        break;
-        // ------------------------------------------------- DECARGA-------------------------
-        case 'download': $scope.source=data.source;
-        servicios.Download_link().generar( {
-            id: $scope.source
-        }
-        ).$promise.then(function(data) {
-            $scope.fileUrl=data.link;
-        }
-        );
-        break;
-        // ------------------------------------------------- COMPARTIR-------------------------
-        case 'share': $scope.fileUrl=data.source;
-        break;
-        // ------------------------------------------------- VISTA PREVIA-------------------------
-        case 'preview': $scope.pdfURL=servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf";
-        console.log($scope.pdfURL);
-        break;
-        // ------------------------------------IMAGEN DE PERFIL ---------------------
-        case 'imgperfil': $scope.misimagenes=data.source;
-        $scope.tipo=data.tipo;
-        console.log($scope.tipo);
-        $scope.show_select_img=function(data) {
-            $scope.imgURL=data;
-            switch ($scope.tipo) {
-                case 'perfil': servicios.set_img_perfil().enviar( {
-                    img: $scope.imgURL
-                }
-                ).$promise.then(function(data) {
-                    $localStorage.imgPerfil=data.img;
-                    $rootScope.imgPerfil=data.img;
-                    $('#modal_lista_img').modal('hide');
-                    $('#modal_lista_img').remove();
-                    $('.modal-backdrop').remove();
-                });
-                break;
-                case 'portada': servicios.set_img_portada().enviar( {
-                    img: $scope.imgURL
-                }
-                ).$promise.then(function(data) {
-                    $localStorage.imgPortada=data.img;
-                    $rootScope.imgPortada=data.img;
-                    $('#modal_lista_img').modal('hide');
-                    $('#modal_lista_img').remove();
-                    $('.modal-backdrop').remove();
-                }
-                );
-                break;
-            }
+// app.controller('ModalController', function($scope, $rootScope, data, tipomodal, servicios, $window, $localStorage) {
+//     switch(tipomodal) {
+//         // ------------------------------------------------- MENSAJE-------------------------
+//         case 'mensaje': console.log(data.error);
+//         switch(data.error) {
+//             case '4': $scope.mensaje="Documento no existe en el SRI";
+//             break;
+//             case '5': $scope.mensaje="la Factura ya existe";
+//             break;
+//             case '0': $scope.mensaje="Documento vacío";
+//             break;
+//             case undefined: $scope.mensaje="Documento guardado correctamente";
+//             break;
+//         }
+//         angular.element("input[type='file']").val(null);
+//         break;
+//         // ------------------------------------------------- DECARGA-------------------------
+//         case 'download': $scope.source=data.source;
+//         servicios.Download_link().generar( {
+//             id: $scope.source
+//         }
+//         ).$promise.then(function(data) {
+//             $scope.fileUrl=data.link;
+//         }
+//         );
+//         break;
+//         // ------------------------------------------------- COMPARTIR-------------------------
+//         case 'share': $scope.fileUrl=data.source;
+//         break;
+//         // ------------------------------------------------- VISTA PREVIA-------------------------
+//         case 'preview': $scope.pdfURL=servicios.server().appnext()+"public/facturas/"+$localStorage.datosE.id_empresa+"/"+data.source+".pdf";
+//         console.log($scope.pdfURL);
+//         break;
+//         // ------------------------------------IMAGEN DE PERFIL ---------------------
+//         case 'imgperfil': $scope.misimagenes=data.source;
+//         $scope.tipo=data.tipo;
+//         console.log($scope.tipo);
+//         $scope.show_select_img=function(data) {
+//             $scope.imgURL=data;
+//             switch ($scope.tipo) {
+//                 case 'perfil': 
+//                 servicios.set_img_perfil().enviar( {
+//                     img: $scope.imgURL
+//                 }
+//                 ).$promise.then(function(data) {
+//                     $localStorage.imgPerfil=data.img;
+//                     $rootScope.imgPerfil=data.img;
+//                     $('#modal_lista_img').modal('hide');
+//                     $('#modal_lista_img').remove();
+//                     $('.modal-backdrop').remove();
+//                 });
+//                 break;
+//                 case 'portada': 
 
-        }
-        break;
+//                 servicios.set_img_portada().enviar( {
+//                     img: $scope.imgURL
+//                 }
+//                 ).$promise.then(function(data) {
+//                     $localStorage.imgPortada=data.img;
+//                     $rootScope.imgPortada=data.img;
+//                     $('#modal_lista_img').modal('hide');
+//                     $('#modal_lista_img').remove();
+//                     $('.modal-backdrop').remove();
+//                 }
+//                 );
+//                 break;
+//             }
 
-        /////////////////////////////////////////////////////////////////// SUBIR IMAGEN PORTADA Y PERFIL /////////////////////////////
-        case 'uploadimg': 
-        switch (data.source) {
-            case 'perfil': 
-$scope.estilo= {
-                'width': '144%', 'height': '50%'
-            }
-            $scope.myImage='';
-            $scope.myCroppedImage='';
-            $scope.ctrlFn=function(arg) {
-                $scope.myImage=arg;
-            }
-            $scope.upload_img=function() {
-                var imgData=btoa($scope.myCroppedImage);
-                servicios.add_img_perfil().enviar( {
-                    img: imgData
-                }
-                ).$promise.then(function(data) {
-                    $localStorage.imgPerfil=servicios.server().appnext()+servicios.dir_img().perfil()+$localStorage.datosE.id_empresa+"/"+data.img;
-                    $rootScope.imgPerfil=servicios.server().appnext()+servicios.dir_img().perfil()+$localStorage.datosE.id_empresa+"/"+data.img;
-                    $('#modal_upload_img').modal('hide');
-                    $('#modal_upload_img').remove();
-                    $('.modal-backdrop').remove();
-                }
-                );
-                // console.log(imgData);
-            }
-            break;
-            //////////////////////////////////////////////////////////// PORTADA //////////////////////////////////////////////
+//         }
+//         break;
 
-            case 'portada': $scope.estilo= {
-                'width': '710px', 'height': '267px'
-            }
-            ;
-            $scope.myImage='';
+//         /////////////////////////////////////////////////////////////////// SUBIR IMAGEN PORTADA Y PERFIL /////////////////////////////
+//         case 'uploadimg': 
+//         switch (data.source) {
+//             case 'perfil': 
+// $scope.estilo= {
+//                 'width': '144%', 'height': '50%'
+//             }
+//             $scope.myImage='';
+//             $scope.myCroppedImage='';
+//             $scope.ctrlFn=function(arg) {
+//                 $scope.myImage=arg;
+//             }
+//             $scope.upload_img=function() {
+//                 var imgData=btoa($scope.myCroppedImage);
+//                 servicios.add_img_perfil().enviar( {
+//                     img: imgData
+//                 }
+//                 ).$promise.then(function(data) {
+//                     $localStorage.imgPerfil=servicios.server().appnext()+servicios.dir_img().perfil()+$localStorage.datosE.id_empresa+"/"+data.img;
+//                     $rootScope.imgPerfil=servicios.server().appnext()+servicios.dir_img().perfil()+$localStorage.datosE.id_empresa+"/"+data.img;
+//                     $('#modal_upload_img').modal('hide');
+//                     $('#modal_upload_img').remove();
+//                     $('.modal-backdrop').remove();
+//                 }
+//                 );
+//                 // console.log(imgData);
+//             }
+//             break;
+//             //////////////////////////////////////////////////////////// PORTADA //////////////////////////////////////////////
 
-            case 'portada': $scope.myImage='';
+//             case 'portada': $scope.estilo= {
+//                 'width': '710px', 'height': '267px'
+//             }
+//             ;
+//             $scope.myImage='';
 
-            $scope.myCroppedImage='';
-            $scope.ctrlFn=function(arg) {
-                $scope.myImage=arg;
-            }
-            $scope.upload_img=function() {
-                var imgData=btoa($scope.myImage);
-                servicios.add_img_portada().enviar( {
-                    img: imgData
-                }
-                ).$promise.then(function(data) {
-                    $localStorage.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+$localStorage.datosE.id_empresa+"/"+data.img;
-                    $rootScope.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+$localStorage.datosE.id_empresa+"/"+data.img;
-                    $('#modal_upload_img').modal('hide');
-                    $('#modal_upload_img').remove();
-                    $('.modal-backdrop').remove();
-                }
-                );
-                // console.log(imgData);
-            }
-            break;
-        }
-        break;
-        // ------------------------------------SELECCIONAR CATEGORIA DE SUCURSAL ---------------------
-        case 'select_categoria_sucursal': servicios.get_categorias_sucursal().get().$promise.then(function(data) {
-            $scope.states=data.categorias;
-        }
-        );
-        $scope.set_categoria=function() {
-            servicios.set_categoria_sucursal().set( {
-                codigo: $localStorage.sucursal.codigo, categoria: $scope.categoria, descripcion: $scope.descripcion
-            }
-            ).$promise.then(function(data) {
-                $localStorage.sucursal.categoria=$scope.categoria;
-                $('#modal_select_categoria').modal('hide');
-                $('#modal_select_categoria').remove();
-                $('.modal-backdrop').remove();
-            }
-            );
-        }
-        break;
-    }
-});
+//             case 'portada': $scope.myImage='';
+
+//             $scope.myCroppedImage='';
+//             $scope.ctrlFn=function(arg) {
+//                 $scope.myImage=arg;
+//             }
+//             $scope.upload_img=function() {
+//                 var imgData=btoa($scope.myImage);
+//                 servicios.add_img_portada().enviar( {
+//                     img: imgData
+//                 }
+//                 ).$promise.then(function(data) {
+//                     $localStorage.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+$localStorage.datosE.id_empresa+"/"+data.img;
+//                     $rootScope.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+$localStorage.datosE.id_empresa+"/"+data.img;
+//                     $('#modal_upload_img').modal('hide');
+//                     $('#modal_upload_img').remove();
+//                     $('.modal-backdrop').remove();
+//                 }
+//                 );
+//                 // console.log(imgData);
+//             }
+//             break;
+//         }
+//         break;
+//         // ------------------------------------SELECCIONAR CATEGORIA DE SUCURSAL ---------------------
+//         case 'select_categoria_sucursal': servicios.get_categorias_sucursal().get().$promise.then(function(data) {
+//             $scope.states=data.categorias;
+//         }
+//         );
+//         $scope.set_categoria=function() {
+//             servicios.set_categoria_sucursal().set( {
+//                 codigo: $localStorage.sucursal.codigo, categoria: $scope.categoria, descripcion: $scope.descripcion
+//             }
+//             ).$promise.then(function(data) {
+//                 $localStorage.sucursal.categoria=$scope.categoria;
+//                 $('#modal_select_categoria').modal('hide');
+//                 $('#modal_select_categoria').remove();
+//                 $('.modal-backdrop').remove();
+//             }
+//             );
+//         }
+//         break;
+//     }
+// });
 
 app.factory('facturanextservice', function($resource, $localStorage, servicios) {
     var url_server=servicios.server().appnext();

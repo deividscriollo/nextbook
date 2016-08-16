@@ -1,55 +1,54 @@
 <md-toolbar>
-  <div class="md-toolbar-tools">
-    <h2>
+    <div class="md-toolbar-tools">
+        <h2>
       <span>Nextbook, Red de Negocios</span>
     </h2>
-    <span flex></span>
-    <md-button class="md-raised md-accent" href="#/Home">
-      Iniciar Sessión
-    </md-button>
-  </div>
+        <span flex></span>
+        <md-button class="md-raised md-accent" href="#/Home">
+            Iniciar Sessión
+        </md-button>
+    </div>
 </md-toolbar>
 <main class="content container">
-	<div class="container">
-		<div layout="row" layout-align="center center">
-        <h1 layout="column" layout-align="center ">Nextbook, Red de Negocios</h1>
-    </div>
-		<div class="row">
-			<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
-				<section class="content-inner margin-top-no">
-					<div class="">
-						<div class="card-main">
-							<div class="card-img">
-								<img alt="alt text" src="images/buscar/publi1.png" >
-							</div>
-							<div class="card-inner">
-								<div class="form-group form-group-label form-group-brand">
-									<label class="floating-label" for="ui_floating_label_example_brand">Buscar, empresas, servicios, locales comerciales</label>
-									<input class="form-control" ng-model="query" id="ui_floating_label_example_brand" type="text">
-									<div class="form-help">
-										<code>.form-group-brand</code>
-									</div>
-								</div>
+    <div class="container">
+        <div layout="row" layout-align="center center">
+            <h1 layout="column" layout-align="center ">Nextbook, Red de Negocios</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+                <section class="content-inner margin-top-no">
+                    <div class="">
+                        <div class="card-main">
+                            <div class="card-img">
+                                <img alt="alt text" src="images/buscar/publi1.png">
+                            </div>
+                            <div class="card-inner">
+                                <div class="form-group form-group-label form-group-brand">
+                                    <label class="floating-label" for="ui_floating_label_example_brand">Buscar, empresas, servicios, locales comerciales</label>
+                                    <input class="form-control" ng-model="query" id="ui_floating_label_example_brand" type="text">
+                                    <div class="form-help">
+                                        <code>.form-group-brand</code>
+                                    </div>
+                                </div>
 
-  <div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1'>
-    <div ng-repeat='item in reddit.items | filter:query'>
-      <span class='score'>{{$index}}</span>
-      <span class='score'>{{item.Ruc}}</span>
-      <span class='title'>
-        <a ng-href='{{item.url}}' target='_blank'>{{item.nombre_comercial}}</a>
-      </span>
-      <small>by {{item.razon_social}}
-      </small>
-      <div style='clear: both;'></div>
-    </div>
-    <!-- <div ng-show='reddit.busy'>Loading data...</div> -->
-  </div>
+                                <div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1'>
+                                    <div ng-repeat='item in reddit.items | filter:query'>
+                                        <span class='score'>{{$index}}</span>
+                                        <span class='score'>{{item.Ruc}}</span>
+                                        <span class='title'>
+									        <a ng-href='{{item.url}}' target='_blank'>{{item.nombre_comercial}}</a>
+									    </span>
+                                        <small>by {{item.razon_social}}</small>
+                                        <div style='clear: both;'></div>
+                                    </div>
+                                    <div ng-show='reddit.busy'>Loading data...</div>
+                                </div>
 
-							</div>
-						</div>
-					</div>
-				</section>
-			</div>
-		</div>
-	</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
 </main>

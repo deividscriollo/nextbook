@@ -5,7 +5,7 @@
 	            <md-input-container class="md-icon-float md-block" flex-gt-sm>
 	                <md-icon class="md-primary">airplay</md-icon>
 	                <label>Ingrese clave de acceso del documento</label>
-	                <input type="text" required name="clave" ng-model="data.clave" />
+	                <input type="text" required name="clave" ng-model="data.clave" md-maxlength="49" md-select-on-focus />
 	                <div ng-messages="facturasForm.clave.$error">
 	                    <div ng-message="required">Clave de acceso Requerido</div>
 	                </div>
@@ -33,28 +33,14 @@
 	            </md-button>
 	        </div>
     	</form>
-		<!-- <form name="userForm">
-    	    	<md-input-container id="label_clave" class="md-block" md-cols-lg="8">
-	                <label>Ingrese clave de acceso de tu documento</label>
-	                <input id="input_clave" ng-model="data.clave" md-maxlength="49" md-select-on-focus ></input>
-	            </md-input-container>
-	            <md-input-container class="md-block" flex-gt-sm>
-	                <label>Tipo de Consumo</label>
-	                <md-select ng-model="tipo">
-	                    <md-option ng-repeat="gasto in gastos" value="{{gasto.tipo}}">
-	                        {{gasto.tipo}}
-	                    </md-option>
-	                </md-select>
-	            </md-input-container>
-	            <div class="md-block" flex-gt-sm>
-	            	<button class="btn btn-brand waves-attach waves-light" ng-click="upload_xml()"><span class="icon">check</span> Guardar</button>
-	            </div>
-	    </form> -->
 	</div>
+
 	<div flex-xs flex-gt-xs="20" layout="column">
-		<!-- <md-button ng-click="btn_upload_file()" data-toggle="modal" data-target="#myModal">
-			<span class="icon">file_upload</span>Archivo XMl
-		</md-button> -->
+		<div layout-gt-sm="row" class="center end">
+            <md-button class="md-raised md-primary" type="submit" ng-click="addititem($event)">
+                Archivo XMl <i class="fa fa-angle-double-right"></i>
+            </md-button>
+        </div>
 	</div>
 	<div flex-xs flex-gt-xs="40" layout="column">
 		<img width="100%" alt="150x150" src="images/facturanext/factura.png" />

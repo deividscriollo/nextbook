@@ -1,0 +1,31 @@
+<md-dialog ng-controller="addItemXml">
+    <form name="registroForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Cargar Archivos XML</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width:600px;">
+          <div>
+            <md-content layout-padding layout-wrap>
+                <div layout-gt-xs="row">
+                  <md-input-container class="md-block" flex-gt-xs >
+                      <input type="file" ng-model="xml_file" on-read-file="showContent($fileContent)" />
+                  </md-input-container>
+                </div>
+            </md-content>
+          </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" type="submit" ng-click="set_clave()" ng-disabled="registroForm.$invalid">
+              Aceptar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

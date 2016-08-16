@@ -29,7 +29,7 @@ app.controller('empleados', function ($scope, $localStorage, serviciosnomina, se
   // comparar empleados consulta service web
   $scope.comparar_empleado = function() {
     serviciosnomina.repeat_empleado().repeat($scope.data).$promise.then(function(data) {
-      console.log(data);
+
       if(data.respuesta == true) {
         $scope.data.cedula_identificacion = '';
         $mdDialog.show(

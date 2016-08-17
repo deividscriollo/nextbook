@@ -12,7 +12,7 @@ var app=angular.module('app')
 	    					{icon : 'assignment_ind', title : 'Quienes Somos', url:'/Home/QuienesSomos'},
 	    				];
 
-	   	$scope.tabnavigation = function(url){
+	   	$scope.tabnavigation = function(url) {
 	   		$location.path(url);
 	   	}
 
@@ -23,46 +23,14 @@ var app=angular.module('app')
 	    $scope.$on('routeSegmentChange', function() {
 	        loader.show = false;
 	    })
+
 	    $scope.ingresar = function() {
 	        $scope.data['tipo'] = "E";
 	        var obj = {'email':$scope.email+'001@facturanext.com', 'password':$scope.password, 'tipo':'E' };
 	        LoginE.ingresar(obj).$promise.then(function(data) {
 	            // console.log(data[0]);
-	            $localStorage.token = data[0].token;
-	            $localStorage.datosE = data.datosE;
-	            $localStorage.datosPersona = data.datosPersona;
-	            //--------------------cargr imagen perfil-----------
-	            servicios.get_img_perfil().get().$promise.then(function(data) {
-	                        $localStorage.imgPerfil=data.img;
-	            
-	            }, function(err) {
-	               
-	            });
-	             //--------------------cargar imagen Portada-----------
-
-	            servicios.get_img_portada().get().$promise.then(function(data) {
-	                        $localStorage.imgPortada=data.img;
-	            }, function(err) {
-	               
-	            });
-	            // ---------- fin
-	            //---------------------- verificar si existe datos de persona-----------
-
-	            servicios.get_propietario().get().$promise.then(function(data) {
-	                if (data.respuesta) {
-	                    $location.path('/SeleccionarSucursal');
-	                }
-	                else{
-	                    $location.path('/CambioPass');
-	                }
-	            
-	            }, function(err) {
-	               
-	            });
-
-	        }, function(err) {
-	            if (err.status == 404) {
-	                $mdDialog.show(
+	            if (data.respuesta == false) {
+	            	$mdDialog.show(
 			            $mdDialog.alert()
 			            .parent(angular.element(document.querySelector('#dialogContainer')))
 			            .clickOutsideToClose(true)
@@ -70,10 +38,36 @@ var app=angular.module('app')
 			            .textContent('Usuario o password incorrecto, vuelva a intentar')
 			            .ok('Entendido')
 			            .openFrom('#left')
-			        );
-	            }
+			        );	
+	            } else {
+		            $localStorage.token = data[0].token;
+		            $localStorage.datosE = data.datosE;
+		            $localStorage.datosPersona = data.datosPersona;
+
+		            //--------------------cargr imagen perfil-----------
+		            servicios.get_img_perfil().get().$promise.then(function(data) {
+		                $localStorage.imgPerfil=data.img;
+		            });
+
+		             //--------------------cargar imagen Portada-----------
+
+		            servicios.get_img_portada().get().$promise.then(function(data) {
+		                $localStorage.imgPortada=data.img;
+		            });
+		            // ---------- fin
+
+		            //---------------------- verificar si existe datos de persona-----------
+		            servicios.get_propietario().get().$promise.then(function(data) {
+		                if (data.respuesta) {
+		                    $location.path('/SeleccionarSucursal');
+		                } else {
+		                    $location.path('/CambioPass');
+		                }
+		            });
+		        }
 	        });
 	    }
+
 	    $scope.mdm = function($event){
 	        var correo = $scope.email;
 	        var res = correo.replace("@facturanext.com", "");

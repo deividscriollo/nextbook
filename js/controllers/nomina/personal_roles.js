@@ -15,7 +15,6 @@ app.controller('personal_rolCtrl', function ($mdDialog, $scope, serviciosnomina,
     $scope.selected = [];
 
     $scope.update = function (id) {
-      console.log(id);
     }
 
     $scope.iditem =  function (data) {

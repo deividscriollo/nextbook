@@ -1,11 +1,18 @@
- <md-content class="md-padding" layout-xs="column" layout="row" ng-controller="subir_FacturasCtrl">
+ <md-content class="md-padding" flex-gt-md="100" layout-xs="column" layout="row" ng-controller="SubirFacCtrl">
     <div flex-xs flex-gt-xs="40" layout="column">
-    	<form name="facturasForm" ng-submit="upload_xml()">
+    	<form name="facturasForm" ng-submit="guardar_factura_electronica()" >
+    		<div layout-gt-sm="row">
+	        	<md-input-container class="md-icon-float md-block" flex-gt-sm>
+		        	<md-icon class="md-primary">airplay</md-icon>
+		            <input type="file" ng-model="data.xml_file" on-read-file="showContent($fileContent)" />
+		        </md-input-container>
+	        </div>
+
     		<div layout-gt-sm="row">
 	            <md-input-container class="md-icon-float md-block" flex-gt-sm>
 	                <md-icon class="md-primary">airplay</md-icon>
 	                <label>Ingrese clave de acceso del documento</label>
-	                <input type="text" required name="clave" ng-model="data.clave" md-maxlength="49" md-select-on-focus />
+	                <input type="text" required name="clave" ng-model="data.clave" md-maxlength="49" ng-maxlength="49" />
 	                <div ng-messages="facturasForm.clave.$error">
 	                    <div ng-message="required">Clave de acceso Requerido</div>
 	                </div>
@@ -36,27 +43,8 @@
 	</div>
 
 	<div flex-xs flex-gt-xs="20" layout="column">
-		<div layout-gt-sm="row" class="center end">
-            <md-button class="md-raised md-primary" type="submit" ng-click="addititem($event)">
-                Archivo XMl <i class="fa fa-angle-double-right"></i>
-            </md-button>
-        </div>
 	</div>
 	<div flex-xs flex-gt-xs="40" layout="column">
 		<img width="100%" alt="150x150" src="images/facturanext/factura.png" />
 	</div>    
 </md-content>
-<!-- Modal -->
-<!-- <div aria-hidden="true" class="modal modal-va-middle fade" id="myModal" role="dialog" tabindex="-1">
-	<div class="modal-dialog modal-xs">
-		<div class="modal-content">
-			<div class="modal-inner">
-				<p class="h5 margin-top-sm text-black-hint">SELECCIONE EL ARCHIVO</p>
-			<input type="file" ng-model="xml_file" on-read-file="showContent($fileContent)" />
-			</div>
-			<div class="modal-footer">
-				<p class="text-right"><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" data-dismiss="modal">CANCELAR</a><a class="btn btn-flat btn-brand-accent waves-attach waves-effect" ng-click="set_clave()" data-dismiss="modal">ACEPTAR</a></p>
-			</div>
-		</div>
-	</div>
-</div> -->

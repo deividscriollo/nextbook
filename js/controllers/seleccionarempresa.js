@@ -3,15 +3,14 @@ var app=angular.module('app').controller('seleccionar-empresa', function ($scope
 
     $scope.products=[];
     Sucursaless.get().$promise.then(function(data) {
-        if (data.sucursales.length==1) {
-            $scope.products.push( {
+        if (data.sucursales.length == 1) {
+            $scope.products.push({
                 "sucursal": data.sucursales[0].nombre_sucursal, "codigo": data.sucursales[0].codigo, "direccion": data.sucursales[0].direccion, "estado": data.sucursales[0].estado,"categoria": data.sucursales[0].categoria
-            }
-            );
+            });
+
             $localStorage.sucursal=$scope.products[0];
             $location.path('/My-space/Inicio');
-        }
-        else {
+        } else {
             for (var i=0; i < data.sucursales.length;i++) {
                 $scope.products.push( {
                     "index_sucursal": i,"sucursal": data.sucursales[i].nombre_sucursal, "codigo": data.sucursales[i].codigo, "direccion": data.sucursales[i].direccion, "estado": data.sucursales[i].estado,"categoria": data.sucursales[i].categoria
@@ -20,12 +19,11 @@ var app=angular.module('app').controller('seleccionar-empresa', function ($scope
         }
 
         $scope.datam = {
-                    photos3p: partition($scope.products, data.sucursales.length / 4)
-                };
-        // console.log($scope.datam);
+            photos3p: partition($scope.products, data.sucursales.length / 4)
+        };
     }
     , function(err) {
-        console.log(err);
+        // console.log(err);
     });
 
     var partition = function (input, size) {
@@ -35,10 +33,8 @@ var app=angular.module('app').controller('seleccionar-empresa', function ($scope
         }
         return newArr;
     }
-    $scope.SetSucursal=function(index) {
+    $scope.SetSucursal = function(index) {
         $localStorage.sucursal=$scope.products[index];
         $location.path('/My-space/Inicio');
     }
-}
-
-);
+});

@@ -1,7 +1,7 @@
 var app = angular.module('app');
 app.controller('facturanextCtrl', function($scope, servicios) {
   $scope.tabs = [
-                  {icon:'home',title:'Facturanext Inicio',link:'/My-space/Facturanext'},
+                  {icon:'home',title:'Inicio',link:'/My-space/Facturanext'},
                   {icon:'assignment',title:'Mis Facturas',link:'/My-space/Facturanext/MisFacturas'},
                   {icon:'cloud_upload',title:'Subir Fac. Electrónica',link:'/My-space/Facturanext/SubirFacturas'},
                   {icon:'speaker_notes_off',title:'Fac. Rechazadas',link:'/My-space/Facturanext/FacurasRechazadas'},
@@ -33,7 +33,7 @@ app.controller('facturanextCtrl', function($scope, servicios) {
                 ];
 });
 
-app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice, $http) {
+// app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice, $http) {
   // console.log('test');
 
   // 'use strict';
@@ -89,8 +89,8 @@ app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice
   // }
 // $scope.show_Download_modal();
 
-});
-app.controller('FacturaCtrl', function($scope, servicios, facturanextservice) {
+// });
+// app.controller('FacturaCtrl', function($scope, servicios, facturanextservice) {
 
  // var vm = this;
  //    vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
@@ -132,9 +132,9 @@ app.controller('FacturaCtrl', function($scope, servicios, facturanextservice) {
   //     console.log('test');
   //   });
 
-});
+// });
 
-app.controller('facturasrechasadas', function($mdDialog, $nutrition, $scope, servicios, $timeout, $mdEditDialog, $q) {
+// app.controller('facturasrechasadas', function($mdDialog, $nutrition, $scope, servicios, $timeout, $mdEditDialog, $q) {
 
   // var bookmark;
   
@@ -276,7 +276,7 @@ app.controller('facturasrechasadas', function($mdDialog, $nutrition, $scope, ser
   //   }    
   //   $scope.getDesserts();
   // });
-});
+// });
 
 // app.controller('proveedoresCtrl', function($mdDialog, $scope, servicios, $timeout, $mdEditDialog, $q) {
 
@@ -423,7 +423,7 @@ app.controller('facturasrechasadas', function($mdDialog, $nutrition, $scope, ser
 //   });
 // });
 
-app.controller('aud-proveedores', function ($mdDialog, $scope, $localStorage, servicios, $timeout, $localStorage, items) {
+// app.controller('aud-proveedores', function ($mdDialog, $scope, $localStorage, servicios, $timeout, $localStorage, items) {
 //   $scope.data = items;
 //   this.cancel = $mdDialog.cancel;
 
@@ -478,4 +478,4 @@ app.controller('aud-proveedores', function ($mdDialog, $scope, $localStorage, se
 //   });
 // }
 
-});
+// });

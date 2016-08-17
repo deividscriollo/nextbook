@@ -21,13 +21,13 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
             ,appnext: function() {
                 // return "http://servicios.nextbook.ec/";
-                return "http://192.168.100.16/appnext/";
+                return "http://192.168.100.20/appnext/";
             },appnextPersonas: function() {
                 // return "http://appnextp.nextbook.ec/";
-                return "http://192.168.100.16/appnext/";
+                return "http://192.168.100.20/appnext/";
             },mod_radio: function() {
                 // return "http://appnextp.nextbook.ec/";
-                return "http://192.168.100.16/mod_radio/";
+                return "http://192.168.100.20/mod_radio/";
             }
         }
     };
@@ -48,16 +48,16 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         return $localStorage.$reset();
     };
 
-    this.UploadFac=function() {
-        return $resource(this.server().appnext()+'public/uploadFactura', {}
-        , {
-            subir: {
-                method: 'POST', isArray: false, params: {
-                    token: $localStorage.token
-                }
-            }
-        });
-    };
+    // this.UploadFac=function() {
+    //     return $resource(this.server().appnext()+'public/uploadFactura', {}
+    //     , {
+    //         subir: {
+    //             method: 'POST', isArray: false, params: {
+    //                 token: $localStorage.token
+    //             }
+    //         }
+    //     });
+    // };
 
     this.Download_link=function() {
         return $resource(this.server().appnext()+'public/Downloadlink', {}
@@ -586,18 +586,18 @@ app.factory('facturanextservice', function($resource, $localStorage, servicios) 
     );
 });
 
-app.factory('UploadFac', function($resource, $localStorage) {
-    var url_server=servicios.server().appnext();
-    return $resource(url_server+'public/uploadFactura', {}
-    , {
-        subir: {
-            method: 'POST', isArray: false, params: {
-                token: $localStorage.token
-            }
-        }
-    }
-    );
-});
+// app.factory('UploadFac', function($resource, $localStorage) {
+//     var url_server=servicios.server().appnext();
+//     return $resource(url_server+'public/uploadFactura', {}
+//     , {
+//         subir: {
+//             method: 'POST', isArray: false, params: {
+//                 token: $localStorage.token
+//             }
+//         }
+//     }
+//     );
+// });
 
 ///------------------------ Leer XML----------------------------
 app.directive('onReadFile', function ($parse) {

@@ -1,4 +1,5 @@
 var app = angular.module('app');
+
 app.controller('nominaCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
   
   var bookmark;

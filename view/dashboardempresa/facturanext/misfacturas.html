@@ -1,66 +1,67 @@
-<md-toolbar class="md-table-toolbar md-default">
-  <div class="md-toolbar-tools">
-    <span>Nutrition</span>
-  </div>
-</md-toolbar>
+<md-content flex-gt-md="100" ng-controller="misfacturasCtrl">
+    <md-toolbar ng-hide="selected.length || filter.show">
+      <div class="md-toolbar-tools">
+        Mis Facturas
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="filter.show = true">
+            <md-icon>search</md-icon>
+        </md-button>
+        <md-button class="md-icon-button" ng-click="loadStuff($event)">
+            <md-icon>autorenew</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-toolbar class="md-table-toolbar md-default" ng-show="filter.show && !selected.length">
+        <div class="md-toolbar-tools">
+            <md-icon>search</md-icon>
+            <form flex name="filter.form">
+                <input type="text" ng-model="query.filter" ng-model-options="filter.options" placeholder="Buscar, Mis Facturas">
+            </form>
+            <md-button class="md-icon-button" ng-click="removeFilter()">
+                <md-icon>close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
 
-<!-- exact table from live demo -->
-<md-table-container>
-  <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
-    <thead md-head md-order="query.order" md-on-reorder="getDesserts">
-      <tr md-row>
-        <th md-column md-order-by="nameToLower"><span>Nro Factura</span></th>
-        <th md-column md-numeric md-order-by="calories.value"><span>Proveedor</span></th>
-        <th md-column md-numeric>F. Emisión</th>
-        <th md-column md-numeric>Nombre Comercial</th>
-        <th md-column md-numeric>Tipo</th>
-        <th md-column md-numeric>Total</th>
-        <th md-column md-numeric>Config</th>
-      </tr>
-    </thead>
-    <tbody md-body>
-      <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="dessert in desserts.data">
-        <td md-cell>{{dessert.name}}</td>
-        <td md-cell>{{dessert.calories.value}}</td>
-        <td md-cell>{{dessert.fat.value | number: 1}}</td>
-        <td md-cell>{{dessert.carbs.value}}</td>
-        <td md-cell>{{dessert.protein.value | number: 1}}</td>
-        <td md-cell>{{dessert.sodium.value}}</td>
-        <td md-cell>{{dessert.calcium.value}}{{dessert.calcium.unit}}</td>
-      </tr>
-    </tbody>
-  </table>
-</md-table-container>
-
-<md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}" md-on-paginate="getDesserts" md-page-select></md-table-pagination>
-<table id="example" class="mdl-data-table" cellspacing="0" width="100%">
-    <thead>
-        <tr>
-            <th>Numero de Factura</th>
-            <th>Ruc del Proveedor</th>
-            <th>Ambiente</th>
-            <th>Fecha emision</th>
-            <th>Nombre Comercial</th>
-            <th>Tipo de Documento</th>
-            <th>Total</th>
-            <th>Configuración</th>
-        </tr>
-    </thead>
-    <tfoot>
-        <tr>
-            <th>Numero de Factura</th>
-            <th>Ruc del Proveedor</th>
-            <th>Ambiente</th>
-            <th>Fecha emision</th>
-            <th>Nombre Comercial</th>
-            <th>Tipo de Documento</th>
-            <th>Total</th>
-            <th>Configuración</th>
-        </tr>
-    </tfoot>
-    <tbody>
-        
-    </tbody>
-</table>
-
+    <md-table-container>
+        <table md-table md-progress="promise">
+            <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                <tr md-row>
+                    <th md-column md-numeric>FECHA EMISIÓN</th>
+                    <th md-column md-numeric>TIPO DE CONSUMO</th>
+                    <th md-column md-numeric>FORMA DE PAGO</th>
+                    <th md-column md-numeric>RAZÓN SOCIAL</th>
+                    <th md-column md-numeric>NÚMERO DE FACTURA</th>
+                    <th md-column md-numeric>TIPO DE DOCUMENTO</th>
+                    <th md-column md-numeric>SUB TOTAL</th>
+                    <th md-column md-numeric>TOTAL</th>
+                    <th md-column md-numeric>ACCIONES</th>
+                </tr>
+            </thead>
+            
+            <tbody md-body>
+                <tr md-row ng-repeat="dessert in desserts.data">
+                    <td md-cell>{{dessert.codigo}}</td>
+                    <td md-cell>{{dessert.descripcion}}</td>
+                    <td md-cell>{{dessert.periodicidad}}</td>
+                    <td md-cell>{{dessert.registro_patronal}}</td>
+                    <td md-cell>{{dessert.dias}}</td>
+                    <td md-cell>{{dessert.dias}}</td>
+                    <td md-cell>{{dessert.dias}}</td>
+                    <td md-cell>{{dessert.fecha_inicio}}</td>  
+                    <td md-cell>
+                         <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="eddititem(dessert)">
+                          <md-icon md-svg-src="img/icons/ic_edit_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
+                        </md-button>
+                        <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="deleteitem(dessert)">
+                          <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
+                        </md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}" md-limit="query.num_registros" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{desserts.total}}" md-on-paginate="getDesserts" md-page-select>
+    </md-table-pagination>
+</md-content>
 

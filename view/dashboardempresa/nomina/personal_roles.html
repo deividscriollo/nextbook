@@ -2,7 +2,7 @@
     <div flex-gt-sm="70" flex-gt-md="20">
         <md-input-container class="md-icon-float md-block">
             <label>Nómina</label>
-            <md-select ng-model="data.id_nomina" name="id_nomina" required ng-change="update(nomina)">
+            <md-select ng-model="data.id_nomina" name="id_nomina" required ng-change="update(id)">
                 <md-option ng-repeat="nomina in nominas" value="{{nomina.id}}">
                     {{nomina.descripcion}}
                 </md-option>

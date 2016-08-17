@@ -17,8 +17,19 @@ app.service('serviciosfacturanext', function($resource, $localStorage, $location
     };
     //--------------------------------------------------Fin-------------------------------------
 
-    // ------------------------------------------------ Proveedor ------------------------------
-
+    // ------------------------------------------------ Facturas Electronicas ------------------------------
+    this.addFacElectronicas = function() {
+        return $resource(servicios.server().appnext()+'public/uploadFactura', {}
+        , {
+            save: {
+                method: 'POST', isArray: false, 
+                params: {
+                    token: $localStorage.token, 
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
 
     //--------------------------------------------------Fin-------------------------------------
 });

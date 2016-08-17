@@ -93,8 +93,21 @@ app.controller('AccesoNomina', function ($mdDialog, $scope, servicios, $timeout,
               .ariaLabel('Servicio Nómina')
               .ok('Ok!')
               .openFrom('#left')
-          );
+            );
           $location.path('/My-space/NominaAdmin');
+        } else {
+            if(data.respuesta == false) {
+              $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#dialogContainer')))
+                .clickOutsideToClose(true)
+                .title('NextBook')
+                .textContent('Contraseña Erronea')
+                .ariaLabel('Contraseña Erronea')
+                .ok('Ok!')
+                .openFrom('#left')
+              );  
+            }
         }
       }); 
     } 

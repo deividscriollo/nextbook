@@ -1,4 +1,25 @@
-<md-content flex-gt-md="100" ng-controller="misfacturasCtrl">
+<md-content layout-padding flex-gt-md="100" ng-controller="misfacturasCtrl">
+    <div layout-gt-sm="row">
+        <md-datepicker ng-model="data.fecha_inicio" required name="data.fecha_inicio" md-placeholder="Fecha Inicio"></md-datepicker>
+
+        <md-datepicker ng-model="data.fecha_fin" required name="data.fecha_fin" md-placeholder="Fecha Fin"></md-datepicker>
+
+        <md-input-container class="md-icon-float md-block" style="margin-top: 2px">
+          <md-icon class="md-accent">airplay</md-icon>
+          <label>Agrupar Por</label>
+          <md-select ng-model="data.agrupar" name="agrupar" required ng-change="update(nomina)" >
+                <md-option value="TODO">TODO</md-option>
+                <md-option value="FECHA EMISIÓN">FECHA EMISIÓN</md-option>
+                <md-option value="RAZÓN SOCIAL">RAZÓN SOCIAL</md-option>
+                <md-option value="TIPO DE CONSUMO">TIPO DE CONSUMO</md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-button class="md-fab md-mini md-primary" aria-label="Use Android">
+          <md-icon md-svg-src="img/icons/android.svg" style="color: greenyellow;"></md-icon>
+        </md-button>
+    </div>
+
     <md-toolbar ng-hide="selected.length || filter.show">
       <div class="md-toolbar-tools">
         Mis Facturas

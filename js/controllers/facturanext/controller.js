@@ -7,8 +7,8 @@ app.controller('facturanextCtrl', function($scope, servicios) {
                   {icon:'speaker_notes_off',title:'Fac. Rechazadas',link:'/My-space/Facturanext/FacurasRechazadas'},
                   {icon:'border_color',title:'Crear Fac. Fisicas',link:'/My-space/Facturanext/FacturasFisicas'},
                   {icon:'contacts',title:'Proveedores',link:'/My-space/Facturanext/Proveedores'},
-                  
                 ];
+                
   $scope.menucard =   [
                     {
                       link : '#/My-space/Facturanext',

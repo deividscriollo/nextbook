@@ -13,14 +13,12 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
                       ];
 
     $scope.modal = function(tipo, event) {
-      if (tipo=='nomina') {
+      if (tipo == 'nomina') {
         $scope.modal_nomina(event);
       }
 
-      if (tipo=='facturanext') {
+      if (tipo == 'facturanext') {
         $location.path('/My-space/Facturanext');
-        console.log('test');
-        // $scope.modal_nomina(event);
       }
     }
 

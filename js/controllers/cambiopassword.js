@@ -13,6 +13,4 @@ app.controller('cambio-password', function ($scope, servicios, $location, $local
 	        }
 	    });
 	}
-
-
 });

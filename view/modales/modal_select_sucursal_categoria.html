@@ -13,7 +13,14 @@
             <div class="md-dialog-content">
                 <h2>¿Hablanos un poco, a que se dedíca tu empresa?</h2>
                 <md-input-container class="md-block" flex-gt-xs>
-                    <label class="text-brand">Categorías</label>
+                    <md-icon class="md-accent">airplay</md-icon>
+                    <label class="floating-label">Actividad Económica</label>
+                    <input type="text" required name="actividad_economica" ng-model="data.actividad_economica" disabled />
+                </md-input-container>
+
+                <md-input-container class="md-block" flex-gt-xs>
+                    <md-icon class="md-accent">airplay</md-icon>
+                    <label class="text-brand">Categoría Adicional</label>
                     <md-select name="myselect" id="categoria" ng-change="update()" ng-model="data_cat.categoria" required>
                         <md-option ng-repeat="state in states" value="{{state.id}}">
                             {{state.nombre}}
@@ -24,6 +31,7 @@
                     </div>
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-xs>
+                    <md-icon class="md-accent">airplay</md-icon>
                     <label class="floating-label" for="...">Descripción</label>
                     <textarea class="form-control textarea-autosize" id="descripcion" rows="5" ng-model="data_cat.descripcion" rows="1"></textarea>
                 </md-input-container>

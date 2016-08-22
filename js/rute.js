@@ -174,12 +174,12 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .segment('misfacturas', {
                         'default': true,
                         templateUrl: 'view/dashboardempresa/facturanext/misfacturas.html',
-                        controller: 'misfacturasCtrl'
+                        // controller: 'misfacturasCtrl'
                     })
                     .segment('subirfactura', {
                         'default': true,
                         templateUrl: 'view/dashboardempresa/facturanext/subirfactura.html',
-                        controller: 'SubirFacCtrl'
+                        // controller: 'SubirFacCtrl'
                     })
                     .segment('facturasrechasadas', {
                         'default': true,
@@ -194,7 +194,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .segment('proveedores', {
                         'default': true,
                         templateUrl: 'view/dashboardempresa/facturanext/proveedores.html',
-                        controller: 'proveedoresCtrl'
+                        // controller: 'proveedoresCtrl'
                     })
                 .up()
                 .segment('radio', {                 

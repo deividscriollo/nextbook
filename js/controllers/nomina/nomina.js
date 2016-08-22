@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.controller('nominaCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
+app.controller('nominaCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, $mdToast) {
   
   var bookmark;
   $scope.selected = [];

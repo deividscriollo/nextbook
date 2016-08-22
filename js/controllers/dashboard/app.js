@@ -2,6 +2,10 @@ var app = angular.module('app');
 app.controller('modal_select_sucursal_categoriactrl', function ($scope, $localStorage,servicios, $mdDialog, $location, $mdSidenav) {
 	this.cancel = $mdDialog.cancel
 
+	$scope.data = {
+		actividad_economica: $localStorage.datosE.actividad_economica
+	};
+
 	servicios.get_categorias_sucursal().get().$promise.then(function(data) {
         $scope.states = data.categorias;
     });

@@ -28,7 +28,7 @@ var app=angular.module('app')
 	        $scope.data['tipo'] = "E";
 	        var obj = {'email':$scope.email+'001@facturanext.com', 'password':$scope.password, 'tipo':'E' };
 	        LoginE.ingresar(obj).$promise.then(function(data) {
-	            // console.log(data[0]);
+
 	            if (data.respuesta == false) {
 	            	$mdDialog.show(
 			            $mdDialog.alert()
@@ -46,13 +46,13 @@ var app=angular.module('app')
 
 		            //--------------------cargr imagen perfil-----------
 		            servicios.get_img_perfil().get().$promise.then(function(data) {
-		                $localStorage.imgPerfil=data.img;
+		                $localStorage.imgPerfil = data.img;
 		            });
 
 		             //--------------------cargar imagen Portada-----------
 
 		            servicios.get_img_portada().get().$promise.then(function(data) {
-		                $localStorage.imgPortada=data.img;
+		                $localStorage.imgPortada = data.img;
 		            });
 		            // ---------- fin
 

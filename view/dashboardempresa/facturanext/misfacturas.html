@@ -32,6 +32,7 @@
         </md-button>
       </div>
     </md-toolbar>
+
     <md-toolbar class="md-table-toolbar md-default" ng-show="filter.show && !selected.length">
         <div class="md-toolbar-tools">
             <md-icon>search</md-icon>
@@ -49,12 +50,10 @@
             <thead md-head md-order="query.order" md-on-reorder="getDesserts">
                 <tr md-row>
                     <th md-column md-numeric>FECHA EMISIÓN</th>
-                    <th md-column md-numeric>TIPO DE CONSUMO</th>
-                    <th md-column md-numeric>FORMA DE PAGO</th>
-                    <th md-column md-numeric>RAZÓN SOCIAL</th>
-                    <th md-column md-numeric>NÚMERO DE FACTURA</th>
                     <th md-column md-numeric>TIPO DE DOCUMENTO</th>
-                    <th md-column md-numeric>SUB TOTAL</th>
+                    <th md-column md-numeric>NÚMERO DE FACTURA</th>
+                    <th md-column md-numeric>RAZÓN SOCIAL</th>
+                    <th md-column md-numeric>TIPO DE CONSUMO</th>
                     <th md-column md-numeric>TOTAL</th>
                     <th md-column md-numeric>ACCIONES</th>
                 </tr>
@@ -62,19 +61,17 @@
             
             <tbody md-body>
                 <tr md-row ng-repeat="dessert in desserts.data">
-                    <td md-cell>{{dessert.codigo}}</td>
-                    <td md-cell>{{dessert.descripcion}}</td>
-                    <td md-cell>{{dessert.periodicidad}}</td>
-                    <td md-cell>{{dessert.registro_patronal}}</td>
-                    <td md-cell>{{dessert.dias}}</td>
-                    <td md-cell>{{dessert.dias}}</td>
-                    <td md-cell>{{dessert.dias}}</td>
-                    <td md-cell>{{dessert.fecha_inicio}}</td>  
+                    <td md-cell>{{dessert.fecha_emision}}</td>
+                    <td md-cell>{{dessert.tipo_doc}}</td>
+                    <td md-cell>{{dessert.num_factura}}</td>
+                    <td md-cell>{{dessert.nombre_comercial}}</td>
+                    <td md-cell>{{dessert.tipo_consumo}}</td>
+                    <td md-cell>{{dessert.total}}</td>  
                     <td md-cell>
-                         <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="eddititem(dessert)">
+                         <md-button class="md-fab md-mini md-primary" ng-click="eddititem(dessert)">
                           <md-icon md-svg-src="img/icons/ic_edit_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
                         </md-button>
-                        <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="deleteitem(dessert)">
+                        <md-button class="md-fab md-mini md-primary" ng-click="deleteitem(dessert)">
                           <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
                         </md-button>
                     </td>

@@ -573,18 +573,18 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
 //     }
 // });
 
-app.factory('facturanextservice', function($resource, $localStorage, servicios) {
-    var url_server=servicios.server().appnext();
-    return $resource(url_server+'public/getFacturas', {}
-    , {
-        get: {
-            method: 'GET', isArray: false, params: {
-                token: $localStorage.token
-            }
-        }
-    }
-    );
-});
+// app.factory('facturanextservice', function($resource, $localStorage, servicios) {
+//     var url_server=servicios.server().appnext();
+//     return $resource(url_server+'public/getFacturas', {}
+//     , {
+//         get: {
+//             method: 'GET', isArray: false, params: {
+//                 token: $localStorage.token
+//             }
+//         }
+//     }
+//     );
+// });
 
 // app.factory('UploadFac', function($resource, $localStorage) {
 //     var url_server=servicios.server().appnext();

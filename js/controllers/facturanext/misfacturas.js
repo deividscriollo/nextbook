@@ -20,10 +20,11 @@ var bookmark;
   
   function success(desserts) {
     $scope.desserts = desserts.respuesta;
+    console.log(desserts);
   }
   
   $scope.getDesserts = function () {
-    // $scope.promise = serviciosnomina.get_nominas().get($scope.query, success).$promise;
+    $scope.promise = serviciosfacturanext.get_facturas().get($scope.query, success).$promise;
   };
   
   $scope.removeFilter = function () {

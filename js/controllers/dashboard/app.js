@@ -1,5 +1,5 @@
 var app = angular.module('app');
-app.controller('modal_select_sucursal_categoriactrl', function ($scope, $localStorage,servicios, $mdDialog, $location, $mdSidenav) {
+app.controller('modal_select_sucursal_categoriactrl', function ($scope, $localStorage, servicios, $mdDialog, $location, $mdSidenav) {
 	this.cancel = $mdDialog.cancel
 
 	$scope.data = {

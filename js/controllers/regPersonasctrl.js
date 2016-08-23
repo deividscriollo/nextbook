@@ -1,5 +1,4 @@
 app.controller('PersonasCtrl', function ($scope,loaddatosSRI, servicios, SweetAlert) {
- 	 // console.log('Personas');
 
     $scope.cargadatos = function(estado) {
         if (estado) {
@@ -17,19 +16,18 @@ app.controller('PersonasCtrl', function ($scope,loaddatosSRI, servicios, SweetAl
             });
         } 
     }
+
     $scope.registrar = function() {
-        servicios.registrarPersona().save($scope.data).$promise.then(function(result){
-        if (result.respuesta==true) {
+        servicios.registrarPersona().save($scope.data).$promise.then(function(result) {
+
+        if (result.respuesta == true) {
                 SweetAlert.swal("Registro Correcto", "En hora buena registro correcto revise su correo para activar su cuenta.", "success");
                 $scope.elemennotview=true;
                 $scope.elementview=false;                
                 $scope.ruc = null;
-                //reset();
-            }else{
+            } else {
                 SweetAlert.swal("Lo sentimos!", "Intente mas Tarde.", "error");      
             }  
         });
-
     }
-
 });

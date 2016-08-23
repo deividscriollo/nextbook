@@ -48,31 +48,29 @@
     }
     
 
-    $scope.elementview=false;
-    $scope.elemennotview=true;
+    $scope.elementview = false;
+    $scope.elemennotview = true;
     // asignacion de valores
     servicios.get_provincias().get().$promise.then(function(data){
-        $scope.states=data.provincias;
+        $scope.states = data.provincias;
 });
     // $scope.states = localizacion.provincia();
     $scope.nombres_apellidos = "";
     $scope.cedula = "";
-    $scope.sucursales=[];
-
-
+    $scope.sucursales = [];
 
     // method generate
-    $scope.update = function(){
+    $scope.update = function() {
         var itemselect = $scope.myOption;
         for (k = 0; k < $scope.states.length; ++k) {
             var item = $scope.states[k];
-            if (item['id']==itemselect) {
+            if (item['id'] == itemselect) {
                 $scope.lastName = '( '+item['codtelefonico']+' ) - ';
                 $scope.lastName2 = '( '+item['codtelefonico']+' ) - ';
             }
         }
     }
-    $scope.verificar=function(){
+    $scope.verificar = function(){
         var itemselect = $scope.myOption;
         if (!itemselect) {
             angular.element('#myselect').triggerHandler('click');
@@ -84,7 +82,7 @@
             var x = data.respuesta;
             if (x == true) {
                 SweetAlert.swal("Ya Existe!", "Este numero de RUC ya se encuentra registrado.", "warning");
-            }else{
+            } else {
                 var data = data.respuesta;
                 $scope.sucursales=data.establecimientos;
                 var data = data.datosEmpresa;
@@ -119,24 +117,23 @@
                 $scope.nombres_apellidos=data.establecimientos.adicional.representante_legal;
                 $scope.sucursales=data.establecimientos;
             }, function(err) {
-                // console.log(err.data.error);
                 console.log('proble-conecction');
             });
         } 
     }
     $scope.registrar = function() {
-        $scope.rucdata['telefonos']=[$scope.lastName,$scope.lastName2];
-        $scope.rucdata['privincia']=$scope.myOption;
-        $scope.rucdata['celular']=$scope.fono;
-        $scope.rucdata['correo']=$scope.correo;
+        $scope.rucdata['telefonos'] = [$scope.lastName,$scope.lastName2];
+        $scope.rucdata['privincia'] = $scope.myOption;
+        $scope.rucdata['celular'] = $scope.fono;
+        $scope.rucdata['correo'] = $scope.correo;
         Empresa.save($scope.rucdata).$promise.then(function(result){
-            if (result.respuesta==true) {
+            if (result.respuesta == true) {
                 SweetAlert.swal("Registro Correcto", "En hora buena registro correcto revise su correo para activar su cuenta.", "success");
-                $scope.elemennotview=true;
-                $scope.elementview=false;                
+                $scope.elemennotview = true;
+                $scope.elementview = false;                
                 $scope.ruc = null;
                // reset();
-            }else{
+            } else {
                 SweetAlert.swal("Lo sentimos!", "Intente mas Tarde.", "error");      
             }   
         });

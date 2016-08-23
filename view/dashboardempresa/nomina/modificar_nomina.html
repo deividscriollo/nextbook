@@ -17,9 +17,10 @@
                       <label>Id Nómina:</label>
                       <input type="text" name="id" ng-model="data.id" />
                   </md-input-container>
+                  
                   <md-input-container class="md-block" flex-gt-xs >
                       <label>Código Nómina</label>
-                      <input type="text" required name="codigo" ng-model="data.codigo" />
+                      <input type="text" required name="codigo" ng-model="data.codigo" disabled/>
                       <div ng-messages="registroForm.codigo.$error">
                           <div ng-message="required">Código Requerido</div>
                       </div>

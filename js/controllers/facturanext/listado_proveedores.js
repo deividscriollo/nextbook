@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.controller('misfacturasCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage) {
+app.controller('listaProveedoresCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage) {
 
 var bookmark;
   

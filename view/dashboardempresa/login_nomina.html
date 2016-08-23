@@ -14,11 +14,9 @@
           <form name="accesoform" id="accesoform">
             <md-input-container class="md-block" flex-gt-xs >
                 <label>Correo</label>
-                <input type="text" required name="email" ng-model="data.email" pw-actual-check disabled />
-                <div ng-messages="accesoform.email.$error" ng-show="accesoform.email.$error.pwactualmatch">
-                  <div ng-message="pwactualmatch" class="my-message">Ruc erronea</div>
-                </div>
+                <input type="text" name="email" ng-model="data.email" disabled />
             </md-input-container>
+
             <md-input-container class="md-block" flex-gt-xs >
                 <label>Password</label>
                 <input type="password" required name="password" ng-model="data.password" />

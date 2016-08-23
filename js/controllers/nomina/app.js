@@ -1,4 +1,5 @@
 var app = angular.module('app');
+
 app.controller('nominageneralCtrl', function ($scope, $routeSegment, $mdDialog, $location, servicios) {
 	$scope.menu = 	[
 					    {

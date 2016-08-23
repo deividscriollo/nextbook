@@ -47,7 +47,8 @@
                     <th md-column md-numeric>Nombres Completos</th>
                     <th md-column md-numeric>Fecha Creación</th>
                     <th md-column md-numeric>Monto Pagar</th>
-                    <th md-column md-numeric>Acción</th>
+                    <th md-column md-numeric>Editar</th>
+                    <th md-column md-numeric>Visualizar</th>
                 </tr>
             </thead>
 
@@ -58,15 +59,13 @@
                     <td md-cell>{{dessert.nombres_completos}}</td>
                     <td md-cell>{{dessert.fecha_rol}}</td> 
                     <td md-cell>{{dessert.neto_pagar}}</td>
-                    <td md-cell>
-                         <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="iditem(dessert)">
-                          <md-icon md-svg-src="img/icons/ic_edit_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
-                        </md-button>
-                    </td>
+                    <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="iditem(dessert)">edit<md-tooltip>Editar</md-tooltip></md-icon></td>
+                    <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="iddeleteitem(dessert)">delete<md-tooltip>Visualizar</md-tooltip></md-icon></td>
                 </tr>
             </tbody>
         </table>
     </md-table-container>
+    
     <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}" md-limit="query.num_registros" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{desserts.total}}" md-on-paginate="getDesserts" md-page-select>
     </md-table-pagination>
 </md-content>

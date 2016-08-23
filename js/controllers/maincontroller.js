@@ -9,6 +9,5 @@
 });
 
 app.controller('Main-Ctrl-user-valid', function($scope, $routeSegment, loader) {
-
-    
+  
 });

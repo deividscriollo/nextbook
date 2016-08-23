@@ -38,14 +38,14 @@
 
     <md-table-container>
         <table md-table ng-model="selected" md-progress="promise">
-        
             <thead md-head md-order="query.order" md-on-reorder="getDesserts">
                 <tr md-row>
                     <th md-column md-numeric>Código Empleado</th>
                     <th md-column md-numeric>Cédula / Identificación</th>
                     <th md-column md-numeric>Nombres Completos</th>
                     <th md-column md-numeric>Sueldo</th>
-                    <th md-column md-numeric>Acción</th>
+                    <th md-column md-numeric>Editar</th>
+                    <th md-column md-numeric>Generar</th>
                 </tr>
             </thead>
             <tbody md-body>
@@ -54,15 +54,13 @@
                     <td md-cell>{{dessert.cedula_identificacion}}</td>
                     <td md-cell>{{dessert.nombres_completos}}</td>
                     <td md-cell>{{dessert.sueldo}}</td> 
-                    <td md-cell>
-                         <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="iditem(dessert)">
-                          <md-icon md-svg-src="img/icons/ic_edit_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
-                        </md-button>
-                    </td>
+                    <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="iditem(dessert)">edit<md-tooltip>Editar</md-tooltip></md-icon></td>
+                    <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="iddeleteitem(dessert)">delete<md-tooltip>Generar</md-tooltip></md-icon></td>
                 </tr>
             </tbody>
         </table>
     </md-table-container>
+    
     <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}" md-limit="query.num_registros" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{desserts.total}}" md-on-paginate="getDesserts" md-page-select>
     </md-table-pagination>
 </md-content>

@@ -1,7 +1,6 @@
 var app = angular.module('app');
 app.controller('inicioCtrl', function($scope, $routeSegment) {
     $scope.$routeSegment = $routeSegment;
-    // console.log('test');
 });
 
 app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location) {     

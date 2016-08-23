@@ -1,4 +1,5 @@
 var app = angular.module('app');
+
 app.controller('facturanextCtrl', function($scope, servicios,Facturas) {
 
   Facturas.get();
@@ -6,10 +7,11 @@ app.controller('facturanextCtrl', function($scope, servicios,Facturas) {
   $scope.tabs = [
                   {icon:'home',title:'Inicio',link:'/My-space/Facturanext'},
                   {icon:'assignment',title:'Mis Facturas',link:'/My-space/Facturanext/MisFacturas'},
-                  {icon:'cloud_upload',title:'Subir Fac. Electrónica',link:'/My-space/Facturanext/SubirFacturas'},
+                  {icon:'cloud_upload',title:'Fac. Electrónicas',link:'/My-space/Facturanext/SubirFacturas'},
                   {icon:'speaker_notes_off',title:'Fac. Rechazadas',link:'/My-space/Facturanext/FacurasRechazadas'},
-                  {icon:'border_color',title:'Crear Fac. Fisicas',link:'/My-space/Facturanext/FacturasFisicas'},
+                  {icon:'border_color',title:'Fac. Fisicas',link:'/My-space/Facturanext/FacturasFisicas'},
                   {icon:'contacts',title:'Proveedores',link:'/My-space/Facturanext/Proveedores'},
+                  {icon:'reorder',title:'Listado Proveedores',link:'/My-space/Facturanext/Listado_Proveedores'},
                 ];
                 
   $scope.menucard =   [

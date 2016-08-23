@@ -1,6 +1,5 @@
-var app=angular.module('app').controller('seleccionar-empresa', function ($scope, Sucursaless, $location, $localStorage) {
+var app = angular.module('app').controller('seleccionar-empresa', function ($scope, Sucursaless, $location, $localStorage) {
     
-
     $scope.products=[];
     Sucursaless.get().$promise.then(function(data) {
         if (data.sucursales.length == 1) {
@@ -21,9 +20,6 @@ var app=angular.module('app').controller('seleccionar-empresa', function ($scope
         $scope.datam = {
             photos3p: partition($scope.products, data.sucursales.length / 4)
         };
-    }
-    , function(err) {
-        // console.log(err);
     });
 
     var partition = function (input, size) {
@@ -33,6 +29,7 @@ var app=angular.module('app').controller('seleccionar-empresa', function ($scope
         }
         return newArr;
     }
+
     $scope.SetSucursal = function(index) {
         $localStorage.sucursal=$scope.products[index];
         $location.path('/My-space/Inicio');

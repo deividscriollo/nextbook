@@ -15,8 +15,9 @@
             </md-select>
         </md-input-container>
 
-        <md-button class="md-fab md-mini md-primary" aria-label="Use Android">
-          <md-icon md-svg-src="img/icons/android.svg" style="color: greenyellow;"></md-icon>
+        <md-button class="md-fab md-mini md-primary" ng-click="filtrarititem(dessert)">
+            <md-tooltip md-direction="right">Filtrar</md-tooltip>
+            <md-icon >search</md-icon>
         </md-button>
     </div>
 
@@ -55,7 +56,8 @@
                     <th md-column md-numeric>RAZÓN SOCIAL</th>
                     <th md-column md-numeric>TIPO DE CONSUMO</th>
                     <th md-column md-numeric>TOTAL</th>
-                    <th md-column md-numeric>ACCIONES</th>
+                    <th md-column md-numeric>PDF</th>
+                    <th md-column md-numeric>XML</th>
                 </tr>
             </thead>
             
@@ -67,18 +69,13 @@
                     <td md-cell>{{dessert.nombre_comercial}}</td>
                     <td md-cell>{{dessert.tipo_consumo}}</td>
                     <td md-cell>{{dessert.total}}</td>  
-                    <td md-cell>
-                         <md-button class="md-fab md-mini md-primary" ng-click="eddititem(dessert)">
-                          <md-icon md-svg-src="img/icons/ic_edit_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
-                        </md-button>
-                        <md-button class="md-fab md-mini md-primary" ng-click="deleteitem(dessert)">
-                          <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
-                        </md-button>
-                    </td>
+                    <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="pdfititem(dessert)">picture_as_pdf<md-tooltip>Generar PDF</md-tooltip></md-icon></td>
+                    <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="xmlititem(dessert)">file_download<md-tooltip>Generar XML</md-tooltip></md-icon></td>
                 </tr>
             </tbody>
         </table>
     </md-table-container>
+
     <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}" md-limit="query.num_registros" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{desserts.total}}" md-on-paginate="getDesserts" md-page-select>
     </md-table-pagination>
 </md-content>

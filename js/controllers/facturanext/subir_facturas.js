@@ -13,7 +13,14 @@ app.controller('SubirFacCtrl', function($mdDialog, $scope, serviciosfacturanext,
 			};
 
 			var limite = xmltotal[key].comprobante.length;
-			var xmlcomprobante = xmltotal[key].comprobante;
+			var com = xmltotal[key].comprobante.substring(limite-3);
+
+			if(com == ']]>') {
+				var xmlcomprobante=xmltotal[key].comprobante.substring(47, limite-3);	
+			} else {
+				var xmlcomprobante = xmltotal[key].comprobante;	
+			}
+
 			var comprobantejson = x2js.xml_str2json(xmlcomprobante);
 			var claveAcceso = comprobantejson.factura.infoTributaria.claveAcceso;
 
@@ -29,6 +36,7 @@ app.controller('SubirFacCtrl', function($mdDialog, $scope, serviciosfacturanext,
 
 	$scope.guardar_factura_electronica = function(){
 	  	serviciosfacturanext.addFacElectronicas().save($scope.data).$promise.then(function(data) {
+	  		
 	     	if(data.respuesta == true) {
 		        $mdDialog.show(
 		            $mdDialog.alert()

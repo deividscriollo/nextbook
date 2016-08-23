@@ -127,6 +127,7 @@ app.controller('addItemNomina', function ($mdDialog, $scope, serviciosnomina, se
 app.controller('editItemNomina', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) {
   $scope.data = {
     id: items.id,
+    codigo: items.codigo,
     periodicidad: items.periodicidad,
     descripcion: items.descripcion,
     registro_patronal: items.registro_patronal,
@@ -161,18 +162,33 @@ app.controller('deleteItemNomina', function ($mdDialog, $scope, serviciosnomina,
   
   this.cancel = $mdDialog.cancel;
   $scope.eliminar_nomina = function() {
-    serviciosnomina.delete_nomina().delete($scope.data).$promise.then(function(data) {
+    servicios.login_radio().set($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
-          $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#dialogContainer')))
-            .clickOutsideToClose(true)
-            .title('NextBook')
-            .textContent('Registro Eliminado Correctamente')
-            .ariaLabel('Registro Eliminado Correctamente')
-            .ok('Ok!')
-            .openFrom('#left')
-         );
+          serviciosnomina.delete_nomina().delete($scope.data).$promise.then(function(data) {
+            if(data.respuesta == true) {
+                $mdDialog.show(
+                  $mdDialog.alert()
+                  .parent(angular.element(document.querySelector('#dialogContainer')))
+                  .clickOutsideToClose(true)
+                  .title('NextBook')
+                  .textContent('Registro Eliminado Correctamente')
+                  .ariaLabel('Registro Eliminado Correctamente')
+                  .ok('Ok!')
+                  .openFrom('#left')
+               );
+            }
+        });
+      } else {
+        $mdDialog.show(
+          $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#dialogContainer')))
+          .clickOutsideToClose(true)
+          .title('NextBook')
+          .textContent('Contraseña Erronea')
+          .ariaLabel('Contraseña Erronea')
+          .ok('Ok!')
+          .openFrom('#left')
+        ); 
       }
     }); 
   } 

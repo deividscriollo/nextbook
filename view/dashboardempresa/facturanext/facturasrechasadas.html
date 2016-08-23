@@ -14,8 +14,9 @@
             </md-select>
         </md-input-container>
 
-        <md-button class="md-fab md-mini md-primary" aria-label="Use Android">
-          <md-icon md-svg-src="img/icons/android.svg" style="color: greenyellow;"></md-icon>
+        <md-button class="md-fab md-mini md-primary">
+            <md-tooltip md-direction="right">Filtrar</md-tooltip>
+            <md-icon >search</md-icon>
         </md-button>
     </div>
 
@@ -74,6 +75,7 @@
             </tbody>
         </table>
     </md-table-container>
+    
     <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}" md-limit="query.num_registros" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{desserts.total}}" md-on-paginate="getDesserts" md-page-select>
     </md-table-pagination>
 </md-content>

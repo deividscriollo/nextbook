@@ -1,14 +1,11 @@
 app.config(function($routeSegmentProvider, $routeProvider) {
         
-        // Configuring provider options
-        
         $routeSegmentProvider.options.autoLoadTemplates = true;
       
         $routeSegmentProvider
             .when('/salir/:id',          'salir')
             .when('/',          'sbuscar')
             .when('/Home',          's1')
-
 
             .when('/activarcuenta/:cuenta&:code&:correo',          'activarcuenta')
             // respuesta mensajeria
@@ -26,38 +23,40 @@ app.config(function($routeSegmentProvider, $routeProvider) {
 
             // dashboard general
             .when('/My-space',      'dashboard')
-                .when('/My-space/Perfil-inicio',      'dashboard.perfil.inicio')
-                    .when('/My-space/Usuario',      'dashboard.perfil.apps')
-                    .when('/My-space/Mapasa',      'dashboard.perfil.maps')
-                    .when('/My-space/Biografia',      'dashboard.perfil.Historial')
-                .when('/My-space/Inicio',      'dashboard.ini.inicio')
-                    .when('/My-space/Apss',      'dashboard.ini.apps')
-                    .when('/My-space/Maps',      'dashboard.ini.maps')
-                    .when('/My-space/Historial',      'dashboard.ini.record')
+            .when('/My-space/Perfil-inicio',      'dashboard.perfil.inicio')
+            .when('/My-space/Usuario',      'dashboard.perfil.apps')
+            .when('/My-space/Mapasa',      'dashboard.perfil.maps')
+            .when('/My-space/Biografia',      'dashboard.perfil.Historial')
 
-                .when('/My-space/Facturanext',      'dashboard.facturanext.inicio')
-                    .when('/My-space/Facturanext/MisFacturas',      'dashboard.facturanext.misfacturas')
-                    .when('/My-space/Facturanext/SubirFacturas',      'dashboard.facturanext.subirfactura')
-                    .when('/My-space/Facturanext/FacurasRechazadas',      'dashboard.facturanext.facturasrechasadas')
-                    .when('/My-space/Facturanext/FacturasFisicas',      'dashboard.facturanext.facturasfisicas')
-                    .when('/My-space/Facturanext/Proveedores',      'dashboard.facturanext.proveedores')
+            .when('/My-space/Inicio',      'dashboard.ini.inicio')
+            .when('/My-space/Apss',      'dashboard.ini.apps')
+            .when('/My-space/Maps',      'dashboard.ini.maps')
+            .when('/My-space/Historial',      'dashboard.ini.record')
 
-                .when('/My-space/RadioAdmin',      'dashboard.radio.inicio')
-                .when('/My-space/RadioAdmin/Clientes',      'dashboard.radio.clientes')
+            .when('/My-space/Facturanext',      'dashboard.facturanext.inicio')
+            .when('/My-space/Facturanext/MisFacturas',      'dashboard.facturanext.misfacturas')
+            .when('/My-space/Facturanext/SubirFacturas',      'dashboard.facturanext.subirfactura')
+            .when('/My-space/Facturanext/FacurasRechazadas',      'dashboard.facturanext.facturasrechasadas')
+            .when('/My-space/Facturanext/FacturasFisicas',      'dashboard.facturanext.facturasfisicas')
+            .when('/My-space/Facturanext/Proveedores',      'dashboard.facturanext.proveedores')
+            .when('/My-space/Facturanext/Listado_Proveedores',      'dashboard.facturanext.listado_proveedores')
 
-                // direccionar nomina
-                .when('/My-space/NominaAdmin',      'dashboard.nomina.inicio')
-                .when('/My-space/NominaAdmin/Nomina',      'dashboard.nomina.nomina')
-                .when('/My-space/NominaAdmin/Departamentos',      'dashboard.nomina.departamentos')
-                .when('/My-space/NominaAdmin/Cargos',      'dashboard.nomina.cargos')
-                .when('/My-space/NominaAdmin/Bancos',      'dashboard.nomina.bancos')
-                .when('/My-space/NominaAdmin/Empleados',      'dashboard.nomina.empleados')
-                .when('/My-space/NominaAdmin/Listado_Empleado',      'dashboard.nomina.listado_empleado')
-                .when('/My-space/NominaAdmin/Modificar_Empleado',      'dashboard.nomina.modificar_empleado')
-                .when('/My-space/NominaAdmin/Nomina_Pagos',      'dashboard.nomina.personal_roles')
-                .when('/My-space/NominaAdmin/Rol_Pagos',      'dashboard.nomina.rol_pagos')
-                .when('/My-space/NominaAdmin/Listado_Roles',      'dashboard.nomina.listado_roles')
-                .when('/My-space/NominaAdmin/Modificar_Rol',      'dashboard.nomina.modificar_rol')
+            .when('/My-space/RadioAdmin',      'dashboard.radio.inicio')
+            .when('/My-space/RadioAdmin/Clientes',      'dashboard.radio.clientes')
+
+            // direccionar nomina
+            .when('/My-space/NominaAdmin',      'dashboard.nomina.inicio')
+            .when('/My-space/NominaAdmin/Nomina',      'dashboard.nomina.nomina')
+            .when('/My-space/NominaAdmin/Departamentos',      'dashboard.nomina.departamentos')
+            .when('/My-space/NominaAdmin/Cargos',      'dashboard.nomina.cargos')
+            .when('/My-space/NominaAdmin/Bancos',      'dashboard.nomina.bancos')
+            .when('/My-space/NominaAdmin/Empleados',      'dashboard.nomina.empleados')
+            .when('/My-space/NominaAdmin/Listado_Empleado',      'dashboard.nomina.listado_empleado')
+            .when('/My-space/NominaAdmin/Modificar_Empleado',      'dashboard.nomina.modificar_empleado')
+            .when('/My-space/NominaAdmin/Nomina_Pagos',      'dashboard.nomina.personal_roles')
+            .when('/My-space/NominaAdmin/Rol_Pagos',      'dashboard.nomina.rol_pagos')
+            .when('/My-space/NominaAdmin/Listado_Roles',      'dashboard.nomina.listado_roles')
+            .when('/My-space/NominaAdmin/Modificar_Rol',      'dashboard.nomina.modificar_rol')
 
             .segment('salir', {
                 // templateUrl: 'view/home.html',
@@ -115,14 +114,14 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .within()
                 .segment('perfil', {
                     templateUrl: 'view/dashboardempresa/perfil.html',
-                    controller: 'perfilCtrl'
+                    // controller: 'perfilCtrl'
                     // controller: 'perfilCtrl'
                 })
                 .within()
                     .segment('inicio', {
                         'default': true,
                         templateUrl: 'view/dashboardempresa/perfil/inicio1.html',
-                        controller: 'perfil-inicio-Ctrl'
+                        // controller: 'perfil-inicio-Ctrl'
                     })
                     .segment('apps', {
                         templateUrl: 'view/dashboardempresa/perfil/apps.html',
@@ -138,15 +137,14 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     })
                 .up()
                 .segment('ini', {
-                    
                     templateUrl: 'view/dashboardempresa/inicio.html',
-                    // controller: 'inicioCtrl'
+                    controller: 'inicioCtrl'
                 })
                 .within()
                     .segment('inicio', {
                         'default': true,
                         templateUrl: 'view/dashboardempresa/inicio2.html',
-                        // controller: 'appsCtrl'
+                        controller: 'appsCtrl'
                     })
                     .segment('apps', {
                         templateUrl: 'view/dashboardempresa/apps.html',
@@ -162,38 +160,44 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     })
                 .up()
                 .segment('facturanext', {
+                    'default': true,
                     templateUrl: 'view/dashboardempresa/facturanext/index.html',
                     controller: 'facturanextCtrl'
                 })
                 .within()
                     .segment('inicio', {
-                        'default': true,
+                        // 'default': true,
                         templateUrl: 'view/dashboardempresa/facturanext/inicio.html',
                         // controller: 'appsCtrl'
                     })
                     .segment('misfacturas', {
-                        'default': true,
+                        // 'default': true,
                         templateUrl: 'view/dashboardempresa/facturanext/misfacturas.html',
                         // controller: 'misfacturasCtrl'
                     })
                     .segment('subirfactura', {
-                        'default': true,
+                        // 'default': true,
                         templateUrl: 'view/dashboardempresa/facturanext/subirfactura.html',
                         // controller: 'SubirFacCtrl'
                     })
                     .segment('facturasrechasadas', {
-                        'default': true,
+                        // 'default': true,
                         templateUrl: 'view/dashboardempresa/facturanext/facturasrechasadas.html',
                         // controller: 'appsCtrl'
                     })
                     .segment('facturasfisicas', {
-                        'default': true,
+                        // 'default': true,
                         templateUrl: 'view/dashboardempresa/facturanext/facturasfisicas.html',
                         // controller: 'appsCtrl'
                     })
                     .segment('proveedores', {
-                        'default': true,
+                        // 'default': true,
                         templateUrl: 'view/dashboardempresa/facturanext/proveedores.html',
+                        // controller: 'proveedoresCtrl'
+                    })
+                    .segment('listado_proveedores', {
+                        // 'default': true,
+                        templateUrl: 'view/dashboardempresa/facturanext/listado_proveedores.html',
                         // controller: 'proveedoresCtrl'
                     })
                 .up()

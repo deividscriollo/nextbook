@@ -1,46 +1,18 @@
 var app = angular.module('app');
-app.controller('modal_select_sucursal_categoriactrl', function ($scope, $localStorage, servicios, $mdDialog, $location, $mdSidenav) {
-	this.cancel = $mdDialog.cancel
 
-	$scope.data = {
-		actividad_economica: $localStorage.datosE.actividad_economica
-	};
-
-	servicios.get_categorias_sucursal().get().$promise.then(function(data) {
-        $scope.states = data.categorias;
-    });
-
-	$scope.set_categoria = function() {
-        servicios.set_categoria_sucursal().set($scope.data_cat).$promise.then(function(data) {
-        	if(data.respuesta == true) {
-        		$localStorage.sucursal.categoria = $scope.data_cat.categoria;
-		        $mdDialog.show(
-		            $mdDialog.alert()
-		            .parent(angular.element(document.querySelector('#dialogContainer')))
-		            .clickOutsideToClose(true)
-		            .title('NextBook')
-		            .textContent('Información Agregada Correctamente')
-		            .ariaLabel('Información Agregada Correctamente')
-		            .ok('Ok!')
-		        );
-		    }
-        });
-    }
-});
-
-app.controller('dashboardCtrl', function ($scope, $localStorage,servicios, $mdDialog, $location, $mdSidenav) {
+app.controller('dashboardCtrl', function ($mdDialog, $scope, $localStorage, servicios, $location, $mdSidenav, $timeout) {
     $scope.localStorage = $localStorage.datosE;
-    if ($localStorage.sucursal.categoria == null||$localStorage.sucursal.categoria == '') {
+
+    if ($localStorage.sucursal.categoria == null || $localStorage.sucursal.categoria == '') {
     	$mdDialog.show({
     		clickOutsideToClose: true,
-	      	controller: 'modal_select_sucursal_categoriactrl',
-	      	controllerAs: 'ctrl',
-	      	focusOnOpen: false,
-      		targetEvent: event,
-	      	templateUrl: 'view/modales/modal_select_sucursal_categoria.html',
-	      	parent: angular.element(document.body)
+		    controller: 'modal_select_sucursal_categoriactrl',
+		    controllerAs: 'ctrl',
+		    focusOnOpen: false,
+		    templateUrl: 'view/modales/modal_select_sucursal_categoria.html',
 	    })
     }
+
     $scope.toggleSidenav = function(menuId) {
 	    $mdSidenav(menuId).toggle();
 	};
@@ -71,14 +43,39 @@ app.controller('dashboardCtrl', function ($scope, $localStorage,servicios, $mdDi
 
 	$scope.tabnavigation = function(valor){
 		$location.path(valor);
-		// console.log(valor);
 	}
-	 // $scope.currentNavItem = 'page1';
+});
+
+app.controller('modal_select_sucursal_categoriactrl', function ($mdDialog, $scope, $localStorage, servicios, $location, $mdSidenav, $timeout) {
+	$scope.data = {
+		actividad_economica: $localStorage.datosE.actividad_economica
+	};
+
+	servicios.get_categorias_sucursal().get().$promise.then(function(data) {
+        $scope.states = data.categorias;
+    });
+
+	this.cancel = $mdDialog.cancel;
+	$scope.set_categoria = function() {
+        servicios.set_categoria_sucursal().set($scope.data_cat).$promise.then(function(data) {
+        	if(data.respuesta == true) {
+        		$localStorage.sucursal.categoria = $scope.data_cat.categoria;
+		        $mdDialog.show(
+		            $mdDialog.alert()
+		            .parent(angular.element(document.querySelector('#dialogContainer')))
+		            .clickOutsideToClose(true)
+		            .title('NextBook')
+		            .textContent('Información Agregada Correctamente')
+		            .ariaLabel('Información Agregada Correctamente')
+		            .ok('Ok!')
+		        );
+		    }
+        });
+    }
 });
 
 
 app.controller('dashboarinicioCtrl', function($scope, $localStorage) {
-// inicio 1
     $scope.localStorage = $localStorage.datosE;
 });
 

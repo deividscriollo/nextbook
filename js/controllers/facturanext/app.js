@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.controller('facturanextCtrl', function($scope, servicios,Facturas) {
+app.controller('facturanextCtrl', function($scope, servicios, Facturas) {
 
   Facturas.get();
   

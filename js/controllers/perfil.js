@@ -104,8 +104,8 @@ $scope.Updateimg = function(idimg) {
         servicios.set_img_perfil().enviar({
                     img: idimg
                 }).$promise.then(function(data) {
-                    $localStorage.imgPerfil=data.img;
-                    $rootScope.imgPerfil=data.img;
+                    $localStorage.imgPerfil = data.img;
+                    $rootScope.imgPerfil = data.img;
                     
                     $mdDialog.show(
                         $mdDialog.alert()
@@ -122,8 +122,8 @@ $scope.Updateimg = function(idimg) {
                 servicios.set_img_portada().enviar({
                     img: idimg
                 }).$promise.then(function(data) {
-                    $localStorage.imgPortada=data.img;
-                    $rootScope.imgPortada=data.img;
+                    $localStorage.imgPortada = data.img;
+                    $rootScope.imgPortada = data.img;
                     
                     $mdDialog.show(
                         $mdDialog.alert()

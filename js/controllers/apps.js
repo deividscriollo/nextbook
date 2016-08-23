@@ -77,7 +77,7 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
 
 app.controller('AccesoNomina', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $location) { 
     $scope.data = {}; 
-    $scope.data.email = $localStorage.datosPersona.correo; 
+    $scope.data.email = $localStorage.datosE.correo; 
     this.cancel = $mdDialog.cancel;
 
     $scope.confirmar_pass = function() {

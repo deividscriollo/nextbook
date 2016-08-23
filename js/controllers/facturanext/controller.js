@@ -1,5 +1,8 @@
 var app = angular.module('app');
-app.controller('facturanextCtrl', function($scope, servicios) {
+app.controller('facturanextCtrl', function($scope, servicios,Facturas) {
+
+  Facturas.get();
+  
   $scope.tabs = [
                   {icon:'home',title:'Inicio',link:'/My-space/Facturanext'},
                   {icon:'assignment',title:'Mis Facturas',link:'/My-space/Facturanext/MisFacturas'},

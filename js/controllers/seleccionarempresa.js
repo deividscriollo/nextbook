@@ -1,5 +1,5 @@
-var app=angular.module('app').controller('seleccionar-empresa', function ($scope, Sucursaless, $location, $localStorage,Facturas) {
-    Facturas.get();
+var app=angular.module('app').controller('seleccionar-empresa', function ($scope, Sucursaless, $location, $localStorage) {
+    
 
     $scope.products=[];
     Sucursaless.get().$promise.then(function(data) {

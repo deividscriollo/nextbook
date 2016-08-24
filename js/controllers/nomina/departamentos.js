@@ -1,4 +1,5 @@
 var app = angular.module('app');
+
 app.controller('departamentosCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
 
   var bookmark;
@@ -25,6 +26,7 @@ app.controller('departamentosCtrl', function ($mdDialog, $scope, serviciosnomina
   }
   
   $scope.addititem = function (event) {
+
     $mdDialog.show({
       clickOutsideToClose: true,
       controller: 'addItemDepartamento',
@@ -35,28 +37,52 @@ app.controller('departamentosCtrl', function ($mdDialog, $scope, serviciosnomina
     }).then($scope.getDesserts);
   };
 
-  $scope.eddititem = function (data, event) {
+  $scope.eddititem = function (dessert, event) {
+
     $mdDialog.show({
-      clickOutsideToClose: true,
-      controller: 'editItemDepartamento',
+      clickOutsideToClose: true,     
+      locals: {items: dessert},
+      controller: function editItemDepartamento($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) {
+
+        $scope.data = {
+          id: items.id,
+          codigo: items.codigo,
+          descripcion: items.descripcion   
+        };
+
+        this.cancel = $mdDialog.cancel 
+        $scope.modificar_departamento = function($event) {
+          serviciosnomina.edit_departamento().edit($scope.data).$promise.then(function(data) {
+            if(data.respuesta == true) {
+                $mdDialog.show(
+                  $mdDialog.alert()
+                  .parent(angular.element(document.querySelector('#dialogContainer')))
+                  .clickOutsideToClose(true)
+                  .title('NextBook')
+                  .textContent('Registro Modificado Correctamente')
+                  .ariaLabel('Registro Modificado Correctamente')
+                  .ok('Ok!')
+                  .openFrom('#left')
+                );
+            }
+          }); 
+        }
+      },
+      templateUrl: 'view/dashboardempresa/nomina/modificar_departamento.html', 
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      templateUrl: 'view/dashboardempresa/nomina/modificar_departamento.html',
-      locals: {
-        items: data
-      }
     }).then($scope.getDesserts);
   };
   
-  $scope.deleteitem = function (data) {
+  $scope.deleteitem = function (dessert, event) {
+
     $mdDialog.show({
       clickOutsideToClose: true,
       controller: 'deleteItemDepartamento',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      locals: {desserts: $scope.selected},
       templateUrl: 'view/dashboardempresa/nomina/eliminar_departamento.html',
       locals: {
         items: data
@@ -127,30 +153,7 @@ app.controller('addItemDepartamento', function ($mdDialog, $scope, serviciosnomi
   }  
 });
 
-app.controller('editItemDepartamento', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) {
-  // $scope.data = {}; 
-
-  // $scope.data.id = items.id;
-  // $scope.data.codigo = items.codigo;
-  // $scope.data.descripcion = items.descripcion;
-  
-  // this.cancel = $mdDialog.cancel 
-  // $scope.modificar_departamento = function($event) {
-  //   serviciosnomina.edit_nomina().edit($scope.data).$promise.then(function(data) {
-  //     if(data.respuesta == true) {
-  //         $mdDialog.show(
-  //           $mdDialog.alert()
-  //           .parent(angular.element(document.querySelector('#dialogContainer')))
-  //           .clickOutsideToClose(true)
-  //           .title('NextBook')
-  //           .textContent('Registro Modificado Correctamente')
-  //           .ariaLabel('Registro Modificado Correctamente')
-  //           .ok('Ok!')
-  //           .openFrom('#left')
-  //         );
-  //     }
-  //   }); 
-  // }
+app.controller('editItemDepartamento', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
 });
 
 app.controller('deleteItemDepartamento', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) { 

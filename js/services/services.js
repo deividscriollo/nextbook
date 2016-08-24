@@ -688,8 +688,10 @@ app.factory('Facturas', function($resource, $localStorage, servicios) {
     return $resource(url_server+'public/readFacturas', {}
     , {
         get: {
-            method: 'GET', isArray: false, params: {
-                token: $localStorage.token
+            method: 'GET', isArray: false, 
+            params: {
+                token: $localStorage.token,
+                 sucursal: $localStorage.sucursal.codigo
             }
         }
     }

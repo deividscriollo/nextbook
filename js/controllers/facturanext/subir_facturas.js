@@ -48,6 +48,19 @@ app.controller('SubirFacCtrl', function($mdDialog, $scope, serviciosfacturanext,
 		            .ok('Ok!')
 		            .openFrom('#left')
 		        );
+	      	} else {
+	      		if(data.respuesta == false) {
+		      		$mdDialog.show(
+			            $mdDialog.alert()
+			            .parent(angular.element(document.querySelector('#dialogContainer')))
+			            .clickOutsideToClose(true)
+			            .title('NextBook')
+			            .textContent('Clave de Acceso no Válida ')
+			            .ariaLabel('Clave de Acceso no Válida')
+			            .ok('Ok!')
+			            .openFrom('#left')
+			        );
+			    }
 	      	}
 	  	});
 	}

@@ -15,16 +15,25 @@
                   <div layout-gt-xs="row">
                     <md-input-container class="md-block" flex-gt-xs>
                         <label>Actividad</label>
-                        <input type="text" required name="actividad" ng-model="data.actividad" />
+                        <textarea required name="actividad" ng-model="data.actividad"></textarea>
                         <div ng-messages="registroForm.actividad.$error">
                             <div ng-message="required">Actividad Requerida</div>
                         </div>
                     </md-input-container>
                   </div>
                   <div layout-gt-xs="row">
+                      <h4 class="md-subhead">Custom format + error messages</h4>
+                      <mdp-date-picker mdp-open-on-click required name="dateFormat" mdp-placeholder="My date(dd/mm/yyyy)" mdp-format="DD/MM/YYYY" ng-model="currentDate">
+                        <div ng-messages="demoForm.dateFormat.$error">
+                          <div ng-message="required">This is required</div>
+                          <div ng-message="format">Invalid format</div>
+                        </div>
+                      </mdp-date-picker>
+                  </div>
+                  <div layout-gt-xs="row">
                     <md-input-container class="md-block" flex-gt-xs>
                         <label>Dirección</label>
-                        <input type="text" required name="direccion" ng-model="data.direccion" />
+                        <textarea required name="direccion" ng-model="data.direccion"></textarea>
                         <div ng-messages="registroForm.direccion.$error">
                             <div ng-message="required">Dirección Requerido</div>
                         </div>

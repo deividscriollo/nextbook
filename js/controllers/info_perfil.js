@@ -18,7 +18,24 @@ app.controller('info_perfilCtrl', function($mdDialog,servicios,$scope, $routeSeg
   };
 });
 
-app.controller('updateInfoCtrl', function($mdDialog,servicios,$scope, $routeSegment,$localStorage) {
+app.controller('updateInfoCtrl', function($mdDialog,servicios,$scope, $routeSegment,$localStorage, $mdpDatePicker) {
+
+  
+    $scope.currentDate = new Date();
+    this.showDatePicker = function(ev) {
+      $mdpDatePicker($scope.currentDate, {
+        targetEvent: ev
+      }).then(function(selectedDate) {
+        $scope.currentDate = selectedDate;
+      });;
+    };
+    
+    this.filterDate = function(date) {
+      return moment(date).date() % 2 == 0;
+    };
+    
+    
+
 
   $scope.data = {
   	actividad:$localStorage.datosE.actividad_economica,

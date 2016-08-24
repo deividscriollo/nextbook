@@ -315,6 +315,7 @@ input-container.md-input-invalid .md-input {
 }
 
 .md-default-theme .md-input, md-input-container .md-input {
-    color: #757575;
+    color: #ff4081;
     border-color: rgba(0,0,0,0.12);
 }
+

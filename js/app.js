@@ -16,8 +16,9 @@ var app=angular.module	('app', 	[
 									'ngMdIcons',
 									'lfNgMdFileInput',
 									'oitozero.ngSweetAlert',
-									'md.data.table',
-									'leaflet-directive'
+									'md.data.table',//md tabla dinamia general
+									'leaflet-directive',//directiva de mapas
+									'mdPickers'
 								]
 						);
 app.run(function($FB) {

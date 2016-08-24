@@ -8,36 +8,18 @@
       	</div>
     </md-toolbar>
 </md-content>
-<div layout="row" layout-align="center center">
-	<div layout="column" class="loginBox md-whiteframe-z1">
-	 	<md-card>
-	        <img ng-src="images/buscar/publi1.png" class="md-card-image" alt="Washed Out">
-	        <md-card-title>
-	          <md-card-title-text>
-	            <span class="md-headline">Action buttons</span>
-	          </md-card-title-text>
-	        </md-card-title>
-	        <md-card-content>
-				<md-content layout="column" class="md-padding">
-				<md-input-container>
-				<label>Empresas, Servicios</label>
-				<input type="email" ng-model="username"/>
+<div flex layout="row" layout-align="center center">
+    <div flex-sm="100" flex-gt-sm="50" flex-gt-md="70" flex-gt-lg="30">
+        <h1 layout="column" layout-align="center center ">Nextbook, Red de Negocios</h1>
+    	<img ng-src="images/buscar/publi1.png" layout-align="center center">
+        <div layout="column" flex-sm="100" flex-gt-sm="100" flex-gt-md="100" flex-gt-lg="100" style="padding-top: 30px;">
+            <form>
+                <md-input-container class="md-icon-float md-icon-right md-block">
+					<label>Empresas, Servicios</label>
+					<input type="email" ng-model="username"/>
+					<md-icon class="md-accent">search</md-icon>
 				</md-input-container>
-	        </md-card-content>
-    	</md-card>
+            </form>
+        </div>
     </div>
 </div>
-
-
-<style type="text/css">
-	.loginBox {
-	  max-width:  100%;
-	  width: 500px;
-	  position: relative;
-	  top:50px;
-	}
-
-	.stretch input  {
-	  width: 100%
-	}
-</style>

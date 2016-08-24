@@ -114,7 +114,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .within()
                 .segment('perfil', {
                     templateUrl: 'view/dashboardempresa/perfil.html',
-                    // controller: 'perfilCtrl'
+                    controller: 'perfilCtrl'
                     // controller: 'perfilCtrl'
                 })
                 .within()

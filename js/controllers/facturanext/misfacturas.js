@@ -20,8 +20,18 @@ app.controller('misfacturasCtrl', function($mdDialog, $scope, serviciosfacturane
     num_registros: 5,
     pagina_actual:1,
     limit: '5',
-    page_num: 1
+    page_num: 1,
+    fecha_inicio:'',
+    fecha_fin:'',
+    ordenarPor:''
   };
+  
+  $scope.filtrarititem=function(){
+    $scope.query.fecha_inicio=$scope.data.fecha_inicio;
+    $scope.query.fecha_fin=$scope.data.fecha_fin;
+    $scope.query.ordenarPor=$scope.data.agrupar;
+    $scope.getDesserts();
+  }
   
   function success(desserts) {
     $scope.desserts = desserts.respuesta;

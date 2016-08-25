@@ -60,7 +60,7 @@
                 <div layout-gt-xs="row">
                   <md-input-container class="md-block" flex-gt-xs>
                       <label>Días</label>
-                      <input type="text" required name="dias" ng-model="data.dias" />
+                      <input type="number" required name="dias" ng-model="data.dias" />
                       <div ng-messages="registroForm.dias.$error">
                           <div ng-message="required">Días Requeridos</div>
                       </div>
@@ -68,7 +68,7 @@
 
                   <md-input-container class="md-block" flex-gt-xs>
                       <label>Horas Laborables</label>
-                      <input type="text" required name="horas_laborar" ng-model="data.horas_laborar" />
+                      <input type="number" required name="horas_laborar" ng-model="data.horas_laborar" />
                       <div ng-messages="registroForm.horas_laborar.$error">
                           <div ng-message="required">Horas Laborables Requerido</div>
                       </div>
@@ -76,10 +76,12 @@
                 </div>
 
                 <div layout-gt-xs="row">
-                  <md-datepicker ng-model="data.fecha_inicio" required name="data.fecha_inicio" md-placeholder="Fecha de Inicio"></md-datepicker>
-                  <div ng-messages="registroForm.data.fecha_inicio.$error">
-                      <div ng-message="required">Fecha Inicio Requerido</div>
-                  </div>
+                  <mdp-date-picker mdp-open-on-click required name="dateFormat" mdp-placeholder="Fecha Inicio" mdp-format="YYYY-MM-DD" ng-model="data.fecha_inicio">
+                      <div ng-messages="demoForm.dateFormat.$error">
+                        <div ng-message="required">Campo Requerido</div>
+                        <div ng-message="format">Formato Invalido</div>
+                      </div>
+                  </mdp-date-picker>
                 </div>
             </md-content>
           </div>

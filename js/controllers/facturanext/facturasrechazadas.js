@@ -1,8 +1,13 @@
 var app = angular.module('app');
 
 app.controller('facturasrechazadasCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage) {
+  
+  $scope.data = {
+    fecha_inicio: new Date(),
+    fecha_fin: new Date() 
+  }
 
-var bookmark;
+  var bookmark;
   
   $scope.filter = {
     options: {

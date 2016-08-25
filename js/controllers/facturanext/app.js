@@ -10,7 +10,6 @@ app.controller('facturanextCtrl', function($scope, servicios, Facturas) {
                   {icon:'cloud_upload',title:'Fac. Electrónicas',link:'/My-space/Facturanext/SubirFacturas'},
                   {icon:'speaker_notes_off',title:'Fac. Rechazadas',link:'/My-space/Facturanext/FacurasRechazadas'},
                   {icon:'border_color',title:'Fac. Fisicas',link:'/My-space/Facturanext/FacturasFisicas'},
-                  {icon:'contacts',title:'Proveedores',link:'/My-space/Facturanext/Proveedores'},
                   {icon:'reorder',title:'Listado Proveedores',link:'/My-space/Facturanext/Listado_Proveedores'},
                 ];
                 

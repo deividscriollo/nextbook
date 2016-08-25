@@ -45,4 +45,33 @@ app.service('serviciosfacturanext', function($resource, $localStorage, $location
     };
 
     //--------------------------------------------------Fin------------------------------------
+
+
+    // ------------------------------------------------ Proveedores ------------------
+    this.repeat_proveedor = function() {
+        return $resource(servicios.server().appnext()+'public/getProveedorbyRuc', {}
+        ,{
+            repeat: {
+                method: 'GET', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.get_proveedores = function() {
+        return $resource(servicios.server().appnext()+'public/getProveedores', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+    //--------------------------------------------------Fin------------------------------------
 });

@@ -9,6 +9,7 @@
                     <div ng-message="required">Serie Requerido</div>
                 </div>
             </md-input-container>
+
             <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <md-icon class="md-accent">search</md-icon>
                 <label>Ruc</label>
@@ -18,6 +19,7 @@
                     <div ng-message="md-maxlength">El Ruc tiene que tener mínimo 13 caracteres</div>
                 </div>
             </md-input-container>
+
             <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <md-icon class="md-accent">search</md-icon>
                 <label>Razon Social</label>
@@ -49,23 +51,19 @@
                 </md-select>
             </md-input-container>
 
-            <md-input-container class="md-icon-float md-block" flex-gt-sm>
-                <md-icon class="md-accent">airplay</md-icon>
-                <label>Fecha Emisión</label>
-                <input type="text" required name="fecha_emision" ng-model="data.fecha_emision" />
+            <mdp-date-picker mdp-open-on-click required name="fecha_emision" mdp-placeholder="Fecha Emisión" mdp-format="YYYY-MM-DD" ng-model="data.fecha_emision">
                 <div ng-messages="proveedoresForm.fecha_emision.$error">
-                    <div ng-message="required">Fecha Emisión Requerido</div>
+                  <div ng-message="required">Campo Requerido</div>
+                  <div ng-message="format">Formato Invalido</div>
                 </div>
-            </md-input-container>
+            </mdp-date-picker>
 
-            <md-input-container class="md-icon-float md-block" flex-gt-sm>
-                <md-icon class="md-accent">airplay</md-icon>
-                <label>Fecha Creación</label>
-                <input type="text" required name="feha_creacion" ng-model="data.feha_creacion" />
+            <mdp-date-picker mdp-open-on-click required name="feha_creacion" mdp-placeholder="Fecha Creación" mdp-format="YYYY-MM-DD" ng-model="data.feha_creacion">
                 <div ng-messages="proveedoresForm.feha_creacion.$error">
-                    <div ng-message="required">Fecha Creación Requerido</div>
+                  <div ng-message="required">Campo Requerido</div>
+                  <div ng-message="format">Formato Invalido</div>
                 </div>
-            </md-input-container>            
+            </mdp-date-picker>           
         </div>
 
         <div layout-gt-sm="row">

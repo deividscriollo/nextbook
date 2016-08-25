@@ -10,8 +10,8 @@
             <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <md-icon class="md-primary">airplay</md-icon>
                 <label>Código Empleado</label>
-                <input type="text" name="codigo_personal" id="codigo_personal" ng-model="data.codigo_personal" disabled />
-                <div ng-messages="empleadosForm.codigo_personal.$error">
+                <input type="text" name="codigo" ng-model="data.codigo" disabled />
+                <div ng-messages="empleadosForm.codigo.$error">
                     <div ng-message="required">Campo Requerido</div>
                 </div>
             </md-input-container>
@@ -32,15 +32,14 @@
                     <div ng-message="required">Edad Requerido</div>
                 </div>
             </md-input-container>
-            <md-input-container class="md-icon-float md-block" flex-gt-sm>
-                <md-icon class="md-accent">airplay</md-icon>
-                <label>Fecha Aplicación</label>
-                <input type="text"  required name="fecha_aplicacion" ng-model="data.fecha_aplicacion" />
-                <div  class="error" ng-messages="empleadosForm.fecha_aplicacion.$error">
-                    <div ng-message="required">Fecha Aplicación Requerido</div>
+            <mdp-date-picker mdp-open-on-click required name="fecha_aplicacion" mdp-placeholder="Fecha Aplicación" mdp-format="YYYY-MM-DD" ng-model="data.fecha_aplicacion">
+                <div ng-messages="empleadosForm.fecha_aplicacion.$error">
+                  <div ng-message="required">Campo Requerido</div>
+                  <div ng-message="format">Formato Invalido</div>
                 </div>
-            </md-input-container>
+            </mdp-date-picker>
         </div>
+
         <div layout-gt-sm="row">
             <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <md-icon class="md-accent">airplay</md-icon>
@@ -59,15 +58,14 @@
                 <md-icon class="md-accent">airplay</md-icon>
                 <md-checkbox ng-model="data.relacion_dependencia"  >Relación Dependencia</md-checkbox>
             </md-input-container>
-            <md-input-container class="md-icon-float md-block" flex-gt-sm>
-                <md-icon class="md-accent">airplay</md-icon>
-                <label>Fecha de Nacimiento</label>
-                <input type="text" required name="fecha_nacimiento" ng-model="data.fecha_nacimiento">
+            <mdp-date-picker mdp-open-on-click required name="fecha_nacimiento" mdp-placeholder="Fecha de Nacimiento" mdp-format="YYYY-MM-DD" ng-model="data.fecha_nacimiento">
                 <div ng-messages="empleadosForm.fecha_nacimiento.$error">
-                    <div ng-message="required">Fecha de Nacimiento Requerido</div>
+                  <div ng-message="required">Campo Requerido</div>
+                  <div ng-message="format">Formato Invalido</div>
                 </div>
-            </md-input-container>            
+            </mdp-date-picker>           
         </div>
+
         <div layout-gt-sm="row">
             <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <md-icon class="md-accent">airplay</md-icon>
@@ -110,6 +108,7 @@
                 </div>
             </md-input-container>            
         </div>
+
         <div layout-gt-sm="row">
             <md-radio-group ng-model="data.instruccion" layout-gt-sm="row" flex-gt-md="80">
                 <md-input-container class="md-icon-float md-block" flex-gt-sm>
@@ -134,6 +133,7 @@
                 </div>
             </md-input-container>
         </div>
+
         <div layout-gt-sm="row">
             <md-radio-group ng-model="data.tipo_vivienda" layout-gt-sm="row" flex-gt-md="80">
                 <md-input-container class="md-icon-float md-block" flex-gt-sm>
@@ -150,6 +150,7 @@
                 </md-input-container>
             </md-radio-group>
         </div>
+
         <div layout-gt-sm="row">
             <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <md-icon class="md-accent">airplay</md-icon>
@@ -192,6 +193,7 @@
                 </div>
             </md-input-container>
         </div>
+
         <div layout-gt-sm="row">
             <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <md-icon class="md-accent">airplay</md-icon>
@@ -239,6 +241,7 @@
                 </div>
             </md-input-container>
         </div>
+
         <div layout-gt-sm="row">
             <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <md-icon class="md-accent">airplay</md-icon>
@@ -287,14 +290,12 @@
                     <div ng-message="required">Jornada Requerido</div>
                 </div>
             </md-input-container>
-            <md-input-container class="md-icon-float md-block" flex-gt-sm>
-                <md-icon class="md-accent">airplay</md-icon>
-                <label>Fecha Inicio Trabajo</label>
-                <input type="text"  required name="fecha_ing_trab" ng-model="data.fecha_ing_trab" />
-                <div  class="error" ng-messages="empleadosForm.fecha_ing_trab.$error">
-                    <div ng-message="required">Fecha Inicio Trabajo Requerido</div>
+            <mdp-date-picker mdp-open-on-click required name="fecha_ing_trab" mdp-placeholder="Fecha Inicio Trabajo" mdp-format="YYYY-MM-DD" ng-model="data.fecha_ing_trab">
+                <div ng-messages="empleadosForm.fecha_ing_trab.$error">
+                  <div ng-message="required">Campo Requerido</div>
+                  <div ng-message="format">Formato Invalido</div>
                 </div>
-            </md-input-container>
+            </mdp-date-picker>
         </div>
         <!-- <div class="row">
                 <md-icon class="md-accent">airplay</md-icon>

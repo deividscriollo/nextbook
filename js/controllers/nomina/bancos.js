@@ -96,7 +96,8 @@ app.controller('bancosCtrl', function ($mdDialog, $scope, serviciosnomina, servi
 });
 
 app.controller('addItemBancos', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) { 
-  this.cancel = $mdDialog.cancel
+  this.cancel = $mdDialog.cancel;
+  
   $scope.guardar_banco = function() {
     serviciosnomina.add_banco().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
@@ -116,54 +117,54 @@ app.controller('addItemBancos', function ($mdDialog, $scope, serviciosnomina, se
 });
 
 app.controller('editItemBancos', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) {
-  $scope.data = {
-    id: items.id,
-    periodicidad: items.periodicidad,
-    descripcion: items.descripcion,
-    registro_patronal: items.registro_patronal,
-    dias: items.dias,
-    horas_laborar: items.horas_laborar,
-    fecha_inicio: new Date(items.fecha_inicio)      
-  }; 
+  // $scope.data = {
+  //   id: items.id,
+  //   periodicidad: items.periodicidad,
+  //   descripcion: items.descripcion,
+  //   registro_patronal: items.registro_patronal,
+  //   dias: items.dias,
+  //   horas_laborar: items.horas_laborar,
+  //   fecha_inicio: new Date(items.fecha_inicio)      
+  // }; 
   
-  this.cancel = $mdDialog.cancel 
-  $scope.modificar_nomina = function($event) {
-    serviciosnomina.edit_nomina().edit($scope.data).$promise.then(function(data) {
-      if(data.respuesta == true) {
-          $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#dialogContainer')))
-            .clickOutsideToClose(true)
-            .title('NextBook')
-            .textContent('Registro Modificado Correctamente')
-            .ariaLabel('Registro Modificado Correctamente')
-            .ok('Ok!')
-            .openFrom('#left')
-         );
-      }
-    }); 
-  }
+  // this.cancel = $mdDialog.cancel 
+  // $scope.modificar_nomina = function($event) {
+  //   serviciosnomina.edit_nomina().edit($scope.data).$promise.then(function(data) {
+  //     if(data.respuesta == true) {
+  //         $mdDialog.show(
+  //           $mdDialog.alert()
+  //           .parent(angular.element(document.querySelector('#dialogContainer')))
+  //           .clickOutsideToClose(true)
+  //           .title('NextBook')
+  //           .textContent('Registro Modificado Correctamente')
+  //           .ariaLabel('Registro Modificado Correctamente')
+  //           .ok('Ok!')
+  //           .openFrom('#left')
+  //        );
+  //     }
+  //   }); 
+  // }
 });
 
 app.controller('deleteItemBancos', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, items) { 
-  $scope.data = {}; 
-  $scope.data.id = items.id;
+  // $scope.data = {}; 
+  // $scope.data.id = items.id;
   
-  this.cancel = $mdDialog.cancel;
-  $scope.eliminar_nomina = function() {
-    serviciosnomina.delete_nomina().delete($scope.data).$promise.then(function(data) {
-      if(data.respuesta == true) {
-          $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#dialogContainer')))
-            .clickOutsideToClose(true)
-            .title('NextBook')
-            .textContent('Registro Eliminado Correctamente')
-            .ariaLabel('Registro Eliminado Correctamente')
-            .ok('Ok!')
-            .openFrom('#left')
-         );
-      }
-    }); 
-  } 
+  // this.cancel = $mdDialog.cancel;
+  // $scope.eliminar_nomina = function() {
+  //   serviciosnomina.delete_nomina().delete($scope.data).$promise.then(function(data) {
+  //     if(data.respuesta == true) {
+  //         $mdDialog.show(
+  //           $mdDialog.alert()
+  //           .parent(angular.element(document.querySelector('#dialogContainer')))
+  //           .clickOutsideToClose(true)
+  //           .title('NextBook')
+  //           .textContent('Registro Eliminado Correctamente')
+  //           .ariaLabel('Registro Eliminado Correctamente')
+  //           .ok('Ok!')
+  //           .openFrom('#left')
+  //        );
+  //     }
+  //   }); 
+  // } 
 });

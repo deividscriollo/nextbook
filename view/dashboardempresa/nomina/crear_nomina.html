@@ -1,5 +1,5 @@
 <md-dialog ng-controller="addItemNomina">
-    <form name="registroForm" id="registroForm">
+    <form name="registroForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Crear Nóminas</h2>
@@ -71,16 +71,18 @@
                 </div>
 
                 <div layout-gt-xs="row">
-                  <md-datepicker ng-model="data.fecha_inicio" required name="data.fecha_inicio" md-placeholder="Fecha de Inicio"></md-datepicker>
-                  <div ng-messages="registroForm.data.fecha_inicio.$error">
-                      <div ng-message="required">Fecha Inicio Requerido</div>
-                  </div>
+                  <mdp-date-picker mdp-open-on-click required name="fecha_inicio" mdp-placeholder="Fecha Inicio" mdp-format="YYYY-MM-DD" ng-model="data.fecha_inicio">
+                      <div ng-messages="registroForm.fecha_inicio.$error">
+                        <div ng-message="required">Campo Requerido</div>
+                        <div ng-message="format">Formato Invalido</div>
+                      </div>
+                  </mdp-date-picker>
                 </div>
             </md-content>
           </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
-            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
+            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()">Cancelar</md-button>
             <span flex></span>
             <md-button class="md-raised md-primary" type="submit" ng-click="guardar_nomina()" ng-disabled="registroForm.$invalid">
               Guardar

@@ -1,81 +1,93 @@
 <md-content layout-padding flex-gt-md="100" ng-controller="facturasrechazadasCtrl">
-    <div layout-gt-sm="row">
-        <md-datepicker ng-model="data.fecha_inicio" required name="data.fecha_inicio" md-placeholder="Fecha Inicio"></md-datepicker>
+    <form name="facturasrechazadasForm">
+        <div layout-gt-sm="row">
+            <mdp-date-picker mdp-open-on-click required name="fecha_inicio" mdp-placeholder="Fecha Inicio" mdp-format="YYYY-MM-DD" ng-model="data.fecha_inicio">
+                <div ng-messages="misfacturasForm.fecha_inicio.$error">
+                  <div ng-message="required">Campo Requerido</div>
+                  <div ng-message="format">Formato Invalido</div>
+                </div>
+            </mdp-date-picker>
 
-        <md-datepicker ng-model="data.fecha_fin" required name="data.fecha_fin" md-placeholder="Fecha Fin"></md-datepicker>
+            <mdp-date-picker mdp-open-on-click required name="fecha_fin" mdp-placeholder="Fecha Fin" mdp-format="YYYY-MM-DD" ng-model="data.fecha_fin">
+                <div ng-messages="misfacturasForm.fecha_fin.$error">
+                  <div ng-message="required">Campo Requerido</div>
+                  <div ng-message="format">Formato Invalido</div>
+                </div>
+            </mdp-date-picker>
 
-        <md-input-container class="md-icon-float md-block" style="margin-top: 2px">
-          <md-icon class="md-accent">airplay</md-icon>
-          <label>Agrupar Por</label>
-          <md-select ng-model="data.agrupar" name="agrupar" required ng-change="update(nomina)" >
-                <md-option value="TODO">TODO</md-option>
-                <md-option value="FECHA RECHAZO">FECHA RECHAZO</md-option>
-                <md-option value="RAZÓN SOCIAL">RAZÓN SOCIAL</md-option>
-            </md-select>
-        </md-input-container>
+            <md-input-container class="md-icon-float md-block">
+              <md-icon class="md-accent">airplay</md-icon>
+              <label>Agrupar Por</label>
+              <md-select ng-model="data.agrupar" name="agrupar" required ng-change="update(nomina)" >
+                    <md-option value="TODO">TODO</md-option>
+                    <md-option value="FECHA RECHAZO">FECHA RECHAZO</md-option>
+                    <md-option value="RAZÓN SOCIAL">RAZÓN SOCIAL</md-option>
+                </md-select>
+            </md-input-container>
 
-        <md-button class="md-fab md-mini md-primary">
-            <md-tooltip md-direction="right">Filtrar</md-tooltip>
-            <md-icon >search</md-icon>
-        </md-button>
-    </div>
-
-    <md-toolbar ng-hide="selected.length || filter.show">
-      <div class="md-toolbar-tools">
-        Facturas Rechazadas
-        <span flex></span>
-        <md-button class="md-icon-button" ng-click="filter.show = true">
-            <md-icon>search</md-icon>
-        </md-button>
-        <md-button class="md-icon-button" ng-click="loadStuff($event)">
-            <md-icon>autorenew</md-icon>
-        </md-button>
-      </div>
-    </md-toolbar>
-
-    <md-toolbar class="md-table-toolbar md-default" ng-show="filter.show && !selected.length">
-        <div class="md-toolbar-tools">
-            <md-icon>search</md-icon>
-            <form flex name="filter.form">
-                <input type="text" ng-model="query.filter" ng-model-options="filter.options" placeholder="Buscar, Facturas Rechazadas">
-            </form>
-            <md-button class="md-icon-button" ng-click="removeFilter()">
-                <md-icon>close</md-icon>
+            <md-button class="md-fab md-mini md-primary">
+                <md-tooltip md-direction="right">Filtrar</md-tooltip>
+                <md-icon >search</md-icon>
             </md-button>
         </div>
-    </md-toolbar>
 
-    <md-table-container>
-        <table md-table md-progress="promise">
-            <thead md-head md-order="query.order" md-on-reorder="getDesserts">
-                <tr md-row>
-                    <th md-column md-numeric>FECHA RECHAZO</th>
-                    <th md-column md-numeric>RAZÓN SOCIAL</th>
-                    <th md-column md-numeric>NÚMERO DE FACTURA</th>
-                    <th md-column md-numeric>OBSERVACIONES</th>
-                    <th md-column md-numeric>ACCIONES</th>
-                </tr>
-            </thead>
-            
-            <tbody md-body>
-                <tr md-row ng-repeat="dessert in desserts.data">
-                    <td md-cell>{{dessert.codigo}}</td>
-                    <td md-cell>{{dessert.descripcion}}</td>
-                    <td md-cell>{{dessert.periodicidad}}</td>
-                    <td md-cell>{{dessert.registro_patronal}}</td>
-                    <td md-cell>
-                         <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="eddititem(dessert)">
-                          <md-icon md-svg-src="img/icons/ic_edit_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
-                        </md-button>
-                        <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="deleteitem(dessert)">
-                          <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
-                        </md-button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </md-table-container>
-    
-    <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}" md-limit="query.num_registros" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{desserts.total}}" md-on-paginate="getDesserts" md-page-select>
-    </md-table-pagination>
+        <md-toolbar ng-hide="selected.length || filter.show">
+          <div class="md-toolbar-tools">
+            Facturas Rechazadas
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="filter.show = true">
+                <md-icon>search</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="loadStuff($event)">
+                <md-icon>autorenew</md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+
+        <md-toolbar class="md-table-toolbar md-default" ng-show="filter.show && !selected.length">
+            <div class="md-toolbar-tools">
+                <md-icon>search</md-icon>
+                <form flex name="filter.form">
+                    <input type="text" ng-model="query.filter" ng-model-options="filter.options" placeholder="Buscar, Facturas Rechazadas">
+                </form>
+                <md-button class="md-icon-button" ng-click="removeFilter()">
+                    <md-icon>close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-table-container>
+            <table md-table md-progress="promise">
+                <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                    <tr md-row>
+                        <th md-column md-numeric>FECHA RECHAZO</th>
+                        <th md-column md-numeric>RAZÓN SOCIAL</th>
+                        <th md-column md-numeric>NÚMERO DE FACTURA</th>
+                        <th md-column md-numeric>OBSERVACIONES</th>
+                        <th md-column md-numeric>ACCIONES</th>
+                    </tr>
+                </thead>
+                
+                <tbody md-body>
+                    <tr md-row ng-repeat="dessert in desserts.data">
+                        <td md-cell>{{dessert.codigo}}</td>
+                        <td md-cell>{{dessert.descripcion}}</td>
+                        <td md-cell>{{dessert.periodicidad}}</td>
+                        <td md-cell>{{dessert.registro_patronal}}</td>
+                        <td md-cell>
+                             <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="eddititem(dessert)">
+                              <md-icon md-svg-src="img/icons/ic_edit_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
+                            </md-button>
+                            <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="deleteitem(dessert)">
+                              <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
+                            </md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+        
+        <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}" md-limit="query.num_registros" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{desserts.total}}" md-on-paginate="getDesserts" md-page-select>
+        </md-table-pagination>
+    </form>
 </md-content>

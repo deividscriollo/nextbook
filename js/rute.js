@@ -38,7 +38,6 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/My-space/Facturanext/SubirFacturas',      'dashboard.facturanext.subirfactura')
             .when('/My-space/Facturanext/FacurasRechazadas',      'dashboard.facturanext.facturasrechasadas')
             .when('/My-space/Facturanext/FacturasFisicas',      'dashboard.facturanext.facturasfisicas')
-            .when('/My-space/Facturanext/Proveedores',      'dashboard.facturanext.proveedores')
             .when('/My-space/Facturanext/Listado_Proveedores',      'dashboard.facturanext.listado_proveedores')
 
             .when('/My-space/RadioAdmin',      'dashboard.radio.inicio')
@@ -189,11 +188,6 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                         // 'default': true,
                         templateUrl: 'view/dashboardempresa/facturanext/facturasfisicas.html',
                         // controller: 'appsCtrl'
-                    })
-                    .segment('proveedores', {
-                        // 'default': true,
-                        templateUrl: 'view/dashboardempresa/facturanext/proveedores.html',
-                        // controller: 'proveedoresCtrl'
                     })
                     .segment('listado_proveedores', {
                         // 'default': true,

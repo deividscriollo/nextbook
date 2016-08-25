@@ -2,6 +2,11 @@ var app = angular.module('app');
 
 app.controller('factutasFiCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage) {
 
+	$scope.data = {
+    fecha_emision: new Date(),
+    feha_creacion: new Date() 
+  }
+  
 	var bookmark;
 	  
 	$scope.filter = {

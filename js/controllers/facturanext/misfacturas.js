@@ -2,7 +2,12 @@ var app = angular.module('app');
 
 app.controller('misfacturasCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage) {
 
-var bookmark;
+  $scope.data = {
+    fecha_inicio: new Date(),
+    fecha_fin: new Date() 
+  }
+
+  var bookmark;
   
   $scope.filter = {
     options: {

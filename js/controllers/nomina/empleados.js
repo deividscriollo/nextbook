@@ -4,7 +4,7 @@ app.controller('empleados', function ($scope, $localStorage, serviciosnomina, se
 
   // codigo personal
   serviciosnomina.codigo_personal().get().$promise.then(function(data) {
-    $scope.data.codigo_personal = data.codigo; 
+    $scope.data.codigo = data.codigo; 
   });
   // fin
 
@@ -66,7 +66,7 @@ app.controller('empleados', function ($scope, $localStorage, serviciosnomina, se
   }
 
   $scope.cargar_imagen = function(data) {
-    console.log(data);
+    // console.log(data);
 
   }
   // guardar empleados

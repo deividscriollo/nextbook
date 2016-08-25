@@ -1,4 +1,6 @@
 var app = angular.module('app');
+app.controller('editItemNomina', function () {});
+app.controller('deleteItemNomina', function () {});
 
 app.controller('nominaCtrl', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage, $mdToast, MyService) {
 
@@ -24,6 +26,7 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, serviciosnomina, servi
   }
   
   $scope.addititem = function (event) {
+
     $mdDialog.show({
       clickOutsideToClose: true,
       controller: 'addItemNomina',
@@ -47,9 +50,8 @@ app.controller('nominaCtrl', function ($mdDialog, $scope, serviciosnomina, servi
           periodicidad: items.periodicidad,
           descripcion: items.descripcion,
           registro_patronal: items.registro_patronal,
-          dias: items.dias,
-          sucursal_nombre: $localStorage.sucursal.sucursal,
-          horas_laborar: items.horas_laborar,
+          dias: parseInt(items.dias),
+          horas_laborar: parseInt(items.horas_laborar),
           fecha_inicio: new Date(items.fecha_inicio)      
         };
 
@@ -167,7 +169,8 @@ app.controller('addItemNomina', function ($mdDialog, $scope, serviciosnomina, se
   // codigo nomina
   serviciosnomina.codigo_nomina().get().$promise.then(function(data) {
     $scope.data = {
-      codigo: data.codigo 
+      codigo: data.codigo,
+      fecha_inicio: new Date() 
     }
   });
   // fin
@@ -191,9 +194,3 @@ app.controller('addItemNomina', function ($mdDialog, $scope, serviciosnomina, se
   }  
 });
 
-app.controller('editItemNomina', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) {
-
-});
-
-app.controller('deleteItemNomina', function ($mdDialog, $scope, serviciosnomina, servicios, $timeout, $localStorage) { 
-});

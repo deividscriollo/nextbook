@@ -33,6 +33,10 @@ app.controller('misfacturasCtrl', function($mdDialog, $scope, serviciosfacturane
     $scope.getDesserts();
   }
   
+   $scope.pdfititem=function(item){
+    $scope.promise = serviciosfacturanext.gen_pdf().generar({iddocumento:item.id_factura}).$promise;
+  }
+  
   function success(desserts) {
     $scope.desserts = desserts.respuesta;
   }

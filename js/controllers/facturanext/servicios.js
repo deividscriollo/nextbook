@@ -44,8 +44,9 @@ app.service('serviciosfacturanext', function($resource, $localStorage, $location
         });
     };
 
-    //--------------------------------------------------Fin------------------------------------
-    // ------------------------------------------------ Proveedores ------------------
+    //--------------------------------------------------Fin----------------------------------
+
+    // ------------------------------------------------ Proveedores -------------------------
     this.repeat_proveedor = function() {
         return $resource(servicios.server().appnext()+'public/getProveedorbyRuc', {}
         ,{
@@ -71,10 +72,22 @@ app.service('serviciosfacturanext', function($resource, $localStorage, $location
             }
         });
     };
-    //--------------------------------------------------Fin------------------------------------
+    //--------------------------------------------------Fin-----------------------------------
 
     this.gen_pdf = function() {
         return $resource(servicios.server().appnext()+'public/pdf', {}
+        , {
+            generar: {
+                method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
+
+    this.gen_xml = function() {
+        return $resource(servicios.server().appnext()+'public/xml', {}
         , {
             generar: {
                 method: 'GET', isArray: false, 

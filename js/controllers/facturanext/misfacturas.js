@@ -26,15 +26,22 @@ app.controller('misfacturasCtrl', function($mdDialog, $scope, serviciosfacturane
     ordenarPor:''
   };
   
-  $scope.filtrarititem=function(){
-    $scope.query.fecha_inicio=$scope.data.fecha_inicio;
-    $scope.query.fecha_fin=$scope.data.fecha_fin;
-    $scope.query.ordenarPor=$scope.data.agrupar;
+  $scope.filtrarititem = function(){
+    $scope.query.fecha_inicio = $scope.data.fecha_inicio;
+    $scope.query.fecha_fin = $scope.data.fecha_fin;
+    $scope.query.ordenarPor = $scope.data.agrupar;
     $scope.getDesserts();
   }
   
-   $scope.pdfititem=function(item){
-    $scope.promise = serviciosfacturanext.gen_pdf().generar({iddocumento:item.id_factura}).$promise;
+  $scope.pdfititem = function(item) {
+    $scope.promise = serviciosfacturanext.gen_pdf().generar({iddocumento:item.id_factura}).$promise.then(function(data) {
+    var url = data.url;
+    window.open(url, "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=900, height=800");
+    }); 
+  }
+
+  $scope.xmlititem = function(item) {
+    window.open(item.url);
   }
   
   function success(desserts) {

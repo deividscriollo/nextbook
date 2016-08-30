@@ -34,7 +34,6 @@ app.controller('perfilCtrl', function($scope, $mdDialog,$rootScope, servicios, $
             break;
             case 'portada':
             servicios.mis_imgs_portadas().get().$promise.then(function(data) {
-                
                 $mdDialog.show({
                   clickOutsideToClose: true,
                   controller: 'imagenesCtrl',
@@ -82,16 +81,19 @@ app.controller('imagenesCtrl', function($scope,$mdDialog, servicios,$localStorag
      } else {
         $scope.misimagenes=imgs;
     }
+    $scope.mini=false;
         $scope.myImage = '';
         $scope.myCroppedImage = '';
 
 switch(tipoimg) {
         case 'perfil':
+        $scope.tipo_area='square';
             $scope.estilo = {
                 'width': '144%', 'height': '50%'
-            }
+            };
             break;
         case 'portada':
+        $scope.tipo_area='rectangle';
             $scope.estilo = {
                 'width': '710px', 'height': '267px'
             };

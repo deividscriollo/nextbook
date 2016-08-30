@@ -18,7 +18,6 @@ app.controller('perfilCtrl', function($scope, $mdDialog,$rootScope, servicios, $
         switch(tipolista) {
             case 'perfil':
             servicios.mis_imgs_perfil().get().$promise.then(function(data) {
-
                 $mdDialog.show({
                   clickOutsideToClose: true,
                   controller: 'imagenesCtrl',

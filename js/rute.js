@@ -35,6 +35,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
 
             .when('/My-space/Facturanext',      'dashboard.facturanext.inicio')
             .when('/My-space/Facturanext/MisFacturas',      'dashboard.facturanext.misfacturas')
+            .when('/My-space/Facturanext/BuscarFacturas',      'dashboard.facturanext.buscarfacturas')
             .when('/My-space/Facturanext/SubirFacturas',      'dashboard.facturanext.subirfactura')
             .when('/My-space/Facturanext/FacurasRechazadas',      'dashboard.facturanext.facturasrechasadas')
             .when('/My-space/Facturanext/FacturasFisicas',      'dashboard.facturanext.facturasfisicas')
@@ -172,6 +173,11 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .segment('misfacturas', {
                         // 'default': true,
                         templateUrl: 'view/dashboardempresa/facturanext/misfacturas.html',
+                        // controller: 'misfacturasCtrl'
+                    })
+                    .segment('buscarfacturas', {
+                        // 'default': true,
+                        templateUrl: 'view/dashboardempresa/facturanext/buscarfacturas.html',
                         // controller: 'misfacturasCtrl'
                     })
                     .segment('subirfactura', {

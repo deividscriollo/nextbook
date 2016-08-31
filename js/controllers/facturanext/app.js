@@ -7,10 +7,11 @@ app.controller('facturanextCtrl', function($scope, servicios, Facturas) {
   $scope.tabs = [
                   {icon:'home',title:'Inicio',link:'/My-space/Facturanext'},
                   {icon:'assignment',title:'Mis Facturas',link:'/My-space/Facturanext/MisFacturas'},
+                  {icon:'search',title:'Buscar',link:'/My-space/Facturanext/BuscarFacturas'},
                   {icon:'cloud_upload',title:'Fac. Electrónicas',link:'/My-space/Facturanext/SubirFacturas'},
                   {icon:'speaker_notes_off',title:'Fac. Rechazadas',link:'/My-space/Facturanext/FacurasRechazadas'},
                   {icon:'border_color',title:'Fac. Fisicas',link:'/My-space/Facturanext/FacturasFisicas'},
-                  {icon:'reorder',title:'Listado Proveedores',link:'/My-space/Facturanext/Listado_Proveedores'},
+                  {icon:'reorder',title:'Proveedores',link:'/My-space/Facturanext/Listado_Proveedores'},
                 ];
                 
   $scope.menucard =   [

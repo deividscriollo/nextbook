@@ -1,86 +1,54 @@
-<div layout="row">
-    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="md-tall">
-            <span flex></span>
-            <div layout="column" class="md-toolbar-tools-bottom inset">
-              <user-avatar></user-avatar>
-              <span>{{localStorage.nombre_comercial | lowercase}},</span>
-              <div>{{localStorage.actividad_economica | lowercase}}</div>
-            </div>
-          </md-toolbar>
-        <md-list ng-cloak>
-              <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in menu">
-                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                <p> {{ item.title }} </p>
-              </md-list-item>
-        </md-list>
-    </md-sidenav>
-
-    <div layout="column" class="relative" layout-fill role="main">
-        <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
-            <ng-md-icon icon="add"></ng-md-icon>
+<md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
+    <ng-md-icon icon="add"></ng-md-icon>
+</md-button>
+<md-toolbar ng-show="!showSearch">
+    <div class="md-toolbar-tools">
+        <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu" class="md-icon-button launch">
+            <ng-md-icon icon="menu"></ng-md-icon>
         </md-button>
-        <md-toolbar ng-show="!showSearch">
-            <div class="md-toolbar-tools">
-                <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu" class="md-icon-button launch">
-                    <ng-md-icon icon="menu"></ng-md-icon>
-                </md-button>
-                <h3>
-                    Nextbook, Red de Negocios 
-                </h3>
-                <span flex></span>
-                <form ng-submit="$event.preventDefault()">
-                  <md-autocomplete
-                      ng-disabled="ctrl.isDisabled"
-                      md-no-cache="ctrl.noCache"
-                      md-selected-item="ctrl.selectedItem"
-                      md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-                      md-search-text="ctrl.searchText"
-                      md-selected-item-change="ctrl.selectedItemChange(item)"
-                      md-items="item in ctrl.querySearch(ctrl.searchText)"
-                      md-item-text="item.name"
-                      md-min-length="0"
-                      placeholder="Pick an Angular repository"
-                      md-menu-class="autocomplete-custom-template">
-                    <md-item-template>
-                      <span class="item-title">
-                        <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
-                        <span> {{item.name}} </span>
-                      </span>
-                      <span class="item-metadata">
-                        <span class="item-metastat">
-                          <strong>{{item.watchers}}</strong> watchers
-                        </span>
-                        <span class="item-metastat">
-                          <strong>{{item.forks}}</strong> forks
-                        </span>
-                      </span>
-                    </md-item-template>
-                  </md-autocomplete>
-                </form>
-                <md-button href="#/My-space/Perfil-inicio">
-                    Perfil
-                </md-button>
-                <md-button href="#/My-space/Inicio">
-                    Inicio
-                </md-button>
-                <md-menu md-position-mode="target-right target" >
-                    <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                        <ng-md-icon icon="more_vert"></ng-md-icon>
+        <h3>
+            Nextbook, Red de Negocios 
+        </h3>
+        <span flex></span>
+        <form ng-submit="$event.preventDefault()">
+            <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedItem" md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" md-search-text="ctrl.searchText" md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.name" md-min-length="0" placeholder="Pick an Angular repository" md-menu-class="autocomplete-custom-template">
+                <md-item-template>
+                    <span class="item-title">
+                <md-icon md-svg-icon="img/icons/octicon-repo.svg"></md-icon>
+                <span> {{item.name}} </span>
+                    </span>
+                    <span class="item-metadata">
+                <span class="item-metastat">
+                  <strong>{{item.watchers}}</strong> watchers
+                </span>
+                    <span class="item-metastat">
+                  <strong>{{item.forks}}</strong> forks
+                </span>
+                    </span>
+                </md-item-template>
+            </md-autocomplete>
+        </form>
+        <md-button href="#/My-space/Perfil-inicio">
+            Perfil
+        </md-button>
+        <md-button href="#/My-space/Inicio">
+            Inicio
+        </md-button>
+        <md-menu md-position-mode="target-right target">
+            <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <ng-md-icon icon="more_vert"></ng-md-icon>
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item>
+                    <md-button ng-href="#/salir/341234">
+                        <div layout="row" flex>
+                            <p flex>Cerrar Sesión</p>
+                            <ng-md-icon icon="exit_to_app"></ng-md-icon>
+                        </div>
                     </md-button>
-                    <md-menu-content width="4" >
-                        <md-menu-item>
-                          <md-button ng-href="#/salir/341234">
-                              <div layout="row" flex>
-                                <p flex>Cerrar Sesión</p>
-                                <ng-md-icon icon="exit_to_app"></ng-md-icon>
-                              </div>
-                          </md-button>
-                        </md-menu-item>
-                    </md-menu-content>
-                </md-menu>
-            </div>
-        </md-toolbar>    
-        <div app-view-segment="1"></div>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
     </div>
-</div>
+</md-toolbar>
+<div app-view-segment="1"></div>

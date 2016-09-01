@@ -3,6 +3,51 @@ var app = angular.module('app');
 app.controller('facturanextCtrl', function($scope, servicios, Facturas) {
 
   Facturas.get();
+
+  $scope.sidenav =   {
+                        menu1:[
+                            {
+                              link : '/My-space/Facturanext',
+                              title: 'Inicio',
+                              icon: 'dashboard'
+                            },
+                            {
+                              link : '/My-space/Facturanext/BuscarFacturas',
+                              title: 'Buscar',
+                              icon: 'youtube_searched_for'
+                            },
+                            {
+                              link : '/My-space/Facturanext/MisFacturas',
+                              title: 'Mis Facturas',
+                              icon: 'donut_small'
+                            },
+                            {
+                              link : '/My-space/Facturanext/SubirFacturas',
+                              title: 'Subir Facturas',
+                              icon: 'dns'
+                            },
+                            {
+                              link : '/My-space/Facturanext/FacurasRechazadas',
+                              title: 'Facuras Rechazadas',
+                              icon: 'extension'
+                            }
+                        ],
+                        menu2:[
+                            {
+                              link : 'My-space/Facturanext/FacturasFisicas',
+                              title: 'Nueva Fac. Fisica',
+                              icon: 'business'
+                            }                            
+                        ],
+                        menu3:[
+                            {
+                              link : '/My-space/Facturanext/Listado_Proveedores',
+                              title: 'Proveedores',
+                              icon: 'business'
+                            }                            
+                        ]
+
+                    }
   
   $scope.tabs = [
                   {icon:'home',title:'Inicio',link:'/My-space/Facturanext'},
@@ -36,6 +81,7 @@ app.controller('facturanextCtrl', function($scope, servicios, Facturas) {
                       icon: 'extension'
                     }
                 ];
+
 });
 
 // app.controller('misfacturasCtrl', function($scope, servicios, facturanextservice, $http) {

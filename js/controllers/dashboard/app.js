@@ -20,13 +20,18 @@ app.controller('dashboardCtrl', function ($mdDialog, $scope, $localStorage, serv
 	$scope.menu = 	[
 					    {
 					      link : '/My-space/NominaAdmin',
-					      title: 'Inicio Nomina General',
+					      title: 'Nomina General',
 					      icon: 'dashboard'
 					    },
 					    {
 					      link : '/My-space/Facturanext',
 					      title: 'Facturanext',
 					      icon: 'donut_small'
+					    },
+					    {
+					      link : '/My-space/Facturanext',
+					      title: 'Inventario',
+					      icon: 'widgets'
 					    }
 					];
 

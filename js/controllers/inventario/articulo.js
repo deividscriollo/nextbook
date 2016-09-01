@@ -11,9 +11,9 @@ app.controller('articuloCtrl', function ($scope, $localStorage, serviciosinventa
   };
 
   // codigo personal
-  // serviciosinventario.codigo_personal().get().$promise.then(function(data) {
-  //   $scope.data.codigo = data.codigo; 
-  // });
+  serviciosinventario.codigo_articulo().get().$promise.then(function(data) {
+    $scope.data.codigo = data.codigo; 
+  });
   // fin
 
   // combo grupos
@@ -78,8 +78,8 @@ app.controller('articuloCtrl', function ($scope, $localStorage, serviciosinventa
 
   }
   // guardar empleados
-  $scope.guardar_empleado = function() {
-    serviciosinventario.guardar_articulo().save($scope.data).$promise.then(function(data) {
+  $scope.guardar_articulo = function() {
+    serviciosinventario.add_articulo().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
           $mdDialog.show(
             $mdDialog.alert()

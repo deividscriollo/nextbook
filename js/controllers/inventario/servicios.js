@@ -336,5 +336,72 @@ app.service('serviciosinventario', function($resource, $localStorage, $location,
     };
     // --------------------------------------- Fin ------------------------------------------------
 
+    // ------------------------------------------------ Articulo ------------------------------
+    this.codigo_articulo = function() {
+        return $resource(servicios.server().appnext()+'public/ultimoCodeMaestroArticulo', {}
+        ,{
+            get: {
+                method: 'GET', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.add_articulo = function() {
+        return $resource(servicios.server().appnext()+'public/addMaestroArticulo', {}
+        , {
+            save: {
+                method: 'POST', isArray: false, 
+                params: {
+                    token: $localStorage.token, 
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.edit_articulo = function() {
+        return $resource(servicios.server().appnext()+'public/updateNomina', {}
+        , {
+            edit: {
+                method: 'POST', isArray: false, 
+                params: {
+                    token: $localStorage.token, 
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.delete_articulo = function() {
+        return $resource(servicios.server().appnext()+'public/deleteNomina', {}
+        , {
+            delete: {
+                method: 'POST', isArray: false, 
+                params: {
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+    this.get_articulo = function() {
+        return $resource(servicios.server().appnext()+'public/getMaestroArticulo', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+    // --------------------------------------- Fin ------------------------------------------------
+
   
 });

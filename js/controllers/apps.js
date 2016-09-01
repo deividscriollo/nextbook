@@ -8,7 +8,8 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
     $scope.menucard = [
                         {id:'1',titulo:'Facturanext', descripcion:'Repositorio de facturas', evento:'facturanext'},
                         {id:'1',titulo:'Nomina General', descripcion:'Administración de nomina', evento:'nomina'},
-                        {id:'1',titulo:'Radio', descripcion:'Administración Radio', evento:'clientes'}
+                        {id:'1',titulo:'Inventario', descripcion:'Inventario Empresa', evento:'inventario'}
+                        // {id:'1',titulo:'Radio', descripcion:'Administración Radio', evento:'clientes'}
                       ];
 
     $scope.modal = function(tipo, event) {
@@ -18,6 +19,10 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
 
       if (tipo == 'facturanext') {
         $location.path('/My-space/Facturanext');
+      }
+
+      if (tipo == 'inventario') {
+        $location.path('/My-space/Inventario');
       }
     }
 

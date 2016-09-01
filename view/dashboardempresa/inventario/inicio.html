@@ -1,4 +1,4 @@
-<div class="nominageneralCtrl">
+<div class="inventariogeneralCtrl">
   <div flex md-scroll-y>
     <div layout="row" layout-fill flex-gt-md="100">
       <div layout="row">
@@ -15,7 +15,7 @@
           </md-card-header>
                 <img ng-src="images/samples/x4.jpg" class="md-card-image" alt="Washed Out">
                 <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-raised md-primary" ng-href="#/{{item.link}}">Entrar</md-button>
+            <md-button class="md-raised md-primary" ng-href="{{item.link}}">Entrar</md-button>
           </md-card-actions>
             </md-card>
         </div>
@@ -36,28 +36,7 @@
           </md-card-header>
                 <img ng-src="images/samples/x4.jpg" class="md-card-image" alt="Washed Out">
                 <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-raised md-primary" ng-href="#{{item.link}}">Entrar</md-button>
-          </md-card-actions>
-            </md-card>
-        </div>
-      </div>
-    </div>
-    <div layout="row" layout-fill flex-gt-md="100">
-      <div layout="row">
-        <div class="parent" layout="column" ng-repeat="item in menu3" flex>
-            <md-card class="card">
-              <md-card-header>
-            <md-card-avatar>
-              <img class="md-user-avatar" src="images/samples/mat2.jpg"/>
-            </md-card-avatar>
-            <md-card-header-text>
-              <span class="md-title">{{item.title}}</span>
-              <span class="md-subhead">{{item.descripcion}}</span>
-            </md-card-header-text>
-          </md-card-header>
-                <img ng-src="images/samples/x4.jpg" class="md-card-image" alt="Washed Out">
-                <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-raised md-primary" ng-href="#{{item.link}}">Entrar</md-button>
+            <md-button class="md-raised md-primary" ng-href="{{item.link}}">Entrar</md-button>
           </md-card-actions>
             </md-card>
         </div>

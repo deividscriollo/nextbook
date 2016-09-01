@@ -44,6 +44,14 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/My-space/RadioAdmin',      'dashboard.radio.inicio')
             .when('/My-space/RadioAdmin/Clientes',      'dashboard.radio.clientes')
 
+            .when('/My-space/Inventario',      'dashboard.inventario.inicio')
+            .when('/My-space/Inventario/Grupo',      'dashboard.inventario.grupo')
+            .when('/My-space/Inventario/Modo_Adquisicion',      'dashboard.inventario.adquisicion')
+            .when('/My-space/Inventario/Estado',      'dashboard.inventario.estado')
+            .when('/My-space/Inventario/Ubicacion',      'dashboard.inventario.ubicacion')
+            .when('/My-space/Inventario/Motivos_Baja',      'dashboard.inventario.motivos_baja')
+            .when('/My-space/Inventario/Articulo',      'dashboard.inventario.articulo')
+
             // direccionar nomina
             .when('/My-space/NominaAdmin',      'dashboard.nomina.inicio')
             .when('/My-space/NominaAdmin/Nomina',      'dashboard.nomina.nomina')
@@ -160,9 +168,9 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     })
                 .up()
                 .segment('facturanext', {
-                    'default': true,
                     templateUrl: 'view/dashboardempresa/facturanext/index.html',
-                    controller: 'facturanextCtrl'
+                    controller: 'facturanextCtrl',
+                    'default': true
                 })
                 .within()
                     .segment('inicio', {
@@ -201,18 +209,47 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                         // controller: 'proveedoresCtrl'
                     })
                 .up()
-                .segment('radio', {                 
-                    templateUrl: 'view/dashboardempresa/radio/index.html',
+                .segment('inventario', {                 
+                    templateUrl: 'view/dashboardempresa/inventario/index.html',
+                    controller:'inventariogeneralCtrl',
                     'default': true,
                 })                   
                 .within()                
                     .segment('inicio', {
-                        templateUrl: 'view/dashboardempresa/radio/inicio.html',
+                        templateUrl: 'view/dashboardempresa/inventario/inicio.html',
                     })  
-                    .segment('clientes', {
-                        templateUrl: 'view/dashboardempresa/radio/clientes.html'
-                    })                    
+                    .segment('grupo', {
+                        templateUrl: 'view/dashboardempresa/inventario/grupo.html'
+                    })
+                    .segment('adquisicion', {
+                        templateUrl: 'view/dashboardempresa/inventario/adquisicion.html'
+                    })
+                    .segment('estado', {
+                        templateUrl: 'view/dashboardempresa/inventario/estado.html'
+                    })
+                    .segment('ubicacion', {
+                        templateUrl: 'view/dashboardempresa/inventario/ubicacion.html'
+                    })
+                    .segment('motivos_baja', {
+                        templateUrl: 'view/dashboardempresa/inventario/motivos_baja.html'
+                    })
+                    .segment('articulo', {
+                        templateUrl: 'view/dashboardempresa/inventario/articulo.html'
+                    })
                 .up()
+
+                // .segment('radio', {                 
+                //     templateUrl: 'view/dashboardempresa/radio/index.html',
+                //     'default': true,
+                // })                   
+                // .within()                
+                //     .segment('inicio', {
+                //         templateUrl: 'view/dashboardempresa/radio/inicio.html',
+                //     })  
+                //     .segment('clientes', {
+                //         templateUrl: 'view/dashboardempresa/radio/clientes.html'
+                //     })                    
+                // .up()
                 .segment('nomina', {                 
                     templateUrl: 'view/dashboardempresa/nomina/index.html',
                     controller:'nominageneralCtrl',

@@ -1,0 +1,179 @@
+<md-content layout-padding flex-gt-md="100" ng-controller="articuloCtrl">
+    <form name="articulosForm" ng-submit="guardar_articulo()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Agregar Articulos</h2>
+            </div>
+        </md-toolbar>
+
+        <div layout-gt-sm="row">
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-primary">airplay</md-icon>
+                <label>Código Articulo</label>
+                <input type="text" name="codigo" ng-model="data.codigo" disabled />
+                <div ng-messages="articulosForm.codigo.$error">
+                    <div ng-message="required">Campo Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>Grupo</label>
+                <md-select ng-model="data.grupo" name="grupo" required>
+                    <md-option ng-repeat="grupo in grupos" value="{{grupo.id}}">
+                        {{grupo.descripcion}}
+                    </md-option>
+                </md-select>
+                <div ng-messages="articulosForm.grupo.$error">
+                    <div ng-message="required">Grupo Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>Descripción</label>
+                <input type="text" required name="descripcion" ng-model="data.descripcion" />
+                <div ng-messages="articulosForm.descripcion.$error">
+                    <div ng-message="required">Descripción Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>Marca</label>
+                <input type="text" required name="marca" ng-model="data.marca" />
+                <div ng-messages="articulosForm.marca.$error">
+                    <div ng-message="required">Marca Requerido</div>
+                </div>
+            </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>Modelo</label>
+                <input type="text" required name="modelo" ng-model="data.modelo" />
+                <div ng-messages="articulosForm.modelo.$error">
+                    <div ng-message="required">Modelo Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>Color</label>
+                <input type="text" required name="color" ng-model="data.color">
+                <div ng-messages="articulosForm.color.$error">
+                    <div ng-message="required">Color Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>N°- Partes</label>
+                <input type="text" required name="num_partes" ng-model="data.num_partes">
+                <div ng-messages="articulosForm.num_partes.$error">
+                    <div ng-message="required">N°- Partes Requerido</div>
+                </div>
+            </md-input-container>
+
+            <mdp-date-picker mdp-open-on-click name="anio_fabricacion" mdp-placeholder="Año Fabricación" mdp-format="YYYY-MM-DD" ng-model="data.anio_fabricacion">
+            </mdp-date-picker>           
+        </div>
+
+        <div layout-gt-sm="row">
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>N°- Placa</label>
+                <input type="text" name="num_placa" ng-model="data.num_placa">
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>N°- Serie</label>
+                <input type="text" name="num_serie" ng-model="data.num_serie" />
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>País Origen</label>
+                <input type="text" name="pais_origen" ng-model="data.pais_origen" />
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>N°- Factura</label>
+                <input type="text" name="num_factura" ng-model="data.num_factura" />
+            </md-input-container>           
+        </div>
+
+        <div layout-gt-sm="row">
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>N°- Guía</label>
+                <input type="text"  name="num_guia" ng-model="data.num_guia" />
+            </md-input-container>
+
+            <mdp-date-picker mdp-open-on-click name="fecha_adquisicion" mdp-placeholder="Fecha Adquisición" mdp-format="YYYY-MM-DD" ng-model="data.fecha_adquisicion">
+            </mdp-date-picker>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>Modo Adquisición</label>
+                <md-select ng-model="data.modo_adquisicion" name="modo_adquisicion" required>
+                    <md-option ng-repeat="modo_adquisicion in modo_adquisicions" value="{{modo_adquisicion.id}}">
+                        {{modo_adquisicion.descripcion}}
+                    </md-option>
+                </md-select>
+                <div ng-messages="articulosForm.modo_adquisicion.$error">
+                    <div ng-message="required">Modo Adquisición Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>Valor Compra</label>
+                <input type="text" name="valor_compra" ng-model="data.valor_compra" />
+            </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row">
+             <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>Estado</label>
+                <md-select ng-model="data.estado" name="estado" required>
+                    <md-option ng-repeat="estado in estados" value="{{estado.id}}">
+                        {{estado.descripcion}}
+                    </md-option>
+                </md-select>
+                <div ng-messages="articulosForm.estado.$error">
+                    <div ng-message="required">Estado Requerido</div>
+                </div>
+            </md-input-container>
+
+            <mdp-date-picker mdp-open-on-click name="fecha_inicio" mdp-placeholder="Fecha Ingreso" mdp-format="YYYY-MM-DD" ng-model="data.fecha_inicio">
+            </mdp-date-picker>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-accent">airplay</md-icon>
+                <label>Observaciones</label>
+                <input type="text" name="enfermedad" ng-model="data.enfermedad" />
+                <div ng-messages="articulosForm.enfermedad.$error">
+                    <div ng-message="required">Enfermedad Específica Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+
+            </md-input-container>
+        </div>
+
+        <div layout-gt-sm="row" class="center end">
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="articulosForm.$invalid">
+                Guardar <i class="fa fa-angle-double-right"></i>
+            </md-button>
+            <md-button class="md-raised md-accent" type="reset">
+                Limpiar <i class="fa fa-trash-o"></i>
+            </md-button>
+        </div>
+    </form>
+</md-content>

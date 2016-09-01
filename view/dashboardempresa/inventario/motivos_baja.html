@@ -1,0 +1,56 @@
+<md-content flex-gt-md="100" ng-controller="motivosCtrl">
+    <form name="grupoForm">
+        <md-toolbar ng-hide="selected.length || filter.show">
+          <div class="md-toolbar-tools">
+            Configurar Motivos Baja
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="filter.show = true">
+                <md-icon>search</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="addititem($event)">
+                <md-icon>note_add</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="loadStuff($event)">
+                <md-icon>autorenew</md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+        <md-toolbar class="md-table-toolbar md-default" ng-show="filter.show && !selected.length">
+            <div class="md-toolbar-tools">
+                <md-icon>search</md-icon>
+                <form flex name="filter.form">
+                    <input type="text" ng-model="query.filter" ng-model-options="filter.options" placeholder="Buscar, Nomina Patronal">
+                </form>
+                <md-button class="md-icon-button" ng-click="removeFilter()">
+                    <md-icon>close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-table-container>
+            <table md-table md-progress="promise">
+                <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+                    <tr md-row>
+                        <th md-column md-numeric>Código</th>
+                        <th md-column md-numeric>Nombre / Descripción</th>
+                        <th md-column md-numeric>Fecha Creación</th>
+                        <th md-column md-numeric>Editar</th>
+                        <th md-column md-numeric>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody md-body>
+                    <tr md-row ng-repeat="dessert in desserts.data">
+                        <td md-cell>{{dessert.codigo}}</td>
+                        <td md-cell>{{dessert.descripcion}}</td>
+                        <td md-cell>{{dessert.created_at}}</td>
+                        <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="eddititem(dessert)">edit<md-tooltip>Editar</md-tooltip></md-icon></md-icon></td>
+                        <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="deleteitem(dessert)">delete<md-tooltip>Eliminar</md-tooltip></md-icon></td>
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+        
+        <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}" md-limit="query.num_registros" md-limit-options="[5, 10, 15]" md-page="query.pagina_actual" md-total="{{desserts.total}}" md-on-paginate="getDesserts" md-page-select>
+        </md-table-pagination>
+    </form>
+</md-content>

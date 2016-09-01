@@ -1,56 +1,97 @@
-<div  layout="row" layout-fill flex-gt-md="80">
-    <div flex-xs layout="column" flex-gt-md="70">
-      <md-card>
-        <div class="div-controlcar-img">
-        	<img ng-src="{{imgPortada}}" class="md-card-image" alt="Banner Perfil">
-        	<div class="header-card-perfil-nombrecomercial">{{localStorage.nombre_comercial}}</div>
-        	<div class="header-card-perfil">
-	      		<span flex></span>
-	        	<md-button class="md-icon-button" aria-label="More">
-			        <ng-md-icon class="md-accent" icon="border_color" ng-click="show_listaimg_modal('portada')"></ng-md-icon>
-			   	</md-button>
-			   	<md-button class="md-icon-button" aria-label="More">
-			        <ng-md-icon class="md-accent" icon="cloud_upload" ng-click="show_upload_img_modal('portada')"></ng-md-icon>
-			   	</md-button>
-	        </div>
+<div layout="row" flex-gt-md="80" layout-fill>
+    <md-sidenav layout="column" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <md-toolbar class="md-sidenav-bg1">
+            <span flex></span>
+            <div layout="column" class="md-toolbar-tools-bottom inset">
+                <user-avatar></user-avatar>
+                <span>{{localStorage.nombre_comercial | lowercase}},</span>
+                <div>{{localStorage.actividad_economica | lowercase}}</div>
+            </div>
+        </md-toolbar>
+        <md-list ng-cloak>
+            <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu1">
+                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                <p> {{ item.title }}</p>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-subheader class="md-no-sticky">Facturas Fisicas</md-subheader>
+            <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu2">
+                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                <p> {{ item.title }}</p>
+            </md-list-item>
+            <md-subheader class="md-no-sticky">General</md-subheader>
+            <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu3">
+                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                <p> {{ item.title }}</p>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+                <ng-md-icon icon="exit_to_app"></ng-md-icon>
+                <p> Bloquear </p>
+            </md-list-item>
+            <md-list-item>
+                <ng-md-icon icon="aspect_ratio"></ng-md-icon>
+                <p> Pantalla Completa </p>
+            </md-list-item>
+        </md-list>
+    </md-sidenav>
+    <div layout="column" flex >
+      <div  layout="row" >
+        <div flex-xs layout="column" flex-gt-md="70">
+          <md-card>
+            <div class="div-controlcar-img">
+              <img ng-src="{{imgPortada}}" class="md-card-image" alt="Banner Perfil">
+              <div class="header-card-perfil-nombrecomercial">{{localStorage.nombre_comercial}}</div>
+              <div class="header-card-perfil">
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="More">
+                  <ng-md-icon class="md-accent" icon="border_color" ng-click="show_listaimg_modal('portada')"></ng-md-icon>
+              </md-button>
+              <md-button class="md-icon-button" aria-label="More">
+                  <ng-md-icon class="md-accent" icon="cloud_upload" ng-click="show_upload_img_modal('portada')"></ng-md-icon>
+              </md-button>
+              </div>
+            </div>
+          </md-card>
+          <div layout="row" app-view-segment="2"></div>
         </div>
-      </md-card>
-      <div layout="row" app-view-segment="2"></div>
-    </div>
-    <div flex-xs layout="column" flex-gt-md="30">
-      <md-card>
-      	<div layout="row" layout-align="center center">
-        	<img ng-src="{{imgPerfil}}" class="avatar" alt="Avatar Perfil">
-        </div>
-        <md-card-actions layout="row" layout-align="center center">
-          <md-button class="md-icon-button" aria-label="More">
-		        <ng-md-icon class="md-accent" icon="border_color" ng-click="show_listaimg_modal('perfil')"></ng-md-icon>
-		   	</md-button>
-		   	<md-button class="md-icon-button" aria-label="More">
-		        <ng-md-icon class="md-accent" icon="cloud_upload" ng-click="show_upload_img_modal('perfil')"></ng-md-icon>
-		   	</md-button>
-        </md-card-actions>
-        <div layout="row" layout-align="center center">
-        	{{datosPersona.nombres_apellidos}}
-        </div>
-        <md-card-content>
+        <div flex-xs layout="column" flex-gt-md="30">
+          <md-card>
+            <div layout="row" layout-align="center center">
+              <img ng-src="{{imgPerfil}}" class="avatar" alt="Avatar Perfil">
+            </div>
+            <md-card-actions layout="row" layout-align="center center">
+              <md-button class="md-icon-button" aria-label="More">
+                <ng-md-icon class="md-accent" icon="border_color" ng-click="show_listaimg_modal('perfil')"></ng-md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="More">
+                <ng-md-icon class="md-accent" icon="cloud_upload" ng-click="show_upload_img_modal('perfil')"></ng-md-icon>
+            </md-button>
+            </md-card-actions>
+            <div layout="row" layout-align="center center">
+              {{datosPersona.nombres_apellidos}}
+            </div>
+            <md-card-content>
 
-        	<md-list>
-        		<md-list-item class="md-3-line md-long-text">
-		          <img ng-src="{{todos[1].face}}?25" class="md-avatar" alt="{{todos[1].who}}" />
-		          <div class="md-list-item-text">
-		            <h3>{{ todos[1].who }}</h3>
-		            <p>
-		              {{activitidad}}
-		            </p>
-		          </div>
-		        </md-list-item>
-		        <md-divider ></md-divider>
-		    </md-list>
-        </md-card-content>
-        
-        <img ng-src="{{imgPortada}}" class="md-card-image" alt="Banner Perfil">
-      </md-card>
+              <md-list>
+                <md-list-item class="md-3-line md-long-text">
+                  <img ng-src="{{todos[1].face}}?25" class="md-avatar" alt="{{todos[1].who}}" />
+                  <div class="md-list-item-text">
+                    <h3>{{ todos[1].who }}</h3>
+                    <p>
+                      {{activitidad}}
+                    </p>
+                  </div>
+                </md-list-item>
+                <md-divider ></md-divider>
+            </md-list>
+            </md-card-content>
+            
+            <img ng-src="{{imgPortada}}" class="md-card-image" alt="Banner Perfil">
+          </md-card>
+        </div>
+    </div>
+
     </div>
 </div>
 

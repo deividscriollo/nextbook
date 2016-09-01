@@ -1,1 +1,48 @@
-perfil index
+<div layout="row" flex-gt-md="80" layout-fill>
+    <md-sidenav layout="column" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <md-toolbar class="md-sidenav-bg1">
+            <span flex></span>
+            <div layout="column" class="md-toolbar-tools-bottom inset">
+                <user-avatar></user-avatar>
+                <span>{{localStorage.nombre_comercial | lowercase}},</span>
+                <div>{{localStorage.actividad_economica | lowercase}}</div>
+            </div>
+        </md-toolbar>
+        <md-list ng-cloak>
+            <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu1">
+                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                <p> {{ item.title }}</p>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-subheader class="md-no-sticky">Facturas Fisicas</md-subheader>
+            <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu2">
+                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                <p> {{ item.title }}</p>
+            </md-list-item>
+            <md-subheader class="md-no-sticky">General</md-subheader>
+            <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu3">
+                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                <p> {{ item.title }}</p>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+                <ng-md-icon icon="exit_to_app"></ng-md-icon>
+                <p> Bloquear </p>
+            </md-list-item>
+            <md-list-item>
+                <ng-md-icon icon="aspect_ratio"></ng-md-icon>
+                <p> Pantalla Completa </p>
+            </md-list-item>
+        </md-list>
+    </md-sidenav>
+    <div layout="column" flex layout-padding>
+    	<md-tabs md-dynamic-height="" md-border-bottom="" md-selected="selectedIndex" md-center-tabs="true">
+            <md-tab ng-repeat="tab in tabs" ng-click="tabnavigation(tab.link)">
+                <md-tab-label>
+                    <md-icon>{{tab.icon}}</md-icon> {{tab.title}}
+                </md-tab-label>
+            </md-tab>
+        </md-tabs>
+        <div app-view-segment="2"></div>
+    </div>
+</div>

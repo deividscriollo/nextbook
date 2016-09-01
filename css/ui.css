@@ -1,8 +1,12 @@
 /*perfil*/
 .md-sidenav-bg1{
-    background: red!important;
+    background: url('../images/samples/x2.jpg')!important;
 }
 
+md-card >.div-controlcar-img img {
+    border-radius: 2px 2px 0 0;
+    height: 300px;
+}
 
 /*perfil login card */
 .header-card-perfil{

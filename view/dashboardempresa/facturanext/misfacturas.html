@@ -78,7 +78,15 @@
                         <td md-cell>{{dessert.tipo_doc}}</td>
                         <td md-cell>{{dessert.num_factura}}</td>
                         <td md-cell>{{dessert.nombre_comercial}}</td>
-                        <td md-cell>{{dessert.tipo_consumo}}</td>
+                        <td md-cell ng-if="dessert.tipo_consumo!='Sin-Asignar'">{{dessert.tipo_consumo}}</td>
+                        <td md-cell ng-if="dessert.tipo_consumo=='Sin-Asignar'">
+                          <label>Sin Asignar</label>
+                          <md-select ng-model="data.tipo[$index]" required ng-change="update_tipo_consumo(dessert,$index)" >
+                                <md-option ng-repeat="gasto in gastos" value="{{gasto.tipo}}">
+                                {{gasto.tipo}}
+                                </md-option>
+                            </md-select>
+                        </td>                       
                         <td md-cell>{{dessert.total}}</td>  
                         <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="pdfititem(dessert)">picture_as_pdf<md-tooltip>Generar PDF</md-tooltip></md-icon></td>
                         <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="xmlititem(dessert)">file_download<md-tooltip>Generar XML</md-tooltip></md-icon></td>

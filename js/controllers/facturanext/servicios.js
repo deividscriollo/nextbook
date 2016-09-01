@@ -97,4 +97,16 @@ app.service('serviciosfacturanext', function($resource, $localStorage, $location
             }
         });
     };
+    //------------------------------------------------ cambiar tip consumo ----------------
+    this.set_tipo_consumo = function() {
+        return $resource(servicios.server().appnext()+'public/updateTipoConsumo', {}
+        , {
+            set: {
+                method: 'POST', isArray: false, 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
 });

@@ -2,6 +2,8 @@ var app = angular.module('app');
 
 app.controller('misfacturasCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage) {
 
+$scope.gastos = servicios.gastos();
+
   $scope.data = {
     fecha_inicio: new Date(),
     fecha_fin: new Date() 
@@ -31,6 +33,17 @@ app.controller('misfacturasCtrl', function($mdDialog, $scope, serviciosfacturane
     $scope.query.fecha_fin = $scope.data.fecha_fin;
     $scope.query.ordenarPor = $scope.data.agrupar;
     $scope.getDesserts();
+  }
+
+
+  $scope.update_tipo_consumo=function(factura,id){
+    var size=Object.getOwnPropertyNames($scope.data.tipo).length;
+    serviciosfacturanext.set_tipo_consumo().set({id_factura:factura.id_factura,tipo_consumo:$scope.data.tipo[id]}).$promise.then(function(data){
+    if (data.respuesta) {
+      $scope.getDesserts();
+      }  
+    });
+
   }
   
   $scope.pdfititem = function(item) {

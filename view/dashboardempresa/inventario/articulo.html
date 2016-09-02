@@ -75,7 +75,6 @@
                     <div ng-message="required">N°- Partes Requerido</div>
                 </div>
             </md-input-container>
-
             <mdp-date-picker mdp-open-on-click name="anio_fabricacion" mdp-placeholder="Año Fabricación" mdp-format="YYYY-MM-DD" ng-model="data.anio_fabricacion">
             </mdp-date-picker>           
         </div>
@@ -140,12 +139,12 @@
              <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <md-icon class="md-accent">airplay</md-icon>
                 <label>Estado</label>
-                <md-select ng-model="data.estado" name="estado" required>
-                    <md-option ng-repeat="estado in estados" value="{{estado.id}}">
-                        {{estado.descripcion}}
+                <md-select ng-model="data.estado_bn" name="estado_bn" required>
+                    <md-option ng-repeat="estado_bn in estados" value="{{estado_bn.id}}">
+                        {{estado_bn.descripcion}}
                     </md-option>
                 </md-select>
-                <div ng-messages="articulosForm.estado.$error">
+                <div ng-messages="articulosForm.estado_bn.$error">
                     <div ng-message="required">Estado Requerido</div>
                 </div>
             </md-input-container>

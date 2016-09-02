@@ -10,25 +10,26 @@
             </div>
         </md-toolbar>
         <md-dialog-content style="width:600px;">
-            <div>
               <md-content layout-padding layout-wrap>
                   <div layout-gt-xs="row" ng-show="mensaje">
                     <md-input-container class="md-block" flex-gt-xs>
                         <label>{{mensaje}}</label>
                     </md-input-container>
                   </div>
-                  <div layout-gt-xs="row" ng-show="misimagenes">
+                  <div layout-gt-xs="row" ng-show="misimagenes" flex>
                     <md-input-container class="md-block" flex-gt-xs>
                     <div ng-repeat="imagen in misimagenes">
-                        <a href="javascript:void(0)" ng-click="Updateimg(imagen.img)"><img class="img-responsive" ng-src="{{imagen.img}}"></a>
+                        <img class="img-responsive" ng-src="{{imagen.imgs}}" ng-click="Updateimg(imagen.img)" width="50px">
+                        <span flex></span>
                     </div>
                     </md-input-container>
                   </div>
               </md-content>
-            </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
-            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()"> Cancelar </md-button>
+            <md-button class="md-raised md-accent" ng-click="ctrl.cancel()">
+                Cancelar
+            </md-button>
             <span flex></span>
             <md-button class="md-raised md-primary" type="submit" ng-click="Updateimg()" ng-disabled="registroForm.$invalid">
               Guardar

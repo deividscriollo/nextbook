@@ -79,6 +79,18 @@ app.controller('imagenesCtrl', function($scope,$mdDialog, servicios,$localStorag
         $scope.mensaje = "No se han encontrado imagenes :(";
      } else {
         $scope.misimagenes=imgs;
+
+        var partition = function (input, size) {
+            var newArr = [];
+            for (var i = 0; i < input.length; i += size) {
+                newArr.push(input.slice(i, i + size));
+            }
+            return newArr;
+        }
+
+        // $scope.misimagenes = {
+        //     img: partition(imgs, imgs.length / 2)
+        // };
     }
     $scope.mini=false;
         $scope.myImage = '';

@@ -35,10 +35,10 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     this.dir_img=function() {
         return {
             perfil: function() {
-                return "public/perfiles/";
+                return "storage/app/perfiles/";
             }
             , portada: function() {
-                return "public/portadas/";
+                return "storage/app/portadas/";
             }
         }
     };
@@ -196,24 +196,17 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     };
 
     // Fin creacion servicios clientes
-    ////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////// GASTOS ////////////////////////
     this.gastos=function() {
-        return [ {
-            tipo: 'ALIMENTACIÓN'
-        }
+        return $resource(this.server().appnext()+'public/getGastos', {}
         , {
-            tipo: 'SALUD'
-        }
-        , {
-            tipo: 'VESTIMENTA'
-        }
-        , {
-            tipo: 'VIVIENDA'
-        }
-        , {
-            tipo: 'EDUCACIÓN'
-        }
-        ];
+            get: {
+                method: 'GET', isArray: false,
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
     };
     this.showModal=function(file, data, idmodal) {
         ModalService.showModal( {

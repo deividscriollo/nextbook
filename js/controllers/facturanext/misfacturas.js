@@ -2,7 +2,11 @@ var app = angular.module('app');
 
 app.controller('misfacturasCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage) {
 
-$scope.gastos = servicios.gastos();
+servicios.gastos().get({},success_gastos).$promise;
+
+function success_gastos(data) {
+    $scope.gastos = data.gastos;
+  }
 
   $scope.data = {
     fecha_inicio: new Date(),

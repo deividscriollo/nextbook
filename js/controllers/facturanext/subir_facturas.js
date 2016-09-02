@@ -1,7 +1,11 @@
 var app = angular.module('app');
 
 app.controller('SubirFacCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage) {
-	$scope.gastos = servicios.gastos();
+servicios.gastos().get({},success).$promise;
+
+function success(data) {
+    $scope.gastos = data.gastos;
+  }
 
 	$scope.get_claveAcceso = function(xml) {
 		if (xml.length != 0) {

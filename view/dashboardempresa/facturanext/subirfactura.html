@@ -18,14 +18,13 @@
 		                </div>
 		            </md-input-container>
 		        </div>
-
 		        <div layout-gt-sm="row">
 		        	<md-input-container class="md-icon-float md-block" flex-gt-sm>
 		                <md-icon class="md-accent">airplay</md-icon>
 		                <label>Tipo de Consumo</label>
-		                <md-select ng-model="data.tipo" name="tipo" required>
-		                    <md-option ng-repeat="gasto in gastos" value="{{gasto.tipo}}">
-		                        {{gasto.tipo}}
+		                <md-select ng-model="data.descripcion" name="tipo" required>
+		                    <md-option ng-repeat="gasto in gastos" value="{{gasto.descripcion}}">
+		                        {{gasto.descripcion}}
 		                    </md-option>
 		                </md-select>
 		            </md-input-container>

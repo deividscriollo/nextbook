@@ -82,8 +82,8 @@
                         <td md-cell ng-if="dessert.tipo_consumo=='Sin-Asignar'">
                           <label>Sin Asignar</label>
                           <md-select ng-model="data.tipo[$index]" required ng-change="update_tipo_consumo(dessert,$index)" >
-                                <md-option ng-repeat="gasto in gastos" value="{{gasto.tipo}}">
-                                {{gasto.tipo}}
+                                <md-option ng-repeat="gasto in gastos" value="{{gasto.descripcion}}">
+                                {{gasto.descripcion}}
                                 </md-option>
                             </md-select>
                         </td>                       

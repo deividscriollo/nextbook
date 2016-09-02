@@ -823,7 +823,7 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 'crop
         maxCanvasDims=[300,300];
 
     // Result Image size
-    var resImgSize={w: 200, h: 200};
+    var resImgSize={w: 300, h: 300};
 
     /* PRIVATE FUNCTIONS */
 
@@ -1072,7 +1072,10 @@ crop.factory('cropHost', ['$document', 'cropAreaCircle', 'cropAreaSquare', 'crop
         size = {w: size,
                 h: size};
       }
-
+      if(angular.isArray(size)){
+        size = {w: parseInt(size[0], 10),
+                h: parseInt(size[1], 10)};
+      }
       size={w: parseInt(size.w, 10),
             h: parseInt(size.h, 10)};
       if(!isNaN(size.w) && !isNaN(size.h)) {

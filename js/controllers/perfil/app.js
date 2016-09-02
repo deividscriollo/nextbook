@@ -95,19 +95,20 @@ app.controller('imagenesCtrl', function($scope,$mdDialog, servicios,$localStorag
     $scope.mini=false;
         $scope.myImage = '';
         $scope.myCroppedImage = '';
-
 switch(tipoimg) {
         case 'perfil':
         $scope.tipo_area='square';
             $scope.estilo = {
                 'width': '144%', 'height': '50%'
             };
+            $scope.sizeimg=300;
             break;
         case 'portada':
         $scope.tipo_area='rectangle';
             $scope.estilo = {
                 'width': '710px', 'height': '267px'
             };
+            $scope.sizeimg=[710,267];
             break;
     }
 

@@ -9,7 +9,7 @@
         <h3>
             Nextbook, Red de Negocios 
         </h3>
-        <span flex></span>
+        
         <form ng-submit="$event.preventDefault()">
             <md-autocomplete ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedItem" md-search-text-change="ctrl.searchTextChange(ctrl.searchText)" md-search-text="ctrl.searchText" md-selected-item-change="ctrl.selectedItemChange(item)" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.name" md-min-length="0" placeholder="Pick an Angular repository" md-menu-class="autocomplete-custom-template">
                 <md-item-template>
@@ -28,10 +28,12 @@
                 </md-item-template>
             </md-autocomplete>
         </form>
+        <span flex></span>
+
         <md-button href="#/My-space/Perfil-inicio">
             Perfil
         </md-button>
-        <md-button href="#/My-space/Inicio">
+        <md-button href="#/My-space/Inicio">            
             Inicio
         </md-button>
         <md-menu md-position-mode="target-right target">

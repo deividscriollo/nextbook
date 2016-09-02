@@ -29,7 +29,7 @@ app.controller('dashboardCtrl', function ($mdDialog, $scope, $localStorage, serv
 					      icon: 'donut_small'
 					    },
 					    {
-					      link : '/My-space/Facturanext',
+					      link : '/My-space/Inventario',
 					      title: 'Inventario',
 					      icon: 'widgets'
 					    }

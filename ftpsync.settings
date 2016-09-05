@@ -7,7 +7,7 @@
 		"host": "nextbook.ec",
 		"username": "nextbook",  // or null for anonymous login
 		"password": "EiCZTO.ePLFIP",
-		"path": "/public_html/pruebas2",
+		"path": "/public_html/pruebas3",
 
 		"upload_on_save": false, // set *false* if you do not want to upload on save!
 

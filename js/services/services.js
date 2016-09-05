@@ -24,7 +24,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                 return "http://192.168.0.101/appnext/";
             },appnextPersonas: function() {
                 // return "http://appnextp.nextbook.ec/";
-                return "http://192.168.0.101/appnext/";
+                return "http://192.168.0.101/appnextP/";
             },mod_radio: function() {
                 // return "http://serviciosradio.nextbook.ec/";
                 return "http://192.168.0.101/mod_radio/";

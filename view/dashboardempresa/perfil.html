@@ -68,22 +68,22 @@
                 <ng-md-icon class="md-accent" icon="cloud_upload" ng-click="show_upload_img_modal('perfil')"></ng-md-icon>
             </md-button>
             </md-card-actions>
-            <div layout="row" layout-align="center center">
-              {{datosPersona.nombres_apellidos}}
-            </div>
             <md-card-content>
 
               <md-list>
-                <md-list-item class="md-3-line md-long-text">
-                  <img ng-src="{{todos[1].face}}?25" class="md-avatar" alt="{{todos[1].who}}" />
-                  <div class="md-list-item-text">
-                    <h3>{{ todos[1].who }}</h3>
-                    <p>
-                      {{activitidad}}
-                    </p>
-                  </div>
+                <md-list-item class=" md-long-text">
+                    {{datos2.razon_social}}
+                </md-list-item>
+                <md-list-item class=" md-long-text">
+                    {{datos2.tipo_contribuyente}}
+                </md-list-item>
+                <md-list-item class=" md-long-text">
+                    {{datos2.actividad_economica}}
                 </md-list-item>
                 <md-divider ></md-divider>
+                <md-list-item class=" md-long-text">
+                    {{datos2.ruc}}
+                </md-list-item>
             </md-list>
             </md-card-content>
             

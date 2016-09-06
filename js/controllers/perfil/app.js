@@ -2,6 +2,9 @@ app.controller('perfilCtrl', function($scope, $mdDialog,$rootScope, servicios, $
     
     $scope.datosPersona = $localStorage.datosPersona;
 
+    $scope.datos2 = $localStorage.datosE;
+
+
     if ($localStorage.imgPerfil != null) {
         $rootScope.imgPerfil = $localStorage.imgPerfil;
     } else {

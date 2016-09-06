@@ -1,7 +1,7 @@
 <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
     <ng-md-icon icon="add"></ng-md-icon>
 </md-button>
-<md-toolbar ng-show="!showSearch">
+<md-toolbar ng-show="!showSearch" class="toolbar-center">
     <div class="md-toolbar-tools">
         <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu" class="md-icon-button launch">
             <ng-md-icon icon="menu"></ng-md-icon>
@@ -54,3 +54,10 @@
     </div>
 </md-toolbar>
 <div app-view-segment="1"></div>
+
+<style type="text/css">
+    .toolbar-center {
+        padding-left: 16%;
+        padding-right: 20%;
+    }
+</style>

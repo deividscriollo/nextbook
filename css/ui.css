@@ -24,7 +24,7 @@ md-card >.div-controlcar-img img {
     position: absolute;
     bottom: 10px;
     left: 10px;
-    font-size: 28px;
+    font-size: 20px;
     color: #FFF;
 
 }
@@ -33,9 +33,9 @@ md-card >.div-controlcar-img img {
 }
 /*avatar perfil*/
 .avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 40px;
+  width: 120px;
+  height: 120px;
+  border-radius: 100px;
 }
 /*tab center*/
 .tabsdemoDynamicHeight md-content {

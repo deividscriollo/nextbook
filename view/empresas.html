@@ -1,4 +1,4 @@
-<h2 class="md-display-2" layout="row" layout-align="center center">Datos de Tu Empresa</h2>
+<h2 layout="row" layout-align="center center">Datos de Tu Empresa</h2>
 <div layout="row" layout-align="center center">
     <div flex-gt-sm="90" flex-gt-md="20" layout-padding>
         <form name="formvisualinfo" ng-show="elementview">
@@ -126,7 +126,7 @@
         <div ng-show="elemennotview">
             <img src="images/welcome/reddenegios.png" class="animated zoomIn" ng-show="elemennotview">
             <h2 class="content-sub-heading">
-              <span class="text-brand-accent">Ingresa</span>fácil, <span class="text-brand-accent">rápido</span>,
+              <span class="text-brand-accent">Ingresa </span> fácil, <span class="text-brand-accent">rápido</span>,
               efectivo y <span class="text-brand-accent">gratis</span>. 
               Publica tú negocio y <span class="text-brand-accent">muéstrate</span>
               al mundo, seguro incrementarás tús ventas.
@@ -134,3 +134,35 @@
         </div>
     </div>
 </div>
+
+<style type="text/css">
+    .content-sub-heading {
+        text-align: justify;
+        line-height: 36px;
+        font-size: 25px;
+        margin-top: 2px;
+        margin-bottom: 30px;
+        max-width: 960px;
+    }
+    
+    .md-toolbar-tools {
+        font-size: 20px;
+        letter-spacing: .005em;
+        box-sizing: border-box;
+        font-weight: 400;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        width: 100%;
+        height: 64px;
+        max-height: 64px;
+        padding: 0 100px!important;
+        margin: 0;
+    }
+</style>

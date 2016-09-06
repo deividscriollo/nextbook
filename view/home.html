@@ -6,7 +6,7 @@
             <div>
                 <md-input-container class="inputuser">
                     <label>Ruc</label>
-                    <input id="email" name="email" ng-model="email" type="text" autocomplete="off" required maxlength="10" ng-pattern="/[0-9-.]/">
+                    <input id="email" name="email" ng-model="email" type="text" required maxlength="10" ng-pattern="/[0-9-.]/">
                     <div ng-messages="formlogin.email.$error" ng-show="formlogin.email.$dirty">
                         <div ng-message="required" class="my-message">requerido</div>
                         <div ng-message="pattern" class="my-message">Solo numeros</div>

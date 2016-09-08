@@ -3,6 +3,8 @@ var app = angular.module('app');
 app.controller('dashboardCtrl', function ($mdDialog, $scope, $localStorage, servicios, $location, $mdSidenav, $timeout) {
     $scope.localStorage = $localStorage.datosE;
 
+    console.log('test');
+
     if ($localStorage.sucursal.categoria == null || $localStorage.sucursal.categoria == '') {
     	$mdDialog.show({
     		clickOutsideToClose: true,
@@ -42,6 +44,14 @@ app.controller('dashboardCtrl', function ($mdDialog, $scope, $localStorage, serv
 						{icon:'location_on',title:'Localizacion',link:''},
 						{icon:'history',title:'Otras Empresas',link:''}
 					];
+
+		
+
+    // $scope.tabs_chat = [
+    //               {icon:'home',title:'Chat',link:'/My-space/Chat'},
+    //               {icon:'assignment',title:'Nuevas Facturas',link:'/My-space/Facturanext/NuevasFacturas'},
+    //             ];
+
 	$scope.navigateTo = function(valor) {
 		$location.path(valor);
 	};

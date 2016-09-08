@@ -1,8 +1,55 @@
+<!-- 
+<md-sidenav layout="column" class="md-sidenav-right-100" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="    position: fixed;
+    left: 80%;
+    top: 64px;
+    width: 20%;
+    height: 100%;
+    z-index: 9;">
+<div layout="column" flex layout-padding>
+    <md-content class="md-padding">
+        <md-tabs md-dynamic-height="false">
+          <md-tab>
+            <md-tab-label>
+              <md-icon md-svg-icon="img/icons/cake.svg"></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <p class="md-padding">
+                Lorem
+              </p>
+            </md-tab-body>
+          </md-tab>
+          <md-tab>
+            <md-tab-label>
+              <md-icon md-svg-icon="img/icons/addShoppingCart.svg"></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <p class="md-padding">
+                Ipsum
+              </p>
+            </md-tab-body>
+          </md-tab>
+          <md-tab>
+            <md-tab-label>
+              <md-icon md-svg-icon="img/icons/ic_insert_drive_file_24px.svg"></md-icon>
+            </md-tab-label>
+            <md-tab-body>
+              <p class="md-padding">
+                Foobar
+              </p>
+            </md-tab-body>
+          </md-tab>
+        </md-tabs>
+    </md-content>
+</div>
+
+</md-sidenav> -->
+    
 <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
     <ng-md-icon icon="add"></ng-md-icon>
 </md-button>
-<md-toolbar ng-show="!showSearch" class="toolbar-center">
-    <div class="md-toolbar-tools">
+
+<md-toolbar ng-show="!showSearch">
+    <div class="md-toolbar-tools toolbar-center" >
         <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu" class="md-icon-button launch">
             <ng-md-icon icon="menu"></ng-md-icon>
         </md-button>
@@ -51,7 +98,53 @@
                 </md-menu-item>
             </md-menu-content>
         </md-menu>
+        
     </div>
+
+    <div class="toolbar-chat">
+        <md-menu-bar>
+          <md-menu>
+            <button ng-click="$mdOpenMenu()" style="background:rgb(63, 81, 181);">
+              <md-icon md-svg-icon="img/icons/ic_comment_24px.svg"></md-icon>
+            </button>
+            <md-menu-content >
+             <md-list-item ng-click="goToPerson(person.name, $event)" class="noright" >
+                <img alt="Img" ng-src="images/samples/w1.jpg" class="md-avatar" />
+                <p>aaaaaaaaaaaaaaaaa</p>
+            </md-list-item>
+
+             <md-list-item ng-click="goToPerson(person.name, $event)" class="noright" >
+                <img alt="Img" ng-src="images/samples/w1.jpg" class="md-avatar" />
+                <p>aaaaaaaaaaaaaaaaa</p>
+            </md-list-item>
+
+
+            </md-menu-content>
+          </md-menu>
+
+              <md-menu>
+            <button ng-click="$mdOpenMenu()" style="background:rgb(63, 81, 181);">
+              <md-icon md-svg-icon="img/icons/ic_insert_drive_file_24px.svg"></md-icon>
+            </button>
+            <md-menu-content >
+             <md-list-item ng-click="goToPerson(person.name, $event)" class="noright" >
+                <img alt="Img" ng-src="images/samples/w1.jpg" class="md-avatar" />
+                <p>aaaaaaaaaaaaaaaaa</p>
+            </md-list-item>
+
+             <md-list-item ng-click="goToPerson(person.name, $event)" class="noright" >
+                <img alt="Img" ng-src="images/samples/w1.jpg" class="md-avatar" />
+                <p>aaaaaaaaaaaaaaaaa</p>
+            </md-list-item>
+
+
+            </md-menu-content>
+          </md-menu>
+
+
+        </md-menu-bar>  
+    </div>
+
 </md-toolbar>
 <div app-view-segment="1"></div>
 
@@ -59,5 +152,9 @@
     .toolbar-center {
         padding-left: 16%;
         padding-right: 20%;
+    }
+    .toolbar-chat{
+       padding-left: 80%;
+       margin-top: -50px;
     }
 </style>

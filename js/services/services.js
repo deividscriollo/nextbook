@@ -21,13 +21,13 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
             ,appnext: function() {
                 // return "http://servicios.nextbook.ec/";
-                return "http://192.168.0.100/appnext/";
+                return "http://192.168.0.102/appnext/";
             },appnextPersonas: function() {
                 // return "http://appnextp.nextbook.ec/";
-                return "http://192.168.0.100/appnextP/";
+                return "http://192.168.0.102/appnextP/";
             },mod_radio: function() {
                 // return "http://serviciosradio.nextbook.ec/";
-                return "http://192.168.0.100/mod_radio/";
+                return "http://192.168.0.102/mod_radio/";
             }
         }
     };

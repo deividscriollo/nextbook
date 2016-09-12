@@ -152,11 +152,11 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .segment('inicio', {
                         'default': true,
                         templateUrl: 'view/dashboardempresa/inicio2.html',
-                        controller: 'appsCtrl'
+                        // controller: 'appsCtrl'
                     })
                     .segment('apps', {
                         templateUrl: 'view/dashboardempresa/apps.html',
-                        controller: 'appsCtrl'
+                        // controller: 'appsCtrl'
                     })
                     .segment('maps', {
                         templateUrl: 'view/dashboardempresa/maps.html',

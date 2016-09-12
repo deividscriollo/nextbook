@@ -3,7 +3,7 @@ app.controller('inicioCtrl', function($scope, $routeSegment) {
     $scope.$routeSegment = $routeSegment;
 });
 
-app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location) {     
+app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location,Facturas,$interval,serviciosfacturanext) {     
     $scope.$routeSegment = $routeSegment;
     $scope.menucard = [
                         {id:'1',titulo:'Facturanext', descripcion:'Repositorio de facturas', evento:'facturanext'},
@@ -11,6 +11,53 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
                         {id:'1',titulo:'Inventario', descripcion:'Inventario Empresa', evento:'inventario'}
                         // {id:'1',titulo:'Radio', descripcion:'Administración Radio', evento:'clientes'}
                       ];
+
+  var estadoread=false;
+ $scope.nrfacturas=0;
+ // $scope.facturas=[];
+
+serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
+        $scope.facturas=data.respuesta;
+        // $scope.facturas.push(data.respuesta.data);
+        $scope.nrfacturas=data.sin_leer;
+      });
+
+  $interval(callAtInterval, 3000);
+  function callAtInterval() {
+   if (estadoread==false) {
+       estadoread=true;
+    Facturas.get().$promise.then(function(data){
+    if (data.respuesta==true) {
+      estadoread=false;
+      serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
+        $scope.facturas=data.respuesta;
+        // $scope.facturas.push(data.respuesta.data);
+        $scope.nrfacturas=data.sin_leer;
+      });
+    }
+  },function(error) {
+   estadoread=false;
+});
+   }
+  }
+
+$scope.searchTextChange=function(text){
+  servicios.buscar_empresas().get().$promise.then(function(data){
+    $scope.items=data.respuesta;
+  });
+  }
+
+   $scope.generar_pdf = function(item) {
+    serviciosfacturanext.update_estado_view_fac().set({id_factura:item.id_factura}); 
+    serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
+        $scope.facturas=data.respuesta;
+        $scope.nrfacturas=data.sin_leer;
+    });
+    $scope.promise = serviciosfacturanext.gen_pdf().generar({iddocumento:item.id_factura}).$promise.then(function(data) {
+    var url = data.url;
+    window.open(url, "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=900, height=800");
+    }); 
+  }
 
     $scope.modal = function(tipo, event) {
       if (tipo == 'nomina') {

@@ -12,7 +12,7 @@ var app=angular.module	('app', 	[
 									'route-segment',
 									'view-segment',
 									'ngResource',
-									'blockUI',
+									// 'blockUI',
 									'ngMdIcons',
 									'lfNgMdFileInput',
 									'oitozero.ngSweetAlert',

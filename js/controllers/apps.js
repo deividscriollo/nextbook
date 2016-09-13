@@ -41,6 +41,19 @@ serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
    }
   }
 
+$scope.sendMensaje=function(objeto){
+ $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'sendMensajeCtrl',
+      controllerAs: 'ctrlMensaje',
+      focusOnOpen: false,
+      targetEvent: event,
+      locals: {datos: objeto},
+      templateUrl: 'view/modales/sendMensaje.html',
+      clickOutsideToClose:true,
+    });
+}
+
 $scope.searchTextChange=function(text){
   servicios.buscar_empresas().get().$promise.then(function(data){
     $scope.items=data.respuesta;
@@ -170,6 +183,17 @@ app.controller('mapsCtrl', function($scope, $routeSegment) {
 
 app.controller('recordCtrl', function($scope, $routeSegment) {       
   $scope.$routeSegment = $routeSegment;
+});
+
+app.controller('sendMensajeCtrl', function($scope,$mdDialog,datos) {       
+    this.cancel = $mdDialog.cancel;
+    $scope.enviar=function(){
+      $scope.data={
+        id_empresa:datos.id_empresa,
+        mensaje:$scope.mensaje
+      }
+      console.log($scope.data);
+    }
 });
 
 // app.controller('MainCtrl', function($scope, $routeSegment, $localStorage,servicios, $location, loader, LoginE,Reddit) {

@@ -1,0 +1,31 @@
+<md-dialog>
+    <form name="mensajeform" >
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Nuevo Mensaje</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                    <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="md-dialog-content">
+          <form name="mensajeform" id="mensajeform">
+            <md-input-container class="md-block" flex-gt-xs >
+                <label>Mensaje : </label>
+                <textarea ng-model="mensaje" rows="5" style="height: 145px; width: 400px;" md-select-on-focus></textarea>
+                <div ng-messages="mensajeform.mensaje.$error">
+                  <div ng-message="required">Mensaje Requerido</div>
+                </div>
+            </md-input-container>
+          </form>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button class="md-warn md-raised md-hue-2" ng-click="ctrlMensaje.cancel()"> Cancelar </md-button>
+            <span flex></span>
+            <md-button class="md-raised md-primary" type="submit" ng-click="enviar()" ng-disabled="mensajeform.$invalid">
+              Enviar
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

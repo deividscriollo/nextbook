@@ -12,7 +12,7 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
                         // {id:'1',titulo:'Radio', descripcion:'Administración Radio', evento:'clientes'}
                       ];
 
-  var estadoread=false;
+var estadoread=false;
  $scope.nrfacturas=0;
  // $scope.facturas=[];
 
@@ -36,7 +36,7 @@ serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
       });
     }
   },function(error) {
-   estadoread=false;
+   // estadoread=false;
 });
    }
   }
@@ -68,7 +68,7 @@ $scope.searchTextChange=function(text){
     });
     $scope.promise = serviciosfacturanext.gen_pdf().generar({iddocumento:item.id_factura}).$promise.then(function(data) {
     var url = data.url;
-    window.open(url, "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=900, height=800");
+    window.open(url, '_blank', "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=900, height=800");
     }); 
   }
 
@@ -185,14 +185,27 @@ app.controller('recordCtrl', function($scope, $routeSegment) {
   $scope.$routeSegment = $routeSegment;
 });
 
-app.controller('sendMensajeCtrl', function($scope,$mdDialog,datos) {       
+app.controller('sendMensajeCtrl', function($scope,$mdDialog,datos,servicios) {       
     this.cancel = $mdDialog.cancel;
     $scope.enviar=function(){
       $scope.data={
         id_empresa:datos.id_empresa,
         mensaje:$scope.mensaje
       }
-      console.log($scope.data);
+      servicios.mensaje().send($scope.data).$promise.then(function(data){
+        if (data.respuesta==true) {
+           $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#dialogContainer')))
+                .clickOutsideToClose(true)
+                .title('NextBook')
+                .textContent('Mensaje Enviado Correctamente')
+                .ariaLabel('Mensaje Enviado Correctamente')
+                .ok('Ok!')
+                .openFrom('#left')
+            );
+        }
+      });
     }
 });
 

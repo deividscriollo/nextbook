@@ -411,6 +411,22 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     }  ;
     //----------------------- fin ----
 
+    //----------------------------------------------------- Enviar Mensaje Modal----------------
+    this.mensaje=function() {
+        return $resource(this.server().appnext()+'public/sendMensaje', {}
+        , {
+            send: {
+                method: 'POST', isArray: false,
+                params:{
+                token: $localStorage.token
+            }
+            }
+            
+        }
+        );
+    }  ;
+    //----------------------- fin ----
+
 });
 
 

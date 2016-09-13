@@ -2,15 +2,6 @@
     <form name="proveedoresForm" ng-submit="guardar_facturas_fisicas()">
         <div layout-gt-sm="row">
             <md-input-container class="md-icon-float md-block" flex-gt-sm>
-                <md-icon class="md-primary">airplay</md-icon>
-                <label>Serie</label>
-                <input type="text" name="serie" ng-model="data.serie" />
-                <div ng-messages="proveedoresForm.serie.$error">
-                    <div ng-message="required">Serie Requerido</div>
-                </div>
-            </md-input-container>
-
-            <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <md-icon class="md-accent">search</md-icon>
                 <label>Ruc</label>
                 <input md-maxlength="13" type="text" required name="ruc" ng-model="data.ruc" />
@@ -26,6 +17,15 @@
                 <input type="text" name="razon_social" ng-model="data.razon_social" />
                 <div ng-messages="proveedoresForm.razon_social.$error">
                     <div ng-message="required">Razon Social Requerido</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                <md-icon class="md-primary">airplay</md-icon>
+                <label>Serie</label>
+                <input type="text" name="serie" ng-model="data.serie" />
+                <div ng-messages="proveedoresForm.serie.$error">
+                    <div ng-message="required">Serie Requerido</div>
                 </div>
             </md-input-container>
         </div>
@@ -142,15 +142,12 @@
 	        <table md-table md-progress="promise">
 	            <thead md-head md-order="query.order" md-on-reorder="getDesserts">
 	                <tr md-row>
-	                    <th md-column md-numeric>FECHA EMISIÓN</th>
-	                    <th md-column md-numeric>TIPO DE CONSUMO</th>
-	                    <th md-column md-numeric>FORMA DE PAGO</th>
-	                    <th md-column md-numeric>RAZÓN SOCIAL</th>
-	                    <th md-column md-numeric>NÚMERO DE FACTURA</th>
-	                    <th md-column md-numeric>TIPO DE DOCUMENTO</th>
-	                    <th md-column md-numeric>SUB TOTAL</th>
+	                    <th md-column md-numeric>CÓDIGO</th>
+	                    <th md-column md-numeric>DESCRIPCIÓN</th>
+	                    <th md-column md-numeric>CANTIDAD</th>
+	                    <th md-column md-numeric>P.V.P</th>
+	                    <th md-column md-numeric>DESCUENTO</th>
 	                    <th md-column md-numeric>TOTAL</th>
-	                    <th md-column md-numeric>ACCIONES</th>
 	                </tr>
 	            </thead>
 	            
@@ -160,18 +157,7 @@
 	                    <td md-cell>{{dessert.descripcion}}</td>
 	                    <td md-cell>{{dessert.periodicidad}}</td>
 	                    <td md-cell>{{dessert.registro_patronal}}</td>
-	                    <td md-cell>{{dessert.dias}}</td>
-	                    <td md-cell>{{dessert.dias}}</td>
-	                    <td md-cell>{{dessert.dias}}</td>
-	                    <td md-cell>{{dessert.fecha_inicio}}</td>  
-	                    <td md-cell>
-	                         <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="eddititem(dessert)">
-	                          <md-icon md-svg-src="img/icons/ic_edit_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
-	                        </md-button>
-	                        <md-button class="md-fab md-mini md-primary" aria-label="Use Android" ng-click="deleteitem(dessert)">
-	                          <md-icon md-svg-src="img/icons/ic_delete_white_24px.svg" style="color: #DDDDDD!important;"></md-icon>
-	                        </md-button>
-	                    </td>
+	                    <td md-cell>{{dessert.dias}}</td> 
 	                </tr>
 	            </tbody>
 	        </table>

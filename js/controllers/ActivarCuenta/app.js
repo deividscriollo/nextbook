@@ -1,6 +1,6 @@
 var app = angular.module('app');
 app.controller('activarcuentaCtrl', function ($routeSegment, servicios, $mdDialog, $location) {
-	servicios.activar_cuenta().enviar($routeSegment.$routeParams).$promise.then(function(data){
+	servicios.activar_cuenta().enviar($routeSegment.$routeParams).$promise.then(function(data) {
 		// console.log(data.respuesta);
 		if (data.respuesta) {
 			$mdDialog.show(

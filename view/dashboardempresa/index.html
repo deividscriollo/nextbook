@@ -56,7 +56,7 @@
           <h3>
               Nextbook, Red de Negocios&nbsp;&nbsp;
           </h3>
-          <form ng-submit="$event.preventDefault()" flex>
+          <form ng-submit="$event.preventDefault()" class="input-buscador">
               <md-autocomplete ng-disabled="isDisabled"  md-no-cache="noCache" md-selected-item="selectedItem" md-search-text-change="searchTextChange(searchText)" md-search-text="searchText" md-selected-item-change="selectedItemChange(item)" md-items="item in items" md-item-text="item.nombre_comercial" md-min-length="0" placeholder="Empresas,Servicios ....." md-menu-class="autocomplete-custom-template">
                   <md-item-template>
                       <span class="item-title">

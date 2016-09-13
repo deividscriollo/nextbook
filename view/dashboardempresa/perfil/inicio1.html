@@ -2,17 +2,17 @@
     <md-card>
         <md-card-actions layout="row" layout-align="center center">
           <md-button class="md-accent md-raised" ng-click="editinfo()">
-                Editar
-            </md-button>
+            Editar
+          </md-button>
         </md-card-actions>
         <div layout="row" layout-align="center center">
             {{localStorage.nombre_comercial}}
         </div>
         <md-card-content>
-            <p>{{activitidad}}</p>
+            <p>{{localStorage.activitidad}}</p>
             <md-list>
               <md-subheader class="md-no-sticky">Telefonos</md-subheader>
-                <md-list-item class="md-2-line" ng-repeat="telefono in telefonos">
+                <md-list-item class="md-2-line" ng-repeat="telefono in localStorage.telefonos">
                   <ng-md-icon class="md-accent" icon="phone"></ng-md-icon>
                   <div class="md-list-item-text" ng-class="{'md-offset': phone.options.offset }">
                     <h3>{{telefono.dato}} </h3>

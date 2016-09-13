@@ -156,7 +156,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     })
                     .segment('apps', {
                         templateUrl: 'view/dashboardempresa/apps.html',
-                        // controller: 'appsCtrl'
+                        controller: 'appsCtrl'
                     })
                     .segment('maps', {
                         templateUrl: 'view/dashboardempresa/maps.html',

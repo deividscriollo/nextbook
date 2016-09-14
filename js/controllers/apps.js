@@ -41,6 +41,23 @@ serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
    }
   }
 
+var estadoreadchat=false;
+$interval(get_chats, 3000);
+function get_chats() {
+   if (estadoreadchat==false) {
+       estadoreadchat=true;
+    servicios.get_chats().get().$promise.then(function(data){
+    $scope.chats=data.datos;
+    if (data.respuesta==true) {
+      estadoreadchat=false;
+    }
+   },function(error) {
+   estadoreadchat=false;
+});
+  }
+   
+  }
+
 $scope.sendMensaje=function(objeto){
  $mdDialog.show({
       clickOutsideToClose: true,

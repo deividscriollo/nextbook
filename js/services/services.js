@@ -427,6 +427,22 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     }  ;
     //----------------------- fin ----
 
+    //----------------------------------------------------- Enviar Mensaje Modal----------------
+    this.get_chats=function() {
+        return $resource(this.server().appnext()+'public/getChatsRecibidos', {}
+        , {
+            get: {
+                method: 'GET', isArray: false,
+                params:{
+                token: $localStorage.token
+            }
+            }
+            
+        }
+        );
+    }  ;
+    //----------------------- fin ----
+
 });
 
 

@@ -16,14 +16,16 @@
             <md-tab-body>
               <md-subheader class="md-primary">Mensajes</md-subheader>
               <md-divider ></md-divider>
-               <md-list-item ng-click="goToPerson(person.name, $event)" class="noright" >
-                  <img alt="Img" ng-src="images/samples/w1.jpg" class="md-avatar" />
-                  <p>Empresa A</p>
+              <md-list-item  class="noright" ng-repeat="chat in chats">
+               <md-button ng-click="open_chat(factura)" style="width: 100%;">
+                    <div ng-class="{'no-view': chat.estado_view == false }">
+                    <img alt="Img" ng-src="{{chat.img}}" class="md-avatar" style=" float: left;" />
+                      <div style="font-size: 11.5px; margin-top: 0px; margin-bottom: 0; height: 16px; width: 0;">{{chat.para}}</div>
+                      <div style="font-size: 9.5px; margin-top: 0px; margin-bottom: 0; float: left;">{{chat.mensaje}}</div>
+                    </div>
+                </md-button>
               </md-list-item>
-               <md-list-item ng-click="goToPerson(person.name, $event)" class="noright" >
-                  <img alt="Img" ng-src="images/samples/w1.jpg" class="md-avatar" />
-                  <p>Empresa B</p>
-              </md-list-item>
+
             </md-tab-body>
           </md-tab>
           <md-tab>

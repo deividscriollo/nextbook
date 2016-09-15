@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.controller('misfacturasCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage) {
+app.controller('misfacturasCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage, $q) {
 
 servicios.gastos().get({},success_gastos).$promise;
 

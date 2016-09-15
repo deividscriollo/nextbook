@@ -1,5 +1,5 @@
-<md-content layout-padding flex-gt-md="100" ng-controller="misfacturasCtrl">
-    <form name="misfacturasForm">
+<md-content layout-padding flex-gt-md="100" ng-controller="misfacturasCtrl as ctrl">
+    <form name="misfacturasForm" ng-submit="$event.preventDefault()">
         <div layout-gt-sm="row">
             <mdp-date-picker mdp-open-on-click required name="fecha_inicio" mdp-placeholder="Fecha Inicio" mdp-format="YYYY-MM-DD" ng-model="data.fecha_inicio">
                 <div ng-messages="misfacturasForm.fecha_inicio.$error">

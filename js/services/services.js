@@ -443,6 +443,22 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     }  ;
     //----------------------- fin ----
 
+     //----------------------------------------------------- Enviar Mensaje Modal----------------
+    this.get_mensajes=function() {
+        return $resource(this.server().appnext()+'public/getMensajes', {}
+        , {
+            get: {
+                method: 'GET', isArray: false,
+                params:{
+                token: $localStorage.token
+            }
+            }
+            
+        }
+        );
+    }  ;
+    //----------------------- fin ----
+
 });
 
 

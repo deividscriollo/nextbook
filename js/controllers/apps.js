@@ -24,6 +24,7 @@ serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
 
   $interval(callAtInterval, 3000);
   function callAtInterval() {
+      if ($localStorage.token) {
    if (estadoread==false) {
        estadoread=true;
     Facturas.get().$promise.then(function(data){
@@ -39,12 +40,14 @@ serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
    // estadoread=false;
 });
    }
+ }
   }
 
 var estadoreadchat=false;
 $interval(get_chats, 3000);
 function get_chats() {
-   if (estadoreadchat==false) {
+  if ($localStorage.token) {
+       if (estadoreadchat==false) {
        estadoreadchat=true;
     servicios.get_chats().get().$promise.then(function(data){
     $scope.chats=data.datos;
@@ -55,7 +58,7 @@ function get_chats() {
    estadoreadchat=false;
 });
   }
-   
+    }
   }
 
 $scope.sendMensaje=function(objeto){
@@ -70,10 +73,26 @@ $scope.sendMensaje=function(objeto){
       clickOutsideToClose:true,
     });
 }
+
+function success(data) {
+    $scope.mensajes_enviados=data.enviados;
+    $scope.mensajes_recibidos=data.recibidos;
+    $scope.size_enviados=$scope.mensajes_enviados.length;
+    $scope.size_recibidos=$scope.mensajes_recibidos.length;
+  }
+  
+  $scope.getMensajes = function (chat_obj) {
+   servicios.get_mensajes().get({chat_id:chat_obj.chat_id},success).$promise;
+  };
+
 $scope.chat_boxs=[];
 this.selectedTab = 0;
+$scope.nombre_chat="";
 this.open_chat=function(chat_obj){
-console.log(chat_obj);
+$scope.nombre_chat=chat_obj.para;
+$scope.img_chat=chat_obj.img;
+$scope.img_session=$localStorage.imgPerfil;
+$scope.getMensajes(chat_obj);
 this.selectedTab = (this.selectedTab + 1) % 3;
 }
 

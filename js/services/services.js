@@ -429,7 +429,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
 
     //----------------------------------------------------- Enviar Mensaje Modal----------------
     this.get_chats=function() {
-        return $resource(this.server().appnext()+'public/getChatsRecibidos', {}
+        return $resource(this.server().appnext()+'public/getChats', {}
         , {
             get: {
                 method: 'GET', isArray: false,

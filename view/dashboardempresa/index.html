@@ -1,5 +1,5 @@
 
-<div ng-controller="appsCtrl">
+<div ng-controller="appsCtrl as ctrl">
 <md-sidenav layout="column" class="md-sidenav-right-100" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="    position: fixed;
     left: 80%;
     top: 64px;
@@ -16,8 +16,31 @@
             <md-tab-body>
               <md-subheader class="md-primary">Mensajes</md-subheader>
               <md-divider ></md-divider>
-              <md-list-item  class="noright" ng-repeat="chat in chats">
+              <!-- <md-list-item  class="noright" ng-repeat="chat in chats">
                <md-button ng-click="open_chat(factura)" style="width: 100%;">
+                    <div ng-class="{'no-view': chat.estado_view == false }">
+                    <img alt="Img" ng-src="{{chat.img}}" class="md-avatar" style=" float: left;" />
+                      <div style="font-size: 11.5px; margin-top: 0px; margin-bottom: 0; height: 16px; width: 0;">{{chat.para}}</div>
+                      <div style="font-size: 9.5px; margin-top: 0px; margin-bottom: 0; float: left;">{{chat.mensaje}}</div>
+                    </div>
+                </md-button>
+              </md-list-item> -->
+             <!--  <md-list-item  class="noright">
+               <md-button ng-click="open_chat(factura)" style="width: 100%;">
+                    <div ng-class="{'no-view': chat.estado_view == false }">
+                    <img alt="Img" ng-src="{{chat.img}}" class="md-avatar" style=" float: left;" />
+                      <div style="font-size: 11.5px; margin-top: 0px; margin-bottom: 0; height: 16px; width: 0;">REMITENTE</div>
+                      <div style="font-size: 9.5px; margin-top: 0px; margin-bottom: 0; float: left;">Mensaje</div>
+                    </div>
+                </md-button>
+              </md-list-item> -->
+             <md-divider ></md-divider>
+<md-content class="md-padding">
+        <md-tabs md-dynamic-height="true" md-selected="ctrl.selectedTab" id="chat_mensajes">
+          <md-tab>
+            <md-tab-body>
+         <md-list-item  class="noright" ng-repeat="chat in chats">
+               <md-button ng-click="ctrl.open_chat(chat)" style="width: 100%;">
                     <div ng-class="{'no-view': chat.estado_view == false }">
                     <img alt="Img" ng-src="{{chat.img}}" class="md-avatar" style=" float: left;" />
                       <div style="font-size: 11.5px; margin-top: 0px; margin-bottom: 0; height: 16px; width: 0;">{{chat.para}}</div>
@@ -26,6 +49,17 @@
                 </md-button>
               </md-list-item>
 
+            </md-tab-body>
+          </md-tab>
+          <md-tab>
+            <md-tab-body>
+            <md-button class="md-icon-button md-primary" ng-click="ctrl.back_chat()">
+                <md-icon md-svg-icon="img/icons/ic_arrow_back_24px.svg"></md-icon>
+            </md-button>
+            </md-tab-body>
+          </md-tab>
+        </md-tabs>
+    </md-content>
             </md-tab-body>
           </md-tab>
           <md-tab>
@@ -76,6 +110,69 @@
     </md-content>
 </div>
 </md-sidenav>
+
+
+<!-- <table style="
+    position: absolute;
+    /*left: 69%;*/
+    bottom: 5px;
+    z-index: 9;
+    width: 260px;" >
+   <tr>
+  <td ng-repeat="chats_box in chat_boxs" style=" 
+    /*border: solid 1px #afafaf;*/
+    border-radius: 5px;
+    width: 200px">
+  <div style="
+    cursor:pointer;
+    background-color: #3f51b5;
+    width: 260px;
+    height: 19px;
+    padding: 7px;
+    border-radius: 5px 5px 0 0;
+    color: white;">
+    <span style="font-size:12px;">Alex Guaman</span>
+  </div>
+  <md-content>
+  <div style="
+    cursor: pointer;
+    background-color: #ccc;
+    width: 260px;
+    height: 113px;
+    padding: 7px;
+    border-radius: 5px 5px 0 0;
+    color: white;">
+      <span style="font-size:12px;">Alex Guaman</span>
+  </div>
+  <md-input-container class="md-block" style="margin-bottom:0;">
+  <textarea rows="2" class="md-mini md-primary" placeholder="Escribe un mensaje"></textarea>
+  </md-input-container>
+  </md-content>
+      </td>
+   </tr>
+</table> -->
+
+<!-- <div style="
+    cursor:pointer;
+    position: absolute;
+    left: 69%;
+    bottom: 0;" >
+    <div style="background-color: #3f51b5;
+    width: 93%;
+    height: 19px;
+    padding: 7px;
+    border-radius: 5px 5px 0 0;
+    color: white;">
+      <span style="font-size:12px;">Alex Guaman</span>
+    </div>
+  <md-content >
+  <md-input-container class="md-block">
+          <label>Escribe un mensaje</label>
+          <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+  </md-content>
+</div> -->
+
   <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
       <ng-md-icon icon="add"></ng-md-icon>
   </md-button>
@@ -124,7 +221,6 @@
                   </md-menu-item>
               </md-menu-content>
           </md-menu>
-          
       </div>
 
       <!-- <div class="toolbar-chat">
@@ -206,5 +302,8 @@
       color: white;
       padding: 1px 4px;
       border-radius: 4px;
+  }
+ #chat_mensajes md-tabs-canvas{
+    display: none;
   }
   </style>

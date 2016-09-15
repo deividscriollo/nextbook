@@ -64,11 +64,21 @@ $scope.sendMensaje=function(objeto){
       controller: 'sendMensajeCtrl',
       controllerAs: 'ctrlMensaje',
       focusOnOpen: false,
-      targetEvent: event,
+      // targetEvent: event,
       locals: {datos: objeto},
       templateUrl: 'view/modales/sendMensaje.html',
       clickOutsideToClose:true,
     });
+}
+$scope.chat_boxs=[];
+this.selectedTab = 0;
+this.open_chat=function(chat_obj){
+console.log(chat_obj);
+this.selectedTab = (this.selectedTab + 1) % 3;
+}
+
+this.back_chat=function(){
+this.selectedTab = (this.selectedTab - 1) % 3;
 }
 
 $scope.searchTextChange=function(text){

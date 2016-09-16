@@ -1,4 +1,5 @@
 var app=angular.module	('app', 	[ 
+									'btford.socket-io',
 									'infinite-scroll',
 									'ngImgCrop',
 									'ngPDFViewer',

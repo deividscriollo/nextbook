@@ -1,45 +1,33 @@
-<md-content layout-padding flex-gt-md="100" ng-controller="factutasFiCtrl">
-    <form name="proveedoresForm" ng-submit="$event.preventDefault()">
+<md-content layout-padding flex-gt-md="100" ng-controller="factutasFiCtrl as ctrl">
+    <form name="facturasfisicasForm" ng-submit="$event.preventDefault()">
         <div layout-gt-sm="row">
-            
-
-            <md-input-container class="md-icon-float md-block" flex-gt-sm>
-                <!-- <md-autocomplete flex required
-                    md-input-name="autocompleteField"
-                    md-input-minlength="2"
-                    md-input-maxlength="18"
-                    md-no-cache="ctrl.noCache"
-                    md-selected-item="ctrl.selectedItem"
-                    md-search-text="ctrl.searchText"
-                    md-items="item in ctrl.querySearch(ctrl.searchText)"
-                    md-item-text="item.display"
-                    md-require-match
-                    md-floating-label="Favorite state">
-                  <md-item-template>
-                    <span md-highlight-text="ctrl.searchText">{{item.display}}</span>
-                  </md-item-template>
-                  <div ng-messages="proveedoresForm.autocompleteField.$error" ng-if="proveedoresForm.autocompleteField.$touched">
-                    <div ng-message="required">You <b>must</b> have a favorite state.</div>
-                    <div ng-message="md-require-match">Please select an existing state.</div>
-                    <div ng-message="minlength">Your entry is not long enough.</div>
-                    <div ng-message="maxlength">Your entry is too long.</div>
-                  </div>
-                </md-autocomplete> -->
-            
-                <md-icon class="md-accent">search</md-icon>
-                <label>Ruc</label>
-                <input md-maxlength="13" type="text" required name="ruc" ng-model="data.ruc" />
-                <div ng-messages="proveedoresForm.ruc.$error">
-                    <div ng-message="required">Ruc Requerido</div>
-                    <div ng-message="md-maxlength">El Ruc tiene que tener mínimo 13 caracteres</div>
-                </div>
-            </md-input-container>
+            <md-autocomplete flex required
+                md-input-name="autocompleteField"
+                md-input-minlength="1"
+                md-input-maxlength="13"
+                md-no-cache="ctrl.noCache"
+                md-selected-item="ctrl.selectedItem"
+                md-search-text="ctrl.searchText"
+                md-items="item in ctrl.querySearch(ctrl.searchText)"
+                md-item-text="item.ruc"
+                md-require-match
+                md-floating-label="Ruc">
+              <md-item-template>
+                <span md-highlight-text="ctrl.searchText">{{item.ruc}}</span>
+              </md-item-template>
+              <div ng-messages="facturasfisicasForm.autocompleteField.$error" ng-if="facturasfisicasForm.autocompleteField.$touched">
+                <div ng-message="required">Seleccione un Ruc</div>
+                <div ng-message="md-require-match">Por favor seleccione un Ruc existente.</div>
+                <div ng-message="minlength">Su entrada no es lo suficientemente larga.</div>
+                <div ng-message="maxlength">La entrada es demasiado larga.</div>
+              </div>
+            </md-autocomplete>
 
             <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <md-icon class="md-accent">search</md-icon>
                 <label>Razon Social</label>
                 <input type="text" name="razon_social" ng-model="data.razon_social" />
-                <div ng-messages="proveedoresForm.razon_social.$error">
+                <div ng-messages="facturasfisicasForm.razon_social.$error">
                     <div ng-message="required">Razon Social Requerido</div>
                 </div>
             </md-input-container>
@@ -48,7 +36,7 @@
                 <md-icon class="md-primary">airplay</md-icon>
                 <label>Serie</label>
                 <input type="text" name="serie" ng-model="data.serie" />
-                <div ng-messages="proveedoresForm.serie.$error">
+                <div ng-messages="facturasfisicasForm.serie.$error">
                     <div ng-message="required">Serie Requerido</div>
                 </div>
             </md-input-container>
@@ -76,14 +64,14 @@
             </md-input-container>
 
             <mdp-date-picker mdp-open-on-click required name="fecha_emision" mdp-placeholder="Fecha Emisión" mdp-format="YYYY-MM-DD" ng-model="data.fecha_emision">
-                <div ng-messages="proveedoresForm.fecha_emision.$error">
+                <div ng-messages="facturasfisicasForm.fecha_emision.$error">
                   <div ng-message="required">Campo Requerido</div>
                   <div ng-message="format">Formato Invalido</div>
                 </div>
             </mdp-date-picker>
 
             <mdp-date-picker mdp-open-on-click required name="feha_creacion" mdp-placeholder="Fecha Creación" mdp-format="YYYY-MM-DD" ng-model="data.feha_creacion">
-                <div ng-messages="proveedoresForm.feha_creacion.$error">
+                <div ng-messages="facturasfisicasForm.feha_creacion.$error">
                   <div ng-message="required">Campo Requerido</div>
                   <div ng-message="format">Formato Invalido</div>
                 </div>
@@ -95,7 +83,7 @@
                 <!-- <md-icon class="md-accent">airplay</md-icon> -->
                 <label>Código Producto</label>
                 <input type="text"  required name="codigo" ng-model="data.codigo" />
-                <div  class="error" ng-messages="proveedoresForm.codigo.$error">
+                <div  class="error" ng-messages="facturasfisicasForm.codigo.$error">
                     <div ng-message="required">Código Requerido</div>
                 </div>
             </md-input-container>
@@ -104,7 +92,7 @@
                 <!-- <md-icon class="md-accent">airplay</md-icon> -->
                 <label>Detalle Producto</label>
                 <input type="text" required name="detalle" ng-model="data.detalle" />
-                <div ng-messages="proveedoresForm.detalle.$error">
+                <div ng-messages="facturasfisicasForm.detalle.$error">
                     <div ng-message="required">Detalle Requerido</div>
                 </div>
             </md-input-container>
@@ -113,7 +101,7 @@
                 <!-- <md-icon class="md-accent">airplay</md-icon> -->
                 <label>Cantidad</label>
                 <input type="text" required name="cantidad" ng-model="data.cantidad">
-                <div ng-messages="proveedoresForm.cantidad.$error">
+                <div ng-messages="facturasfisicasForm.cantidad.$error">
                     <div ng-message="required">Cantidad Requerido</div>
                 </div>
             </md-input-container>
@@ -122,7 +110,7 @@
                 <!-- <md-icon class="md-accent">airplay</md-icon> -->
                 <label>Precio</label>
                 <input type="text" required name="precio" ng-model="data.precio">
-                <div ng-messages="proveedoresForm.precio.$error">
+                <div ng-messages="facturasfisicasForm.precio.$error">
                     <div ng-message="required">Precio Requerido</div>
                 </div>
             </md-input-container>
@@ -131,42 +119,14 @@
                 <!-- <md-icon class="md-accent">airplay</md-icon> -->
                 <label>Precio Total</label>
                 <input type="text" required name="precio_total" ng-model="data.precio_total">
-                <div ng-messages="proveedoresForm.precio_total.$error">
+                <div ng-messages="facturasfisicasForm.precio_total.$error">
                     <div ng-message="required">Precio Total Requerido</div>
                 </div>
             </md-input-container>             
         </div>
 
         <div layout-gt-sm="row">
-            <md-content flex-gt-md="100">
-                <!-- <mdt-table table-card="{visible: true, title: 'Nutritions'}"
-                     selectable-rows="true"
-                     alternate-headers="'contextual'"
-                     
-                     delete-row-callback="deleteRowCallback(rows)">
-                    <mdt-header-row>
-                      <mdt-column align-rule="left">Dessert (100g serving)</mdt-column>
-                      <mdt-column align-rule="right">Calories</mdt-column>
-                      <mdt-column align-rule="right">Fat (g)</mdt-column>
-                      <mdt-column align-rule="right">Carbs (g)</mdt-column>
-                      <mdt-column align-rule="right">Protein (g)</mdt-column>
-                      <mdt-column align-rule="right">Sodium (mg)</mdt-column>
-                      <mdt-column align-rule="right">Calcium (%)</mdt-column>
-                      <mdt-column align-rule="right">Iron (%)</mdt-column>
-                    </mdt-header-row>
-                    <mdt-row 
-                             ng-repeat="nutrition in nutritionList"
-                             table-row-id="nutrition.id">
-                      <mdt-cell>{{nutrition.name}}</mdt-cell>
-                      <mdt-cell>{{nutrition.calories}}</mdt-cell>
-                      <mdt-cell>{{nutrition.fat}}</mdt-cell>
-                      <mdt-cell>{{nutrition.carbs}}</mdt-cell>
-                      <mdt-cell>{{nutrition.protein}}</mdt-cell>
-                      <mdt-cell>{{nutrition.sodium}}</mdt-cell>
-                      <mdt-cell>{{nutrition.calcium}}</mdt-cell>
-                      <mdt-cell>{{nutrition.iron}}</mdt-cell>
-                    </mdt-row>
-                </mdt-table> -->
+           <!--  <md-content flex-gt-md="100">
                 <md-toolbar ng-hide="selected.length || filter.show">
                   <div class="md-toolbar-tools">
                     Detalle Factura
@@ -216,7 +176,7 @@
                         </tbody>
                     </table>
                 </md-table-container>
-            </md-content>
+            </md-content> -->
         </div>
 
         <div layout-gt-sm="row">
@@ -255,7 +215,7 @@
         </div>
         
         <div layout-gt-sm="row" class="center end">
-            <md-button class="md-raised md-primary" type="submit" ng-disabled="proveedoresForm.$invalid">
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="facturasfisicasForm.$invalid">
                 Guardar <i class="fa fa-angle-double-right"></i>
             </md-button>
             <md-button class="md-raised md-accent" type="reset">

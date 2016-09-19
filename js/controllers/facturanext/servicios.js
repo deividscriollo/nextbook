@@ -15,6 +15,18 @@ app.service('serviciosfacturanext', function($resource, $localStorage, $location
             }
         });
     };
+
+    this.search_ruc = function() {
+        return $resource(servicios.server().appnext()+'public/getBuscarProveedor', {}
+        , {
+            set: {
+                method: 'GET', isArray: false, 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
     //--------------------------------------------------Fin-------------------------------------
 
     // ------------------------------------------------ Facturas Electronicas ------------------

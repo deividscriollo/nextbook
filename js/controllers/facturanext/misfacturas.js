@@ -47,7 +47,6 @@ function success_gastos(data) {
       $scope.getDesserts();
       }  
     });
-
   }
   
   $scope.pdfititem = function(item) {

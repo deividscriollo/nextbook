@@ -3,7 +3,7 @@ app.controller('inicioCtrl', function($scope, $routeSegment) {
     $scope.$routeSegment = $routeSegment;
 });
 
-app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location,Facturas,$interval,serviciosfacturanext,socket) {
+app.controller('appsCtrl', function (ChatSocket,$mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location,Facturas,$interval,serviciosfacturanext) {
     $scope.$routeSegment = $routeSegment;
     $scope.menucard = [
                         {id:'1',titulo:'Facturanext', descripcion:'Repositorio de facturas', evento:'facturanext'},
@@ -45,8 +45,14 @@ serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
 
 
 //--------------------------------------------------- CHAT ----------------
-socket.on('connection',function(socket){
-  
+
+$scope.sendMensajeChat=function(event){
+   if (event.keyCode === 13) {
+      ChatSocket.emit('SendMensaje',$scope.mensaje);
+  }
+}
+ChatSocket.on('getMensaje',function(data){
+ alert(data);
 });
 
 var estadoreadchat=false;

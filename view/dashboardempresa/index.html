@@ -65,7 +65,8 @@
                                             </div>
 
                                             <md-input-container class="md-block" style="margin-bottom:0;">
-                                                <textarea rows="2" class="md-mini md-primary" placeholder="Escribe un mensaje"></textarea>
+                                                <!-- <textarea rows="2" ng-model="mensaje" ng-keypress="sendMensajeChat($event)" class="md-mini md-primary" placeholder="Escribe un mensaje"></textarea> -->
+                                                <input type="text" rows="2" ng-model="mensaje" ng-keypress="sendMensajeChat($event)" class="md-mini md-primary" placeholder="Escribe un mensaje">
                                             </md-input-container>
                                         </md-tab-body>
                                     </md-tab>

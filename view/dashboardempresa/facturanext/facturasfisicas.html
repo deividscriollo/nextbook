@@ -56,7 +56,7 @@
                 <md-icon class="md-accent">airplay</md-icon>
                 <label>Tipo de Consumo</label>
                 <md-select ng-model="data.tipo_consumo" name="tipo_consumo" required>
-                    <md-option ng-repeat="gasto in consumo" value="{{gasto.tipo}}">
+                    <md-option ng-repeat="tipo_consumo in tipo_consumos" value="{{gasto.tipo}}">
                         {{gasto.tipo}}
                     </md-option>
                 </md-select>

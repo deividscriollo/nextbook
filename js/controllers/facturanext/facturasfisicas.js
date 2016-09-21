@@ -1,11 +1,11 @@
 var app = angular.module('app');
 
-app.controller('factutasFiCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage, $http, $q) {
+app.controller('factutasFiCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage, $http) {
 	
 	// combo nomina
   	serviciosfacturanext.cmbtipoconsumo().get().$promise.then(function(data) {
   		console.log(data);
-    	// $scope.nominas = data.respuesta; 
+    	// $scope.tipo_consumos = data.respuesta; 
   	});
   	// fin
 
@@ -25,16 +25,15 @@ app.controller('factutasFiCtrl', function($mdDialog, $scope, serviciosfacturanex
     });
 
     this.cargar = function(data) {
-
         $scope.data.razon_social = data.razon_social;
         $scope.data.id_proveedor = data.id;
     }
 
-	this.querySearch = function(query) {
-        return serviciosfacturanext.search_ruc().set({q: query}).$promise.then(function(data) {
-            return data.respuesta
-        });
-    }
+	// this.querySearch = function(query) {
+ //        return serviciosfacturanext.search_ruc().set({q: query}).$promise.then(function(data) {
+ //            return data.respuesta
+ //        });
+ //    }
 
  //    $scope.deleteRowCallback = function(rows){
  //        $mdToast.show(

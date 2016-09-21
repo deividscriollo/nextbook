@@ -4,77 +4,78 @@ app.controller('inicioCtrl', function($scope, $routeSegment) {
 });
 
 app.controller('appsCtrl', function (ChatSocket,$mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location,Facturas,$interval,serviciosfacturanext) {
-    $scope.$routeSegment = $routeSegment;
-    $scope.menucard = [
-                        {id:'1',titulo:'Facturanext', descripcion:'Repositorio de facturas', evento:'facturanext'},
-                        {id:'1',titulo:'Nomina General', descripcion:'Administración de nomina', evento:'nomina'},
-                        {id:'1',titulo:'Inventario', descripcion:'Inventario Empresa', evento:'inventario'}
-                        // {id:'1',titulo:'Radio', descripcion:'Administración Radio', evento:'clientes'}
-                      ];
+  $scope.$routeSegment = $routeSegment;
+  $scope.menucard = [
+                      {id:'1',titulo:'Facturanext', descripcion:'Repositorio de facturas', evento:'facturanext'},
+                      {id:'1',titulo:'Nomina General', descripcion:'Administración de nomina', evento:'nomina'},
+                      {id:'1',titulo:'Inventario', descripcion:'Inventario Empresa', evento:'inventario'}
+                      // {id:'1',titulo:'Radio', descripcion:'Administración Radio', evento:'clientes'}
+                    ];
 
-var estadoread=false;
- $scope.nrfacturas=0;
- // $scope.facturas=[];
+  var estadoread = false;
+  $scope.nrfacturas = 0;
+   // $scope.facturas=[];
 
-serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
-        $scope.facturas=data.respuesta;
-        // $scope.facturas.push(data.respuesta.data);
-        $scope.nrfacturas=data.sin_leer;
-      });
+  serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
+    $scope.facturas = data.respuesta;
+    // $scope.facturas.push(data.respuesta.data);
+    $scope.nrfacturas = data.sin_leer;
+  });
 
-  $interval(callAtInterval, 3000);
+    $interval(callAtInterval, 3000);
+
   function callAtInterval() {
-      if ($localStorage.token) {
-   if (estadoread==false) {
-       estadoread=true;
-    Facturas.get().$promise.then(function(data){
-    if (data.respuesta==true) {
-      estadoread=false;
-      serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
-        $scope.facturas=data.respuesta;
-        // $scope.facturas.push(data.respuesta.data);
-        $scope.nrfacturas=data.sin_leer;
+    if ($localStorage.token) {
+        if (estadoread == false) {
+            estadoread = true;
+            Facturas.get().$promise.then(function(data) {
+            if (data.respuesta == true) {
+              estadoread = false;
+
+            serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
+            $scope.facturas=data.respuesta;
+            // $scope.facturas.push(data.respuesta.data);
+            $scope.nrfacturas=data.sin_leer;
+          });
+        }
       });
+      }
     }
-  },function(error) {
-   // estadoread=false;
-});
-   }
- }
   }
 
 
-//--------------------------------------------------- CHAT ----------------
-
-$scope.sendMensajeChat=function(event){
-   if (event.keyCode === 13) {
+  //--------------------------------------------------- CHAT ----------------
+  $scope.sendMensajeChat=function(event) {
+     if (event.keyCode === 13) {
       ChatSocket.emit('SendMensaje',$scope.mensaje);
-  }
-}
-ChatSocket.on('getMensaje',function(data){
- alert(data);
-});
-
-var estadoreadchat=false;
-$interval(get_chats, 3000);
-function get_chats() {
-  if ($localStorage.token) {
-       if (estadoreadchat==false) {
-       estadoreadchat=true;
-    servicios.get_chats().get().$promise.then(function(data){
-    $scope.chats=data.datos;
-    if (data.respuesta==true) {
-      estadoreadchat=false;
-    }
-   },function(error) {
-   estadoreadchat=false;
-});
-  }
     }
   }
 
-$scope.sendMensaje=function(objeto){
- $mdDialog.show({
+  ChatSocket.on('getMensaje',function(data) {
+    alert(data);
+  });
+
+  var estadoreadchat = false;
+  $interval(get_chats, 3000);
+  function get_chats() {
+    if ($localStorage.token) {
+        if (estadoreadchat == false) {
+            estadoreadchat = true;
+            servicios.get_chats().get().$promise.then(function(data){
+            $scope.chats = data.datos;
+            if (data.respuesta == true) {
+              estadoreadchat = false;
+            }
+           },function(error) {
+           estadoreadchat=false;
+        });
+      }
+    }
+  }
+
+  $scope.sendMensaje = function(objeto) {
+
+   $mdDialog.show({
       clickOutsideToClose: true,
       controller: 'sendMensajeCtrl',
       controllerAs: 'ctrlMensaje',
@@ -84,45 +85,45 @@ $scope.sendMensaje=function(objeto){
       templateUrl: 'view/modales/sendMensaje.html',
       clickOutsideToClose:true,
     });
-}
+  }
 
-function success(data) {
+  function success(data) {
     $scope.mensajes_enviados=data.enviados;
     $scope.mensajes_recibidos=data.recibidos;
     $scope.size_enviados=$scope.mensajes_enviados.length;
     $scope.size_recibidos=$scope.mensajes_recibidos.length;
   }
-  
+    
   $scope.getMensajes = function (chat_obj) {
    servicios.get_mensajes().get({chat_id:chat_obj.chat_id},success).$promise;
   };
 
-$scope.chat_boxs=[];
-this.selectedTab = 0;
-$scope.nombre_chat="";
-this.open_chat=function(chat_obj){
-$scope.nombre_chat=chat_obj.para;
-$scope.img_chat=chat_obj.img;
-$scope.img_session=$localStorage.imgPerfil;
-$scope.getMensajes(chat_obj);
-this.selectedTab = (this.selectedTab + 1) % 3;
-}
-
-this.back_chat=function(){
-this.selectedTab = (this.selectedTab - 1) % 3;
-}
-
-$scope.searchTextChange=function(text){
-  servicios.buscar_empresas().get().$promise.then(function(data){
-    $scope.items=data.respuesta;
-  });
+  $scope.chat_boxs = [];
+  this.selectedTab = 0;
+  $scope.nombre_chat = "";
+  this.open_chat = function(chat_obj) {
+    $scope.nombre_chat = chat_obj.para;
+    $scope.img_chat = chat_obj.img;
+    $scope.img_session = $localStorage.imgPerfil;
+    $scope.getMensajes(chat_obj);
+    this.selectedTab = (this.selectedTab + 1) % 3;
   }
 
-   $scope.generar_pdf = function(item) {
+  this.back_chat=function() {
+    this.selectedTab = (this.selectedTab - 1) % 3;
+  }
+
+  $scope.searchTextChange = function(text){
+    return servicios.buscar_empresas().get().$promise.then(function(data){
+      return $scope.items = data.respuesta;
+    });
+  }
+
+  $scope.generar_pdf = function(item) {
     serviciosfacturanext.update_estado_view_fac().set({id_factura:item.id_factura}); 
-    serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
-        $scope.facturas=data.respuesta;
-        $scope.nrfacturas=data.sin_leer;
+    serviciosfacturanext.get_new_facturas().get().$promise.then(function(data) {
+        $scope.facturas = data.respuesta;
+        $scope.nrfacturas = data.sin_leer;
     });
     $scope.promise = serviciosfacturanext.gen_pdf().generar({iddocumento:item.id_factura}).$promise.then(function(data) {
     var url = data.url;
@@ -130,71 +131,71 @@ $scope.searchTextChange=function(text){
     }); 
   }
 
-    $scope.modal = function(tipo, event) {
-      if (tipo == 'nomina') {
-        $scope.modal_nomina(event);
-      }
-
-      if (tipo == 'facturanext') {
-        $location.path('/My-space/Facturanext');
-      }
-
-      if (tipo == 'inventario') {
-        $location.path('/My-space/Inventario');
-      }
+  $scope.modal = function(tipo, event) {
+    if (tipo == 'nomina') {
+      $scope.modal_nomina(event);
     }
 
-    $scope.modal_nomina = function (event) {
-      $mdDialog.show({
-        clickOutsideToClose: true,
-        controller: 'AccesoNomina',
-        controllerAs: 'ctrl',
-        focusOnOpen: false,
-        targetEvent: event,
-        locals: {desserts: $scope.selected},
-        templateUrl: 'view/dashboardempresa/login_nomina.html',
-      })
-    };
-
-    this.tiles = buildGridModel({
-      icon : "avatar:svg-",
-      title: "Svg-",
-      background: ""
-    });
-
-    function buildGridModel(tileTmpl) {
-      var it, results = [ ];
-      for (var j=0; j<11; j++) {
-        it = angular.extend({},tileTmpl);
-        it.icon  = it.icon + (j+1);
-        it.title = it.title + (j+1);
-        it.span  = { row : 1, col : 1 };
-        switch(j+1) {
-          case 1:
-            it.background = "red";
-            it.span.row = it.span.col = 2;
-            break;
-          case 2: it.background = "green";         break;
-          case 3: it.background = "darkBlue";      break;
-          case 4:
-            it.background = "blue";
-            it.span.col = 2;
-            break;
-          case 5:
-            it.background = "yellow";
-            it.span.row = it.span.col = 2;
-            break;
-          case 6: it.background = "pink";          break;
-          case 7: it.background = "darkBlue";      break;
-          case 8: it.background = "purple";        break;
-          case 9: it.background = "deepBlue";      break;
-          case 10: it.background = "lightPurple";  break;
-          case 11: it.background = "yellow";       break;
-        }
-        results.push(it);
-      }
-      return results;
+    if (tipo == 'facturanext') {
+      $location.path('/My-space/Facturanext');
     }
+
+    if (tipo == 'inventario') {
+      $location.path('/My-space/Inventario');
+    }
+  }
+
+  $scope.modal_nomina = function (event) {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      controller: 'AccesoNomina',
+      controllerAs: 'ctrl',
+      focusOnOpen: false,
+      targetEvent: event,
+      locals: {desserts: $scope.selected},
+      templateUrl: 'view/dashboardempresa/login_nomina.html',
+    })
+  };
+
+  this.tiles = buildGridModel({
+    icon : "avatar:svg-",
+    title: "Svg-",
+    background: ""
+  });
+
+  function buildGridModel(tileTmpl) {
+    var it, results = [ ];
+    for (var j=0; j<11; j++) {
+      it = angular.extend({},tileTmpl);
+      it.icon  = it.icon + (j+1);
+      it.title = it.title + (j+1);
+      it.span  = { row : 1, col : 1 };
+      switch(j+1) {
+        case 1:
+          it.background = "red";
+          it.span.row = it.span.col = 2;
+          break;
+        case 2: it.background = "green";         break;
+        case 3: it.background = "darkBlue";      break;
+        case 4:
+          it.background = "blue";
+          it.span.col = 2;
+          break;
+        case 5:
+          it.background = "yellow";
+          it.span.row = it.span.col = 2;
+          break;
+        case 6: it.background = "pink";          break;
+        case 7: it.background = "darkBlue";      break;
+        case 8: it.background = "purple";        break;
+        case 9: it.background = "deepBlue";      break;
+        case 10: it.background = "lightPurple";  break;
+        case 11: it.background = "yellow";       break;
+      }
+      results.push(it);
+    }
+    return results;
+  }
 });
 
 app.controller('AccesoNomina', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $location) { 

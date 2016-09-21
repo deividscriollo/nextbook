@@ -152,4 +152,17 @@ app.service('serviciosfacturanext', function($resource, $localStorage, $location
         );
     }  ;
     //----------------------- fin ----
+
+    this.cmbtipoconsumo = function() {
+        return $resource(servicios.server().appnext()+'public/getTipoDocumentos', {}
+        , {
+            get: {
+                method: 'GET', isArray: false,
+                params: {
+                    token: $localStorage.token,
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
 });

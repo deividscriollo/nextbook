@@ -1,6 +1,34 @@
 var app = angular.module('app');
 
 app.controller('factutasFiCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage, $http, $q) {
+	
+	// combo nomina
+  	serviciosfacturanext.cmbtipoconsumo().get().$promise.then(function(data) {
+  		console.log(data);
+    	// $scope.nominas = data.respuesta; 
+  	});
+  	// fin
+
+  	// combo nomina
+  	// serviciosnomina.cmbdepartamento().get().$promise.then(function(data) {
+   //  	$scope.departamentos = data.respuesta; 
+  	// });
+  // fin
+
+  	$scope.data = {
+	    fecha_emision: new Date(),
+	    feha_creacion: new Date() 
+	}
+   
+    serviciosfacturanext.search_ruc().set().$promise.then(function(data) {
+        $scope.items = data.respuesta;
+    });
+
+    this.cargar = function(data) {
+
+        $scope.data.razon_social = data.razon_social;
+        $scope.data.id_proveedor = data.id;
+    }
 
 	this.querySearch = function(query) {
         return serviciosfacturanext.search_ruc().set({q: query}).$promise.then(function(data) {
@@ -128,63 +156,58 @@ app.controller('factutasFiCtrl', function($mdDialog, $scope, serviciosfacturanex
  //            iron: '6%'
  //        }
  //    ];
-
-	$scope.data = {
-	    fecha_emision: new Date(),
-	    feha_creacion: new Date() 
-	}
   
-	// var bookmark;
+	var bookmark;
 	  
-	// $scope.filter = {
-	//     options: {
-	//       debounce: 500
-	//     }
-	// };
+	$scope.filter = {
+	    options: {
+	      debounce: 500
+	    }
+	};
 
-	// $scope.query = {
-	//     filter: '',
-	//     num_registros: 5,
-	//     pagina_actual:1,
-	//     limit: '5',
-	//     page_num: 1
-	// };
+	$scope.query = {
+	    filter: '',
+	    num_registros: 5,
+	    pagina_actual:1,
+	    limit: '5',
+	    page_num: 1
+	};
 	  
-	// function success(desserts) {
-	//     $scope.desserts = desserts.respuesta;
-	// }
+	function success(desserts) {
+	    $scope.desserts = desserts.respuesta;
+	}
 	  
-	// $scope.getDesserts = function () {
-	//     // $scope.promise = serviciosnomina.get_nominas().get($scope.query, success).$promise;
-	// };
+	$scope.getDesserts = function () {
+	    $scope.promise = serviciosfacturanext.get_proveedores().get($scope.query, success).$promise;
+	};
 	  
-	// $scope.removeFilter = function () {
-	//     $scope.filter.show = false;
-	//     $scope.query.filter = '';
+	$scope.removeFilter = function () {
+	    $scope.filter.show = false;
+	    $scope.query.filter = '';
 	    
-	//     if($scope.filter.form.$dirty) {
-	//       $scope.filter.form.$setPristine();
-	//     }
-	// };
+	    if($scope.filter.form.$dirty) {
+	      $scope.filter.form.$setPristine();
+	    }
+	};
 
-	// $scope.$watch('query.filter', function (newValue, oldValue) {
-	//     if(!oldValue) {
-	//       bookmark = $scope.query.page_num;
-	//     }
+	$scope.$watch('query.filter', function (newValue, oldValue) {
+	    if(!oldValue) {
+	      bookmark = $scope.query.page_num;
+	    }
 	    
-	//     if(newValue !== oldValue) {
-	//       $scope.query.page_num = 1;
-	//     }
+	    if(newValue !== oldValue) {
+	      $scope.query.page_num = 1;
+	    }
 	    
-	//     if(!newValue) {
-	//       $scope.query.page_num = bookmark;
-	//     }    
-	//     $scope.getDesserts();
-	// });
+	    if(!newValue) {
+	      $scope.query.page_num = bookmark;
+	    }    
+	    $scope.getDesserts();
+	});
 
-	// $scope.loadStuff = function () {
-	//     $scope.promise = $timeout(function () {
-	//       $scope.getDesserts;
-	//     }, 2000);
-	// };
+	$scope.loadStuff = function () {
+	    $scope.promise = $timeout(function () {
+	      $scope.getDesserts;
+	    }, 2000);
+	};
 });

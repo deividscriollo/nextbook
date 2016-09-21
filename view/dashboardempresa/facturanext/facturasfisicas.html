@@ -55,9 +55,9 @@
             <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <md-icon class="md-accent">airplay</md-icon>
                 <label>Tipo de Consumo</label>
-                <md-select ng-model="data.tipo_consumo" name="tipo_consumo" required>
-                    <md-option ng-repeat="tipo_consumo in tipo_consumos" value="{{gasto.tipo}}">
-                        {{gasto.tipo}}
+                <md-select name="tipo_consumo" ng-model="data.tipo_consumo" required>
+                    <md-option ng-repeat="tipo_consumo in tipo_consumos" value="{{tipo_consumo.id}}">
+                        {{tipo_consumo.codigo + '  ' + tipo_consumo.descripcion}}
                     </md-option>
                 </md-select>
             </md-input-container>
@@ -65,9 +65,9 @@
             <md-input-container class="md-icon-float md-block" flex-gt-sm>
                 <md-icon class="md-accent">airplay</md-icon>
                 <label>Tipo de Documento</label>
-                <md-select ng-model="data.tipo_documento" name="tipo_documento" required>
-                    <md-option ng-repeat="gasto in gastos" value="{{gasto.tipo}}">
-                        {{gasto.tipo}}
+                <md-select name="tipo_documento" ng-model="data.tipo_documento" required>
+                    <md-option ng-repeat="tipo_documento in tipo_documentos" value="{{tipo_documento.id}}">
+                        {{tipo_documento.codigo + '  ' + tipo_documento.descripcion}}
                     </md-option>
                 </md-select>
             </md-input-container>
@@ -133,11 +133,8 @@
             <md-content flex-gt-md="100">
                 <md-toolbar ng-hide="selected.length || filter.show">
           <div class="md-toolbar-tools">
-            Listado Proveedores
+            Detalle Facturas Físicas
             <span flex></span>
-            <md-button class="md-icon-button" ng-click="filter.show = true">
-                <md-icon>search</md-icon>
-            </md-button>
             <md-button class="md-icon-button" ng-click="addititem($event)">
                 <md-icon>note_add</md-icon>
             </md-button>
@@ -163,11 +160,12 @@
             <table md-table md-progress="promise">
                 <thead md-head md-order="query.order" md-on-reorder="getDesserts">
                     <tr md-row>
-                        <th md-column md-numeric>RUC</th>
-                        <th md-column md-numeric>RAZÓN SOCIAL</th>
-                        <th md-column md-numeric>NOMBRE COMERCIAL</th>
-                        <th md-column md-numeric>DIRECCIÓN MATRIZ</th>
-                        <th md-column md-numeric>DIRECCIÓN ESTABLECIMIENTO</th>
+                        <th md-column md-numeric>CÓDIGO</th>
+                        <th md-column md-numeric>DETALLE</th>
+                        <th md-column md-numeric>CANTIDAD</th>
+                        <th md-column md-numeric>P.V.P</th>
+                        <th md-column md-numeric>DESCUENTO</th>
+                        <th md-column md-numeric>TOTAL</th>
                     </tr>
                 </thead>
                 
@@ -190,32 +188,32 @@
             <md-content flex-gt-md="20">
                 <md-input-container class="md-icon-float md-block">
                   <label>Tarifa 0 %</label>
-                  <input ng-model="data.tarifa0" type="text">
+                  <input name="tarifa0" ng-model="data.tarifa0" type="text">
                 </md-input-container>
 
                 <md-input-container class="md-icon-float md-block">
                   <label>Tarifa 14 %</label>
-                  <input ng-model="data.tarifa0" type="text">
+                  <input  name="tarifa_diferente" ng-model="data.tarifa_diferente" type="text">
                 </md-input-container>
 
                 <md-input-container class="md-icon-float md-block">
                   <label>Subtotal</label>
-                  <input ng-model="data.subtotal" type="text">
+                  <input name="subtotal" ng-model="data.subtotal" type="text">
                 </md-input-container>
 
                 <md-input-container class="md-icon-float md-block">
                   <label>Iva</label>
-                  <input ng-model="data.iva" type="text">
+                  <input name="iva" ng-model="data.iva" type="text">
                 </md-input-container>
 
                 <md-input-container class="md-icon-float md-block">
                   <label>Descuento</label>
-                  <input ng-model="data.descuento" type="text">
+                  <input type="text" name="descuento" ng-model="data.descuento" >
                 </md-input-container>
 
                 <md-input-container class="md-icon-float md-block">
                   <label>Total</label>
-                  <input ng-model="data.total" type="text">
+                  <input type="text" name="total" ng-model="data.total" >
                 </md-input-container>
             </md-content>     
         </div>

@@ -32,7 +32,6 @@ app.controller('listaProveedoresCtrl', function($mdDialog, $scope, serviciosfact
   
   function success(desserts) {
     $scope.desserts = desserts.respuesta;
-    console.log(desserts);
   }
   
   $scope.getDesserts = function () {
@@ -75,7 +74,6 @@ app.controller('addItemProveedor', function ($mdDialog, $scope, serviciosfactura
   this.cancel = $mdDialog.cancel;
   $scope.comparar_proveedor = function() {
     serviciosfacturanext.repeat_proveedor().repeat($scope.data).$promise.then(function(data) {
-      console.log(data);
 
       if(data.respuesta == false) {
         $scope.data.ruc = '';

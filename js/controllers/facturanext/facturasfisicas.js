@@ -2,17 +2,16 @@ var app = angular.module('app');
 
 app.controller('factutasFiCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage, $http) {
 	
-	// combo nomina
+	// combo tipo consumos
   	serviciosfacturanext.cmbtipoconsumo().get().$promise.then(function(data) {
-  		console.log(data);
-    	// $scope.tipo_consumos = data.respuesta; 
+    	$scope.tipo_consumos = data.respuesta; 
   	});
   	// fin
 
-  	// combo nomina
-  	// serviciosnomina.cmbdepartamento().get().$promise.then(function(data) {
-   //  	$scope.departamentos = data.respuesta; 
-  	// });
+  	// combo tipo documentos
+  	serviciosfacturanext.cmbtipodocumento().get().$promise.then(function(data) {
+    	$scope.tipo_documentos = data.respuesta; 
+  	});
   // fin
 
   	$scope.data = {

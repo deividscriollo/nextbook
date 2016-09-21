@@ -22,9 +22,9 @@
 		        	<md-input-container class="md-icon-float md-block" flex-gt-sm>
 		                <md-icon class="md-accent">airplay</md-icon>
 		                <label>Tipo de Consumo</label>
-		                <md-select ng-model="data.descripcion" name="tipo" required>
-		                    <md-option ng-repeat="gasto in gastos" value="{{gasto.descripcion}}">
-		                        {{gasto.descripcion}}
+		                <md-select ng-model="data.tipo_consumo" name="tipo_consumo" required>
+		                    <md-option ng-repeat="tipo_consumo in tipo_consumos" value="{{tipo_consumo.id}}">
+		                        {{tipo_consumo.codigo + '  ' + tipo_consumo.descripcion}}
 		                    </md-option>
 		                </md-select>
 		            </md-input-container>

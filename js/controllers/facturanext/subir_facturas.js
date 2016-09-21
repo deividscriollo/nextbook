@@ -1,11 +1,11 @@
 var app = angular.module('app');
 
-app.controller('SubirFacCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage) {
-servicios.gastos().get({},success).$promise;
+app.controller('SubirFacCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage, $http) {
 
-function success(data) {
-    $scope.gastos = data.gastos;
-  }
+  	serviciosfacturanext.cmbtipoconsumo().get().$promise.then(function(data) {
+    	$scope.tipo_consumos = data.respuesta; 
+  	});
+  	// fin
 
 	$scope.get_claveAcceso = function(xml) {
 		if (xml.length != 0) {

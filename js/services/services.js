@@ -17,17 +17,17 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     this.server=function() {
         return {
             appserviosnext: function() {
-                return "http://apiservicios.nextbook.ec/";
+                return "http://186.33.168.251/appserviosnext/";
             }
             ,appnext: function() {
                 // return "http://servicios.nextbook.ec/";
-                return "http://192.168.0.104/appnext/";
+                return "http://186.33.168.251/appnext/";
             },appnextPersonas: function() {
                 // return "http://appnextp.nextbook.ec/";
-                return "http://192.168.0.104/appnextP/";
+                return "http://186.33.168.251/appnextP/";
             },mod_radio: function() {
                 // return "http://serviciosradio.nextbook.ec/";
-                return "http://192.168.0.104/mod_radio/";
+                return "http://186.33.168.251/mod_radio/";
             }
         }
     };
@@ -664,8 +664,9 @@ app.directive('onReadFile', function ($parse) {
     }
 });
 
-app.factory('loaddatosSRI', function($resource) {
-    return $resource("http://apiservicios.nextbook.ec/public/getDatos/:id", {
+app.factory('loaddatosSRI', function($resource,servicios) {
+    var url_server=servicios.server().appserviosnext();
+    return $resource(url_server+"/public/getDatos/:id", {
         id: "@id"
     }
     );

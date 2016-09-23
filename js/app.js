@@ -1,5 +1,5 @@
 var app=angular.module	('app', 	[ 
-									'btford.socket-io',
+									'socket.io',
 									'infinite-scroll',
 									'ngImgCrop',
 									'ngPDFViewer',
@@ -30,4 +30,6 @@ app.config(['$compileProvider', '$mdThemingProvider', function ($compileProvider
 	// general theme
 	$compileProvider.debugInfoEnabled(true);
 	$mdThemingProvider.theme('default').primaryPalette('indigo').accentPalette('pink');	
+	// $socketProvider.setConnectionUrl('http://localhost:8080');
 }]);
+

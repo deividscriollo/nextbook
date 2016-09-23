@@ -3,7 +3,11 @@ app.controller('inicioCtrl', function($scope, $routeSegment) {
     $scope.$routeSegment = $routeSegment;
 });
 
-app.controller('appsCtrl', function (ChatSocket,$mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location,Facturas,$interval,serviciosfacturanext) {
+app.controller('appsCtrl', function ($anchorScroll,$socket,$mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location,Facturas,$interval,serviciosfacturanext) {
+
+$scope.id_user=$localStorage.datosE.id_empresa;
+$scope.mensajes_chat=[];
+
   $scope.$routeSegment = $routeSegment;
   $scope.menucard = [
                       {id:'1',titulo:'Facturanext', descripcion:'Repositorio de facturas', evento:'facturanext'},
@@ -43,17 +47,50 @@ app.controller('appsCtrl', function (ChatSocket,$mdDialog, $scope, servicios, $t
     }
   }
 
+  $socket.on('chat:update', function (data) {
+    if (data.iser_id!=$scope.id_user) {
+      data.tipo_mensaje="RECEIVED"
+    }
+    $scope.mensajes_chat.push(data);
+    var lastmsg=$scope.mensajes_chat.length-1;
+    $location.hash('msg'+lastmsg);
+      $anchorScroll();
+  });
 
   //--------------------------------------------------- CHAT ----------------
   $scope.sendMensajeChat=function(event) {
+
      if (event.keyCode === 13) {
-      ChatSocket.emit('SendMensaje',$scope.mensaje);
+        $scope.data={
+        chat_id:$localStorage.chat_id,
+        user_id:$scope.id_user,
+        tipo_mensaje:'SEND',
+        mensaje:$scope.mensaje
+      }
+      $scope.mensajes_chat.push($scope.data);
+
+      $socket.emit('chat:sendMensaje', $scope.data);
+      $scope.mensaje = '';
+      var lastmsg=$scope.mensajes_chat.length-1;
+      $location.hash('msg'+lastmsg);
+      $anchorScroll();
+      $scope.save_msg($scope.data);
     }
   }
 
-  ChatSocket.on('getMensaje',function(data) {
-    alert(data);
-  });
+  $scope.save_msg=function(data){
+       servicios.mensaje_chatbox().send(data).$promise.then(function(data){
+        if (data.respuesta==true) {
+          console.log('mensaje guardado');
+        }
+      });
+  }
+
+   
+
+  function update_chat(data){
+    $scope.mensajes_chat=data.mensajes;
+  }
 
   var estadoreadchat = false;
   $interval(get_chats, 3000);
@@ -88,13 +125,20 @@ app.controller('appsCtrl', function (ChatSocket,$mdDialog, $scope, servicios, $t
   }
 
   function success(data) {
-    $scope.mensajes_enviados=data.enviados;
-    $scope.mensajes_recibidos=data.recibidos;
-    $scope.size_enviados=$scope.mensajes_enviados.length;
-    $scope.size_recibidos=$scope.mensajes_recibidos.length;
+    $scope.mensajes_chat=data.mensajes;
+    var lastmsg=$scope.mensajes_chat.length-1;
+    $location.hash('msg'+lastmsg);
+    $anchorScroll();
   }
     
   $scope.getMensajes = function (chat_obj) {
+      $scope.datos_sala={
+        chat_id:chat_obj.chat_id,
+        user_id:$scope.id_user
+      }
+      $socket.emit('chat:join', $scope.datos_sala);
+
+    $localStorage.chat_id=chat_obj.chat_id;
    servicios.get_mensajes().get({chat_id:chat_obj.chat_id},success).$promise;
   };
 

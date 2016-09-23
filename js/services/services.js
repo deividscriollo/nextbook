@@ -20,14 +20,16 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                 return "http://186.33.168.251/appserviosnext/";
             }
             ,appnext: function() {
-                // return "http://servicios.nextbook.ec/";
-                return "http://186.33.168.251/appnext/";
+                // return "http://186.33.168.251/appnext/";
+                return "http://192.168.0.104/appnext/";
+
             },appnextPersonas: function() {
-                // return "http://appnextp.nextbook.ec/";
-                return "http://186.33.168.251/appnextP/";
+                // return "http://186.33.168.251/appnextP/";
+                return "http://192.168.0.104/appnextP/";
             },mod_radio: function() {
-                // return "http://serviciosradio.nextbook.ec/";
-                return "http://186.33.168.251/mod_radio/";
+                // return "http://186.33.168.251/mod_radio/";
+                return "http://192.168.0.104/mod_radio/";
+
             }
         }
     };
@@ -414,6 +416,22 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     //----------------------------------------------------- Enviar Mensaje Modal----------------
     this.mensaje=function() {
         return $resource(this.server().appnext()+'public/sendMensaje', {}
+        , {
+            send: {
+                method: 'POST', isArray: false,
+                params:{
+                token: $localStorage.token
+            }
+            }
+            
+        }
+        );
+    }  ;
+    //----------------------- fin ----
+
+     //----------------------------------------------------- Enviar Mensaje Chat box----------------
+    this.mensaje_chatbox=function() {
+        return $resource(this.server().appnext()+'public/sendMensajeFromChat', {}
         , {
             send: {
                 method: 'POST', isArray: false,

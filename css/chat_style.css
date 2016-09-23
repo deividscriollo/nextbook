@@ -6,99 +6,48 @@
             padding: 10px;
             overflow-y: scroll;
 }
-.globo-izq{
-    width: 90%;
-    height: 100%;
-    padding: 5px;
-    border-radius: 5px;
-	box-shadow: 0 2px 5px #acb4df;
-    background-color: #6f7bc1;
-    position: relative;
-    color: #FFF;
-    margin-top: 5px;
-}
-/*.globo-izq:before{
-    content: "";
-    width: 0;
-    position: absolute;
-    border-style: solid;
-    border-width: 5px 10px 5px 0;
-    border-color: transparent #666;
-    top: 20px;
-    left: -10px;
-}*/
-
-.globo-drch{
-    width: 90%;
-    height: 100%;
-    padding: 5px;
-    border-radius: 5px;
-	box-shadow: 0 2px 5px #bfc5e6;
-    background-color: #3f51b5;
-    position: relative;
-    color: #FFF;
-    margin-top: 5px;
-}
-/*.globo-drch:before{
-    content: "";
-    width: 0;
-    position: absolute;
-    border-style: solid;
-    border-width: 5px 0 5px 10px;
-    border-color: transparent #666;
-    top: 20px;
-    right: -10px;
-}*/
-
-.wrapper-mensajes{
-    height: 43px;
+.avatar-chat{
+  border-radius: 50%;
 }
 
-ul.chat-wapper-izq , li {
-  list-style: none;
-  margin: 0px;
-  padding: 0px;
-  position: relative
+.container {
+  /*padding: 40px 20px;*/
+  margin: 0 auto;
+  width: 90%;
+  color: white;
 }
 
-ul.chat-wapper-izq  {
-  width: 88%;
-  top: -45px;
-  left: 40px;
+/* .bubble */
+
+.bubble {
+  background-color: #6f7bc1;
+  font: 0.8125em/1.5 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #acb4df;
+  box-sizing: border-box;
+  clear: both;
+  float: left;
+  margin-bottom: -22px;
+  padding: 5px 10px;
+  position: relative;
+  width: auto;
+  max-width: 84%;
+  word-wrap: break-word;
+  margin-left: 40px;
+  top: -30px;
 }
 
-li.chat-wapper-izq  {
-  overflow: auto;
-  margin: 10px 0;
+.bubble--alt {
+  background-color: #3f51b5;
+  float: right;
+  right: 17%;
 }
-/*--------------------------------------------------- mensajes Enviados */
-texto-mensaje.chat-wapper-drch {
+
+.avatar-left{
+    margin-right: 90%;
+    float: left;
+}
+.avatar-right{
+    margin-left: 90%;
     float: right;
-    max-width: 245px;
-    min-width: 140px;
 }
-
-ul.chat-wapper-drch , li {
-  list-style: none;
-  margin: 0px;
-  padding: 0px;
-  position: relative
-}
-
-ul.chat-wapper-drch  {
-  width: 88%;
-  top: 0px;
-  left: 10px;
-}
-
-li.chat-wapper-drch  {
-  overflow: auto;
-  margin: 10px 0;
-}
-
-texto-mensaje.chat-wapper-drch {
-      float: left;
-    max-width: 245px;
-    min-width: 140px;
-}
-

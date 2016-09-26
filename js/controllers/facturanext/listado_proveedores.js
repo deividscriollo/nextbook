@@ -1,7 +1,6 @@
 var app = angular.module('app');
 
 app.controller('listaProveedoresCtrl', function($mdDialog, $scope, serviciosfacturanext, servicios, $timeout, $localStorage) {
-
   $scope.addititem = function (event) {
 
     $mdDialog.show({
@@ -109,7 +108,7 @@ app.controller('addItemProveedor', function ($mdDialog, $scope, serviciosfactura
     })
   }
 
-  $scope.guardar_proveedor = function(){
+  $scope.guardar_proveedor = function() {
     serviciosfacturanext.add_proveedor().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
           $mdDialog.show(

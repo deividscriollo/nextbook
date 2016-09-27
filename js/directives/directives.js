@@ -1,4 +1,24 @@
 var app = angular.module('app');
+
+app.directive('simpleChange', function simpleChangeDirective() {
+  return {
+    restrict: 'A',
+    link: function(scope, el, attrs) {
+      if (!attrs.simpleChange) {
+        return;
+      }
+      
+      el.on('change', function(e) {
+        scope.$apply(function() {
+          scope.$eval(attrs.simpleChange, {
+            $event: e
+          });
+        });
+      });
+    }
+  };
+});
+
 app.directive('confirm', ['$window', function($window) {
     return {
         restrict: 'A',

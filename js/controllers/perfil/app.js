@@ -100,20 +100,16 @@ app.controller('imagenesCtrl', function($scope,$mdDialog, servicios,$localStorag
         $scope.myCroppedImage = '';
 switch(tipoimg) {
         case 'perfil':
-        $scope.tipo_area='square';
-            $scope.estilo = {
-                'width': '144%', 'height': '50%'
-            };
-            $scope.sizeimg=300;
+            $scope.sizeimg=[300,300];
             break;
         case 'portada':
-        $scope.tipo_area='rectangle';
-            $scope.estilo = {
-                'width': '710px', 'height': '267px'
-            };
-            $scope.sizeimg=[710,267];
+            $scope.sizeimg=[550,400];
             break;
     }
+
+$scope.fileChanged = function(event) {
+    $scope.file = event.target.files[0];
+  };
 
 $scope.Updateimg = function(idimg) {
     switch(tipoimg) {
@@ -156,7 +152,7 @@ $scope.Updateimg = function(idimg) {
     }
 }
 
-$scope.Uploadimgs = function(){
+$scope.Uploadimgs = function(cropper){
     switch(tipoimg) {
         case 'perfil':
                 var imgData=btoa($scope.myCroppedImage);
@@ -178,6 +174,7 @@ $scope.Uploadimgs = function(){
                 });        
             break;
         case 'portada':
+        $scope.myCroppedImage=cropper;
                 var imgData = btoa($scope.myCroppedImage);
                         servicios.add_img_portada().enviar({
                         img: imgData

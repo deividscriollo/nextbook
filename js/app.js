@@ -1,4 +1,5 @@
 var app=angular.module	('app', 	[ 
+									'tw.directives.cropper',
 									'socket.io',
 									'infinite-scroll',
 									'ngImgCrop',

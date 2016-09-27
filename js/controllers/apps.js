@@ -56,8 +56,7 @@ $scope.chats=[];
     }
     $scope.mensajes_chat.push(data);
     var lastmsg=$scope.mensajes_chat.length-1;
-    $location.hash('msg'+lastmsg);
-      $anchorScroll();
+      $anchorScroll('msg'+lastmsg);
       // console.log($scope.chats);
   });
 
@@ -78,8 +77,7 @@ $scope.chats=[];
       $socket.emit('chat:sendMensaje', $scope.data);
       $scope.mensaje = '';
       var lastmsg=$scope.mensajes_chat.length-1;
-      $location.hash('msg'+lastmsg);
-      $anchorScroll();
+      $anchorScroll('msg'+lastmsg);
       $scope.save_msg($scope.data);
     }
   }
@@ -99,8 +97,7 @@ $scope.chats=[];
   }
 
   var estadoreadchat = false;
-  // $interval(get_chats, 3000);
-  get_chats();
+  $interval(get_chats, 3000);
   function get_chats() {
     if ($localStorage.token) {
         if (estadoreadchat == false) {
@@ -130,23 +127,23 @@ $scope.chats=[];
       clickOutsideToClose:true,
     });
   }
-
-  function success(data) {
-    $scope.mensajes_chat=data.mensajes;
-    var lastmsg=$scope.mensajes_chat.length-1;
-    $location.hash('msg'+lastmsg);
-    $anchorScroll();
-  }
     
-  $scope.getMensajes = function (chat_obj) {
-      $scope.datos_sala={
+  $scope.getMensajes = function (chat_obj,estadsocket) {
+    if (estadsocket) {
+        $scope.datos_sala={
         chat_id:chat_obj.chat_id,
         user_id:$scope.id_user
       }
       $socket.emit('chat:join', $scope.datos_sala);
-
+    }
     $localStorage.chat_id=chat_obj.chat_id;
-   servicios.get_mensajes().get({chat_id:chat_obj.chat_id},success).$promise;
+   servicios.get_mensajes().get({chat_id:chat_obj.chat_id}).$promise.then(function(data){
+        $scope.mensajes_chat=data.mensajes;
+        var lastmsg=$scope.mensajes_chat.length-1;
+        $anchorScroll('msg'+lastmsg);
+   },function(error){
+    $scope.getMensajes(chat_obj,false);
+   });
   };
 
   $scope.chat_boxs = [];
@@ -156,7 +153,7 @@ $scope.chats=[];
     $scope.nombre_chat = chat_obj.para;
     $scope.img_chat = chat_obj.img;
     $scope.img_session = $localStorage.imgPerfil;
-    $scope.getMensajes(chat_obj);
+    $scope.getMensajes(chat_obj,true);
     this.selectedTab = (this.selectedTab + 1) % 3;
   }
 

@@ -78,7 +78,7 @@ $scope.chats=[];
       $socket.emit('chat:sendMensaje', $scope.data);
       $scope.mensaje = '';
       var lastmsg=$scope.mensajes_chat.length-1;
-      $location.hash('msg'+lastmsg);
+      // $location.hash('msg'+lastmsg);
       $anchorScroll();
       $scope.save_msg($scope.data);
     }

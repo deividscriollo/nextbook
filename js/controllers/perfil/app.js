@@ -1,5 +1,4 @@
 app.controller('perfilCtrl', function($scope, $mdDialog,$rootScope, servicios, $localStorage) {
-    
     $scope.datosPersona = $localStorage.datosPersona;
 
     $scope.datos2 = $localStorage.datosE;

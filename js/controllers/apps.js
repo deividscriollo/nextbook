@@ -78,6 +78,8 @@ $scope.chats=[];
       $scope.mensaje = '';
       var lastmsg=$scope.mensajes_chat.length-1;
       $anchorScroll('msg'+lastmsg);
+      // $location.hash('msg'+lastmsg);
+      $anchorScroll();
       $scope.save_msg($scope.data);
     }
   }

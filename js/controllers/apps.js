@@ -7,6 +7,7 @@ app.controller('appsCtrl', function ($anchorScroll,$socket,$mdDialog, $scope, se
 
 $scope.id_user=$localStorage.datosE.id_empresa;
 $scope.mensajes_chat=[];
+$scope.chats=[];
 
   $scope.$routeSegment = $routeSegment;
   $scope.menucard = [
@@ -47,7 +48,9 @@ $scope.mensajes_chat=[];
     }
   }
 
+//---------------------------- funciones socket --------------------------
   $socket.on('chat:update', function (data) {
+    console.log($scope.chats);
     if (data.iser_id!=$scope.id_user) {
       data.tipo_mensaje="RECEIVED"
     }
@@ -55,7 +58,10 @@ $scope.mensajes_chat=[];
     var lastmsg=$scope.mensajes_chat.length-1;
     $location.hash('msg'+lastmsg);
       $anchorScroll();
+      // console.log($scope.chats);
   });
+
+  //---------------------------------- Fin ------------------------------
 
   //--------------------------------------------------- CHAT ----------------
   $scope.sendMensajeChat=function(event) {
@@ -93,7 +99,8 @@ $scope.mensajes_chat=[];
   }
 
   var estadoreadchat = false;
-  $interval(get_chats, 3000);
+  // $interval(get_chats, 3000);
+  get_chats();
   function get_chats() {
     if ($localStorage.token) {
         if (estadoreadchat == false) {
@@ -153,8 +160,9 @@ $scope.mensajes_chat=[];
     this.selectedTab = (this.selectedTab + 1) % 3;
   }
 
-  this.back_chat=function() {
+  this.back_chat=function(chat_obj) {
     this.selectedTab = (this.selectedTab - 1) % 3;
+    // $socket.emit('chat:salir', $localStorage.chat_id);
   }
 
   $scope.searchTextChange = function(text){

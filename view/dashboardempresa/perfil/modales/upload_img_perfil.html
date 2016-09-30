@@ -33,12 +33,7 @@
                  <div class="col-lg-12">
       <input type="file" simple-change="fileChanged($event)" accept="image/*">
       <!-- <canvas class="punteado" width="500" height="300"  tw-cropper="cropper" source="file"></canvas> -->
-      <canvas class="punteado" width="{{sizeimg[0]}}" height="{{sizeimg[1]}}" tw-cropper="cropper" source="file" ></canvas>
-
-      <div ng-show="crop">
-      <h3>Result:</h3>
-      <img ng-src="{{crop}}">
-    </div>
+      <canvas style="cursor: move;" class="punteado" width="{{sizeimg[0]}}" height="{{sizeimg[1]}}" tw-cropper="cropper" source="file" ></canvas>
                    <!--  <div class="col-lg-5">
                           <input type="file" fileread="vm.img" accept="image/*"/>
                         <div class="cropArea">

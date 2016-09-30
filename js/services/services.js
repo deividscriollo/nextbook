@@ -41,6 +41,9 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
             , portada: function() {
                 return "storage/app/portadas/";
+            }, 
+            logo: function() {
+                return "storage/app/logos/";
             }
         }
     };
@@ -81,7 +84,18 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         });
     };
-
+    // ----------------------------------------- set get imagen Logo ----------------------------
+    this.set_img_logo=function() {
+        return $resource(this.server().appnext()+'public/setImgLogo', {}
+        , {
+            enviar: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
     // ----------------------------------------- set get imagen perfil ----------------------------
     this.set_img_perfil=function() {
         return $resource(this.server().appnext()+'public/setImgPerfil', {}
@@ -111,6 +125,19 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     // ----------------------------------------- Add imagen perfil ----------------------------
     this.add_img_perfil=function() {
         return $resource(this.server().appnext()+'public/addImgPerfil', {}
+        , {
+            enviar: {
+                method: 'POST', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
+
+    // ----------------------------------------- Add imagen Logo ----------------------------
+    this.add_img_logo=function() {
+        return $resource(this.server().appnext()+'public/addImgLogo', {}
         , {
             enviar: {
                 method: 'POST', isArray: false, // responseType:'arraybuffer', 

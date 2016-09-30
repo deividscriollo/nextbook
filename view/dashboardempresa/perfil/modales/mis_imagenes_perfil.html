@@ -18,10 +18,7 @@
                   </div>
                   <div layout-gt-xs="row" ng-show="misimagenes" flex>
                     <md-input-container class="md-block" flex-gt-xs>
-                    <div ng-repeat="imagen in misimagenes">
-                        <img class="img-responsive" ng-src="{{imagen.imgs}}" ng-click="Updateimg(imagen.img)" width="50px">
-                        <span flex></span>
-                    </div>
+                        <img style="margin-right: 10px; cursor: pointer;" ng-repeat="imagen in misimagenes" width="250" ng-src="{{imagen.img}}" ng-click="Updateimg(imagen.img)" width="50px">
                     </md-input-container>
                   </div>
               </md-content>

@@ -48,6 +48,10 @@ $scope.chats=[];
     }
   }
 
+$scope.get_file_logo = function(event) {
+    $scope.file_logo = event.target.files[0];
+};
+
 //---------------------------- funciones socket --------------------------
   $socket.on('chat:update', function (data) {
     console.log($scope.chats);
@@ -79,8 +83,9 @@ $scope.chats=[];
       var lastmsg=$scope.mensajes_chat.length-1;
       $anchorScroll('msg'+lastmsg);
       // $location.hash('msg'+lastmsg);
-      $anchorScroll();
       $scope.save_msg($scope.data);
+
+      get_chats();
     }
   }
 
@@ -99,7 +104,8 @@ $scope.chats=[];
   }
 
   var estadoreadchat = false;
-  $interval(get_chats, 3000);
+  // $interval(get_chats, 3000);
+  get_chats();
   function get_chats() {
     if ($localStorage.token) {
         if (estadoreadchat == false) {
@@ -111,6 +117,7 @@ $scope.chats=[];
             }
            },function(error) {
            estadoreadchat=false;
+           get_chats();
         });
       }
     }

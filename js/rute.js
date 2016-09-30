@@ -27,11 +27,14 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/My-space/Usuario',      'dashboard.perfil.apps')
             .when('/My-space/Mapasa',      'dashboard.perfil.maps')
             .when('/My-space/Biografia',      'dashboard.perfil.Historial')
+            // Catalogo
+            .when('/My-space/Catalogo',      'dashboard.catalogo')
 
             .when('/My-space/Inicio',      'dashboard.ini.inicio')
             .when('/My-space/Apss',      'dashboard.ini.apps')
             .when('/My-space/Maps',      'dashboard.ini.maps')
             .when('/My-space/Historial',      'dashboard.ini.record')
+            
 
             .when('/My-space/Facturanext',      'dashboard.facturanext.inicio')
             .when('/My-space/Facturanext/MisFacturas',      'dashboard.facturanext.misfacturas')
@@ -86,6 +89,9 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 templateUrl: 'view/buscar/index.html',
                 controller: 'buscarCtrl'
             })
+
+
+
             .segment('s1', {
                 templateUrl: 'view/home.html',
                 controller: 'homeCtrl'
@@ -120,6 +126,29 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 controller: 'dashboardCtrl'
             })
             .within()
+                // inicio --------------------------------- esquema ofertas------------------------------------//
+                .segment('catalogo', {
+                    templateUrl: 'view/dashboardempresa/catalogo/index.html',
+                    controller: 'Catalogo-Inicio-Ctrl'
+                })  
+                .within()
+                    .segment('inicio', {
+                        templateUrl: 'view/empresas.html'
+                    })
+                    .segment('ParaEmpresas', {
+                        'default': true,
+                        templateUrl: 'view/empresas.html',
+                        controller: 'EmpresasCtrl'
+                    }) 
+                    .segment('Parati', {
+                        templateUrl: 'view/parati.html',
+                        controller: 'PersonasCtrl'
+                    })                    
+                    .segment('quienessomos', {
+                        controller: 'quienes_somosCtrl',
+                        templateUrl: 'view/quienessomos.html'})                    
+                .up()
+                // Fin ----------------------------------- esquema ofertas------------------------------------//
                 .segment('perfil', {
                     templateUrl: 'view/dashboardempresa/perfil.html',
                     controller: 'perfilCtrl'
@@ -294,7 +323,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     })
                 .up()   
             .up()
-        $routeProvider.otherwise({redirectTo: '/'}); 
+        // $routeProvider.otherwise({redirectTo: '/'}); 
     });
 
     app.value('loader', {show: false});

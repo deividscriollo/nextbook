@@ -28,7 +28,6 @@ var app=angular.module('app')
 	        $scope.data['tipo'] = "E";
 	        var obj = {'email':$scope.email+'001@facturanext.com', 'password':$scope.password, 'tipo':'E' };
 	        LoginE.ingresar(obj).$promise.then(function(data) {
-
 	            if (data.respuesta == false) {
 	            	$mdDialog.show(
 			            $mdDialog.alert()
@@ -44,15 +43,29 @@ var app=angular.module('app')
 		            $localStorage.datosE = data.datosE;
 		            $localStorage.datosPersona = data.datosPersona;
 
-		            //--------------------cargr imagen perfil-----------
+		            //--------------------cargar imagen perfil-----------
 		            servicios.get_img_perfil().get().$promise.then(function(data) {
-		                $localStorage.imgPerfil = data.img;
+		            	if (data.existe) {
+		            		$localStorage.imgPerfil = servicios.server().appnext()+data.img;
+		            	}else{
+		            		$localStorage.imgPerfil="images/users/avatar-001.jpg";
+		            	}
+		                
+		            },function(error){
+		            	$localStorage.imgPerfil="images/users/avatar-001.jpg";
 		            });
 
 		             //--------------------cargar imagen Portada-----------
 
 		            servicios.get_img_portada().get().$promise.then(function(data) {
-		                $localStorage.imgPortada = data.img;
+		            	if (data.existe) {
+		            		$localStorage.imgPortada = servicios.server().appnext()+data.img;
+		            	}else{
+		            		$localStorage.imgPortada="images/samples/w1.jpg";
+		            	}
+
+		            },function(error){
+		            	$localStorage.imgPortada="images/samples/w1.jpg";
 		            });
 		            // ---------- fin
 

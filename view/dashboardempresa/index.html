@@ -136,6 +136,7 @@
                     <md-tabs md-dynamic-height md-selected="ctrl.selectedTab" id="chat_mensajes">
                         <md-tab>
                             <md-tab-body>
+                            <div style="width: 100%; text-align: center;"><img src="images/samples/load.gif" ng-show="load_chats"></div>
                                 <md-list-item class="noright" ng-repeat="chat in chats">
                                     <md-button ng-click="ctrl.open_chat(chat)" style="width: 100%;">
                                         <div ng-class="{'no-view': chat.estado_view == false }">
@@ -156,6 +157,7 @@
                                 <md-divider></md-divider>
                                 <br>
                                 <div id="chat-container" class="chat-container">
+                                <div style="width: 100%; text-align: center;"><img src="images/samples/load.gif" ng-show="load_mensajes"></div>
                                     <div class="container">
                                         <div class="contenedor-mensaje" ng-repeat="conversacion in mensajes_chat">
                                             <img alt="Img" height="35" width="35" ng-class="{'avatar-chat avatar-left': conversacion.tipo_mensaje == 'RECEIVED','avatar-chat avatar-right': conversacion.tipo_mensaje == 'SEND' } " ng-src="{{conversacion.tipo_mensaje == 'RECEIVED' && img_chat || img_session}}" />

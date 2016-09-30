@@ -178,8 +178,8 @@ $scope.Uploadimgs = function(cropper){
                     servicios.add_img_perfil().enviar({
                     img: imgData
                 }).$promise.then(function(data) {
-                    $localStorage.imgPerfil=servicios.server().appnext()+servicios.dir_img().perfil()+$localStorage.datosE.id_empresa+"/"+data.img;
-                    $rootScope.imgPerfil=servicios.server().appnext()+servicios.dir_img().perfil()+$localStorage.datosE.id_empresa+"/"+data.img;
+                    $localStorage.imgPerfil=servicios.server().appnext()+servicios.dir_img().perfil()+"/"+data.img;
+                    $rootScope.imgPerfil=servicios.server().appnext()+servicios.dir_img().perfil()+"/"+data.img;
                     
                     $mdDialog.show(
                         $mdDialog.alert()
@@ -198,8 +198,8 @@ $scope.Uploadimgs = function(cropper){
                         servicios.add_img_portada().enviar({
                         img: imgData
                     }).$promise.then(function(data) {
-                        $localStorage.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+$localStorage.datosE.id_empresa+"/"+data.img;
-                        $rootScope.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+$localStorage.datosE.id_empresa+"/"+data.img;
+                        $localStorage.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+"/"+data.img;
+                        $rootScope.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+"/"+data.img;
                       
                         $mdDialog.show(
                             $mdDialog.alert()
@@ -218,8 +218,8 @@ $scope.Uploadimgs = function(cropper){
                         servicios.add_img_logo().enviar({
                         img: imgData
                     }).$promise.then(function(data) {
-                        $localStorage.imgLogo=servicios.server().appnext()+servicios.dir_img().logo()+$localStorage.datosE.id_empresa+"/"+data.img;
-                        $rootScope.imgLogo=servicios.server().appnext()+servicios.dir_img().logo()+$localStorage.datosE.id_empresa+"/"+data.img;
+                        $localStorage.imgLogo=servicios.server().appnext()+servicios.dir_img().logo()+"/"+data.img;
+                        $rootScope.imgLogo=servicios.server().appnext()+servicios.dir_img().logo()+"/"+data.img;
                         $mdDialog.show(
                             $mdDialog.alert()
                             .parent(angular.element(document.querySelector('#dialogContainer')))

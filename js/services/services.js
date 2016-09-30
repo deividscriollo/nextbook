@@ -37,13 +37,13 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     this.dir_img=function() {
         return {
             perfil: function() {
-                return "storage/app/perfiles/";
+                return "storage/app/"+$localStorage.datosE.id_empresa+"/perfiles/";
             }
             , portada: function() {
-                return "storage/app/portadas/";
+                return "storage/app/"+$localStorage.datosE.id_empresa+"/portadas/";
             }, 
             logo: function() {
-                return "storage/app/logos/";
+                return "storage/app/"+$localStorage.datosE.id_empresa+"/logos/";
             }
         }
     };

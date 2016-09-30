@@ -16,6 +16,12 @@ app.controller('perfilCtrl', function($scope, $mdDialog,$rootScope, servicios, $
         $rootScope.imgPortada = "images/samples/w1.jpg"
     }
 
+    if ($localStorage.imgLogo != null) {
+        $rootScope.imgLogo = $localStorage.imgLogo;
+    } else {
+        $rootScope.imgLogo = "images/samples/w1.jpg"
+    }
+
     $scope.show_listaimg_modal = function(tipolista) {
         switch(tipolista) {
             case 'perfil':
@@ -46,6 +52,10 @@ app.controller('perfilCtrl', function($scope, $mdDialog,$rootScope, servicios, $
                   clickOutsideToClose:true,
                 })
             });
+            break;
+
+            case 'logo':
+            console.log('imgs_logo');
             break;
         }
     }
@@ -81,18 +91,6 @@ app.controller('imagenesCtrl', function($scope,$mdDialog, servicios,$localStorag
         $scope.mensaje = "No se han encontrado imagenes :(";
      } else {
         $scope.misimagenes=imgs;
-
-        var partition = function (input, size) {
-            var newArr = [];
-            for (var i = 0; i < input.length; i += size) {
-                newArr.push(input.slice(i, i + size));
-            }
-            return newArr;
-        }
-
-        // $scope.misimagenes = {
-        //     img: partition(imgs, imgs.length / 2)
-        // };
     }
     $scope.mini=false;
         $scope.myImage = '';
@@ -102,7 +100,10 @@ switch(tipoimg) {
             $scope.sizeimg=[300,300];
             break;
         case 'portada':
-            $scope.sizeimg=[550,400];
+            $scope.sizeimg=[550,350];
+            break;
+        case 'logo':
+            $scope.sizeimg=[500,214];
             break;
     }
 
@@ -148,12 +149,31 @@ $scope.Updateimg = function(idimg) {
                     );
                 });
             break;
+            case 'logo':
+                servicios.set_img_logo().enviar({
+                    img: idimg
+                }).$promise.then(function(data) {
+                    $localStorage.imgLogo = data.img;
+                    $rootScope.imgLogo = data.img;
+                    
+                    $mdDialog.show(
+                        $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#dialogContainer')))
+                        .clickOutsideToClose(true)
+                        .title('NextBook')
+                        .textContent('Logo actualizado correctamente')
+                        .ariaLabel('Logo actualizado correctamente')
+                        .ok('Ok!')
+                    );
+                });
+            break;
     }
 }
 
 $scope.Uploadimgs = function(cropper){
     switch(tipoimg) {
         case 'perfil':
+                $scope.myCroppedImage=cropper;
                 var imgData=btoa($scope.myCroppedImage);
                     servicios.add_img_perfil().enviar({
                     img: imgData
@@ -181,6 +201,25 @@ $scope.Uploadimgs = function(cropper){
                         $localStorage.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+$localStorage.datosE.id_empresa+"/"+data.img;
                         $rootScope.imgPortada=servicios.server().appnext()+servicios.dir_img().portada()+$localStorage.datosE.id_empresa+"/"+data.img;
                       
+                        $mdDialog.show(
+                            $mdDialog.alert()
+                            .parent(angular.element(document.querySelector('#dialogContainer')))
+                            .clickOutsideToClose(true)
+                            .title('NextBook')
+                            .textContent('Se ha actualizado correctamente')
+                            .ariaLabel('Se ha actualizado correctamente')
+                            .ok('Ok!')
+                        );
+                    });
+            break;
+            case 'logo':
+                $scope.myCroppedImage=cropper;
+                var imgData = btoa($scope.myCroppedImage);
+                        servicios.add_img_logo().enviar({
+                        img: imgData
+                    }).$promise.then(function(data) {
+                        $localStorage.imgLogo=servicios.server().appnext()+servicios.dir_img().logo()+$localStorage.datosE.id_empresa+"/"+data.img;
+                        $rootScope.imgLogo=servicios.server().appnext()+servicios.dir_img().logo()+$localStorage.datosE.id_empresa+"/"+data.img;
                         $mdDialog.show(
                             $mdDialog.alert()
                             .parent(angular.element(document.querySelector('#dialogContainer')))

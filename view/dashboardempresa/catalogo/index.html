@@ -1,4 +1,60 @@
-<div layout-xs="column" layout="row">
+<div layout-xs="column" layout="row" ng-controller="Catalogo-Inicio-Ctrl">
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            height: 100%;
+        }
+         
+        body {
+            background-color: #333;
+        }
+         
+        body.hide-overflow {
+            overflow: hidden;
+        }
+         
+        /* helpers */
+         
+        .t {
+            display: table;
+            width: 100%;
+            height: 100%;
+        }
+         
+        .tc {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+         
+        .rel {
+            position: relative;
+        }
+         
+        /* book */
+         
+        .book {
+            margin: 0 auto;
+            width: 90%;
+            height: 90%;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+         
+        .book .page {
+            height: 100%;
+        }
+         
+        .book .page img {
+            max-width: 100%;
+            height: 100%;
+        }
+    </style>
+
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex-xs layout="column" flex-gt-md="20" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <!-- <md-toolbar class="md-sidenav-bg1"> -->
         <img ng-src="{{imgLogo}}" class="md-card-image" alt="Banner Perfil">
@@ -45,11 +101,24 @@
             </md-list-item>
         </md-list>
     </md-sidenav>
+
     <div flex-xs layout="column" flex-gt-md="60">
         <md-content layout-padding layout-wrap>
-            Lorem ipsum dolor sit amet, ne quod novum mei
+            <div class="t">
+                <div class="tc rel">
+                    <div class="book" id="book">
+                        <div class="page"><img src="https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/01.jpg" alt="" /></div>
+                        <div class="page"><img src="https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/02.jpg" alt="" /></div>
+                        <div class="page"><img src="https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/03.jpg" alt="" /></div>
+                        <div class="page"><img src="https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/04.jpg" alt="" /></div>
+                        <div class="page"><img src="https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/05.jpg" alt="" /></div>
+                        <div class="page"><img src="https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/06.jpg" alt="" /></div>
+                    </div>
+                </div>
+            </div> 
         </md-content>
     </div>
+
     <div flex-xs layout="column" flex-gt-md="20">
         <md-card>
             <div layout="row" layout-align="center center">

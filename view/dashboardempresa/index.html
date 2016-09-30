@@ -1,28 +1,5 @@
 <div layout-xs="column" layout="row">
     <md-toolbar flex-xs flex-gt-xs="15" layout="column">
-        <md-menu-bar>
-                     <md-menu>
-                        <button ng-click="$mdOpenMenu()">Tutorials</button>
-                        <md-menu-content>
-                           <md-menu-item>
-                              <md-button ng-click="ctrl.sampleAction('share', $event)">Share...</md-button>
-                           </md-menu-item>
-                           <md-menu-divider></md-menu-divider>
-                           <md-menu-item>
-                              <md-menu>
-                                 <md-button ng-click="$mdOpenMenu()">Learn</md-button>
-                                 <md-menu-content>
-                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('HTML5', $event)">HTML5</md-button></md-menu-item>
-                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('jQuery', $event)">jQuery</md-button></md-menu-item>
-                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('AngularJS', $event)">AngularJS      </md-button></md-menu-item>
-                                    <md-menu-item><md-button disabled="disabled" ng-click="ctrl.sampleAction('AngularJS 2.0', $event)">AngularJS 2.0</md-button></md-menu-item>
-                                    <md-menu-divider></md-menu-divider>
-                                    <md-menu-item><md-button ng-click="ctrl.sampleAction('CSS', $event)">CSS</md-button></md-menu-item>                                 </md-menu-content>
-                              </md-menu>
-                           </md-menu-item>
-                        </md-menu-content>
-                     </md-menu>
-                  </md-menu-bar>
     </md-toolbar>
     <md-toolbar flex-xs flex-gt-xs="65" layout="column">
         <div class="md-toolbar-tools toolbar-center">
@@ -121,7 +98,6 @@
                     <md-tabs md-dynamic-height md-selected="ctrl.selectedTab" id="chat_mensajes">
                         <md-tab>
                             <md-tab-body>
-                            <div style="width: 100%; text-align: center;"><img src="images/samples/load.gif" ng-show="load_chats"></div>
                                 <md-list-item class="noright" ng-repeat="chat in chats">
                                     <md-button ng-click="ctrl.open_chat(chat)" style="width: 100%;">
                                         <div ng-class="{'no-view': chat.estado_view == false }">
@@ -142,7 +118,6 @@
                                 <md-divider></md-divider>
                                 <br>
                                 <div id="chat-container" class="chat-container">
-                                <div style="width: 100%; text-align: center;"><img src="images/samples/load.gif" ng-show="load_mensajes"></div>
                                     <div class="container">
                                         <div class="contenedor-mensaje" ng-repeat="conversacion in mensajes_chat">
                                             <img alt="Img" height="35" width="35" ng-class="{'avatar-chat avatar-left': conversacion.tipo_mensaje == 'RECEIVED','avatar-chat avatar-right': conversacion.tipo_mensaje == 'SEND' } " ng-src="{{conversacion.tipo_mensaje == 'RECEIVED' && img_chat || img_session}}" />

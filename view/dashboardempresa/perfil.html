@@ -2,14 +2,22 @@
     <div layout="column" flex>
         <div layout="row">
             <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex-xs layout="column" flex-gt-md="20" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-                    <md-toolbar class="md-sidenav-bg1">
-                        <span flex></span>
-                        <div layout="column" class="md-toolbar-tools-bottom inset">
-                            <user-avatar></user-avatar>
-                            <span>{{localStorage.nombre_comercial | lowercase}},</span>
-                            <div>{{localStorage.actividad_economica | lowercase}}</div>
-                        </div>
-                    </md-toolbar>
+                     <img ng-src="{{imgLogo}}" class="md-card-image" alt="Banner Perfil">
+            <div layout="column" class="md-toolbar-tools-bottom inset" style="position: fixed;">
+            <span flex></span>
+            <div class="header-card-perfil" style="position: static; margin-bottom: 10px;">
+            <span flex></span>
+                <md-button class="md-icon-button" aria-label="More">
+                  <ng-md-icon class="md-accent" icon="border_color" ng-click="show_listaimg_modal('logo')"></ng-md-icon>
+              </md-button>
+              <md-button class="md-icon-button bg-primary" aria-label="More">
+                  <ng-md-icon  icon="camera_alt" ng-click="show_upload_img_modal('logo')"></ng-md-icon>
+              </md-button>
+            </div>
+                <user-avatar></user-avatar>
+                <span>{{localStorage.nombre_comercial | lowercase}},</span>
+                <div>{{localStorage.actividad_economica | lowercase}}</div>
+            </div>
                     <md-list ng-cloak>
                         <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu1">
                             <ng-md-icon icon="{{item.icon}}"></ng-md-icon>

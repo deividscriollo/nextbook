@@ -70,6 +70,7 @@ $scope.get_file_logo = function(event) {
   $scope.sendMensajeChat=function(event) {
 
      if (event.keyCode === 13) {
+      $scope.mensaje=$scope.data.mensaje;
         $scope.data={
         chat_id:$localStorage.chat_id,
         user_id:$scope.id_user,
@@ -80,12 +81,10 @@ $scope.get_file_logo = function(event) {
 
       $socket.emit('chat:sendMensaje', $scope.data);
       $scope.mensaje = '';
-      var lastmsg=$scope.mensajes_chat.length-1;
-      $anchorScroll('msg'+lastmsg);
+      // var lastmsg=$scope.mensajes_chat.length-1;
+      // $anchorScroll('msg'+lastmsg);
       // $location.hash('msg'+lastmsg);
       $scope.save_msg($scope.data);
-
-      get_chats();
     }
   }
 
@@ -94,6 +93,8 @@ $scope.get_file_logo = function(event) {
         if (data.respuesta==true) {
           console.log('mensaje guardado');
         }
+      },function(error){
+        $scope.save_msg(data);
       });
   }
 
@@ -104,8 +105,8 @@ $scope.get_file_logo = function(event) {
   }
 
   var estadoreadchat = false;
-  // $interval(get_chats, 3000);
-  get_chats();
+  $interval(get_chats, 3000);
+  // get_chats();
   function get_chats() {
     if ($localStorage.token) {
         if (estadoreadchat == false) {
@@ -117,7 +118,6 @@ $scope.get_file_logo = function(event) {
             }
            },function(error) {
            estadoreadchat=false;
-           get_chats();
         });
       }
     }

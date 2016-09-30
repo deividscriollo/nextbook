@@ -1,6 +1,45 @@
 <div layout="row"  layout-fill>
     <div layout="column" flex >
-      <div  layout="row" >
+        
+      <div  layout="row">
+        <div flex-xs layout="column" flex-gt-md="20">
+            <md-sidenav class="md-sidenav-left md-whiteframe-z2" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+                <md-toolbar class="md-sidenav-bg1">
+                    <span flex></span>
+                    <div layout="column" class="md-toolbar-tools-bottom inset">
+                        <user-avatar></user-avatar>
+                        <span>{{localStorage.nombre_comercial | lowercase}},</span>
+                        <div>{{localStorage.actividad_economica | lowercase}}</div>
+                    </div>
+                </md-toolbar>
+                <md-list ng-cloak>
+                    <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu1">
+                        <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                        <p> {{ item.title }}</p>
+                    </md-list-item>
+                    <md-divider></md-divider>
+                    <md-subheader class="md-no-sticky">Facturas Fisicas</md-subheader>
+                    <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu2">
+                        <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                        <p> {{ item.title }}</p>
+                    </md-list-item>
+                    <md-subheader class="md-no-sticky">General</md-subheader>
+                    <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu3">
+                        <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                        <p> {{ item.title }}</p>
+                    </md-list-item>
+                    <md-divider></md-divider>
+                    <md-list-item>
+                        <ng-md-icon icon="exit_to_app"></ng-md-icon>
+                        <p> Bloquear </p>
+                    </md-list-item>
+                    <md-list-item>
+                        <ng-md-icon icon="aspect_ratio"></ng-md-icon>
+                        <p> Pantalla Completa </p>
+                    </md-list-item>
+                </md-list>
+            </md-sidenav>
+        </div>
         <div flex-xs layout="column" flex-gt-md="70">
           <md-card>
             <div class="div-controlcar-img">
@@ -33,7 +72,6 @@
             </md-button>
             </md-card-actions>
             <md-card-content>
-
               <md-list>
                 <md-list-item class=" md-long-text">
                     {{datos2.razon_social}}

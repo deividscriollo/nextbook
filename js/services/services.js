@@ -96,6 +96,19 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         });
     };
+
+    // ----------------------------------------- Add imagen de LOGO ----------------------------
+    this.get_img_logo=function() {
+        return $resource(this.server().appnext()+'public/getImgLogo', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
     // ----------------------------------------- set get imagen perfil ----------------------------
     this.set_img_perfil=function() {
         return $resource(this.server().appnext()+'public/setImgPerfil', {}
@@ -174,6 +187,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         });
     };
 
+
     // ----------------------------------------- Verificar contraseña ----------------------------
     this.verificar_pass=function() {
         return $resource(this.server().appnext()+'public/VerficarPass', {}
@@ -214,6 +228,18 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
 
     this.mis_imgs_portadas=function() {
         return $resource(this.server().appnext()+'public/loadImgsPortada', {}
+        , {
+            get: {
+                method: 'GET', isArray: false, // responseType:'arraybuffer', 
+                params: {
+                    token: $localStorage.token
+                }
+            }
+        });
+    };
+
+      this.mis_imgs_logo=function() {
+        return $resource(this.server().appnext()+'public/loadImgsLogo', {}
         , {
             get: {
                 method: 'GET', isArray: false, // responseType:'arraybuffer', 

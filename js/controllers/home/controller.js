@@ -69,6 +69,20 @@ var app=angular.module('app')
 		            });
 		            // ---------- fin
 
+		             //--------------------cargar imagen Logo-----------
+
+		            servicios.get_img_logo().get().$promise.then(function(data) {
+		            	if (data.existe) {
+		            		$localStorage.imgLogo = servicios.server().appnext()+data.img;
+		            	}else{
+		            		$localStorage.imgLogo="images/samples/x2.jpg";
+		            	}
+
+		            },function(error){
+		            	$localStorage.imgPortada="images/samples/x2.jpg";
+		            });
+		            // ---------- fin
+
 		            //---------------------- verificar si existe datos de persona-----------
 		            servicios.get_propietario().get().$promise.then(function(data) {
 		                if (data.respuesta) {

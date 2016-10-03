@@ -19,7 +19,7 @@ app.controller('perfilCtrl', function($scope, $mdDialog,$rootScope, servicios, $
     if ($localStorage.imgLogo != null) {
         $rootScope.imgLogo = $localStorage.imgLogo;
     } else {
-        $rootScope.imgLogo = "images/samples/w1.jpg"
+        $rootScope.imgLogo = "images/samples/x2.jpg"
     }
 
     $scope.show_listaimg_modal = function(tipolista) {
@@ -55,7 +55,19 @@ app.controller('perfilCtrl', function($scope, $mdDialog,$rootScope, servicios, $
             break;
 
             case 'logo':
-            console.log('imgs_logo');
+            servicios.mis_imgs_logo().get().$promise.then(function(data) {
+                $mdDialog.show({
+                  clickOutsideToClose: true,
+                  controller: 'imagenesCtrl',
+                  controllerAs: 'ctrl',
+                  focusOnOpen: false,
+                  targetEvent: event,
+                  locals: {imgs: data.imgs,tipoimg: tipolista},
+                  templateUrl: 'view/dashboardempresa/perfil/modales/mis_imagenes_perfil.html',
+                  clickOutsideToClose:true,
+                })
+            });
+
             break;
         }
     }
@@ -90,6 +102,9 @@ app.controller('imagenesCtrl', function($scope,$mdDialog, servicios,$localStorag
      if (imgs.length == 0) {
         $scope.mensaje = "No se han encontrado imagenes :(";
      } else {
+        for (var i = 0; i < imgs.length; i++) {
+            imgs[i]['img']=servicios.server().appnext()+imgs[i]['img'];
+        }
         $scope.misimagenes=imgs;
     }
     $scope.mini=false;
@@ -117,8 +132,8 @@ $scope.Updateimg = function(idimg) {
         servicios.set_img_perfil().enviar({
                     img: idimg
                 }).$promise.then(function(data) {
-                    $localStorage.imgPerfil = data.img;
-                    $rootScope.imgPerfil = data.img;
+                    $localStorage.imgPerfil = servicios.server().appnext()+data.img;
+                    $rootScope.imgPerfil = servicios.server().appnext()+data.img;
                     
                     $mdDialog.show(
                         $mdDialog.alert()
@@ -135,8 +150,8 @@ $scope.Updateimg = function(idimg) {
                 servicios.set_img_portada().enviar({
                     img: idimg
                 }).$promise.then(function(data) {
-                    $localStorage.imgPortada = data.img;
-                    $rootScope.imgPortada = data.img;
+                    $localStorage.imgPortada = servicios.server().appnext()+data.img;
+                    $rootScope.imgPortada = servicios.server().appnext()+data.img;
                     
                     $mdDialog.show(
                         $mdDialog.alert()
@@ -153,9 +168,8 @@ $scope.Updateimg = function(idimg) {
                 servicios.set_img_logo().enviar({
                     img: idimg
                 }).$promise.then(function(data) {
-                    $localStorage.imgLogo = data.img;
-                    $rootScope.imgLogo = data.img;
-                    
+                    $localStorage.imgLogo = servicios.server().appnext()+data.img;
+                    $rootScope.imgLogo = servicios.server().appnext()+data.img;
                     $mdDialog.show(
                         $mdDialog.alert()
                         .parent(angular.element(document.querySelector('#dialogContainer')))

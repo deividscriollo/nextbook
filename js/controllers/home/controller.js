@@ -45,11 +45,7 @@ var app=angular.module('app')
 
 		            //--------------------cargar imagen perfil-----------
 		            servicios.get_img_perfil().get().$promise.then(function(data) {
-		            	if (data.existe) {
-		            		$localStorage.imgPerfil = servicios.server().appnext()+data.img;
-		            	}else{
-		            		$localStorage.imgPerfil="images/users/avatar-001.jpg";
-		            	}
+		            		$localStorage.imgPerfil = data.img;
 		                
 		            },function(error){
 		            	$localStorage.imgPerfil="images/users/avatar-001.jpg";
@@ -58,11 +54,7 @@ var app=angular.module('app')
 		             //--------------------cargar imagen Portada-----------
 
 		            servicios.get_img_portada().get().$promise.then(function(data) {
-		            	if (data.existe) {
-		            		$localStorage.imgPortada = servicios.server().appnext()+data.img;
-		            	}else{
-		            		$localStorage.imgPortada="images/samples/w1.jpg";
-		            	}
+		            		$localStorage.imgPortada = data.img;
 
 		            },function(error){
 		            	$localStorage.imgPortada="images/samples/w1.jpg";
@@ -72,12 +64,7 @@ var app=angular.module('app')
 		             //--------------------cargar imagen Logo-----------
 
 		            servicios.get_img_logo().get().$promise.then(function(data) {
-		            	if (data.existe) {
-		            		$localStorage.imgLogo = servicios.server().appnext()+data.img;
-		            	}else{
-		            		$localStorage.imgLogo="images/samples/x2.jpg";
-		            	}
-
+		            		$localStorage.imgLogo = data.img;
 		            },function(error){
 		            	$localStorage.imgPortada="images/samples/x2.jpg";
 		            });

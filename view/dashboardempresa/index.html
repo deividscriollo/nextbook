@@ -90,11 +90,15 @@
             <!-- contenido -->
             <div app-view-segment="1"></div>
         </div>
-        <md-sidenav flex-xs flex-gt-xs="20" layout="column" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
-            <div ng-controller="appsCtrl as ctrl">
+        <md-sidenav flex-xs flex-gt-xs="20" layout="column" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')" >
+            <div ng-controller="mensajesCtrl as ctrl">
             <ng-switch on="data.selectedIndex" class="tabpanel-container">
                 <div id="tab1-content" aria-labelledby="tab1" ng-switch-when="0">
                     <md-subheader>Mensajeria</md-subheader>
+                    <div ng-show="load_chats" style="width: 100%;text-align: center;">
+                    <br>
+                    <img style="height: 25px; width: 25px;" alt="Cargando...." ng-src="images/samples/load.gif"/>
+                    </div>                    
                     <md-tabs md-dynamic-height md-selected="ctrl.selectedTab" id="chat_mensajes">
                         <md-tab>
                             <md-tab-body>
@@ -117,18 +121,22 @@
                                 {{nombre_chat}}
                                 <md-divider></md-divider>
                                 <br>
+                                <img ng-show="load_chats" style="height: 25px; width: 25px;" alt="Cargando...." ng-src="images/samples/load.gif"/>
                                 <div id="chat-container" class="chat-container">
-                                    <div class="container">
+                                    <div ng-show="load_mensajes" style="width: 100%;text-align: center;">
+                                        <img style="height: 25px; width: 25px;" alt="Cargando...." ng-src="images/samples/load.gif"/>
+                                    </div>
+                                    <!-- <div class="container"> -->
                                         <div class="contenedor-mensaje" ng-repeat="conversacion in mensajes_chat">
                                             <img alt="Img" height="35" width="35" ng-class="{'avatar-chat avatar-left': conversacion.tipo_mensaje == 'RECEIVED','avatar-chat avatar-right': conversacion.tipo_mensaje == 'SEND' } " ng-src="{{conversacion.tipo_mensaje == 'RECEIVED' && img_chat || img_session}}" />
                                             <div id="{{'msg'+$index}}" ng-class="{'bubble': conversacion.tipo_mensaje == 'RECEIVED','bubble bubble--alt': conversacion.tipo_mensaje == 'SEND' } ">
                                                 {{conversacion.mensaje}}
                                             </div>
                                         </div>
-                                    </div>
+                                    <!-- </div> -->
                                 </div>
                                 <md-input-container class="md-block" style="margin-bottom:0;">
-                                <input type="text" rows="2" ng-model="mensaje" ng-keypress="sendMensajeChat($event)" class="md-mini md-primary" placeholder="Escribe un mensaje">
+                                <input type="text" rows="2" ng-model="data.txtmsg" ng-keypress="sendMensajeChat($event)" class="md-mini md-primary" placeholder="Escribe un mensaje">
                                 </md-input-container>
                             </md-tab-body>
                         </md-tab>

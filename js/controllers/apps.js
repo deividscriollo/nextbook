@@ -3,11 +3,7 @@ app.controller('inicioCtrl', function($scope, $routeSegment) {
     $scope.$routeSegment = $routeSegment;
 });
 
-app.controller('appsCtrl', function ($anchorScroll,$socket,$mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location,Facturas,$interval,serviciosfacturanext) {
-
-$scope.id_user=$localStorage.datosE.id_empresa;
-$scope.mensajes_chat=[];
-$scope.chats=[];
+app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location,$interval) {
 
   $scope.$routeSegment = $routeSegment;
   $scope.menucard = [
@@ -17,115 +13,7 @@ $scope.chats=[];
                       // {id:'1',titulo:'Radio', descripcion:'Administración Radio', evento:'clientes'}
                     ];
 
-  var estadoread = false;
-  $scope.nrfacturas = 0;
-   // $scope.facturas=[];
-
-  serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
-    $scope.facturas = data.respuesta;
-    // $scope.facturas.push(data.respuesta.data);
-    $scope.nrfacturas = data.sin_leer;
-  });
-
-    $interval(callAtInterval, 3000);
-
-  function callAtInterval() {
-    if ($localStorage.token) {
-        if (estadoread == false) {
-            estadoread = true;
-            Facturas.get().$promise.then(function(data) {
-            if (data.respuesta == true) {
-              estadoread = false;
-
-            serviciosfacturanext.get_new_facturas().get().$promise.then(function(data){
-            $scope.facturas=data.respuesta;
-            // $scope.facturas.push(data.respuesta.data);
-            $scope.nrfacturas=data.sin_leer;
-          });
-        }
-      });
-      }
-    }
-  }
-
-$scope.get_file_logo = function(event) {
-    $scope.file_logo = event.target.files[0];
-};
-
-//---------------------------- funciones socket --------------------------
-  $socket.on('chat:update', function (data) {
-    console.log($scope.chats);
-    if (data.iser_id!=$scope.id_user) {
-      data.tipo_mensaje="RECEIVED"
-    }
-    $scope.mensajes_chat.push(data);
-    var lastmsg=$scope.mensajes_chat.length-1;
-      $anchorScroll('msg'+lastmsg);
-      // console.log($scope.chats);
-  });
-
-  //---------------------------------- Fin ------------------------------
-
-  //--------------------------------------------------- CHAT ----------------
-  $scope.sendMensajeChat=function(event) {
-
-     if (event.keyCode === 13) {
-      $scope.mensaje=$scope.data.mensaje;
-        $scope.data={
-        chat_id:$localStorage.chat_id,
-        user_id:$scope.id_user,
-        tipo_mensaje:'SEND',
-        mensaje:$scope.mensaje
-      }
-      $scope.mensajes_chat.push($scope.data);
-
-      $socket.emit('chat:sendMensaje', $scope.data);
-      $scope.mensaje = '';
-      // var lastmsg=$scope.mensajes_chat.length-1;
-      // $anchorScroll('msg'+lastmsg);
-      // $location.hash('msg'+lastmsg);
-      $scope.save_msg($scope.data);
-    }
-  }
-
-  $scope.save_msg=function(data){
-       servicios.mensaje_chatbox().send(data).$promise.then(function(data){
-        if (data.respuesta==true) {
-          console.log('mensaje guardado');
-        }
-      },function(error){
-        $scope.save_msg(data);
-      });
-  }
-
-   
-
-  function update_chat(data){
-    $scope.mensajes_chat=data.mensajes;
-  }
-
-  var estadoreadchat = false;
-  $interval(get_chats, 3000);
-  $scope.load_chats=true;
-  // get_chats();
-  function get_chats() {
-    if ($localStorage.token) {
-        if (estadoreadchat == false) {
-            estadoreadchat = true;
-            servicios.get_chats().get().$promise.then(function(data){
-            $scope.chats = data.datos;
-            if (data.respuesta == true) {
-              estadoreadchat = false;
-              $scope.load_chats=false;
-            }
-           },function(error) {
-           estadoreadchat=false;
-        });
-      }
-    }
-  }
-
-  $scope.sendMensaje = function(objeto) {
+ $scope.sendMensaje = function(objeto) {
 
    $mdDialog.show({
       clickOutsideToClose: true,
@@ -138,48 +26,16 @@ $scope.get_file_logo = function(event) {
       clickOutsideToClose:true,
     });
   }
-    
-  $scope.getMensajes = function (chat_obj,estadsocket) {
-    $scope.load_mensajes=true;
-    $scope.mensajes_chat=[];
-    if (estadsocket) {
-        $scope.datos_sala={
-        chat_id:chat_obj.chat_id,
-        user_id:$scope.id_user
-      }
-      $socket.emit('chat:join', $scope.datos_sala);
-    }
-    $localStorage.chat_id=chat_obj.chat_id;
-   servicios.get_mensajes().get({chat_id:chat_obj.chat_id}).$promise.then(function(data){
-        $scope.mensajes_chat=data.mensajes;
-        if (data.respuesta) {
-          $scope.load_mensajes=false;
-        // var lastmsg=$scope.mensajes_chat.length-1;
-        // $anchorScroll('msg'+lastmsg);
-        }
-   },function(error){
-    $scope.getMensajes(chat_obj,false);
-   });
-  };
 
-  $scope.chat_boxs = [];
-  this.selectedTab = 0;
-  $scope.nombre_chat = "";
-  this.open_chat = function(chat_obj) {
-    $scope.nombre_chat = chat_obj.para;
-    $scope.img_chat = chat_obj.img;
-    $scope.img_session = $localStorage.imgPerfil;
-    $scope.getMensajes(chat_obj,true);
-    this.selectedTab = (this.selectedTab + 1) % 3;
-  }
-
-  this.back_chat=function(chat_obj) {
-    this.selectedTab = (this.selectedTab - 1) % 3;
-    // $socket.emit('chat:salir', $localStorage.chat_id);
-  }
+$scope.get_file_logo = function(event) {
+    $scope.file_logo = event.target.files[0];
+};
 
   $scope.searchTextChange = function(text){
     return servicios.buscar_empresas().get().$promise.then(function(data){
+      for (var i = 0; i < data.respuesta.length; i++) {
+        data.respuesta[i]['img']=servicios.server().appnext()+data.respuesta[i]['img'];
+      }
       return $scope.items = data.respuesta;
     });
   }
@@ -309,7 +165,7 @@ app.controller('recordCtrl', function($scope, $routeSegment) {
   $scope.$routeSegment = $routeSegment;
 });
 
-app.controller('sendMensajeCtrl', function($scope,$mdDialog,datos,servicios) {       
+app.controller('sendMensajeCtrl', function($rootScope,$socket,$scope,$mdDialog,datos,servicios) {       
     this.cancel = $mdDialog.cancel;
     $scope.enviar=function(){
       $scope.data={
@@ -318,6 +174,13 @@ app.controller('sendMensajeCtrl', function($scope,$mdDialog,datos,servicios) {
       }
       servicios.mensaje().send($scope.data).$promise.then(function(data){
         if (data.respuesta==true) {
+                $socket.emit('chat:updateRooms');
+        servicios.get_chats().get().$promise.then(function(data){
+            $rootScope.chats = data.datos;
+            $socket.emit('chat:join', $rootScope.chats);
+           },function(error) {
+        });
+
            $mdDialog.show(
                 $mdDialog.alert()
                 .parent(angular.element(document.querySelector('#dialogContainer')))

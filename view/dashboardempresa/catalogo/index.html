@@ -1,39 +1,57 @@
 <div layout-xs="column" layout="row" ng-controller="Catalogo-Inicio-Ctrl">
     <style type="text/css">
-        #magazine{
-            width:800px;
-            height:752px;
+        body{
+            background:#FFFFFF;
+        }
+        #flipbook{
+            width:600px;
+            height:350px;
+        }
+        /*#magazine{
+            width: 800px;
+            height: 400px;
         }
         #magazine .turn-page{
             background-color:#ccc;
-            background-size:100% 100%;
-        }
-        
-       /* body.hide-overflow {
-            overflow: hidden;
         }*/
-         
-        /* helpers */
-         
-      /*  .t {
-            display: table;
-            width: 90%;
+        /*#flipbook{
+            width:600px;
+            height:350px;
+        }*/
+        /*html, body {
+            margin: 0;
             height: 100%;
         }
-         
+
+        body {
+            background-color: #333;
+        }
+
+        body.hide-overflow {
+            overflow: hidden;
+        }*/
+
+        /* helpers */
+
+        /*.t {
+            display: table;
+            width: 100%;
+            height: 100%;
+        }
+
         .tc {
             display: table-cell;
             vertical-align: middle;
             text-align: center;
         }
-         
+
         .rel {
             position: relative;
         }*/
-         
-        /* book */
-         
-        .book {
+
+         /*book */
+
+        /*.book {
             margin: 0 auto;
             width: 90%;
             height: 90%;
@@ -44,16 +62,36 @@
             -ms-user-select: none;
             user-select: none;
         }
-         
+
         .book .page {
             height: 100%;
         }
-         
+
         .book .page img {
-            max-width: 90%;
+            max-width: 100%;
             height: 100%;
-        }
+        }*/
     </style>
+
+    <script type="text/javascript">
+        $(window).ready(function() {
+            $('#flipbook').turn({
+                    acceleration : false,
+                    display: 'double',
+                    acceleration: true,
+                    disable: true
+                    
+                });
+        });
+        
+        $(window).bind('keydown', function(e){
+            
+            if (e.keyCode==37)
+                $('#flipbook').turn('previous');
+            else if (e.keyCode==39)
+                $('#flipbook').turn('next');
+        });
+    </script>
 
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex-xs layout="column" flex-gt-md="20" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <!-- <md-toolbar class="md-sidenav-bg1"> -->
@@ -104,17 +142,44 @@
 
     <div flex-xs layout="column" flex-gt-md="60">
         <md-content layout-padding layout-wrap>
-            <div class="book" id="magazine">
-                <div class="page" style="background-image:url(https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/01.jpg);"></div>
-                <div class="page" style="background-image:url(https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/02.jpg);"></div>
-                <div class="page" style="background-image:url(https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/03.jpg);"></div>
-                <div class="page" style="background-image:url(https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/04.jpg);"></div>
-                <div class="page" style="background-image:url(https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/05.jpg);"></div>
-                <div class="page" style="background-image:url(https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/06.jpg);"></div>
+            <!-- <div id="magazine">
+                <div><span class="text">Page 1</span></div>
+                <div><span class="text">Page 2</span></div>
+                <div><span class="text">Page 3</span></div>
+            </div> -->
+            <!-- <div id="magazine">
+                <div style="background-image:url(pages/cover.png);"></div>
+                <div style="background-image:url(pages/page1.png);"></div>
+                <div style="background-image:url(pages/page1.png);"></div>
+                <div style="background-image:url(pages/page1.png);"></div>
+                <div style="background-image:url(pages/page1.png);"></div>
+                <div style="background-image:url(pages/back.png);"></div>
+            </div> -->
+            <div id="flipbook">
+                <div><img src="pages/cover.png" alt="cover" title="cover page" /></div>
+                <div><img src="pages/page1.png" alt="Page-1" title="page-1" /></div>
+                <div><img src="pages/page2.png" alt="Page-2" title="page-2" /></div>
+                <div><img src="pages/page3.png" alt="Page-3" title="page-3" /></div>
+                <div><img src="pages/page4.png" alt="Page-4" title="page-4" /></div>
+                <div><img src="pages/page5.png" alt="Page-5" title="page-5" /></div>
+                <div><img src="pages/page6.png" alt="Page-6" title="page-6" /></div>
+                <div><img src="pages/page7.png" alt="Page-7" title="page-7" /></div>
+                <div><img src="pages/page8.png" alt="Page-8" title="page-8" /></div>
+                <div><img src="pages/back.png" alt="back cover" title="back cover" /></div>
             </div>
             <!-- <div class="t">
                 <div class="tc rel">
                     <div class="book" id="book">
+                        <div><img src="pages/cover.png" alt="cover" title="cover page" /></div>
+                        <div><img src="pages/page1.png" alt="Page-1" title="page-1" /></div>
+                        <div><img src="pages/page2.png" alt="Page-2" title="page-2" /></div>
+                        <div><img src="pages/page3.png" alt="Page-3" title="page-3" /></div>
+                        <div><img src="pages/page4.png" alt="Page-4" title="page-4" /></div>
+                        <div><img src="pages/page5.png" alt="Page-5" title="page-5" /></div>
+                        <div><img src="pages/page6.png" alt="Page-6" title="page-6" /></div>
+                        <div><img src="pages/page7.png" alt="Page-7" title="page-7" /></div>
+                        <div><img src="pages/page8.png" alt="Page-8" title="page-8" /></div>
+                        <div><img src="pages/back.png" alt="back cover" title="back cover" /></div>
                         <div class="page"><img src="https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/01.jpg" alt="" /></div>
                         <div class="page"><img src="https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/02.jpg" alt="" /></div>
                         <div class="page"><img src="https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/03.jpg" alt="" /></div>
@@ -123,7 +188,7 @@
                         <div class="page"><img src="https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/06.jpg" alt="" /></div>
                     </div>
                 </div>
-            </div> --> 
+            </div>  -->    
         </md-content>
     </div>
 

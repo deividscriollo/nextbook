@@ -1,0 +1,123 @@
+body {
+	padding: 57px 0 20px 0;
+}
+html, body {
+	margin: 0;
+	height: 100%;
+}
+body {
+	background-color: #333;
+}
+body.hide-overflow {
+	overflow: hidden;
+}
+/* helpers */
+
+.t {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+.tc {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+.rel {
+	position: relative;
+}
+/* book */
+
+.book {
+	margin: 0 auto;
+	width: 90%;
+	height: 90%;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.book .page {
+	height: 100%;
+	background: #ffffff;
+	border-left: 1px solid #ccc;
+}
+.book .cover-page img {
+	margin: 10% auto 0
+}
+.book .page .form-group {
+	padding: 20px;
+}
+.book .page .form-group label {
+	min-height: 35px;
+	line-height: 35px;
+	display: block;
+	text-align: right;
+}
+.book .page .form-group input {
+	display: block;
+	margin-bottom: 10px;
+}
+.book .page .form-radio input {
+	display: inline;
+	margin-left: 10px;
+	top: 0;
+}
+.book .page button.prev {
+	position: absolute;
+	bottom: 200px;
+	left: 20px;
+}
+.book .page button.next {
+	position: absolute;
+	bottom: 200px;
+	right: 20px;
+}
+.book .cover-page button.next {
+	position: static;
+	margin: 10px auto;
+	display: block;
+}
+button.turn-page {
+	position: absolute;
+	z-index: 9999;
+}
+
+.flip-book-wrap {
+	margin: 0 auto;
+	width: 500px;
+	position: relative;
+}
+.flip-control {
+	width: 500px;
+	margin: 0 auto;
+	position: absolute;
+	z-index: 10px!important;
+}
+.page .form-group label.inline {
+	display: inline-block;
+	text-align: left;
+	min-height: 20px;
+	line-height: 20px;
+	width: 45%;
+}
+.page .form-group label.inline input[type="radio"] {
+	display: inline-block;
+}
+.br-tr-br {
+	border-radius: 0 15px 15px 0;
+}
+.br-tl-bl {
+	border-radius: 15px 0 0 15px;
+}
+.page {
+	-webkit-box-shadow: 1px 4px 5px #ccc inset;
+	-moz-box-shadow: 1px 4px 5px #ccc inset;
+	-ms-box-shadow: 1px 4px 5px #ccc inset;
+	box-shadow: 1px 4px 5px #ccc inset;
+}
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */

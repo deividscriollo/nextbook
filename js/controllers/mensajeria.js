@@ -5,6 +5,7 @@ $scope.mensajes_chat=[];
 $rootScope.chats=[];
 $scope.load_chats=true;
 $scope.load_mensajes=false;
+$rootScope.countnewmsj=0;
 
 var estadoread = false;
   $scope.nrfacturas = 0;
@@ -36,10 +37,14 @@ var estadoread = false;
     }
   }
 
+$scope.limpiarmsj=function(){
+  $rootScope.countnewmsj=0;
+}
 //---------------------------- funciones socket --------------------------
   $socket.on('chat:update', function (data) {
     if (data.iser_id!=$scope.id_user) {
-      data.tipo_mensaje="RECEIVED"
+      data.tipo_mensaje="RECEIVED";
+      $rootScope.countnewmsj++;
     }
     $scope.mensajes_chat.push(data);
     $scope.scroll_buttom_chat();
@@ -60,7 +65,6 @@ var estadoread = false;
            },function(error) {
         });
   });
-  
 
   //---------------------------------- Fin ------------------------------
 
@@ -100,8 +104,6 @@ var estadoread = false;
         $scope.save_msg(data);
       });
   }
-
-   
 
   function update_chat(data){
     $scope.mensajes_chat=data.mensajes;
@@ -154,9 +156,11 @@ var estadoread = false;
   this.selectedTab = 0;
   $scope.nombre_chat = "";
   this.open_chat = function(chat_obj) {
+    $scope.limpiarmsj();
     $scope.nombre_chat = chat_obj.para;
     $scope.img_chat = chat_obj.img;
     $scope.img_session = $localStorage.imgPerfil;
+    $socket.emit('chat:jointo', {chat_id:chat_obj.chat_id,para:chat_obj.para});
     $scope.getMensajes(chat_obj,true);
     this.selectedTab = (this.selectedTab + 1) % 3;
   }
@@ -164,6 +168,18 @@ var estadoread = false;
   this.back_chat=function(chat_obj) {
     this.selectedTab = (this.selectedTab - 1) % 3;
     // $socket.emit('chat:salir', $localStorage.chat_id);
+  }
+
+  $scope.generar_pdf = function(item) {
+    serviciosfacturanext.update_estado_view_fac().set({id_factura:item.id_factura}); 
+    serviciosfacturanext.get_new_facturas().get().$promise.then(function(data) {
+        $scope.facturas = data.respuesta;
+        $scope.nrfacturas = data.sin_leer;
+    });
+    $scope.promise = serviciosfacturanext.gen_pdf().generar({iddocumento:item.id_factura}).$promise.then(function(data) {
+    var url = data.url;
+    window.open(url, '_blank', "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=900, height=800");
+    }); 
   }
 
 });

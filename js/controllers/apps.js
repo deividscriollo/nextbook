@@ -40,18 +40,6 @@ $scope.get_file_logo = function(event) {
     });
   }
 
-  $scope.generar_pdf = function(item) {
-    serviciosfacturanext.update_estado_view_fac().set({id_factura:item.id_factura}); 
-    serviciosfacturanext.get_new_facturas().get().$promise.then(function(data) {
-        $scope.facturas = data.respuesta;
-        $scope.nrfacturas = data.sin_leer;
-    });
-    $scope.promise = serviciosfacturanext.gen_pdf().generar({iddocumento:item.id_factura}).$promise.then(function(data) {
-    var url = data.url;
-    window.open(url, '_blank', "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=900, height=800");
-    }); 
-  }
-
   $scope.modal = function(tipo, event) {
     if (tipo == 'nomina') {
       $scope.modal_nomina(event);

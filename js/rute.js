@@ -129,7 +129,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 // inicio --------------------------------- esquema ofertas------------------------------------//
                 .segment('catalogo', {
                     templateUrl: 'view/dashboardempresa/catalogo/index.html',
-                    controller: 'Catalogo-Inicio-Ctrl'
+                    // controller: 'Catalogo-Inicio-Ctrl'
                 })  
                 .within()
                     .segment('inicio', {

@@ -6,7 +6,7 @@ var module = angular.module('socket.io', []);
 
 module.provider('$socket', function $socketProvider() {
     
-    var ioUrl = 'http://192.168.0.104:8080';
+    var ioUrl = 'http://192.168.0.109:8080';
     var ioConfig = {};
     
     function setOption(name, value, type) {

@@ -1,4 +1,4 @@
-var app = angular.module('app').controller('mensajesCtrl', function ($rootScope,$timeout,$localStorage,$interval,servicios,$scope,$socket,$anchorScroll,Facturas,serviciosfacturanext) {
+var app = angular.module('app').controller('mensajesCtrl', function (ngAudio,$rootScope,$timeout,$localStorage,$interval,servicios,$scope,$socket,$anchorScroll,Facturas,serviciosfacturanext) {
 
 $scope.id_user=$localStorage.datosE.id_empresa;
 $scope.mensajes_chat=[];
@@ -6,6 +6,11 @@ $rootScope.chats=[];
 $scope.load_chats=true;
 $scope.load_mensajes=false;
 $rootScope.countnewmsj=0;
+if ($localStorage.newmsj==undefined) {
+  $localStorage.newmsj=0;
+}else{
+  $rootScope.countnewmsj=$localStorage.newmsj;
+}
 
 var estadoread = false;
   $scope.nrfacturas = 0;
@@ -39,12 +44,16 @@ var estadoread = false;
 
 $scope.limpiarmsj=function(){
   $rootScope.countnewmsj=0;
+  $localStorage.newmsj=0;
 }
 //---------------------------- funciones socket --------------------------
   $socket.on('chat:update', function (data) {
     if (data.iser_id!=$scope.id_user) {
       data.tipo_mensaje="RECEIVED";
       $rootScope.countnewmsj++;
+      $localStorage.newmsj=$rootScope.countnewmsj;
+      $scope.audio=ngAudio.load("sound/msj.mp3");
+        $scope.audio.play();
     }
     $scope.mensajes_chat.push(data);
     $scope.scroll_buttom_chat();

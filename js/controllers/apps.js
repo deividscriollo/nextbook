@@ -30,14 +30,15 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
 $scope.get_file_logo = function(event) {
     $scope.file_logo = event.target.files[0];
 };
+function sucesssearch(data){
+for (var i = 0; i < data.respuesta.length; i++) {
+        data.respuesta[i]['img']=data.respuesta[i]['img'];
+      }
+      $scope.items = data.respuesta;
+}
 
   $scope.searchTextChange = function(text){
-    return servicios.buscar_empresas().get().$promise.then(function(data){
-      for (var i = 0; i < data.respuesta.length; i++) {
-        data.respuesta[i]['img']=servicios.server().appnext()+data.respuesta[i]['img'];
-      }
-      return $scope.items = data.respuesta;
-    });
+    servicios.buscar_empresas().get({filter:text},sucesssearch);
   }
 
   $scope.modal = function(tipo, event) {

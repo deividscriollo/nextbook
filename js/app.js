@@ -1,4 +1,5 @@
 var app=angular.module	('app', 	[ 
+									'ngAudio',
 									'tw.directives.cropper',
 									'socket.io',
 									'infinite-scroll',

@@ -21,7 +21,6 @@ md-autocomplete {
 
 md-card >.div-controlcar-img img {
     border-radius: 2px 2px 0 0;
-    margin-top: -240px;
 }
 
 /*perfil login card */
@@ -46,7 +45,8 @@ md-card >.div-controlcar-img img {
 }
 .div-controlcar-img{
    width: 100%;
-    overflow: hidden;
+    overflow-y: hidden;
+    height: 300px;
 }
 /*avatar perfil*/
 .avatar {

@@ -3,7 +3,7 @@ app.controller('inicioCtrl', function($scope, $routeSegment) {
     $scope.$routeSegment = $routeSegment;
 });
 
-app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location,$interval, $location) {
+app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location,$interval, $location, $routeParams) {
 
 $scope.items=[];
   $scope.$routeSegment = $routeSegment;
@@ -43,8 +43,9 @@ $scope.items=[];
   }
 
   this.selectedItemChange=function(item){
+    // $route.reload();
     if (item) {
-      $location.path('My-space/Perfil-busqueda/'+item.ruc);
+      $location.path('My-space/Perfil-busqueda/'+item.ruc+'/inicio'); 
     }    
   }
 

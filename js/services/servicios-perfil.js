@@ -21,6 +21,9 @@ var app=angular.module('app');
                     }
                 }
             });
+        };
+        this.nombre_= function() {
+            return 'dc';
         }
             
     });

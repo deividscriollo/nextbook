@@ -1,3 +1,4 @@
+var app = angular.module('app');
 app.config(function($routeSegmentProvider, $routeProvider) {
         
         $routeSegmentProvider.options.autoLoadTemplates = true;
@@ -127,7 +128,8 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 // inicio --------------------------------- esquema perfil busqueda------------------------------------//
                 .segment('perfil-busqueda', {
                     templateUrl: 'view/dashboardempresa/perfil-busqueda/index.html',
-                    controller: 'perfil-busqueda-Ctrl'
+                    controller: 'perfil-busqueda-Ctrl',
+                    dependencies: ['id']
                 })  
                 .within()
                     .segment('inicio', {

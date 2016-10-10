@@ -50,7 +50,6 @@ app.controller('nominageneralCtrl', function ($scope, $routeSegment, $mdDialog, 
 						};
 
 
-
 	$scope.menu = 	[
 					    {
 					      link : '#/My-space/NominaAdmin',
@@ -73,6 +72,7 @@ app.controller('nominageneralCtrl', function ($scope, $routeSegment, $mdDialog, 
 					      icon: 'extension'
 					    }
 					];
+
 	$scope.menu2 = 	[
 					    {
 					      link : '#/My-space/NominaAdmin/Bancos',
@@ -95,6 +95,7 @@ app.controller('nominageneralCtrl', function ($scope, $routeSegment, $mdDialog, 
 					      icon: 'extension'
 					    }
 					];
+
 	$scope.menu3 = 	[
 					    {
 					      link : '#/My-space/NominaAdmin/Listado_Roles',

@@ -5,6 +5,7 @@ app.controller('inicioCtrl', function($scope, $routeSegment) {
 
 app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location,$interval, $location) {
 
+$scope.items=[];
   $scope.$routeSegment = $routeSegment;
   $scope.menucard = [
                       {id:'1',titulo:'Facturanext', descripcion:'Repositorio de facturas', evento:'facturanext'},
@@ -37,10 +38,11 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
         $scope.items = data.respuesta;
   }
 
-  $scope.searchTextChange = function(text){
+  this.searchTextChange=function(text){
     servicios.buscar_empresas().get({filter:text},sucesssearch);
   }
-  $scope.selectedItemChange = function(item){
+
+  this.selectedItemChange=function(item){
     if (item) {
       $location.path('My-space/Perfil-busqueda/'+item.ruc);
     }    

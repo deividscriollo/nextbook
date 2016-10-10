@@ -464,6 +464,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
                     token: $localStorage.token
                 }
             }
+            }
         }
         );
     }  ;

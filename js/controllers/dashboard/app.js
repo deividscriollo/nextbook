@@ -3,8 +3,6 @@ var app = angular.module('app');
 app.controller('dashboardCtrl', function ($mdDialog, $scope, $localStorage, servicios, $location, $mdSidenav, $timeout) {
     $scope.localStorage = $localStorage.datosE;
 
-    console.log('test');
-
     if ($localStorage.sucursal.categoria == null || $localStorage.sucursal.categoria == '') {
     	$mdDialog.show({
     		clickOutsideToClose: true,

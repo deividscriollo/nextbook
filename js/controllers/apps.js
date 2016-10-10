@@ -3,7 +3,7 @@ app.controller('inicioCtrl', function($scope, $routeSegment) {
     $scope.$routeSegment = $routeSegment;
 });
 
-app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location,$interval) {
+app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $localStorage, $routeSegment, $window, $location,$interval, $location) {
 
   $scope.$routeSegment = $routeSegment;
   $scope.menucard = [
@@ -38,13 +38,13 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
   }
 
   $scope.searchTextChange = function(text){
-    console.log('test');
-    // servicios.buscar_empresas().get({filter:text},sucesssearch);
+    servicios.buscar_empresas().get({filter:text},sucesssearch);
   }
-  $scope.selectedItemChange = function(id){
-    console.log(id);
+  $scope.selectedItemChange = function(item){
+    if (item) {
+      $location.path('My-space/Perfil/'+item.ruc);
+    }    
   }
-
 
 
   $scope.modal = function(tipo, event) {

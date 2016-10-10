@@ -22,7 +22,7 @@ var estadoread = false;
     $scope.nrfacturas = data.sin_leer;
   });
 
-    $interval(callAtInterval, 3000);
+    // $interval(callAtInterval, 3000);
 
   function callAtInterval() {
     if ($localStorage.token) {

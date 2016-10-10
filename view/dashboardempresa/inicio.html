@@ -3,14 +3,14 @@
         <img ng-src="{{imgLogo}}" class="md-card-image" alt="Banner Perfil" style="width: 100%;">
             <div layout="column" class="md-toolbar-tools-bottom inset" style="position: fixed;">
             <span flex></span>
-            <div class="header-card-perfil" style="position: static; margin-bottom: 10px;">
-            <span flex></span>
-                <md-button class="md-icon-button" aria-label="More">
+            <div class="header-card-perfil" style="position: static; margin-bottom: 0px;">
+            <!-- <span flex></span> -->
+               <!--  <md-button class="md-icon-button" aria-label="More">
                   <ng-md-icon class="md-accent" icon="border_color" ng-click="show_listaimg_modal('logo')"></ng-md-icon>
               </md-button>
               <md-button class="md-icon-button bg-primary" aria-label="More">
                   <ng-md-icon  icon="camera_alt" ng-click="show_upload_img_modal('logo')"></ng-md-icon>
-              </md-button>
+              </md-button> -->
             </div>
                 <user-avatar></user-avatar>
                 <span>{{localStorage.nombre_comercial | lowercase}},</span>

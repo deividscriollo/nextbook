@@ -27,19 +27,25 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
     });
   }
 
-$scope.get_file_logo = function(event) {
-    $scope.file_logo = event.target.files[0];
-};
-function sucesssearch(data){
-for (var i = 0; i < data.respuesta.length; i++) {
-        data.respuesta[i]['img']=data.respuesta[i]['img'];
-      }
-      $scope.items = data.respuesta;
-}
+  $scope.get_file_logo = function(event) {
+      $scope.file_logo = event.target.files[0];
+  };
+  function sucesssearch(data){
+  for (var i = 0; i < data.respuesta.length; i++) {
+          data.respuesta[i]['img']=data.respuesta[i]['img'];
+        }
+        $scope.items = data.respuesta;
+  }
 
   $scope.searchTextChange = function(text){
-    servicios.buscar_empresas().get({filter:text},sucesssearch);
+    console.log('test');
+    // servicios.buscar_empresas().get({filter:text},sucesssearch);
   }
+  $scope.selectedItemChange = function(id){
+    console.log(id);
+  }
+
+
 
   $scope.modal = function(tipo, event) {
     if (tipo == 'nomina') {

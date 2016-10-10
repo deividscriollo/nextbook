@@ -20,7 +20,6 @@ var app=angular.module	('app', 	[
 									'lfNgMdFileInput',
 									'oitozero.ngSweetAlert',
 									'md.data.table',//md tabla dinamia general
-									'leaflet-directive',//directiva de mapas
 									'mdPickers'
 								]
 						);

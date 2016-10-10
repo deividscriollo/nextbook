@@ -29,6 +29,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/My-space/Biografia',      'dashboard.perfil.Historial')
             // Catalogo
             .when('/My-space/Catalogo',      'dashboard.catalogo')
+            .when('/My-space/Perfil/:',      'dashboard.perfil-busqueda')
 
             .when('/My-space/Inicio',      'dashboard.ini.inicio')
             .when('/My-space/Apss',      'dashboard.ini.apps')
@@ -126,6 +127,29 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 controller: 'dashboardCtrl'
             })
             .within()
+                // inicio --------------------------------- esquema perfil busqueda------------------------------------//
+                .segment('perfil-busqueda', {
+                    templateUrl: 'view/dashboardempresa/perfil-busqueda/index.html',
+                    controller: 'perfil-busqueda-Ctrl'
+                })  
+                .within()
+                    .segment('inicio', {
+                        templateUrl: 'view/empresas.html'
+                    })
+                    .segment('ParaEmpresas', {
+                        'default': true,
+                        templateUrl: 'view/empresas.html',
+                        controller: 'EmpresasCtrl'
+                    }) 
+                    .segment('Parati', {
+                        templateUrl: 'view/parati.html',
+                        controller: 'PersonasCtrl'
+                    })                    
+                    .segment('quienessomos', {
+                        controller: 'quienes_somosCtrl',
+                        templateUrl: 'view/quienessomos.html'})                    
+                .up()
+                // Fin ----------------------------------- esquema perfil busqueda------------------------------------//
                 // inicio --------------------------------- esquema ofertas------------------------------------//
                 .segment('catalogo', {
                     templateUrl: 'view/dashboardempresa/catalogo/index.html',

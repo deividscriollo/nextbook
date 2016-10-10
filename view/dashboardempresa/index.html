@@ -25,11 +25,11 @@
                         md-min-length="0" 
                         placeholder="Empresas,Servicios ....." 
                         md-menu-class="autocomplete-custom-template"
-                        ng-click="searchTextChange()">
+                        ng-click="searchTextChange(item)">
                         <md-item-template>
                             <span class="item-title">
                       <img alt="Img" ng-src="{{item.img}}" class="avatar-busqueda" />
-                      <span style="font-size:10px"> 
+                      <span style="font-size:10px">
                       {{item.nombre_comercial}}
                       <md-icon md-svg-icon="img/icons/ic_comment_24px.svg" class="mensaje-autocomplete" ng-click="sendMensaje(item)"></md-icon>
                       </span>

@@ -29,7 +29,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/My-space/Biografia',      'dashboard.perfil.Historial')
             // Catalogo
             .when('/My-space/Catalogo',      'dashboard.catalogo')
-            .when('/My-space/Perfil/:id',      'dashboard.perfil-busqueda')
+            .when('/My-space/Perfil-busqueda/:id',      'dashboard.perfil-busqueda')
 
             .when('/My-space/Inicio',      'dashboard.ini.inicio')
             .when('/My-space/Apss',      'dashboard.ini.apps')

@@ -3,7 +3,9 @@
     color: #FFF;
 }*/
 
-
+.blanco{
+    color: #000!important;
+}
 
 md-autocomplete {
     border-radius: 2px;

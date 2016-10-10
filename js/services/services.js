@@ -459,7 +459,10 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
         return $resource(this.server().appnext()+'public/buscarEmpresas', {}
         , {
             get: {
-                method: 'GET', isArray: false
+                method: 'GET', isArray: false,
+                params:{
+                token: $localStorage.token
+            }
             }
         }
         );

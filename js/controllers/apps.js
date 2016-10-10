@@ -32,7 +32,7 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
   };
   function sucesssearch(data){
   for (var i = 0; i < data.respuesta.length; i++) {
-          data.respuesta[i]['img']=data.respuesta[i]['img'];
+          data.respuesta[i]['img']=data.respuesta[i]['img'].perfil;
         }
         $scope.items = data.respuesta;
   }
@@ -42,7 +42,7 @@ app.controller('appsCtrl', function ($mdDialog, $scope, servicios, $timeout, $lo
   }
   $scope.selectedItemChange = function(item){
     if (item) {
-      $location.path('My-space/Perfil/'+item.ruc);
+      $location.path('My-space/Perfil-busqueda/'+item.ruc);
     }    
   }
 

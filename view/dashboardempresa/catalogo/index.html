@@ -1,82 +1,4 @@
 <div layout-xs="column" layout="row" ng-controller="Catalogo-Inicio-Ctrl">
-    <style type="text/css">
-        #magazine {
-            width:95%;
-            height:700px;
-        }
-
-        #magazine .turn-page {
-            background-color:#fff;
-            background-size:100% 100%;
-        }
-
-        /*body{
-            background:#ccc;
-        }*/
-       /* #book{
-            width:800px;
-            height:500px;
-        }
-
-        #book .turn-page{
-            background-color:white;
-        }
-
-        #book .cover{
-            background:#333;
-        }
-
-        #book .cover h1{
-            color:white;
-            text-align:center;
-            font-size:50px;
-            line-height:500px;
-            margin:0px;
-        }
-
-        #book .loader{
-            background-image:url(loader.gif);
-            width:24px;
-            height:24px;
-            display:block;
-            position:absolute;
-            top:238px;
-            left:188px;
-        }
-
-        #book .data{
-            text-align:center;
-            font-size:40px;
-            color:#999;
-            line-height:500px;
-        }
-
-        #controls{
-            width:800px;
-            text-align:center;
-            margin:20px 0px;
-            font:30px arial;
-        }
-
-        #controls input, #controls label{
-            font:30px arial;
-        }
-
-        #book .odd{
-            background-image:-webkit-linear-gradient(left, #FFF 95%, #ddd 100%);
-            background-image:-moz-linear-gradient(left, #FFF 95%, #ddd 100%);
-            background-image:-o-linear-gradient(left, #FFF 95%, #ddd 100%);
-            background-image:-ms-linear-gradient(left, #FFF 95%, #ddd 100%);
-        }
-
-        #book .even{
-            background-image:-webkit-linear-gradient(right, #FFF 95%, #ddd 100%);
-            background-image:-moz-linear-gradient(right, #FFF 95%, #ddd 100%);
-            background-image:-o-linear-gradient(right, #FFF 95%, #ddd 100%);
-            background-image:-ms-linear-gradient(right, #FFF 95%, #ddd 100%);
-        }*/
-    </style>
-
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex-xs layout="column" flex-gt-md="20" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <!-- <md-toolbar class="md-sidenav-bg1"> -->
         <img ng-src="{{imgLogo}}" class="md-card-image" alt="Banner Perfil">
@@ -125,15 +47,28 @@
     </md-sidenav>
 
     <div flex-xs layout="column" flex-gt-md="60">
-        <md-content layout-padding layout-wrap>
-            <!-- <div id="book">
-                <div class="cover"><h1>Portada</h1></div>
-            </div> -->
+        <!-- <md-content layout-padding layout-wrap> -->
+            <div id="canvas">
 
-            <!-- <div id="controls">
-                <label for="page-number">Páginas:</label> <input type="text" size="3" id="page-number"> de <span id="number-pages"></span>
-            </div> -->
-            <div id="magazine">
+                <div class="zoom-icon zoom-icon-in"></div>
+
+                <div class="magazine-viewport">
+                    <div class="container">
+                        <div class="magazine">
+                            <!-- Next button -->
+                            <div ignore="1" class="next-button"></div>
+                            <!-- Previous button -->
+                            <div ignore="1" class="previous-button"></div>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div id="slider-bar" class="turnjs-slider">
+                            <div id="slider"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            <!-- <div id="book">
                 <div style="background-image:url(pages/01.jpg);"></div>
                 <div style="background-image:url(pages/02.jpg);"></div>
                 <div style="background-image:url(pages/03.jpg);"></div>
@@ -142,14 +77,13 @@
                 <div style="background-image:url(pages/06.jpg);"></div>
             </div>
             <div id="controls">
-                <label for="page-number">Páginas:</label> <input type="text" size="3" id="page-number"> de <span id="number-pages"></span>
-            </div>
+
             <md-button md-no-ink class="md-primary" ng-click="atras()">Atras</md-button>
-            <md-button md-no-ink class="md-primary" ng-click="siguiente()">Siguiente</md-button>
-        </md-content>
+            <md-button md-no-ink class="md-primary" ng-click="siguiente()">Siguiente</md-button> -->
+        <!-- </md-content> -->
     </div>
 
-    <div flex-xs layout="column" flex-gt-md="20">
+    <!-- <div flex-xs layout="column" flex-gt-md="20">
         <md-card>
             <div layout="row" layout-align="center center">
                 <img ng-src="{{imgPerfil}}" class="avatar" alt="Avatar Perfil">
@@ -182,5 +116,5 @@
 
             <img ng-src="{{imgPortada}}" class="md-card-image" alt="Banner Perfil">
         </md-card>
-    </div>
+    </div> -->
 </div>

@@ -6,7 +6,7 @@ app.service('servicioscatalogo', function($resource, $localStorage, $location, M
 	this.cargar_portada = function() {
         return $resource(servicios.server().appnext()+'public/addPortada', {}
         , {
-            save: {
+            cargar: {
                 method: 'POST', isArray: false, 
                 params: {
                     token: $localStorage.token, 

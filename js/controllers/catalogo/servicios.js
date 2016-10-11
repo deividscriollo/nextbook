@@ -4,10 +4,10 @@ app.service('servicioscatalogo', function($resource, $localStorage, $location, M
 
 	// ------------------------------------------------ Proveedor -----------------------------
 	this.cargar_portada = function() {
-        return $resource(servicios.server().appnext()+'public/addPortada', {}
+        return $resource(servicios.server().appnext()+'public/getPortada', {}
         , {
             cargar: {
-                method: 'POST', isArray: false, 
+                method: 'GET', isArray: false, 
                 params: {
                     token: $localStorage.token, 
                     sucursal: $localStorage.sucursal.codigo

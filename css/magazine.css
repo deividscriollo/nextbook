@@ -103,7 +103,6 @@
 	margin-right: 1.5%;
 	margin-top: 1.5%;
 	margin-left: 1.5%;
-
 }
 
 .circle {
@@ -168,7 +167,7 @@ img {
     content:"";
     display:block;
     padding-top:100%;
-  float: left; 
+  	float: left; 
   /*Flotando el elemento podemos usar el cuadrado como cualquier otra capa y podremos meter contenido. Pero dejará de ser responsive cuando el contenido sea mayor que su alto*/
 }
 
@@ -206,7 +205,6 @@ img {
 .magazine-viewport .zoom-in .odd .gradient{
 
 	display:none;
-
 }
 
 .magazine-viewport .loader{

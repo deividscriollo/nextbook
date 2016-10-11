@@ -7,18 +7,18 @@
 
 .magazine-viewport .container{
 	position:absolute;
-	top:50%;
-	left:50%;
-	width:922px;
-	height:600px;
-	margin:auto;
+	top:40%;
+	left:23%;
+	/*width:922px;
+	height:600px;*/
+	/*margin:auto;*/
 }
 
 .magazine-viewport .magazine{
 	width:922px;
 	height:600px;
-	left:-461px;
-	top:-300px;
+	/*left:-461px;
+	top:-300px;*/
 }
 
 .magazine-viewport .page{
@@ -82,6 +82,94 @@
 	-ms-user-select: none;
 	user-select: none;
 	margin:0;
+}
+
+.descripcion {
+	position: absolute;
+	width: 96%;
+	bottom: 0px;
+	height: 30%;
+	padding: 0.3em;
+	background: rgba(25,25,25,0.5); 
+}
+
+/*stilos div revistas*/
+.square {
+	position: relative;
+  	color: white;
+	float:left;
+	width: 47.6%;
+	height: 25%
+	margin-right: 1.5%;
+	margin-top: 1.5%;
+	margin-left: 1.5%;
+
+}
+
+.circle {
+	position: absolute;
+	top: 2%;
+  	width:25%;
+  	height:25%;
+  	border-radius:60px;
+  	font-size:15px;
+  	color:#fff;
+  	line-height:50px;
+  	text-align:center;
+  	margin-left:2%;
+}
+
+.pink {
+  background-color:#BC9B94;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.cabezera {
+	font: oblique bold 120% cursive;
+	/*background: #000;*/
+	line-height: 35px;
+	color: red;
+	height: 5.5%;
+	text-align: center;
+	width: 100%;
+	left: 0;
+	top: 0; 
+}
+	
+.footer {
+	position: absolute;
+	margin-left: 50%;
+	color: red;
+	clear: both;
+	bottom: 1%;
+	font-family: fantasy;
+}
+
+.squaremax {
+	position: absolute;
+  	color: white;
+	/*float:left;*/
+	width: 90%;
+	margin-right:01.5%;
+	margin-top: 1.5%;
+	margin-left: 1.5%;
+	background: deepskyblue;
+	/*height: auto;*/
+}
+
+.square:last-child{
+  margin-right:0;
+}
+.square:before{
+    content:"";
+    display:block;
+    padding-top:100%;
+  float: left; 
+  /*Flotando el elemento podemos usar el cuadrado como cualquier otra capa y podremos meter contenido. Pero dejará de ser responsive cuando el contenido sea mayor que su alto*/
 }
 
 .magazine .even .gradient{

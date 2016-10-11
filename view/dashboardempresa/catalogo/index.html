@@ -49,9 +49,6 @@
     <div flex-xs layout="column" flex-gt-md="60">
         <md-content layout-padding layout-wrap>
             <div id="canvas">
-
-                <!-- <div class="zoom-icon zoom-icon-in"></div> -->
-
                 <div class="magazine-viewport">
                     <div class="container">
                         <div class="magazine">
@@ -62,60 +59,34 @@
                         </div>
                     </div>
 
-                    <div class="bottom">
+                   <!--  <div class="bottom">
                         <div id="slider-bar" class="turnjs-slider">
                             <div id="slider"></div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>    
-            <!-- <div id="book">
-                <div style="background-image:url(pages/01.jpg);"></div>
-                <div style="background-image:url(pages/02.jpg);"></div>
-                <div style="background-image:url(pages/03.jpg);"></div>
-                <div style="background-image:url(pages/04.jpg);"></div>
-                <div style="background-image:url(pages/05.jpg);"></div>
-                <div style="background-image:url(pages/06.jpg);"></div>
-            </div>
-            <div id="controls">
 
-            <md-button md-no-ink class="md-primary" ng-click="atras()">Atras</md-button>
+            <!-- <md-button md-no-ink class="md-primary" ng-click="atras()">Atras</md-button>
             <md-button md-no-ink class="md-primary" ng-click="siguiente()">Siguiente</md-button> -->
         </md-content>
     </div>
 
-    <!-- <div flex-xs layout="column" flex-gt-md="20">
+    <div flex-xs layout="column" flex-gt-md="20">
         <md-card>
-            <div layout="row" layout-align="center center">
-                <img ng-src="{{imgPerfil}}" class="avatar" alt="Avatar Perfil">
-            </div>
-            <md-card-actions layout="row" layout-align="center center">
-                <md-button class="md-icon-button" aria-label="More">
-                    <ng-md-icon class="md-accent" icon="border_color" ng-click="show_listaimg_modal('perfil')"></ng-md-icon>
-                </md-button>
-                <md-button class="md-icon-button md-accent" aria-label="More">
-                    <ng-md-icon icon="camera_alt" ng-click="show_upload_img_modal('perfil')"></ng-md-icon>
-                </md-button>
-            </md-card-actions>
             <md-card-content>
                 <md-list>
                     <md-list-item class=" md-long-text">
-                        {{datos2.razon_social}}
+                        LISTA CATALOGOS
                     </md-list-item>
-                    <md-list-item class=" md-long-text">
-                        {{datos2.tipo_contribuyente}}
-                    </md-list-item>
-                    <md-list-item class=" md-long-text">
-                        {{datos2.actividad_economica}}
-                    </md-list-item>
-                    <md-divider></md-divider>
-                    <md-list-item class=" md-long-text">
-                        {{datos2.ruc}}
+
+                    <!-- <md-divider></md-divider> -->
+
+                    <md-list-item class="md-long-text">
+                        <img ng-src="https://raw.github.com/blasten/turn.js/master/demos/magazine/pages/01.jpg" class="md-card-image" alt="Banner Perfil">
                     </md-list-item>
                 </md-list>
-            </md-card-content>
-
-            <img ng-src="{{imgPortada}}" class="md-card-image" alt="Banner Perfil">
+            </md-card-content>   
         </md-card>
-    </div> -->
+    </div>
 </div>

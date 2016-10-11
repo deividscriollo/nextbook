@@ -10,22 +10,21 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 
 	 	// Check if the CSS was already loaded
 		
-		if (flipbook.width()==0 || flipbook.height()==0) {
+		if (flipbook.width() == 0 || flipbook.height() == 0) {
 			setTimeout(loadApp, 10);
 			return;
 		}
 		
 		// Create the flipbook
-
 		flipbook.turn({
 				
 				// Magazine width
 
-				width: 800,
+				width: 850,
 
 				// Magazine height
 
-				height: 600,
+				height: 700,
 
 				// Duration in millisecond
 
@@ -144,7 +143,6 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 								});
 					}
 				},
-
 				zoomOut: function () {
 
 					$('#slider-bar').fadeIn();
@@ -156,7 +154,6 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 						$('.magazine').addClass('animated').removeClass('zoom-in');
 						resizeViewport();
 					}, 0);
-
 				}
 			}
 		});
@@ -168,11 +165,9 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 		else
 			$('.magazine-viewport').bind('zoom.tap', zoomTo);
 
-
 		// Using arrow keys to turn the page
 
-		$(document).keydown(function(e){
-
+		$(document).keydown(function(e) {
 			var previous = 37, next = 39, esc = 27;
 
 			switch (e.keyCode) {
@@ -200,7 +195,6 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 		});
 
 		// URIs - Format #/page/1 
-
 		Hash.on('^page\/([0-9]*)$', {
 			yep: function(path, parts) {
 				var page = parts[1];
@@ -209,7 +203,6 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 					if ($('.magazine').turn('is'))
 						$('.magazine').turn('page', page);
 				}
-
 			},
 			nop: function(path) {
 
@@ -296,36 +289,28 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 					_thumbPreview.appendTo($(ui.handle));
 				} else
 					setPreview(ui.value);
-
 				moveBar(false);
-
 			},
 
 			slide: function(event, ui) {
-
 				setPreview(ui.value);
-
 			},
 
 			stop: function() {
-
 				if (window._thumbPreview)
 					_thumbPreview.removeClass('show');
 				
 				$('.magazine').turn('page', Math.max(1, $(this).slider('value')*2 - 2));
-
 			}
 		});
 
 		resizeViewport();
-
 		$('.magazine').addClass('animated');
 	}
 
 	// Zoom icon
 
-	$('.zoom-icon').bind('mouseover', function() { 
-	 	
+	$('.zoom-icon').bind('mouseover', function() { 	
 	 	if ($(this).hasClass('zoom-icon-in'))
 	 		$(this).addClass('zoom-icon-in-hover');
 
@@ -333,26 +318,21 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 	 		$(this).addClass('zoom-icon-out-hover');
 	 
 	}).bind('mouseout', function() { 
-	 	
 	 	 if ($(this).hasClass('zoom-icon-in'))
 	 		$(this).removeClass('zoom-icon-in-hover');
 	 	
 	 	if ($(this).hasClass('zoom-icon-out'))
 	 		$(this).removeClass('zoom-icon-out-hover');
-
 	}).bind('click', function() {
-
 	 	if ($(this).hasClass('zoom-icon-in'))
 	 		$('.magazine-viewport').zoom('zoomIn');
 	 	else if ($(this).hasClass('zoom-icon-out'))	
 			$('.magazine-viewport').zoom('zoomOut');
-
 	});
 
 	$('#canvas').hide();
 
 	// Load the HTML4 version if there's not CSS transform
-
 	yepnope({
 		test : Modernizr.csstransforms,
 		yep: ['lib/turn.min.js'],
@@ -366,36 +346,63 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 	*/
 
 	function addPage(page, book) {
-
 		var id, pages = book.turn('pages');
-
 		// Create a new element for this page
 		var element = $('<div />', {});
-
 		// Add the page to the flipbook
 		if (book.turn('addPage', element, page)) {
 
 			// Add the initial HTML
 			// It will contain a loader indicator and a gradient
-			element.html('<div class="gradient"></div><div class="loader"></div>');
+			// element.html('<div class="gradient">Data for page '+page+'</div>');
+			console.log(page);
 
-			// Load the page
+				element.html('<div class="gradient">'
+								+'<div class="cabezera">CATALOGO MES DE OCTUBRE</div>'
+								+'<div class="square">'
+									+'<img src="http://www.blaque.com.ar/media/catalog/product/cache/62/image/9df78eab33525d08d6e5fb8d27136e95/c/a/cartera_57-3401_2.jpg" />'
+									+'<div class="descripcion">Cartera Verano</div>'
+									+'<div class="circle pink">$ 49</div>'
+								+'</div>'
+								+'<div class="square">'
+									+'<img src="http://www.top3.com.ar/media/catalog/product/cache/9/image/9df78eab33525d08d6e5fb8d27136e95/1/0/105117.jpg">'
+									+'<div class="descripcion">Cartera Otoño</div>'
+									+'<div class="circle pink">$ 60</div>'
+								+'</div>'
+								+'<div class="square">'
+									+'<img src="http://www.top3.com.ar/media/catalog/product/cache/9/image/9df78eab33525d08d6e5fb8d27136e95/1/0/105115_1.jpg">'
+									+'<div class="descripcion">Cartera Primavera</div>'
+									+'<div class="circle pink">$ 80</div>'
+								+'</div>'
+								+'<div class="square">'
+									+'<img src="http://4.bp.blogspot.com/-wCuYqYuD3jc/Vhx1re8qAMI/AAAAAAAANYo/c8MsbBPlTro/s1600/cartera-xl-extra-large-1.jpg">'
+									+'<div class="descripcion">Cartera Otoño</div>'
+									+'<div class="circle pink">$ 30</div>'
+								+'</div>'
+								+'<div class="square">'
+									+'<img src="http://xlshop.vteximg.com.br/arquivos/ids/161135-1000-1000/XL-ExtraLarge-Cartera-cuero-RHEIN-MOCHILA.jpg">'
+									+'<div class="descripcion">Cartera Otoño</div>'
+									+'<div class="circle pink">$ 30</div>'
+								+'</div>'
+								+'<div class="square">'
+									+'<img src="http://www.top3.com.ar/media/catalog/product/cache/9/image/9df78eab33525d08d6e5fb8d27136e95/c/h/chenson-cartera-102293-1.jpg">'
+									+'<div class="descripcion">Cartera Otoño</div>'
+									+'<div class="circle pink">$ 30</div>'
+								+'</div>'
+								+'<div class="footer">'+page+'</div>'
+							+'</div>'	
+								
+								+'<div class="loader"></div>');
+				// Load the page
 			loadPage(page, element);
 		}
 	}
 
 	function loadPage(page, pageElement) {
 
-		// Create an image element
-
 		var img = $('<img />');
 
-		img.mousedown(function(e) {
-			e.preventDefault();
-		});
-
 		img.load(function() {
-			
 			// Set the size
 			$(this).css({width: '100%', height: '100%'});
 
@@ -404,36 +411,23 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 			$(this).appendTo(pageElement);
 
 			// Remove the loader indicator
-			
 			pageElement.find('.loader').remove();
 		});
 
+		//creamos un canvas y le definimos el mismo tamaño a la imagen
+
 		// Load the page
-		// combo tipo consumos
-		  	servicioscatalogo.cargar_portada().cargar().$promise.then(function(data) {
+		  	// servicioscatalogo.cargar_portada().cargar().$promise.then(function(data) {
 		  		// $scope.portada = data.respuesta[0].img;
 
-		  		for (var i = 0; i < data.respuesta.length; i++) {
-		  			img.attr('src', 'http://192.168.0.109/appnext/public/portadas/' +  page + '.jpg');
-		  			
-		  			// img.attr('src', data.respuesta[i].img);
-		  			// console.log(data.respuesta[i].img);
-		  			// img.attr('src', 'pages/' +  page + '.jpg');
-		  		}
+		  		// for (var i = 0; i < data.respuesta.length; i++) {
+		  			// img.attr('src', 'http://192.168.0.109/appnext/public/portadas/' +  page + '.jpg');
+		  		// }
+		  	// });
 
-
-
-		  		// console.log(data.respuesta.length);
-
-		  		// img.attr('src', $scope.portada);
-		  	});
-		// fin
-
-		// img.attr('src', 'pages/' +  page + '.jpg');
+		img.attr('src', 'pages/6.jpg');
 		
-
-		loadRegions(page, pageElement);
-
+		// loadRegions(page, pageElement);
 	}
 
 	// Zoom in / Zoom out

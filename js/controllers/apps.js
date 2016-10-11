@@ -45,7 +45,7 @@ $scope.items=[];
   this.selectedItemChange=function(item){
     // $route.reload();
     if (item) {
-      $location.path('My-space/Perfil-busqueda/'+item.ruc+'/inicio'); 
+      $location.path('My-space/Perfil-busqueda/'+item.ruc); 
     }    
   }
 

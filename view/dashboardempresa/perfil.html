@@ -2,51 +2,51 @@
     <div layout="column" flex>
         <div layout="row">
             <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex-xs layout="column" flex-gt-md="20" layout="column" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-                     <img ng-src="{{imgLogo}}" class="md-card-image" alt="Banner Perfil" style="width: 100%;">
-            <div layout="column" class="md-toolbar-tools-bottom inset" style="position: fixed;">
-            <span flex></span>
-            <div class="header-card-perfil" style="position: static; margin-bottom: 10px;">
-            <span flex></span>
-                <md-button class="md-icon-button" aria-label="More">
-                  <ng-md-icon class="md-accent" icon="border_color" ng-click="show_listaimg_modal('logo')"></ng-md-icon>
-              </md-button>
-              <md-button class="md-icon-button bg-primary" aria-label="More">
-                  <ng-md-icon  icon="camera_alt" ng-click="show_upload_img_modal('logo')"></ng-md-icon>
-              </md-button>
-            </div>
-                <user-avatar></user-avatar>
-                <span>{{localStorage.nombre_comercial | lowercase}},</span>
-                <div>{{localStorage.actividad_economica | lowercase}}</div>
-            </div>
-                    <md-list ng-cloak>
-                        <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu1">
-                            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                            <p> {{ item.title }}</p>
-                        </md-list-item>
-                        <md-divider></md-divider>
-                        <md-subheader class="md-no-sticky">Facturas Fisicas</md-subheader>
-                        <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu2">
-                            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                            <p> {{ item.title }}</p>
-                        </md-list-item>
-                        <md-subheader class="md-no-sticky">General</md-subheader>
-                        <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu3">
-                            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                            <p> {{ item.title }}</p>
-                        </md-list-item>
-                        <md-divider></md-divider>
-                        <md-list-item>
-                            <ng-md-icon icon="exit_to_app"></ng-md-icon>
-                            <p> Bloquear </p>
-                        </md-list-item>
-                        <md-list-item>
-                            <ng-md-icon icon="aspect_ratio"></ng-md-icon>
-                            <p> Pantalla Completa </p>
-                        </md-list-item>
-                    </md-list>
-                </md-sidenav>
+                <img ng-src="{{imgLogo}}" class="md-card-image" alt="Banner Perfil" style="width: 100%;">
+                <div layout="column" class="md-toolbar-tools-bottom inset" style="position: fixed;">
+                <span flex></span>
+                <div class="header-card-perfil" style="position: static; margin-bottom: 10px;">
+                <span flex></span>
+                    <md-button class="md-icon-button" aria-label="More">
+                      <ng-md-icon class="md-accent" icon="border_color" ng-click="show_listaimg_modal('logo')"></ng-md-icon>
+                  </md-button>
+                  <md-button class="md-icon-button bg-primary" aria-label="More">
+                      <ng-md-icon  icon="camera_alt" ng-click="show_upload_img_modal('logo')"></ng-md-icon>
+                  </md-button>
+                </div>
+                    <user-avatar></user-avatar>
+                    <span>{{localStorage.nombre_comercial | lowercase}},</span>
+                    <div>{{localStorage.actividad_economica | lowercase}}</div>
+                </div>
+                <md-list ng-cloak>
+                    <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu1">
+                        <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                        <p> {{ item.title }}</p>
+                    </md-list-item>
+                    <md-divider></md-divider>
+                    <md-subheader class="md-no-sticky">Facturas Fisicas</md-subheader>
+                    <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu2">
+                        <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                        <p> {{ item.title }}</p>
+                    </md-list-item>
+                    <md-subheader class="md-no-sticky">General</md-subheader>
+                    <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu3">
+                        <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                        <p> {{ item.title }}</p>
+                    </md-list-item>
+                    <md-divider></md-divider>
+                    <md-list-item>
+                        <ng-md-icon icon="exit_to_app"></ng-md-icon>
+                        <p> Bloquear </p>
+                    </md-list-item>
+                    <md-list-item>
+                        <ng-md-icon icon="aspect_ratio"></ng-md-icon>
+                        <p> Pantalla Completa </p>
+                    </md-list-item>
+                </md-list>
+            </md-sidenav>
             <div flex-xs layout="column" flex-gt-md="60">
-                <md-card>
+                <md-card style="    background: #eeeeee;">
                     <div class="div-controlcar-img">
                         <img ng-src="{{imgPortada}}" class="md-card-image" alt="Banner Perfil">
                         <div class="header-card-perfil-nombrecomercial">{{localStorage.nombre_comercial}}</div>
@@ -60,7 +60,28 @@
                             </md-button>
                         </div>
                     </div>
+                    <md-tabs md-selected="data.selectedIndex"  >
+                        <md-tab id="b-tab1" aria-controls="tab1-content">
+                            Historia
+                        </md-tab>
+                        <md-tab id="b-tab2" aria-controls="tab2-content">
+                             <md-icon>location_on</md-icon>
+                        </md-tab>
+                        <md-tab id="b-tab3" aria-controls="tab3-content">
+                            Similares
+                        </md-tab>
+                        <md-tab id="b-tab4" aria-controls="tab4-content">
+                            Favoritos
+                        </md-tab>
+                        <md-tab id="b-tab5" aria-controls="tab5-content">
+                            Grupos
+                        </md-tab>
+                        <md-tab id="b-tab5" aria-controls="tab5-content">
+                            Agenda
+                        </md-tab>
+                    </md-tabs>
                 </md-card>
+                
                 <div layout="row" app-view-segment="2"></div>
             </div>
             <div flex-xs layout="column" flex-gt-md="20">

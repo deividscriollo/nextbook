@@ -1,9 +1,7 @@
 var app = angular.module('app');
 
 app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscatalogo, servicios, $timeout, $localStorage) {
-
   	function loadApp() {
-
 	 	$('#canvas').fadeIn(1000);
 
 	 	var flipbook = $('.magazine');
@@ -345,6 +343,19 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 	 * Magazine sample
 	*/
 
+	// html2canvas($(".gradient"), {
+ //                  onrendered: function(canvas) {
+ //                      theCanvas = canvas;
+ //                      document.body.appendChild(canvas);
+
+ //                      /*
+ //                      canvas.toBlob(function(blob) {
+ //                        saveAs(blob, "Dashboard.png"); 
+ //                      });
+ //                      */
+ //                  }
+ //              });
+
 	function addPage(page, book) {
 		var id, pages = book.turn('pages');
 		// Create a new element for this page
@@ -388,6 +399,7 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 									+'<img src="http://www.top3.com.ar/media/catalog/product/cache/9/image/9df78eab33525d08d6e5fb8d27136e95/c/h/chenson-cartera-102293-1.jpg">'
 									+'<div class="descripcion">Cartera Otoño</div>'
 									+'<div class="circle pink">$ 30</div>'
+									+'<img src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" class="ofertas">'
 								+'</div>'
 								+'<div class="footer">'+page+'</div>'
 							+'</div>'	
@@ -468,7 +480,6 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 			width: Math.round(region.width/pageWidth*100)+'%',
 			height: Math.round(region.height/pageHeight*100)+'%'
 		}).attr('region-data', $.param(region.data||''));
-
 		reg.appendTo(pageElement);
 	}
 

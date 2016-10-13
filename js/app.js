@@ -4,7 +4,7 @@ var app=angular.module	('app', 	[
 									'socket.io',
 									'infinite-scroll',
 									'ngImgCrop',
-									'ngPDFViewer',
+									// 'ngPDFViewer',
 									'djds4rce.angular-socialshare',
 									'angularModalService',
 									'ngMaterial',

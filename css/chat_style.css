@@ -77,3 +77,23 @@ right: 35px;
     float: right;
     right: 3%;
 }
+.mensaje-conversacion{
+  color: #ff4081;
+   font-size: 11px;
+   margin-top: 0px;
+   margin-bottom: 0;
+   float: left;
+   max-width: 50%;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   text-transform: capitalize;
+
+}
+.conversacion-user{
+  font-size: 11.5px; 
+  margin-top: 0px; 
+  margin-bottom: 0; 
+  height: 16px; 
+  width: 0;
+  color: #3f51b5;
+}

@@ -411,7 +411,6 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 	}
 
 	function loadPage(page, pageElement) {
-
 		var img = $('<img />');
 
 		img.load(function() {
@@ -438,7 +437,6 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 		  	// });
 
 		img.attr('src', 'pages/6.jpg');
-		
 		// loadRegions(page, pageElement);
 	}
 
@@ -505,7 +503,6 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 	// Process the data of every region
 
 	function processRegion(region, regionType) {
-
 		data = decodeParams(region.attr('region-data'));
 		switch (regionType) {
 			case 'link' :
@@ -536,7 +533,6 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 	// Load large page
 
 	function loadLargePage(page, pageElement) {
-		
 		var img = $('<img />');
 
 		img.load(function() {
@@ -553,7 +549,6 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 	// Load small page
 
 	function loadSmallPage(page, pageElement) {
-		
 		var img = pageElement.find('img');
 
 		img.css({width: '100%', height: '100%'});
@@ -563,31 +558,27 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 
 		img.attr('src', 'pages/' +  page + '.jpg');
 	}
-
 	// http://code.google.com/p/chromium/issues/detail?id=128488
 
 	function isChrome() {
-
 		return navigator.userAgent.indexOf('Chrome')!=-1;
-
 	}
 
 	function disableControls(page) {
-			if (page==1)
-				$('.previous-button').hide();
-			else
-				$('.previous-button').show();
-						
-			if (page==$('.magazine').turn('pages'))
-				$('.next-button').hide();
-			else
-				$('.next-button').show();
+		if (page==1)
+			$('.previous-button').hide();
+		else
+			$('.previous-button').show();
+					
+		if (page==$('.magazine').turn('pages'))
+			$('.next-button').hide();
+		else
+			$('.next-button').show();
 	}
 
 	// Set the width and height for the viewport
 
 	function resizeViewport() {
-
 		var width = $(window).width(),
 			height = $(window).height(),
 			options = $('.magazine').turn('options');
@@ -600,7 +591,6 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 		}).
 		zoom('resize');
 
-
 		if ($('.magazine').turn('zoom')==1) {
 			var bound = calculateBound({
 				width: options.width,
@@ -612,9 +602,7 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 			if (bound.width%2!==0)
 				bound.width-=1;
 
-				
 			if (bound.width!=$('.magazine').width() || bound.height!=$('.magazine').height()) {
-
 				$('.magazine').turn('size', bound.width, bound.height);
 
 				if ($('.magazine').turn('page')==1)
@@ -642,18 +630,13 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 			$('.made').hide();
 		else
 			$('.made').show();
-
 		$('.magazine').addClass('animated');
-		
 	}
 
-
 	// Number of views in a flipbook
-
 	function numberOfViews(book) {
 		return book.turn('pages') / 2 + 1;
 	}
-
 	// Current view in a flipbook
 
 	function getViewNumber(book, page) {
@@ -667,7 +650,6 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 	}
 
 	function setPreview(view) {
-
 		var previewWidth = 112,
 			previewHeight = 73,
 			previewSrc = 'pages/preview.jpg',
@@ -696,7 +678,6 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 			setTimeout(function(){
 				_thumbPreview.removeClass('no-transition');
 			}, 0);
-
 		}
 
 		preview.css({backgroundPosition:
@@ -707,48 +688,34 @@ app.controller('Catalogo-Inicio-Ctrl', function($mdDialog, $scope, servicioscata
 	// Width of the flipbook when zoomed in
 
 	function largeMagazineWidth() {
-		
 		return 2214;
-
 	}
-
 	// decode URL Parameters
 
 	function decodeParams(data) {
-
 		var parts = data.split('&'), d, obj = {};
 
 		for (var i =0; i<parts.length; i++) {
 			d = parts[i].split('=');
 			obj[decodeURIComponent(d[0])] = decodeURIComponent(d[1]);
 		}
-
 		return obj;
 	}
 
 	// Calculate the width and height of a square within another square
 
 	function calculateBound(d) {
-		
 		var bound = {width: d.width, height: d.height};
-
 		if (bound.width>d.boundWidth || bound.height>d.boundHeight) {
-			
 			var rel = bound.width/bound.height;
-
 			if (d.boundWidth/rel>d.boundHeight && d.boundHeight*rel<=d.boundWidth) {
-				
 				bound.width = Math.round(d.boundHeight*rel);
 				bound.height = d.boundHeight;
-
 			} else {
-				
 				bound.width = d.boundWidth;
 				bound.height = Math.round(d.boundWidth/rel);
-			
 			}
 		}
-			
 		return bound;
 	}
 

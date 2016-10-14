@@ -2,7 +2,22 @@ var app = angular.module('app');
 
 app.service('servicioscatalogo', function($resource, $localStorage, $location, ModalService, $http, servicios) {
 
-	// ------------------------------------------------ Proveedor -----------------------------
+	// guardar imagenes
+    this.add_productos = function() {
+        return $resource(servicios.server().appnext()+'public/addProducto', {}
+        , {
+            save: {
+                method: 'POST', isArray: false, 
+                params: {
+                    token: $localStorage.token, 
+                    sucursal: $localStorage.sucursal.codigo
+                }
+            }
+        });
+    };
+
+
+    // ------------------------------------------------ Cargar Imagenes -----------------------------
 	this.cargar_portada = function() {
         return $resource(servicios.server().appnext()+'public/getPortada', {}
         , {
@@ -15,6 +30,12 @@ app.service('servicioscatalogo', function($resource, $localStorage, $location, M
             }
         });
     };
+
+
+
+
+
+
 
 
 });

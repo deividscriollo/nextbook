@@ -28,8 +28,10 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/My-space/Usuario',      'dashboard.perfil.apps')
             .when('/My-space/Mapasa',      'dashboard.perfil.maps')
             .when('/My-space/Biografia',      'dashboard.perfil.Historial')
+
             // Catalogo
             .when('/My-space/Catalogo',      'dashboard.catalogo')
+            .when('/My-space/Productos',      'dashboard.productos')
             .when('/My-space/Perfil-busqueda/:id',      'dashboard.perfil-busqueda')
 
             .when('/My-space/Inicio',      'dashboard.ini.inicio')
@@ -153,7 +155,11 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 .segment('catalogo', {
                     templateUrl: 'view/dashboardempresa/catalogo/index.html',
                     // controller: 'Catalogo-Inicio-Ctrl'
-                })  
+                })
+                .segment('productos', {
+                    templateUrl: 'view/dashboardempresa/catalogo/catalogo.html',
+                    // controller: 'Catalogo-Inicio-Ctrl'
+                })   
                 .within()
                     .segment('inicio', {
                         templateUrl: 'view/empresas.html'

@@ -163,12 +163,21 @@ img {
 .square:last-child{
   margin-right:0;
 }
+
 .square:before{
     content:"";
     display:block;
     padding-top:100%;
   	float: left; 
   /*Flotando el elemento podemos usar el cuadrado como cualquier otra capa y podremos meter contenido. Pero dejará de ser responsive cuando el contenido sea mayor que su alto*/
+}
+
+.ofertas {
+	position: fixed;
+	top: 0;
+	right: 0;
+	border: 0;
+	z-index: 9999;
 }
 
 .magazine .even .gradient{

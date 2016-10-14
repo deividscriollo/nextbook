@@ -1,0 +1,157 @@
+<div layout-xs="column" layout="row" ng-controller="Catalogo-Ctrl">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex-xs layout="column" flex-gt-md="20" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <!-- <md-toolbar class="md-sidenav-bg1"> -->
+        <img ng-src="{{imgLogo}}" class="md-card-image" alt="Banner Perfil">
+            <div layout="column" class="md-toolbar-tools-bottom inset" style="position: fixed;">
+            <span flex></span>
+            <div class="header-card-perfil" style="position: static; margin-bottom: 10px;">
+            <span flex></span>
+                <md-button class="md-icon-button" aria-label="More">
+                  <ng-md-icon class="md-accent" icon="border_color" ng-click="show_listaimg_modal('logo')"></ng-md-icon>
+              </md-button>
+              <md-button class="md-icon-button bg-primary" aria-label="More">
+                  <ng-md-icon  icon="camera_alt" ng-click="show_upload_img_modal('logo')"></ng-md-icon>
+              </md-button>
+            </div>
+                <user-avatar></user-avatar>
+                <span>{{localStorage.nombre_comercial | lowercase}},</span>
+                <div>{{localStorage.actividad_economica | lowercase}}</div>
+            </div>
+        <!-- </md-toolbar> -->
+        <md-list ng-cloak>
+            <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu1">
+                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                <p> {{ item.title }}</p>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-subheader class="md-no-sticky">Facturas Fisicas</md-subheader>
+            <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu2">
+                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                <p> {{ item.title }}</p>
+            </md-list-item>
+            <md-subheader class="md-no-sticky">General</md-subheader>
+            <md-list-item ng-click="navigateTo(item.link)" ng-repeat="item in sidenav.menu3">
+                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                <p> {{ item.title }}</p>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+                <ng-md-icon icon="exit_to_app"></ng-md-icon>
+                <p> Bloquear </p>
+            </md-list-item>
+            <md-list-item>
+                <ng-md-icon icon="aspect_ratio"></ng-md-icon>
+                <p> Pantalla Completa </p>
+            </md-list-item>
+        </md-list>
+    </md-sidenav>
+
+    <div flex-xs layout="column" flex-gt-md="60">
+        <md-content layout-padding layout-wrap>
+            <form name="productosForm" ng-submit="guardar_productos()">
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Agregar Productos Catálogo</h2>
+                    </div>
+                </md-toolbar>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-primary">airplay</md-icon>
+                        <label>Código Producto</label>
+                        <input type="text" name="codigo" ng-model="data.codigo" disabled />
+                        <div ng-messages="productosForm.codigo.$error">
+                            <div ng-message="required">Campo Requerido</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Descripción</label>
+                        <input type="text" required name="descripcion" id="descripcion" ng-model="data.descripcion" ng-blur="comparar_empleado()" />
+                        <div ng-messages="productosForm.descripcion.$error">
+                            <div ng-message="required">Descripción Requerido</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Nombre Producto</label>
+                        <input type="text" required name="nombre" ng-model="data.nombre" />
+                        <div ng-messages="productosForm.nombre.$error">
+                            <div ng-message="required">Nombre Producto Requerido</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Stock</label>
+                        <input type="text" required name="nombres_completos" ng-model="data.nombres_completos" />
+                        <div ng-messages="productosForm.nombres_completos.$error">
+                            <div ng-message="required">Nombres Completos Requerido</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Precio Unitario</label>
+                        <input type="text" required name="precio_unitario" ng-model="data.precio_unitario">
+                        <div ng-messages="productosForm.precio_unitario.$error">
+                            <div ng-message="required">Precio Unitario Requerido</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Precio Oferta</label>
+                        <input type="text" required name="precio_oferta" ng-model="data.precio_oferta">
+                        <div ng-messages="productosForm.precio_oferta.$error">
+                            <div ng-message="required">Precio Oferta Requerido</div>
+                        </div>
+                    </md-input-container>           
+                </div>
+
+                <div layout-gt-sm="row">
+                    <div class="col-lg-12">
+                      <input type="file" simple-change="fileChanged($event)" accept="image/*">
+                      <!-- <canvas class="punteado" width="500" height="300"  tw-cropper="cropper" source="file"></canvas> -->
+                      <canvas style="cursor: move;" class="punteado" width="{{sizeimg[0]}}" height="{{sizeimg[1]}}" tw-cropper="cropper" source="file" ></canvas>
+                   <!--  <div class="col-lg-5">
+                          <input type="file" fileread="vm.img" accept="image/*"/>
+                        <div class="cropArea">
+                            <img-crop image="vm.img" width="500px" result-image="myCroppedImage" area-type="{{tipo_area}}" result-image-size="sizeimg"></img-crop>
+                        </div>
+                    </div>
+                    <div class="col-lg-2" ng-show="mini">
+                        <div>Miñatura</div>
+                        <div class="punteado"><img ng-src="{{myCroppedImage}}" ng-style="estilo" /></div>
+                    </div> -->
+                </div>         
+                </div>
+
+
+                <!-- <div class="row">
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <input type="file" on-read-file="cargar_imagen()" />
+                        <div class="cropArea">
+                            <img-crop image="myImage" width="500px" src=""></img-crop>
+                        </div>
+                </div> -->
+                <div layout-gt-sm="row" class="center end">
+                    <md-button class="md-raised md-primary" type="submit" ng-disabled="productosForm.$invalid">
+                        Guardar <i class="fa fa-angle-double-right"></i>
+                    </md-button>
+                    <md-button class="md-raised md-accent" type="reset">
+                        Limpiar <i class="fa fa-trash-o"></i>
+                    </md-button>
+                </div>
+            </form>
+        </md-content>
+    </div>
+
+    <div flex-xs layout="column" flex-gt-md="20">
+        <md-card>
+            <md-card-content>
+                
+            </md-card-content>   
+        </md-card>
+    </div>
+</div>

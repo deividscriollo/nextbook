@@ -1,6 +1,4 @@
-<div layout-xs="column" layout="row" style="    position: fixed;
-    z-index: 99;
-    width: 100%;">
+<div layout-xs="column" layout="row" style="    position: fixed; z-index: 99; width: 100%;">
     <md-toolbar flex-xs flex-gt-xs="15" layout="column">
     </md-toolbar>
     <md-toolbar flex-xs flex-gt-xs="65" layout="column">
@@ -88,12 +86,12 @@
         </md-toolbar>
     </div>
 </div>
-<div layout-xs="column" layout="row" ng-controller="perfilCtrl" style="padding-top: 64px;">
+<div layout-xs="column" layout="row" ng-controller="perfilCtrl" style="padding-top: 64px;" >
         <div flex-xs flex-gt-xs="80" layout="column">
             <!-- contenido -->
             <div app-view-segment="1"></div>
         </div>
-        <md-sidenav flex-xs flex-gt-xs="20" layout="column" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')" >
+        <md-sidenav flex-xs flex-gt-xs="20" layout="column" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')" class="md-whiteframe-z2">
             <div ng-controller="mensajesCtrl as ctrl">
             <ng-switch on="data.selectedIndex" class="tabpanel-container">
                 <div id="tab1-content" aria-labelledby="tab1" ng-switch-when="0">

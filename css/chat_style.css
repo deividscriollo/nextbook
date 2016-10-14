@@ -1,3 +1,6 @@
+.contenedor-mensaje{
+  height: 0px;
+}
 .chat-container{
 	background-color: white;
             width: 98%;
@@ -36,6 +39,7 @@
   word-wrap: break-word;
   margin-left: 40px;
   top: -30px;
+  /*cursor: pointer;*/
 }
 
 .bubble--alt {
@@ -51,4 +55,25 @@
 .avatar-right{
     margin-left: 90%;
     float: right;
+}
+.opciones-chat{
+float: right;    
+position: relative;    
+top: -16px; 
+right: 35px;
+}
+.opciones-inbox{
+    float: right;
+    position: relative;
+    top: -4px;
+    right: 8px;
+}
+.del-checkbox-izq{
+    top: -36px;
+    float: left;
+}
+.del-checkbox-drch{
+    top: -36px;
+    float: right;
+    right: 3%;
 }

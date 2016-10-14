@@ -97,7 +97,9 @@
             <div ng-controller="mensajesCtrl as ctrl">
             <ng-switch on="data.selectedIndex" class="tabpanel-container">
                 <div id="tab1-content" aria-labelledby="tab1" ng-switch-when="0">
-                    <md-subheader>Mensajeria ({{countnewmsj}})</md-subheader>
+                    <md-subheader>
+                    Mensajeria ({{countnewmsj}})
+                    </md-subheader>
                     <div ng-show="load_chats" style="width: 100%;text-align: center;">
                     <br>
                     <img style="height: 25px; width: 25px;" alt="Cargando...." ng-src="images/samples/load.gif"/>
@@ -110,9 +112,28 @@
                                         <div ng-class="{'no-view': chat.estado_view == false }">
                                             <img alt="Img" ng-src="{{chat.img}}" class="md-avatar" style=" float: left;"/>
                                             <div style="font-size: 11.5px; margin-top: 0px; margin-bottom: 0; height: 16px; width: 0;">{{chat.para}}</div>
-                                            <div style="font-size: 9.5px; margin-top: 0px; margin-bottom: 0; float: left;">
+                                            <div style="font-size: 9.5px; margin-top: 0px; margin-bottom: 0; float: left; max-width: 50%; overflow: hidden;
+                                                text-overflow: ellipsis;">
                                             {{chat.mensaje}}
                                             </div>
+                                            <div class="opciones-chat">
+                                                <md-menu md-position-mode="target-right target" >
+                                                      <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                                        <ng-md-icon icon="settings"></ng-md-icon>
+                                                      </md-button>
+                                                      <md-menu-content width="4" >
+                                                        <md-menu-item ng-repeat="opcion in opciones_chat">
+                                                          <md-button ng-click="eliminar_chat(chat)">
+                                                              <div layout="row" flex>
+                                                                <p flex>{{opcion.nombre}}</p>
+                                                                <md-icon class="md-accent material-icons">{{opcion.icono}}</md-icon>
+                                                              </div>
+                                                          </md-button>
+                                                        </md-menu-item>
+                                                      </md-menu-content>
+                                                </md-menu>
+                                            </div>
+                                            
                                         </div>
                                     </md-button>
                                 </md-list-item>
@@ -124,8 +145,31 @@
                                     <md-icon md-svg-icon="img/icons/ic_arrow_back_24px.svg"></md-icon>
                                 </md-button>
                                 {{nombre_chat}}
+                                <div class="opciones-inbox">
+                                                <md-menu md-position-mode="target-right target" >
+                                                      <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                                        <ng-md-icon icon="settings"></ng-md-icon>
+                                                      </md-button>
+                                                      <md-menu-content width="4" >
+                                                        <md-menu-item ng-repeat="opcion in opciones_mensajes">
+                                                          <md-button ng-click="select_mensajes()">
+                                                              <div layout="row" flex>
+                                                                <p flex>{{opcion.nombre}}</p>
+                                                                <md-icon class="md-accent material-icons">{{opcion.icono}}</md-icon>
+                                                              </div>
+                                                          </md-button>
+                                                        </md-menu-item>
+                                                      </md-menu-content>
+                                                </md-menu>
+                                </div>
                                 <md-divider></md-divider>
                                 <br>
+                                <md-button ng-show="btn_cancelar" style="float: right;" class="md-fab md-mini md-warnning md-button md-ink-ripple" type="button" ng-transclude="" ng-click="cancel_select_mensajes()" aria-label="Cancelar">
+                                    <md-icon class="ng-scope material-icons">clear</md-icon>
+                                </md-button>
+<!--                                 <md-button ng-show="btn_cancelar" style="float: right;" class="md-fab md-mini md-primary md-button md-ink-ripple" type="button" ng-transclude="" ng-click="eliminar_mensajes()" aria-label="Ok">
+                                    <md-icon class="ng-scope material-icons">done</md-icon>
+                                </md-button> -->
                                 <img ng-show="load_chats" style="height: 25px; width: 25px;" alt="Cargando...." ng-src="images/samples/load.gif"/>
                                 <div id="chat-container" class="chat-container">
                                     <div ng-show="load_mensajes" style="width: 100%;text-align: center;">
@@ -133,10 +177,13 @@
                                     </div>
                                     <!-- <div class="container"> -->
                                         <div class="contenedor-mensaje" ng-repeat="conversacion in mensajes_chat">
-                                            <img alt="Img" height="35" width="35" ng-class="{'avatar-chat avatar-left': conversacion.tipo_mensaje == 'RECEIVED','avatar-chat avatar-right': conversacion.tipo_mensaje == 'SEND' } " ng-src="{{conversacion.tipo_mensaje == 'RECEIVED' && img_chat || img_session}}" />
+                                            <img alt="Img" height="35" width="35" ng-class="{'avatar-chat avatar-left': conversacion.tipo_mensaje == 'RECEIVED','avatar-chat avatar-right': conversacion.tipo_mensaje == 'SEND' }" ng-src="{{conversacion.tipo_mensaje == 'RECEIVED' && img_chat || img_session}}" />
                                             <div id="{{'msg'+$index}}" ng-class="{'bubble': conversacion.tipo_mensaje == 'RECEIVED','bubble bubble--alt': conversacion.tipo_mensaje == 'SEND' } ">
                                                 {{conversacion.mensaje}}
                                             </div>
+                                            <md-button ng-show="check_mensajes" ng-click="eliminar_mensajes(conversacion)" class="md-icon-button md-accent md-mini" ng-class="{'del-checkbox-izq': conversacion.tipo_mensaje == 'RECEIVED','del-checkbox-drch': conversacion.tipo_mensaje == 'SEND' }" aria-label="Cancelar">
+                                            <md-icon class="ng-scope material-icons">delete</md-icon>
+                                            </md-button>
                                         </div>
                                     <!-- </div> -->
                                 </div>

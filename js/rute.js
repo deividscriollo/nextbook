@@ -84,7 +84,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             
             .segment('mensaje', {
                 templateUrl: 'view/mensajes.html',
-                controller: 'mensajeCtrl',
+                // controller: 'mensajeCtrl',
             })
             // perfil general
             .segment('sbuscar', {

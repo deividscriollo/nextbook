@@ -6,6 +6,11 @@ $rootScope.chats=[];
 $scope.load_chats=true;
 $scope.load_mensajes=false;
 $rootScope.countnewmsj=0;
+$scope.check_mensajes=false;
+$scope.btn_cancelar=false;
+$scope.opciones_chat=[{'nombre':"Eliminar conversación",'icono':"delete"}];
+$scope.opciones_mensajes=[{'nombre':"Eliminar Mensajes",'icono':"delete"}];
+ $scope.del_array_msj=[];
 if ($localStorage.newmsj==undefined) {
   $localStorage.newmsj=0;
 }else{
@@ -78,6 +83,58 @@ $scope.limpiarmsj=function(){
   //---------------------------------- Fin ------------------------------
 
   //--------------------------------------------------- CHAT ----------------
+  $scope.eliminar_chat=function(obj){
+    var id=obj.id;
+    servicios.eliminar_conversacion().delete({chat_id:obj.chat_id}).$promise.then(function(data){
+      console.log(data.respuesta);
+    });
+
+  for(var i = 0; i < $rootScope.chats.length; i++) {
+    if($rootScope.chats[i].id == id) {
+        $rootScope.chats.splice(i, 1);
+        break;
+        }
+    }
+  }
+   $scope.select_mensajes=function(){
+    $scope.check_mensajes=true;
+    $scope.btn_cancelar=true;
+    $scope.scroll_buttom_chat();
+   }
+
+   $scope.cancel_select_mensajes=function(){
+    $scope.check_mensajes=false;
+    $scope.btn_cancelar=false;
+    angular.forEach($scope.mensajes_chat, function(mensaje_id) {              
+        mensaje_id.selected = false;
+    });
+    $scope.del_array_msj=[];  
+   }
+
+   $scope.add_mensajes_list=function(id){
+      if ($scope.del_array_msj.indexOf(id) === -1) {
+        $scope.del_array_msj.push(id);
+    }   
+    else {
+      var index =$scope.del_array_msj.indexOf(id);
+      $scope.del_array_msj.splice(index,1);
+    }
+    console.log($scope.del_array_msj);
+   }
+
+   $scope.eliminar_mensajes=function(obj){
+    var id_mensaje=obj.id_mensaje;
+    var index=$scope.mensajes_chat.indexOf(obj);
+    $scope.mensajes_chat.splice(index,1);
+    servicios.eliminar_mensajes().delete({id_mensaje:id_mensaje}).$promise.then(function(data){
+      if (data.respuesta) {
+        $scope.del_array_msj=[];
+      }
+    },function(error){
+      $scope.eliminar_mensajes({mensajes_list:$scope.del_array_msj});
+    });
+   }
+
   $scope.sendMensajeChat=function(event) {
 
      if (event.keyCode === 13) {

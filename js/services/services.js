@@ -500,7 +500,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     }  ;
     //----------------------- fin ----
 
-    //----------------------------------------------------- Enviar Mensaje Modal----------------
+    //----------------------------------------------------- Get lista de Chats----------------
     this.get_chats=function() {
         return $resource(this.server().appnext()+'public/getChats', {}
         , {
@@ -516,12 +516,44 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
     }  ;
     //----------------------- fin ----
 
-     //----------------------------------------------------- Enviar Mensaje Modal----------------
+     //----------------------------------------------------- Get Mensajes de chat----------------
     this.get_mensajes=function() {
         return $resource(this.server().appnext()+'public/getMensajes', {}
         , {
             get: {
                 method: 'GET', isArray: false,
+                params:{
+                token: $localStorage.token
+            }
+            }
+            
+        }
+        );
+    }  ;
+    //----------------------- fin ----
+
+    //----------------------------------------------------- Eliminar Conversacion----------------
+    this.eliminar_conversacion=function() {
+        return $resource(this.server().appnext()+'public/deleteChat', {}
+        , {
+            delete: {
+                method: 'POST', isArray: false,
+                params:{
+                token: $localStorage.token
+            }
+            }
+            
+        }
+        );
+    }  ;
+    //----------------------- fin ----
+
+    //----------------------------------------------------- Eliminar Conversacion----------------
+    this.eliminar_mensajes=function() {
+        return $resource(this.server().appnext()+'public/deleteMensajes', {}
+        , {
+            delete: {
+                method: 'POST', isArray: false,
                 params:{
                 token: $localStorage.token
             }

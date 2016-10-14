@@ -10,7 +10,6 @@ $scope.check_mensajes=false;
 $scope.btn_cancelar=false;
 $scope.opciones_chat=[{'nombre':"Eliminar conversación",'icono':"delete"}];
 $scope.opciones_mensajes=[{'nombre':"Eliminar Mensajes",'icono':"delete"}];
- $scope.del_array_msj=[];
 if ($localStorage.newmsj==undefined) {
   $localStorage.newmsj=0;
 }else{
@@ -108,18 +107,7 @@ $scope.limpiarmsj=function(){
     angular.forEach($scope.mensajes_chat, function(mensaje_id) {              
         mensaje_id.selected = false;
     });
-    $scope.del_array_msj=[];  
-   }
-
-   $scope.add_mensajes_list=function(id){
-      if ($scope.del_array_msj.indexOf(id) === -1) {
-        $scope.del_array_msj.push(id);
-    }   
-    else {
-      var index =$scope.del_array_msj.indexOf(id);
-      $scope.del_array_msj.splice(index,1);
-    }
-    console.log($scope.del_array_msj);
+    
    }
 
    $scope.eliminar_mensajes=function(obj){
@@ -127,11 +115,9 @@ $scope.limpiarmsj=function(){
     var index=$scope.mensajes_chat.indexOf(obj);
     $scope.mensajes_chat.splice(index,1);
     servicios.eliminar_mensajes().delete({id_mensaje:id_mensaje}).$promise.then(function(data){
-      if (data.respuesta) {
-        $scope.del_array_msj=[];
-      }
+      console.log(data.respuesta);
     },function(error){
-      $scope.eliminar_mensajes({mensajes_list:$scope.del_array_msj});
+      $scope.eliminar_mensajes({id_mensaje:$scope.id_mensaje});
     });
    }
 

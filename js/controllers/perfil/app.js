@@ -30,11 +30,11 @@ app.controller('perfilCtrl', function($scope, $mdDialog,$rootScope, servicios, $
                   clickOutsideToClose: true,
                   controller: 'imagenesCtrl',
                   controllerAs: 'ctrl',
-                  focusOnOpen: false,
+                  parent: angular.element(document.body),
                   targetEvent: event,
                   locals: {imgs: data.imgs,tipoimg: tipolista},
-                  templateUrl: 'view/dashboardempresa/perfil/modales/mis_imagenes_perfil.html',
-                  clickOutsideToClose:true,
+                  templateUrl: 'view/dashboardempresa/perfil/modales/mis_imagenes_perfil.html'
+    
                 })
             });
 
@@ -45,11 +45,10 @@ app.controller('perfilCtrl', function($scope, $mdDialog,$rootScope, servicios, $
                   clickOutsideToClose: true,
                   controller: 'imagenesCtrl',
                   controllerAs: 'ctrl',
-                  focusOnOpen: false,
                   targetEvent: event,
                   locals: {imgs: data.imgs,tipoimg: tipolista},
-                  templateUrl: 'view/dashboardempresa/perfil/modales/mis_imagenes_perfil.html',
-                  clickOutsideToClose:true,
+                  templateUrl: 'view/dashboardempresa/perfil/modales/mis_imagenes_perfil.html'
+    
                 })
             });
             break;
@@ -60,11 +59,9 @@ app.controller('perfilCtrl', function($scope, $mdDialog,$rootScope, servicios, $
                   clickOutsideToClose: true,
                   controller: 'imagenesCtrl',
                   controllerAs: 'ctrl',
-                  focusOnOpen: false,
                   targetEvent: event,
                   locals: {imgs: data.imgs,tipoimg: tipolista},
-                  templateUrl: 'view/dashboardempresa/perfil/modales/mis_imagenes_perfil.html',
-                  clickOutsideToClose:true,
+                  templateUrl: 'view/dashboardempresa/perfil/modales/mis_imagenes_perfil.html'
                 })
             });
 
@@ -77,11 +74,9 @@ app.controller('perfilCtrl', function($scope, $mdDialog,$rootScope, servicios, $
           clickOutsideToClose: true,
           controller: 'imagenesCtrl',
           controllerAs: 'ctrl',
-          focusOnOpen: false,
           targetEvent: event,
           locals: {imgs: [],tipoimg: tipo},
-          templateUrl: 'view/dashboardempresa/perfil/modales/upload_img_perfil.html',
-          clickOutsideToClose:true,
+          templateUrl: 'view/dashboardempresa/perfil/modales/upload_img_perfil.html'
         })
     }
 
@@ -98,7 +93,11 @@ app.controller('perfil-inicio-Ctrl', function($scope, serviciosgenerales, $local
 });
 
 app.controller('imagenesCtrl', function($scope,$mdDialog, servicios,$localStorage,imgs,tipoimg,$rootScope) {
-     this.cancel = $mdDialog.cancel;
+     $scope.cancel =function(){
+        $mdDialog.hide();
+     };
+     $scope.del_img=[];
+
      if (imgs.length == 0) {
         $scope.mensaje = "No se han encontrado imagenes :(";
      } else {
@@ -125,6 +124,49 @@ switch(tipoimg) {
 $scope.fileChanged = function(event) {
     $scope.file = event.target.files[0];
   };
+
+  $scope.add_del_img=function(obj){
+    var index=$scope.del_img.indexOf(obj);
+    if (index===-1) {
+        $scope.del_img.push(obj);
+    }else{
+        $scope.del_img.splice(index,1);
+    }
+    console.log($scope.del_img);
+  }
+
+  $scope.delete_img=function(){
+      switch(tipoimg) {
+        case 'perfil':
+        servicios.del_img_perfil().delete({
+                    imgs: $scope.del_img
+                }).$promise.then(function(data) {
+                    if (data.respuesta) {
+                        $mdDialog.hide();
+                    }
+                });
+            break;
+        case 'portada':
+            servicios.del_img_portada().delete({
+                    imgs: $scope.del_img
+                }).$promise.then(function(data) {
+                    if (data.respuesta) {
+                        $mdDialog.hide();
+                    }
+                });
+            break;
+        case 'logo':
+            servicios.del_img_logo().delete({
+                    imgs: $scope.del_img
+                }).$promise.then(function(data) {
+                    if (data.respuesta) {
+                        $mdDialog.hide();
+                    }
+                });
+            break;
+    }
+  
+  }
 
 $scope.Updateimg = function(idimg) {
     switch(tipoimg) {

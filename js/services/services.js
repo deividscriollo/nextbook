@@ -84,7 +84,7 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
         });
     };
-    // ----------------------------------------- set get imagen Logo ----------------------------
+    // ----------------------------------------- set imagen Logo ----------------------------
     this.set_img_logo=function() {
         return $resource(this.server().appnext()+'public/setImgLogo', {}
         , {
@@ -561,7 +561,52 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             
         }
         );
-    }  ;
+    };
+    //----------------------- fin ----
+    //----------------------------------------------------- ELIMINAR IMAGNES----------------
+    // IMG PORTADA
+    this.del_img_portada=function() {
+        return $resource(this.server().appnext()+'public/deleteImgPortada', {}
+        , {
+            delete: {
+                method: 'POST', isArray: false,
+                params:{
+                token: $localStorage.token
+            }
+            }
+            
+        }
+        );
+    };
+    //----------------------- fin ----
+    // IMG PERFIL
+    this.del_img_perfil=function() {
+        return $resource(this.server().appnext()+'public/deleteImgPerfil', {}
+        , {
+            delete: {
+                method: 'POST', isArray: false,
+                params:{
+                token: $localStorage.token
+            }
+            }
+            
+        }
+        );
+    };
+    //----------------------- fin ----
+    // IMG LOGO
+    this.del_img_logo=function() {
+        return $resource(this.server().appnext()+'public/deleteImgLogo', {}
+        , {
+            delete: {
+                method: 'POST', isArray: false,
+                params:{
+                token: $localStorage.token
+            }
+            }
+        }
+        );
+    };
     //----------------------- fin ----
 
 });

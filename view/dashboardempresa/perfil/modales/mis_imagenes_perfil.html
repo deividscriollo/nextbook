@@ -1,10 +1,10 @@
-<md-dialog>
+<md-dialog aria-label="dialogo">
     <form name="registroForm" id="registroForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Mis imágenes de perfil</h2>
+                <h2>Mis imágenes</h2>
                 <span flex></span>
-                <md-button class="md-icon-button" ng-click="ctrl.cancel()">
+                <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
                 </md-button>
             </div>
@@ -18,16 +18,26 @@
                   </div>
                   <div layout-gt-xs="row" ng-show="misimagenes" flex>
                     <md-input-container class="md-block" flex-gt-xs>
-                        <img style="margin-right: 10px; cursor: pointer;" ng-repeat="imagen in misimagenes" width="250" ng-src="{{imagen.img}}" ng-click="Updateimg(imagen.img)" width="50px">
+                      <div style="display: flex;">
+                        <div ng-repeat="imagen in misimagenes">
+                          <div style="position: absolute;">
+                          <md-checkbox ng-click="add_del_img(imagen)" aria-label="checkbox"></md-checkbox>        
+                        </div>
+                      <img style="margin-right: 10px; cursor: pointer;"  width="250" ng-src="{{imagen.img}}" ng-click="Updateimg(imagen.img)" width="50px">
+                      </div>
+                        </div>
                     </md-input-container>
                   </div>
               </md-content>
         </md-dialog-content>
         <md-dialog-actions layout="row">
-            <md-button class="md-raised md-accent" ng-click="ctrl.cancel()">
-                Cancelar
+           <md-button class="md-raised md-accent md-mini" ng-disabled="del_img.length==0" ng-click="delete_img()">
+              <md-icon class="ng-scope material-icons">delete</md-icon>
             </md-button>
             <span flex></span>
+            <md-button class="md-raised md-accent" ng-click="cancel()">
+              Cancelar
+            </md-button>
             <md-button class="md-raised md-primary" type="submit" ng-click="Updateimg()" ng-disabled="registroForm.$invalid">
               Guardar
             </md-button>

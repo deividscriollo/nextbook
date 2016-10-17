@@ -25,9 +25,7 @@ var estadoread = false;
     // $scope.facturas.push(data.respuesta.data);
     $scope.nrfacturas = data.sin_leer;
   });
-
     // $interval(callAtInterval, 3000);
-
   function callAtInterval() {
     if ($localStorage.token) {
         if (estadoread == false) {
@@ -80,7 +78,6 @@ $scope.limpiarmsj=function(){
   });
 
   //---------------------------------- Fin ------------------------------
-
   //--------------------------------------------------- CHAT ----------------
   $scope.eliminar_chat=function(obj){
     var id=obj.id;
@@ -107,7 +104,6 @@ $scope.limpiarmsj=function(){
     angular.forEach($scope.mensajes_chat, function(mensaje_id) {              
         mensaje_id.selected = false;
     });
-    
    }
 
    $scope.eliminar_mensajes=function(obj){
@@ -122,7 +118,6 @@ $scope.limpiarmsj=function(){
    }
 
   $scope.sendMensajeChat=function(event) {
-
      if (event.keyCode === 13) {
       $scope.mensaje=$scope.data.txtmsg;
         $scope.datamsg={

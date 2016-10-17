@@ -20,7 +20,8 @@ var app=angular.module	('app', 	[
 									'lfNgMdFileInput',
 									'oitozero.ngSweetAlert',
 									'md.data.table',//md tabla dinamia general
-									'mdPickers'
+									'mdPickers',
+									'angularFileUpload'
 								]
 						);
 app.run(function($FB) {

@@ -13,36 +13,50 @@ app.controller('Detalle-Ctrl', function($mdDialog, $scope, servicioscatalogo, se
         $scope.approot = appRoot;
          servicioscatalogo.cargar_portada().cargar().$promise.then(function(data) {
             $scope.portada = data.respuesta[0].img;
-            console.log($scope.portada);
-                $scope.imagesForGallery = [
-                    {
-                        // thumb: appRoot + 'http://186.33.168.251/appnext/public/portadas/1.jpg',
+            $scope.imagesForGallery=[];
+            for (var i = 0; i < data.respuesta.length; i++) {
+                $scope.portada = data.respuesta[i].img;
+                console.log($scope.portada);
+                $scope.imagesForGallery.push({thumb: {src:appRoot + $scope.portada,class:'small'},})
+                // $scope.imagesForGallery=[
+                // {
+                //         // thumb: appRoot + 'http://186.33.168.251/appnext/public/portadas/1.jpg',
+                //         thumb: {src:appRoot + data.respuesta[i].img,class:'thumb'},
+                //         small: {src:appRoot + 'images/small/image1.jpg',class:'small'},
+                //         large: {src:appRoot + 'images/large/image1.jpg',class:'large'},
+                //     }
+                //     ];
+            }
+            // console.log($scope.portada);
+            //     $scope.imagesForGallery = [
+            //         {
+            //             // thumb: appRoot + 'http://186.33.168.251/appnext/public/portadas/1.jpg',
 
-                        thumb: appRoot + $scope.portada,
-                        small: appRoot + 'images/small/image1.jpg',
-                        large: appRoot + 'images/large/image1.jpg'
-                    },
-                    {
-                        thumb: appRoot + 'images/thumb/image2.jpg',
-                        small: appRoot + 'images/small/image2.jpg',
-                        large: appRoot + 'images/large/image2.jpg'
-                    },
-                    {
-                        thumb: appRoot + 'images/thumb/image3.jpg',
-                        small: appRoot + 'images/small/image3.jpg',
-                        large: appRoot + 'images/large/image3.jpg'
-                    },
-                    {
-                        thumb: appRoot + 'images/thumb/image4.jpg',
-                        small: appRoot + 'images/small/image4.jpg',
-                        large: appRoot + 'images/large/image4.jpg'
-                    },
-                    {
-                        thumb: appRoot + 'images/thumb/image5.jpg',
-                        small: appRoot + 'images/small/image5.jpg',
-                        large: appRoot + 'images/large/image5.jpg'
-                    }
-                ];        
+            //             thumb: {src:appRoot + $scope.portada,class:'thumb'},
+            //             small: {src:appRoot + 'images/small/image1.jpg',class:'small'},
+            //             large: {src:appRoot + 'images/large/image1.jpg',class:'large'},
+            //         },
+            //         {
+            //             thumb: appRoot + 'images/thumb/image2.jpg',
+            //             small: appRoot + 'images/small/image2.jpg',
+            //             large: appRoot + 'images/large/image2.jpg',
+            //         },
+            //         {
+            //             thumb: appRoot + 'images/thumb/image3.jpg',
+            //             small: appRoot + 'images/small/image3.jpg',
+            //             large: appRoot + 'images/large/image3.jpg',
+            //         },
+            //         {
+            //             thumb: appRoot + 'images/thumb/image4.jpg',
+            //             small: appRoot + 'images/small/image4.jpg',
+            //             large: appRoot + 'images/large/image4.jpg',
+            //         },
+            //         {
+            //             thumb: appRoot + 'images/thumb/image5.jpg',
+            //             small: appRoot + 'images/small/image5.jpg',
+            //             large: appRoot + 'images/large/image5.jpg',
+            //         }
+            //     ];        
         });    
 
         $scope.zoomModel1 = $scope.imagesForGallery[0];

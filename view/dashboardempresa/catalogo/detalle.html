@@ -71,8 +71,9 @@
                                ng-click="setActiveImageInGallery('zoomModelGallery01',image2);"
                                data-image="{{approot}}{{image2.small}}"
                                data-zoom-image="{{approot}}{{image2.large}}">
-
-                                <img ng-src="{{approot}}{{image2.thumb}}"/>
+                                <div class="{{image2.thumb.class}}">
+                                <img ng-src="{{approot}}{{image2.thumb.src}}" />
+                                </div>
                             </a>
                         </div>
 

@@ -1,0 +1,23 @@
+.small{
+	width: 200px;
+	padding-right: 10px;
+}
+
+.large{
+	width: 500px;
+	    padding-right: 10px;
+}
+.thumb{
+	width: 100px;
+	    padding-right: 10px;
+}
+/*imagenes */
+.thumb img{
+	width: 100%;
+}
+.large img{
+	width: 100%;
+}
+.small img{
+	width: 100%;
+}

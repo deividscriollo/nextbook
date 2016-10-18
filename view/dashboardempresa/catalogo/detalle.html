@@ -54,14 +54,13 @@
 
     <div flex-xs layout="column" flex-gt-md="60">
         <md-content layout-padding layout-wrap>
-
                 <md-toolbar>
                     <div class="md-toolbar-tools">
                         <h2>Detalle Productos Catálogo</h2>
                     </div>
                 </md-toolbar>
 
-                <div class="starter-template">
+                <!-- <div class="starter-template"> -->
                     <div layout-gt-sm="row">
                         <div id="gallery_01">
                             <a ng-repeat="image2 in imagesForGallery"
@@ -79,10 +78,9 @@
 
                         <img id="zoom_03" ng-src="{{approot}}images/large/image2.jpg" ng-click="setScopeValue('zoom03',true);" ez-plus ezp-model="zoomModelGallery01"
                  ezp-options="zoomOptionsGallery01" />
-
                         <!-- <colorbox box-for=".img-group-01" open="zoom03" options="annotateColorbox03" /> --><!-- </colorbox> -->
                     </div>
-                </div>    
+                <!-- </div>     -->
         </md-content>
     </div>
 

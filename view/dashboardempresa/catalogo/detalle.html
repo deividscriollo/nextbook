@@ -1,8 +1,11 @@
 <div layout-xs="column" layout="row" ng-controller="Detalle-Ctrl">  
     <style type="text/css">
-        
+        .starter-template {
+            padding: 30px 5px;
+            /*text-align: center;*/
+        }    
     </style>
-      
+
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" flex-xs layout="column" flex-gt-md="20" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <img ng-src="{{imgLogo}}" class="md-card-image" alt="Banner Perfil">
             <div layout="column" class="md-toolbar-tools-bottom inset" style="position: fixed;">
@@ -51,35 +54,35 @@
 
     <div flex-xs layout="column" flex-gt-md="60">
         <md-content layout-padding layout-wrap>
-            <form name="productosForm">
+
                 <md-toolbar>
                     <div class="md-toolbar-tools">
                         <h2>Detalle Productos Catálogo</h2>
                     </div>
                 </md-toolbar>
 
+                <div class="starter-template">
+                    <div layout-gt-sm="row">
+                        <div id="gallery_01">
+                            <a ng-repeat="image2 in imagesForGallery"
 
-                <div layout-gt-sm="row">
-                    <div id="gallery_01">
-                        <a ng-repeat="image2 in imagesForGallery"
+                               class="img-group-01"
+                               href="{{approot}}{{image2.large}}"
 
-                           class="img-group-01"
-                           href="{{approot}}{{image2.large}}"
+                               ng-click="setActiveImageInGallery('zoomModelGallery01',image2);"
+                               data-image="{{approot}}{{image2.small}}"
+                               data-zoom-image="{{approot}}{{image2.large}}">
 
-                           ng-click="setActiveImageInGallery('zoomModelGallery01',image2);"
-                           data-image="{{approot}}{{image2.small}}"
-                           data-zoom-image="{{approot}}{{image2.large}}">
+                                <img ng-src="{{approot}}{{image2.thumb}}"/>
+                            </a>
+                        </div>
 
-                            <img ng-src="{{approot}}{{image2.thumb}}"/>
-                        </a>
+                        <img id="zoom_03" ng-src="{{approot}}images/large/image2.jpg" ng-click="setScopeValue('zoom03',true);" ez-plus ezp-model="zoomModelGallery01"
+                 ezp-options="zoomOptionsGallery01" />
+
+                        <!-- <colorbox box-for=".img-group-01" open="zoom03" options="annotateColorbox03" /> --><!-- </colorbox> -->
                     </div>
-
-                    <img id="zoom_03" ng-src="{{approot}}images/large/image2.jpg" ng-click="setScopeValue('zoom03',true);" ez-plus ezp-model="zoomModelGallery01"
-             ezp-options="zoomOptionsGallery01" />
-
-                    <colorbox box-for=".img-group-01" open="zoom03" options="annotateColorbox03" />
-                </div>
-            </form>
+                </div>    
         </md-content>
     </div>
 

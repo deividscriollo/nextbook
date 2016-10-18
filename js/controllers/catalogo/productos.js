@@ -7,7 +7,7 @@ app.controller('Catalogo-Ctrl', function($mdDialog, $scope, servicioscatalogo, s
     });
 
 	var uploader = $scope.uploader = new FileUploader({
-        url: servicios.server().appnext()+'public/addProducto',
+        // url: servicios.server().appnext()+'public/addProducto',
         headers: {
         Authorization: 'Bearer ' + $localStorage.token,
         },
@@ -31,7 +31,7 @@ app.controller('Catalogo-Ctrl', function($mdDialog, $scope, servicioscatalogo, s
     //     console.info('onAfterAddingFile', fileItem);
     // };
     // uploader.onAfterAddingAll = function(addedFileItems) {
-    
+    //     console.log(addedFileItems);
     // };
     uploader.onBeforeUploadItem = function(item) {
         item.formData=[{
@@ -42,10 +42,16 @@ app.controller('Catalogo-Ctrl', function($mdDialog, $scope, servicioscatalogo, s
         precio_unitario:$scope.data.precio_unitario,
         precio_oferta:$scope.data.precio_oferta,
         stock:$scope.data.stock,
-        sucursal: $localStorage.sucursal.codigo
+        sucursal: $localStorage.sucursal.codigo,
+        principal: 0
     }];
-        console.info('onBeforeUploadItem', item);
+    console.log($scope.data.selected);
     };
+
+    $scope.selec_principal=function(item){
+        $scope.index=$scope.uploader.queue.indexOf(item);
+        // console.log($scope.index);
+    }
     // uploader.onProgressItem = function(fileItem, progress) {
     //     console.info('onProgressItem', fileItem, progress);
     // };
@@ -69,17 +75,8 @@ app.controller('Catalogo-Ctrl', function($mdDialog, $scope, servicioscatalogo, s
     // };
 
     $scope.save_prod = function () {
-    // $scope.uploader.formData=[{
-    //     codigo:$scope.data.codigo,
-    //     descripcion:$scope.data.descripcion,
-    //     nombre:$scope.data.nombre,
-    //     stock:$scope.data.stock,
-    //     precio_unitario:$scope.data.precio_unitario,
-    //     precio_oferta:$scope.data.precio_oferta,
-    //     stock:$scope.data.stock
-    // }];
-    console.info('uploader', uploader);
-    $scope.uploader.uploadAll();
+        console.log($scope.uploader.queue);
+    // $scope.uploader.uploadAll();
     };
 
     // -------------------------------

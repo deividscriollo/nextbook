@@ -107,7 +107,7 @@
                         </div>
                     </md-input-container>           
                 </div>
-
+                <md-radio-group ng-model="data.group1">
                 <div layout-gt-sm="row">
                     <div class="col-lg-12">
                         <input type="file" nv-file-select="" uploader="uploader" multiple />
@@ -122,9 +122,9 @@
                                         <div class="item-progress" ng-style="{ 'width': item.progress + '%' }"></div>
                                     </div> -->
                                 </div>
-                                <div>Principal: <md-checkbox ng-disabled="false" aria-label="Disabled checkbox" ng-model="data.cb3">
-                                </md-checkbox></div>
-                                <div>Principal: <md-checkbox ng-disabled="false" ng-model="data.cb3"></md-checkbox></div>
+                                <div>Principal:                 
+                                    <md-radio-button value="rbtn+{{$index}}" ng-click="selec_principal(item)" class="md-primary">Principal</md-radio-button>
+                                </div>
                                 <div ng-if="controller.isImage(item._file)">
                                     <div ng-thumb="{ file: item._file, height: 100 }"></div>
                                 </div>
@@ -136,8 +136,10 @@
                                 </div>
                             </li>
                         </ul>
+
                     </div>         
                 </div>
+                </md-radio-group>
 
                  <div layout-gt-sm="row">
                     <div class="col-lg-12">
@@ -146,19 +148,18 @@
                             <div class="total-progress" ng-style="{ 'width': uploader.progress + '%' }"></div>
                         </div>
                     </div>
-                    <md-button class="md-raised md-primary" ng-click="save_prod()" ng-disabled="!uploader.getNotUploadedItems().length">Subir Todo</md-button>
+                    <md-button class="md-raised md-primary" ng-click="save_prod()" ng-disabled="!uploader.getNotUploadedItems().length">Guardar</md-button>
                     <md-button class="md-raised md-primary" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">Cancelar Todo</md-button>
-                    <md-button class="md-raised md-primary" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">Remover Todo</md-button>
+                    <md-button type="reset" class="md-raised md-primary" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">Remover Todo</md-button>
                 </div>
-                
-                <div layout-gt-sm="row" class="center end">
+<!--                 <div layout-gt-sm="row" class="center end">
                     <md-button class="md-raised md-primary" type="submit" ng-disabled="productosForm.$invalid">
                         Guardar <i class="fa fa-angle-double-right"></i>
                     </md-button>
                     <md-button class="md-raised md-accent" type="reset">
                         Limpiar <i class="fa fa-trash-o"></i>
                     </md-button>
-                </div>
+                </div> -->
             </form>
         </md-content>
     </div>

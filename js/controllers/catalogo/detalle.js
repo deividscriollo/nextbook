@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.controller('Detalle-Ctrl', function($mdDialog, $scope, servicioscatalogo, servicios, $timeout, $localStorage) {
+app.controller('Detalle-Ctrl', function($mdDialog, $scope, servicioscatalogo, servicios, $timeout, $localStorage, $location, colorboxService, annotoriousService) {
     $scope.annotateColorbox01a = {};
         $scope.annotateColorbox01 = {};
 

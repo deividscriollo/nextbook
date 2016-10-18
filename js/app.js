@@ -21,7 +21,10 @@ var app=angular.module	('app', 	[
 									'oitozero.ngSweetAlert',
 									'md.data.table',//md tabla dinamia general
 									'mdPickers',
-									'angularFileUpload'
+									'angularFileUpload',
+									'annotorious',
+									'ezplus',
+    								'colorbox'
 								]
 						);
 app.run(function($FB) {

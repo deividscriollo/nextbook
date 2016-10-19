@@ -64,6 +64,18 @@
                     <div layout-gt-sm="row">
                         <div id="gallery_01">
                             <a ng-repeat="image2 in imagesForGallery"
+                               class="img-group-01"
+                               href="{{approot}}{{image2.large.src}}"
+
+                               ng-click="setActiveImageInGallery('zoomModelGallery01',image2);"
+                               data-image="{{approot}}{{image2.small}}"
+                               data-zoom-image="{{approot}}{{image2.large}}">
+                                <img ng-src="{{approot}}{{image2.thumb.src}}" class="{{image2.thumb.class}}"  />
+                            </a>
+                        </div>
+
+                        <!-- <div id="gallery_01">
+                            <a ng-repeat="image2 in imagesForGallery"
 
                                class="img-group-01"
                                href="{{approot}}{{image2.large}}"
@@ -75,13 +87,13 @@
                                 <img ng-src="{{approot}}{{image2.thumb.src}}" />
                                 </div>
                             </a>
-                        </div>
+                        </div> -->
 
                         <img id="zoom_03" ng-src="{{approot}}images/large/image2.jpg" ng-click="setScopeValue('zoom03',true);" ez-plus ezp-model="zoomModelGallery01"
                  ezp-options="zoomOptionsGallery01" />
-                        <!-- <colorbox box-for=".img-group-01" open="zoom03" options="annotateColorbox03" /> --><!-- </colorbox> -->
+                        <colorbox box-for=".img-group-01" open="zoom03" options="annotateColorbox03" /></colorbox>
                     </div>
-                <!-- </div>     -->
+             <!-- </div>  -->
         </md-content>
     </div>
 

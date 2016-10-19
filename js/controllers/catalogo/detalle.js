@@ -12,12 +12,15 @@ app.controller('Detalle-Ctrl', function($mdDialog, $scope, servicioscatalogo, se
 
         $scope.approot = appRoot;
          servicioscatalogo.cargar_portada().cargar().$promise.then(function(data) {
-            $scope.portada = data.respuesta[0].img;
             $scope.imagesForGallery=[];
             for (var i = 0; i < data.respuesta.length; i++) {
-                $scope.portada = data.respuesta[i].img;
-                console.log($scope.portada);
-                $scope.imagesForGallery.push({thumb: {src:appRoot + $scope.portada,class:'small'},})
+                $scope.imagenes = data.respuesta[i].img;
+
+                $scope.imagesForGallery.push({
+                    thumb: {src:appRoot + $scope.imagenes, class: 'thumb'},
+                    small: {src:appRoot + $scope.imagenes, class:'small'},
+                    large: {src:appRoot + $scope.imagenes, class:'large'},
+                })
                 // $scope.imagesForGallery=[
                 // {
                 //         // thumb: appRoot + 'http://186.33.168.251/appnext/public/portadas/1.jpg',
@@ -210,6 +213,7 @@ app.controller('Detalle-Ctrl', function($mdDialog, $scope, servicioscatalogo, se
 
     $scope.setActiveImageInGallery = function (prop, img) {
         $scope[prop] = img;
+        console.log($scope[prop]);
         //console.log(img);
     };
     $scope.setScopeValue = function (prop, value) {

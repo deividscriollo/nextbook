@@ -18,9 +18,11 @@ app.controller('Detalle-Ctrl', function($mdDialog, $scope, servicioscatalogo, se
 
                 $scope.imagesForGallery.push({
                     thumb: {src:appRoot + $scope.imagenes, class: 'thumb'},
-                    small: {src:appRoot + $scope.imagenes, class:'small'},
-                    large: {src:appRoot + $scope.imagenes, class:'large'},
+                    small: {src:appRoot + $scope.imagenes, class: 'small'},
+                    large: {src:appRoot + $scope.imagenes, class: 'large'},
                 })
+
+
                 // $scope.imagesForGallery=[
                 // {
                 //         // thumb: appRoot + 'http://186.33.168.251/appnext/public/portadas/1.jpg',
@@ -109,7 +111,6 @@ app.controller('Detalle-Ctrl', function($mdDialog, $scope, servicioscatalogo, se
                         annotoriousService.showAnnotations(photo.src);
                         colorboxService.resize();
                     }
-
                 }
             },
             onCleanup: function () {

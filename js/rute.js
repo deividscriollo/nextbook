@@ -33,6 +33,7 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/My-space/Catalogo',      'dashboard.catalogo')
             .when('/My-space/Productos',      'dashboard.productos')
             .when('/My-space/Detalles',      'dashboard.detalles')
+            .when('/My-space/Portadas',      'dashboard.portadas')
             .when('/My-space/Perfil-busqueda/:id',      'dashboard.perfil-busqueda')
 
             .when('/My-space/Inicio',      'dashboard.ini.inicio')
@@ -164,7 +165,11 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                 .segment('detalles', {
                     templateUrl: 'view/dashboardempresa/catalogo/detalle.html',
                     // controller: 'Catalogo-Inicio-Ctrl'
-                })   
+                })
+                .segment('portadas', {
+                    templateUrl: 'view/dashboardempresa/catalogo/portada.html',
+                    // controller: 'Catalogo-Inicio-Ctrl'
+                })    
                 .within()
                     .segment('inicio', {
                         templateUrl: 'view/empresas.html'

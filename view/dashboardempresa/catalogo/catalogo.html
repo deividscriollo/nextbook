@@ -107,6 +107,7 @@
                         </div>
                     </md-input-container>           
                 </div>
+
                 <md-radio-group ng-model="data.group1">
                 <div layout-gt-sm="row">
                     <div class="col-lg-12">
@@ -122,7 +123,7 @@
                                         <div class="item-progress" ng-style="{ 'width': item.progress + '%' }"></div>
                                     </div> -->
                                 </div>
-                                <div>Principal:                 
+                                <div>                
                                     <md-radio-button value="rbtn+{{$index}}" ng-click="selec_principal(item)" class="md-primary">Principal</md-radio-button>
                                 </div>
                                 <div ng-if="controller.isImage(item._file)">

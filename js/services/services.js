@@ -21,14 +21,14 @@ app.service('servicios', function($resource, $localStorage, $location, ModalServ
             }
             ,appnext: function() {
                 // return "http://186.33.168.251/appnext/";
-                return "http://192.168.0.109/appnext/";
+                return "http://192.168.0.110/appnext/";
 
             },appnextPersonas: function() {
                 // return "http://186.33.168.251/appnextP/";
-                return "http://192.168.0.109/appnextP/";
+                return "http://192.168.0.110/appnextP/";
             },mod_radio: function() {
                 // return "http://186.33.168.251/mod_radio/";
-                return "http://192.168.0.109/mod_radio/";
+                return "http://192.168.0.110/mod_radio/";
 
             }
         }

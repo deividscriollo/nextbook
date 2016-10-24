@@ -92,6 +92,33 @@
                 </div>
 
                 <div layout-gt-sm="row">
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-primary">airplay</md-icon>
+                        <label>Código Catalogo</label>
+                        <input type="text" name="codigo" ng-model="data.codigo" disabled />
+                        <div ng-messages="productosForm.codigo.$error">
+                            <div ng-message="required">Campo Requerido</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Nombre Catalogo</label>
+                        <input type="text" required name="nombre_catalogo" ng-model="data.nombre_catalogo" ng-blur="comparar_empleado()" />
+                        <div ng-messages="productosForm.nombre_catalogo.$error">
+                            <div ng-message="required">Descripción Requerido</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Nombre Producto</label>
+                        <input type="text" required name="nombre" ng-model="data.nombre" />
+                        <div ng-messages="productosForm.nombre.$error">
+                            <div ng-message="required">Nombre Producto Requerido</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
                     <div class="col-lg-12">
                       <input type="file" simple-change="fileChanged($event)" accept="image/*">
                       <canvas style="cursor: move;" class="punteado" width="{{sizeimg[0]}}" height="{{sizeimg[1]}}" tw-cropper="cropper" source="file" ></canvas>

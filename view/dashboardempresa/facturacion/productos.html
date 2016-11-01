@@ -1,0 +1,203 @@
+<div layout-xs="column" layout="row" ng-controller="Productos-Ctrl" flex-gt-md="100">    
+    <!-- <div flex-xs layout="column" > -->
+        <md-content layout-padding layout-wrap>
+            <form name="productosForm" ng-submit="guardar_productos()">
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Productos</h2>
+                    </div>
+                </md-toolbar>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-primary">airplay</md-icon>
+                        <label>Código Producto</label>
+                        <input type="text" name="codigo" ng-model="data.codigo" />
+                        <div ng-messages="productosForm.codigo.$error">
+                            <div ng-message="required">Campo Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Código Barras</label>
+                        <input type="text" required name="codigo_barras"  ng-model="data.codigo_barras" />
+                        <div ng-messages="productosForm.codigo_barras.$error">
+                            <div ng-message="required">Código Barras Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Nombre Producto</label>
+                        <input type="text" required name="nombre" ng-model="data.nombre" />
+                        <div ng-messages="productosForm.nombre.$error">
+                            <div ng-message="required">Nombre Producto Requerido</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Precio Compra</label>
+                        <input type="text" name="precio_compra" ng-model="data.precio_compra" />
+                        <div ng-messages="productosForm.precio_compra.$error">
+                            <div ng-message="required">Precio Compra Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Utilidad</label>
+                        <input type="text" required name="utilidad" ng-model="data.utilidad" />
+                        <div ng-messages="productosForm.descripcion.$error">
+                            <div ng-message="required">Utilidad Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Precio Venta</label>
+                        <input type="text" required name="precio_venta" ng-model="data.precio_venta" />
+                        <div ng-messages="productosForm.precio_venta.$error">
+                            <div ng-message="required">Precio Venta Requerido</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Categoria</label>
+                        <md-select ng-model="data.categoria" name="categoria" required>
+                            <md-option value="A+">A+</md-option>
+                            <md-option value="A-">A-</md-option>
+                            <md-option value="B+">B+</md-option>
+                            <md-option value="B-">B-</md-option>
+                            <md-option value="AB+">AB+</md-option>
+                            <md-option value="AB-">AB-</md-option>
+                            <md-option value="O+">O+</md-option>
+                            <md-option value="O-">O-</md-option>
+                        </md-select>
+                        <div ng-messages="empleadosForm.categoria.$error">
+                            <div ng-message="required">Estado Civil Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Marca</label>
+                        <md-select ng-model="data.marca" name="marca" required>
+                            <md-option value="A+">A+</md-option>
+                            <md-option value="A-">A-</md-option>
+                            <md-option value="B+">B+</md-option>
+                            <md-option value="B-">B-</md-option>
+                            <md-option value="AB+">AB+</md-option>
+                            <md-option value="AB-">AB-</md-option>
+                            <md-option value="O+">O+</md-option>
+                            <md-option value="O-">O-</md-option>
+                        </md-select>
+                        <div ng-messages="empleadosForm.marca.$error">
+                            <div ng-message="required">Estado Civil Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Stock</label>
+                        <input type="text" required name="stock" ng-model="data.stock" />
+                        <div ng-messages="productosForm.stock.$error">
+                            <div ng-message="required">Stock Requerido</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Stock Mínimo</label>
+                        <input type="text" name="precio_compra" ng-model="data.precio_compra" />
+                        <div ng-messages="productosForm.precio_compra.$error">
+                            <div ng-message="required">Precio Compra Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Stock Mánimo</label>
+                        <input type="text" required name="utilidad" id="utilidad" ng-model="data.utilidad" />
+                        <div ng-messages="productosForm.descripcion.$error">
+                            <div ng-message="required">Utilidad Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Descuento</label>
+                        <input type="text" required name="nombre" ng-model="data.nombre" />
+                        <div ng-messages="productosForm.nombre.$error">
+                            <div ng-message="required">Precio Venta Requerido</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Tipo Producto</label>
+                        <md-select ng-model="data.tipo_sangre" name="tipo_sangre" required>
+                            <md-option value="A+">A+</md-option>
+                            <md-option value="A-">A-</md-option>
+                            <md-option value="B+">B+</md-option>
+                            <md-option value="B-">B-</md-option>
+                            <md-option value="AB+">AB+</md-option>
+                            <md-option value="AB-">AB-</md-option>
+                            <md-option value="O+">O+</md-option>
+                            <md-option value="O-">O-</md-option>
+                        </md-select>
+                        <div ng-messages="empleadosForm.tipo_sangre.$error">
+                            <div ng-message="required">Estado Civil Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Marca</label>
+                        <md-select ng-model="data.tipo_sangre" name="tipo_sangre" required>
+                            <md-option value="A+">A+</md-option>
+                            <md-option value="A-">A-</md-option>
+                            <md-option value="B+">B+</md-option>
+                            <md-option value="B-">B-</md-option>
+                            <md-option value="AB+">AB+</md-option>
+                            <md-option value="AB-">AB-</md-option>
+                            <md-option value="O+">O+</md-option>
+                            <md-option value="O-">O-</md-option>
+                        </md-select>
+                        <div ng-messages="empleadosForm.tipo_sangre.$error">
+                            <div ng-message="required">Estado Civil Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Stock</label>
+                        <input type="text" required name="nombre" ng-model="data.nombre" />
+                        <div ng-messages="productosForm.nombre.$error">
+                            <div ng-message="required">Precio Venta Requerido</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row" class="center end">
+                    <md-button class="md-raised md-primary" type="submit" ng-disabled="empleadosForm.$invalid">
+                        Guardar <i class="fa fa-angle-double-right"></i>
+                    </md-button>
+                    <md-button class="md-raised md-accent" type="reset">
+                        Limpiar <i class="fa fa-trash-o"></i>
+                    </md-button>
+                </div>
+            </form>
+        </md-content>
+    <!-- </div> -->
+</div>

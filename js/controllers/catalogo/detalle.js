@@ -14,6 +14,7 @@ app.controller('Detalle-Ctrl', function($mdDialog, $scope, servicioscatalogo, se
          servicioscatalogo.cargar_portada().cargar().$promise.then(function(data) {
             $scope.imagesForGallery=[];
             for (var i = 0; i < data.respuesta.length; i++) {
+                console.log(data);
                 $scope.imagenes = data.respuesta[i].img;
 
                 $scope.imagesForGallery.push({
@@ -120,7 +121,6 @@ app.controller('Detalle-Ctrl', function($mdDialog, $scope, servicioscatalogo, se
         });
     };
 
-    //default
     $scope.setApproot('');
 
     $scope.annotateColorbox03 = {
@@ -217,8 +217,8 @@ app.controller('Detalle-Ctrl', function($mdDialog, $scope, servicioscatalogo, se
         console.log($scope[prop]);
         //console.log(img);
     };
+
     $scope.setScopeValue = function (prop, value) {
         $scope[prop] = value;
     };	
-	
 });

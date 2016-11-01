@@ -41,7 +41,6 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/My-space/Maps',      'dashboard.ini.maps')
             .when('/My-space/Historial',      'dashboard.ini.record')
             
-
             .when('/My-space/Facturanext',      'dashboard.facturanext.inicio')
             .when('/My-space/Facturanext/MisFacturas',      'dashboard.facturanext.misfacturas')
             .when('/My-space/Facturanext/BuscarFacturas',      'dashboard.facturanext.buscarfacturas')
@@ -60,6 +59,15 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/My-space/Inventario/Ubicacion',      'dashboard.inventario.ubicacion')
             .when('/My-space/Inventario/Motivos_Baja',      'dashboard.inventario.motivos_baja')
             .when('/My-space/Inventario/Articulo',      'dashboard.inventario.articulo')
+
+            .when('/My-space/Facturacion',      'dashboard.facturacion.inicio')
+            .when('/My-space/Facturacion/Parametros',      'dashboard.facturacion.parametros')
+            .when('/My-space/Facturacion/Clientes',      'dashboard.facturacion.clientes')
+            .when('/My-space/Facturacion/Categorias',      'dashboard.facturacion.categorias')
+            .when('/My-space/Facturacion/Productos',      'dashboard.facturacion.productos')
+            .when('/My-space/Facturacion/FacturaVenta',      'dashboard.facturacion.factura_venta')
+            // .when('/My-space/Facturacion/Motivos_Baja',      'dashboard.facturacion.motivos_baja')
+            // .when('/My-space/Facturacion/Articulo',      'dashboard.facturacion.articulo')
 
             // direccionar nomina
             .when('/My-space/NominaAdmin',      'dashboard.nomina.inicio')
@@ -304,6 +312,38 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .segment('articulo', {
                         templateUrl: 'view/dashboardempresa/inventario/articulo.html'
                     })
+                .up()
+
+                .segment('facturacion', {                 
+                    templateUrl: 'view/dashboardempresa/facturacion/index.html',
+                    controller:'facturaciongeneralCtrl',
+                    'default': true,
+                })                   
+                .within()                
+                    .segment('inicio', {
+                        templateUrl: 'view/dashboardempresa/facturacion/inicio.html',
+                    })  
+                    .segment('parametros', {
+                        templateUrl: 'view/dashboardempresa/facturacion/parametros.html'
+                    })
+                    .segment('clientes', {
+                        templateUrl: 'view/dashboardempresa/facturacion/clientes.html'
+                    })
+                    .segment('categorias', {
+                        templateUrl: 'view/dashboardempresa/facturacion/categorias.html'
+                    })
+                    .segment('productos', {
+                        templateUrl: 'view/dashboardempresa/facturacion/productos.html'
+                    })
+                    .segment('factura_venta', {
+                        templateUrl: 'view/dashboardempresa/facturacion/factura_venta.html'
+                    })
+                    // .segment('motivos_baja', {
+                    //     templateUrl: 'view/dashboardempresa/facturacion/motivos_baja.html'
+                    // })
+                    // .segment('articulo', {
+                    //     templateUrl: 'view/dashboardempresa/facturacion/articulo.html'
+                    // })
                 .up()
 
                 // .segment('radio', {                 

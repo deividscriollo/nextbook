@@ -1,0 +1,147 @@
+<div layout-xs="column" layout="row" ng-controller="Clientes-Ctrl" flex-gt-md="100">    
+
+
+    <!-- <div flex-xs layout="column" > -->
+        <md-content layout-padding layout-wrap>
+            <form name="productosForm" ng-submit="guardar_productos()">
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h2>Clientes</h2>
+                    </div>
+                </md-toolbar>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-primary">airplay</md-icon>
+                        <label>Código Cliente</label>
+                        <input type="text" name="codigo" ng-model="data.codigo" disabled />
+                        <div ng-messages="empleadosForm.codigo.$error">
+                            <div ng-message="required">Campo Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Tipo Documento</label>
+                        <md-select ng-model="data.tipo_documento" name="tipo_documento" required>
+                            <md-option value="Cedula" selected>Cédula</md-option>
+                            <md-option value="Ruc">Ruc</md-option>
+                            <md-option value="Pasaporte">Pasaporte</md-option>
+                        </md-select>
+                        <div ng-messages="empleadosForm.tipo_documento.$error">
+                            <div ng-message="required">Tipo Documento</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Cédula de Identidad</label>
+                        <input md-maxlength="10" type="text" required name="cedula_identificacion" id="cedula_identificacion" ng-model="data.cedula_identificacion" ng-blur="comparar_empleado()" />
+                        <div ng-messages="empleadosForm.cedula_identificacion.$error">
+                            <div ng-message="required">Cédula de Identidad Requerido</div>
+                            <div ng-message="md-maxlength">La cédula tiene que ser de menos de 10 caracteres</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Nombres Completos</label>
+                        <input type="text" required name="nombres_completos" ng-model="data.nombres_completos" />
+                        <div ng-messages="empleadosForm.nombres_completos.$error">
+                            <div ng-message="required">Nombres Completos Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Teléfono Fijo</label>
+                        <input type="text" name="telf_fijo" ng-model="data.telf_fijo">
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Teléfono Celular</label>
+                        <input type="text" required name="telf_celular" ng-model="data.telf_celular">
+                        <div ng-messages="empleadosForm.telf_celular.$error">
+                            <div ng-message="required">Teléfono Celular Requerido</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>País</label>
+                        <md-select ng-model="data.cmd_pais" name="cmd_pais" required>
+                            
+                        </md-select>
+                        <div ng-messages="empleadosForm.cmd_pais.$error">
+                            <div ng-message="required">País Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Provincia</label>
+                        <md-select ng-model="data.cmd_provincia" name="cmd_provincia" required>
+
+                        </md-select>
+                        <div ng-messages="empleadosForm.cmd_provincia.$error">
+                            <div ng-message="required">Provincia Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Ciudad</label>
+                        <md-select ng-model="data.cmd_ciudad" name="cmd_ciudad" required>
+                        </md-select>
+                        <div ng-messages="empleadosForm.cmd_ciudad.$error">
+                            <div ng-message="required">Ciudad Requerido</div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Dirección</label>
+                        <input type="text" required name="telf_celular" ng-model="data.telf_celular">
+                        <div ng-messages="empleadosForm.telf_celular.$error">
+                            <div ng-message="required">Teléfono Celular Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Correo</label>
+                        <input type="text" required name="telf_celular" ng-model="data.telf_celular">
+                        <div ng-messages="empleadosForm.telf_celular.$error">
+                            <div ng-message="required">Teléfono Celular Requerido</div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                        <md-icon class="md-accent">airplay</md-icon>
+                        <label>Cupo Crédito</label>
+                        <input type="text" required name="telf_celular" ng-model="data.telf_celular">
+                        <div ng-messages="empleadosForm.telf_celular.$error">
+                            <div ng-message="required">Teléfono Celular Requerido</div>
+                        </div>
+                    </md-input-container>          
+                </div>
+
+                <div layout-gt-sm="row" class="center end">
+                    <md-button class="md-raised md-primary" type="submit" ng-disabled="empleadosForm.$invalid">
+                        Guardar <i class="fa fa-angle-double-right"></i>
+                    </md-button>
+                    <md-button class="md-raised md-accent" type="reset">
+                        Limpiar <i class="fa fa-trash-o"></i>
+                    </md-button>
+                </div>
+            </form>
+        </md-content>
+    <!-- </div> -->
+</div>

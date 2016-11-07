@@ -2,9 +2,8 @@ var app = angular.module('app');
 
 app.service('serviciosfacturacion', function($resource, $localStorage, $location, ModalService, $http, servicios) {
     // ------------------------------------------------ tipo categorias ------------------------------
-
     this.add_tipo_categorias = function() {
-        return $resource(servicios.server().appnext()+'public/Add_Tipo_Categoria', {}
+        return $resource(servicios.server().appnext2()+'public/Add_Tipo_Categoria', {}
         , {
             save: {
                 method: 'POST', isArray: false, 

@@ -71,6 +71,7 @@ app.controller('facturaciongeneralCtrl', function ($scope, $routeSegment, $mdDia
 					      icon: 'extension'
 					    }
 					];
+					
 	$scope.menu2 = 	[
 					    {
 					      link : '#/My-space/Facturacion/Productos',
@@ -93,6 +94,7 @@ app.controller('facturaciongeneralCtrl', function ($scope, $routeSegment, $mdDia
 					      icon: 'extension'
 					    }
 					];
+
 	$scope.menu3 = 	[
 					    {
 					      link : '#/My-space/Facturacion/FacturaVenta',

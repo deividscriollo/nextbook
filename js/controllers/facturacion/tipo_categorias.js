@@ -1,10 +1,8 @@
 var app = angular.module('app');
 
-app.controller('Categorias-Ctrl', function($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage, $location) {
-
+app.controller('Tipo_categorias-Ctrl', function($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage, $location) {
+    
   var bookmark;
-  $scope.status = '';
-  
   $scope.selected = [];
   
   $scope.filter = {
@@ -26,14 +24,13 @@ app.controller('Categorias-Ctrl', function($mdDialog, $scope, serviciosfacturaci
   }
   
   $scope.addititem = function (event) {
-
     $mdDialog.show({
       clickOutsideToClose: true,
-      controller: 'addItemCategorias',
+      controller: 'addItemTipoCategorias',
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      templateUrl: 'view/dashboardempresa/Facturacion/modales/crear_categorias.html',
+      templateUrl: 'view/dashboardempresa/Facturacion/modales/crear_tipo_categorias.html',
     }).then($scope.getDesserts);
   };
 
@@ -91,7 +88,7 @@ app.controller('Categorias-Ctrl', function($mdDialog, $scope, serviciosfacturaci
   };
   
   $scope.getDesserts = function () {
-    // $scope.promise = serviciosfacturacion.get_departamentos().get($scope.query, success).$promise;
+    // $scope.promise = serviciosfacturacion.get_bancos().get($scope.query, success).$promise;
   };
   
   $scope.removeFilter = function () {
@@ -120,17 +117,16 @@ app.controller('Categorias-Ctrl', function($mdDialog, $scope, serviciosfacturaci
 
   $scope.loadStuff = function () {
     $scope.promise = $timeout(function () {
-
+      $scope.getDesserts;
     }, 2000);
   };
 });
 
-app.controller('addItemCategorias', function ($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage) {
- 
+app.controller('addItemTipoCategorias', function ($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage) { 
   this.cancel = $mdDialog.cancel;
   
-  $scope.guardar_categorias = function() {
-    serviciosfacturacion.add_departamento().save($scope.data).$promise.then(function(data) {
+  $scope.guardar_tipo_categorias = function() {
+    serviciosfacturacion.add_tipo_categorias().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
           $mdDialog.show(
             $mdDialog.alert()
@@ -147,16 +143,43 @@ app.controller('addItemCategorias', function ($mdDialog, $scope, serviciosfactur
   }  
 });
 
-app.controller('editItemDepartamento', function ($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage) {
+app.controller('editItemBancos', function ($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage, items) {
+  // $scope.data = {
+  //   id: items.id,
+  //   periodicidad: items.periodicidad,
+  //   descripcion: items.descripcion,
+  //   registro_patronal: items.registro_patronal,
+  //   dias: items.dias,
+  //   horas_laborar: items.horas_laborar,
+  //   fecha_inicio: new Date(items.fecha_inicio)      
+  // }; 
+  
+  // this.cancel = $mdDialog.cancel 
+  // $scope.modificar_nomina = function($event) {
+  //   serviciosnomina.edit_nomina().edit($scope.data).$promise.then(function(data) {
+  //     if(data.respuesta == true) {
+  //         $mdDialog.show(
+  //           $mdDialog.alert()
+  //           .parent(angular.element(document.querySelector('#dialogContainer')))
+  //           .clickOutsideToClose(true)
+  //           .title('NextBook')
+  //           .textContent('Registro Modificado Correctamente')
+  //           .ariaLabel('Registro Modificado Correctamente')
+  //           .ok('Ok!')
+  //           .openFrom('#left')
+  //        );
+  //     }
+  //   }); 
+  // }
 });
 
-app.controller('deleteItemDepartamento', function ($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage, items) { 
+app.controller('deleteItemBancos', function ($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage, items) { 
   // $scope.data = {}; 
   // $scope.data.id = items.id;
   
   // this.cancel = $mdDialog.cancel;
-  // $scope.eliminar_departamento = function() {
-  //   serviciosfacturacion.delete_nomina().delete($scope.data).$promise.then(function(data) {
+  // $scope.eliminar_nomina = function() {
+  //   serviciosnomina.delete_nomina().delete($scope.data).$promise.then(function(data) {
   //     if(data.respuesta == true) {
   //         $mdDialog.show(
   //           $mdDialog.alert()
@@ -171,4 +194,5 @@ app.controller('deleteItemDepartamento', function ($mdDialog, $scope, serviciosf
   //     }
   //   }); 
   // } 
+	
 });

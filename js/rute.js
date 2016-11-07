@@ -63,11 +63,19 @@ app.config(function($routeSegmentProvider, $routeProvider) {
             .when('/My-space/Facturacion',      'dashboard.facturacion.inicio')
             .when('/My-space/Facturacion/Parametros',      'dashboard.facturacion.parametros')
             .when('/My-space/Facturacion/Clientes',      'dashboard.facturacion.clientes')
+            .when('/My-space/Facturacion/Marcas',      'dashboard.facturacion.marcas')
             .when('/My-space/Facturacion/Categorias',      'dashboard.facturacion.categorias')
+            .when('/My-space/Facturacion/Garantias',      'dashboard.facturacion.garantias')
+            .when('/My-space/Facturacion/Modelos',      'dashboard.facturacion.modelos')
+            .when('/My-space/Facturacion/Tipo_Consumos',      'dashboard.facturacion.tipo_consumos')
+            .when('/My-space/Facturacion/Tipo_Categorias',      'dashboard.facturacion.tipo_categorias')
+            .when('/My-space/Facturacion/Tipo_Garantias',      'dashboard.facturacion.tipo_garantias')
+            .when('/My-space/Facturacion/Tipo_Productos',      'dashboard.facturacion.tipo_productos')
+            .when('/My-space/Facturacion/Ubicaciones',      'dashboard.facturacion.ubicaciones')
+            .when('/My-space/Facturacion/Catalogos',      'dashboard.facturacion.catalogos')
+            .when('/My-space/Facturacion/Tipo_Catalogos',      'dashboard.facturacion.tipo_catalogos')
             .when('/My-space/Facturacion/Productos',      'dashboard.facturacion.productos')
             .when('/My-space/Facturacion/FacturaVenta',      'dashboard.facturacion.factura_venta')
-            // .when('/My-space/Facturacion/Motivos_Baja',      'dashboard.facturacion.motivos_baja')
-            // .when('/My-space/Facturacion/Articulo',      'dashboard.facturacion.articulo')
 
             // direccionar nomina
             .when('/My-space/NominaAdmin',      'dashboard.nomina.inicio')
@@ -331,6 +339,36 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     })
                     .segment('categorias', {
                         templateUrl: 'view/dashboardempresa/facturacion/categorias.html'
+                    })
+                    .segment('marcas', {
+                        templateUrl: 'view/dashboardempresa/facturacion/marcas.html'
+                    })
+                    .segment('garantias', {
+                        templateUrl: 'view/dashboardempresa/facturacion/garantias.html'
+                    })
+                    .segment('modelos', {
+                        templateUrl: 'view/dashboardempresa/facturacion/modelos.html'
+                    })
+                    .segment('tipo_consumos', {
+                        templateUrl: 'view/dashboardempresa/facturacion/tipo_consumos.html'
+                    })
+                    .segment('tipo_categorias', {
+                        templateUrl: 'view/dashboardempresa/facturacion/tipo_categorias.html'
+                    })
+                    .segment('tipo_garantias', {
+                        templateUrl: 'view/dashboardempresa/facturacion/tipo_garantias.html'
+                    })
+                    .segment('tipo_productos', {
+                        templateUrl: 'view/dashboardempresa/facturacion/tipo_productos.html'
+                    })
+                    .segment('ubicaciones', {
+                        templateUrl: 'view/dashboardempresa/facturacion/ubicaciones.html'
+                    })
+                    .segment('catalogos', {
+                        templateUrl: 'view/dashboardempresa/facturacion/catalogos.html'
+                    })
+                    .segment('tipo_catalogos', {
+                        templateUrl: 'view/dashboardempresa/facturacion/tipo_catalogos.html'
                     })
                     .segment('productos', {
                         templateUrl: 'view/dashboardempresa/facturacion/productos.html'

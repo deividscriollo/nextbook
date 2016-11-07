@@ -1,7 +1,7 @@
-<md-content flex-gt-md="100" ng-controller="Categorias-Ctrl">    
+<md-content flex-gt-md="100" ng-controller="Marcas-Ctrl">    
     <md-toolbar ng-hide="selected.length || filter.show">
       <div class="md-toolbar-tools">
-        Categorias
+        Marcas
         <span flex></span>
         <md-button class="md-icon-button" ng-click="filter.show = true">
             <md-icon>search</md-icon>
@@ -18,7 +18,7 @@
         <div class="md-toolbar-tools">
             <md-icon>search</md-icon>
             <form flex name="filter.form">
-                <input type="text" ng-model="query.filter" ng-model-options="filter.options" placeholder="Buscar, Categorias">
+                <input type="text" ng-model="query.filter" ng-model-options="filter.options" placeholder="Buscar, Marcas">
             </form>
             <md-button class="md-icon-button" ng-click="removeFilter()">
                 <md-icon>close</md-icon>
@@ -32,7 +32,6 @@
                 <tr md-row>
                     <th md-column md-numeric>Nombre</th>
                     <th md-column md-numeric>Descripción</th>
-                    <th md-column md-numeric>Tipo Categoria</th>
                     <th md-column md-numeric>Editar</th>
                     <th md-column md-numeric>Borrar</th>
                 </tr>
@@ -42,7 +41,6 @@
                 <tr md-row ng-repeat="dessert in desserts.data">
                     <td md-cell>{{dessert.nombre}}</td>
                     <td md-cell>{{dessert.descripcion}}</td>
-                    <td md-cell>{{dessert.tipo_categoria}}</td>
                     <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="eddititem(dessert)">edit<md-tooltip>Editar</md-tooltip></md-icon></td>
                     <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="deleteitem(dessert)">delete<md-tooltip>Eliminar</md-tooltip></md-icon></td>
                 </tr>

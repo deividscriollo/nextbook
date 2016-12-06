@@ -25,6 +25,7 @@ app.controller('Tipo_categorias-Ctrl', function($mdDialog, $scope, serviciosfact
   
   function success(desserts) {
     $scope.desserts = desserts.respuesta;
+    // console.log(desserts);
   }
   
   $scope.addititem = function (event) {
@@ -47,13 +48,13 @@ app.controller('Tipo_categorias-Ctrl', function($mdDialog, $scope, serviciosfact
 
         $scope.data = {
           id: items.id,
-          codigo: items.codigo,
+          nombre: items.nombre,
           descripcion: items.descripcion   
         };
 
         this.cancel = $mdDialog.cancel 
-        $scope.modificar_departamento = function($event) {
-          serviciosfacturacion.edit_departamento().edit($scope.data).$promise.then(function(data) {
+        $scope.modificar_tipo_categorias = function($event) {
+          serviciosfacturacion.edit_tipo_categorias().edit($scope.data).$promise.then(function(data) {
             if(data.respuesta == true) {
                 $mdDialog.show(
                   $mdDialog.alert()
@@ -127,7 +128,7 @@ app.controller('Tipo_categorias-Ctrl', function($mdDialog, $scope, serviciosfact
   };
   
   $scope.getDesserts = function () {
-    // $scope.promise = serviciosfacturacion.get_bancos().get($scope.query, success).$promise;
+    $scope.promise = serviciosfacturacion.get_tipo_categorias().get($scope.query, success).$promise;
   };
   
   $scope.removeFilter = function () {

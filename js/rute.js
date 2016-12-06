@@ -376,9 +376,6 @@ app.config(function($routeSegmentProvider, $routeProvider) {
                     .segment('factura_venta', {
                         templateUrl: 'view/dashboardempresa/facturacion/factura_venta.html'
                     })
-                    // .segment('motivos_baja', {
-                    //     templateUrl: 'view/dashboardempresa/facturacion/motivos_baja.html'
-                    // })
                     // .segment('articulo', {
                     //     templateUrl: 'view/dashboardempresa/facturacion/articulo.html'
                     // })

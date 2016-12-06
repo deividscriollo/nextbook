@@ -175,7 +175,7 @@ app.controller('addItemAdquisicion', function ($mdDialog, $scope, serviciosinven
   });
   // fin
   
-  this.cancel = $mdDialog.cancel
+  this.cancel = $mdDialog.cancel;
   $scope.guardar_adquisicion = function() {
     serviciosinventario.add_adquisicion().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {

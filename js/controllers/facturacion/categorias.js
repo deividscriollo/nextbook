@@ -1,5 +1,9 @@
 var app = angular.module('app');
 
+app.controller('editItemCategorias', function () { });
+
+app.controller('deleteItemCategorias', function () { });
+
 app.controller('Categorias-Ctrl', function($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage, $location) {
 
   var bookmark;
@@ -42,17 +46,17 @@ app.controller('Categorias-Ctrl', function($mdDialog, $scope, serviciosfacturaci
     $mdDialog.show({
       clickOutsideToClose: true,     
       locals: {items: dessert},
-      controller: function editItemDepartamento($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage, items) {
+      controller: function editItemCategorias($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage, items) {
 
         $scope.data = {
           id: items.id,
-          codigo: items.codigo,
+          nombre: items.nombre,
           descripcion: items.descripcion   
         };
 
         this.cancel = $mdDialog.cancel 
-        $scope.modificar_departamento = function($event) {
-          serviciosfacturacion.edit_departamento().edit($scope.data).$promise.then(function(data) {
+        $scope.modificar_categorias = function($event) {
+          serviciosfacturacion.edit_tipo_categorias().edit($scope.data).$promise.then(function(data) {
             if(data.respuesta == true) {
                 $mdDialog.show(
                   $mdDialog.alert()
@@ -68,7 +72,7 @@ app.controller('Categorias-Ctrl', function($mdDialog, $scope, serviciosfacturaci
           }); 
         }
       },
-      templateUrl: 'view/dashboardempresa/nomina/modificar_departamento.html', 
+      templateUrl: 'view/dashboardempresa/Facturacion/modales/modificar_tipo_categorias.html', 
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
@@ -76,22 +80,57 @@ app.controller('Categorias-Ctrl', function($mdDialog, $scope, serviciosfacturaci
   };
   
   $scope.deleteitem = function (dessert, event) {
-
     $mdDialog.show({
-      clickOutsideToClose: true,
-      controller: 'deleteItemDepartamento',
+      clickOutsideToClose: true,     
+      locals: {items: dessert},
+      controller: function deleteItemCategorias($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage, items) {
+
+      $scope.data = {}; 
+      $scope.data.id = items.id;
+      
+      this.cancel = $mdDialog.cancel;
+      $scope.eliminar_nomina = function() {
+        servicios.login_radio().set($scope.data).$promise.then(function(data) {
+
+          if(data.respuesta == true) {
+              serviciosfacturacion.delete_nomina().delete($scope.data).$promise.then(function(data) {
+                if(data.respuesta == true) {
+                    $mdDialog.show(
+                      $mdDialog.alert()
+                      .parent(angular.element(document.querySelector('#dialogContainer')))
+                      .clickOutsideToClose(true)
+                      .title('NextBook')
+                      .textContent('Registro Eliminado Correctamente')
+                      .ariaLabel('Registro Eliminado Correctamente')
+                      .ok('Ok!')
+                      .openFrom('#left')
+                   );
+                }
+            });
+          } else {
+            $mdDialog.show(
+              $mdDialog.alert()
+              .parent(angular.element(document.querySelector('#dialogContainer')))
+              .clickOutsideToClose(true)
+              .title('NextBook')
+              .textContent('Contraseña Erronea')
+              .ariaLabel('Contraseña Erronea')
+              .ok('Ok!')
+              .openFrom('#left')
+            ); 
+          }
+        }); 
+      } 
+      },
+      templateUrl: 'view/dashboardempresa/Facturacion/modales/eliminar_tipo_categorias.html', 
       controllerAs: 'ctrl',
       focusOnOpen: false,
       targetEvent: event,
-      templateUrl: 'view/dashboardempresa/nomina/eliminar_departamento.html',
-      locals: {
-        items: data
-      }
     }).then($scope.getDesserts);
   };
   
   $scope.getDesserts = function () {
-    // $scope.promise = serviciosfacturacion.get_departamentos().get($scope.query, success).$promise;
+    $scope.promise = serviciosfacturacion.get_categorias().get($scope.query, success).$promise;
   };
   
   $scope.removeFilter = function () {
@@ -128,9 +167,16 @@ app.controller('Categorias-Ctrl', function($mdDialog, $scope, serviciosfacturaci
 app.controller('addItemCategorias', function ($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage) {
  
   this.cancel = $mdDialog.cancel;
+
+  // combo tipo
+  serviciosfacturacion.get_tipo_categorias().get($scope.query).$promise.then(function(data) {
+    $scope.tipo_categorias = data.respuesta.data; 
+    console.log($scope.tipo_categorias);
+  });
+  // fin
   
   $scope.guardar_categorias = function() {
-    serviciosfacturacion.add_departamento().save($scope.data).$promise.then(function(data) {
+    serviciosfacturacion.add_categorias().save($scope.data).$promise.then(function(data) {
       if(data.respuesta == true) {
           $mdDialog.show(
             $mdDialog.alert()
@@ -145,30 +191,4 @@ app.controller('addItemCategorias', function ($mdDialog, $scope, serviciosfactur
       }
     }); 
   }  
-});
-
-app.controller('editItemDepartamento', function ($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage) {
-});
-
-app.controller('deleteItemDepartamento', function ($mdDialog, $scope, serviciosfacturacion, servicios, $timeout, $localStorage, items) { 
-  // $scope.data = {}; 
-  // $scope.data.id = items.id;
-  
-  // this.cancel = $mdDialog.cancel;
-  // $scope.eliminar_departamento = function() {
-  //   serviciosfacturacion.delete_nomina().delete($scope.data).$promise.then(function(data) {
-  //     if(data.respuesta == true) {
-  //         $mdDialog.show(
-  //           $mdDialog.alert()
-  //           .parent(angular.element(document.querySelector('#dialogContainer')))
-  //           .clickOutsideToClose(true)
-  //           .title('NextBook')
-  //           .textContent('Registro Eliminado Correctamente')
-  //           .ariaLabel('Registro Eliminado Correctamente')
-  //           .ok('Ok!')
-  //           .openFrom('#left')
-  //        );
-  //     }
-  //   }); 
-  // } 
 });

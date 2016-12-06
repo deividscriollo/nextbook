@@ -1,4 +1,4 @@
-<md-dialog ng-controller="addItemTipoCategorias">
+<md-dialog ng-controller="addItemCategorias">
     <form name="registroForm" id="registroForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -20,6 +20,7 @@
                           <div ng-message="required">Código / Descripción Requerido</div>
                       </div>
                   </md-input-container>
+
                   <md-input-container class="md-block" flex-gt-xs >
                       <label>Descripción</label>
                       <input type="text" required name="descripcion" ng-model="data.descripcion" />
@@ -27,6 +28,21 @@
                           <div ng-message="required">Nombre / Descripción Requerido</div>
                       </div>
                   </md-input-container>
+                </div>
+
+                <div layout-gt-xs="row">  
+                  <md-input-container class="md-icon-float md-block" flex-gt-sm>
+                    <label>Tipo Categorias</label>
+                    <md-select ng-model="data.tipo_categoria" name="tipo_categoria" required>
+                        <md-option ng-repeat="tipo_categoria in tipo_categorias" value="{{tipo_categoria.id}}">
+                            {{tipo_categoria.nombre}}
+                        </md-option>
+                    </md-select>
+                    <div ng-messages="articulosForm.grupo.$error">
+                        <div ng-message="required">Tipo Categorias Requerido</div>
+                    </div>
+                  </md-input-container>
+                  <md-input-container class="md-block" flex-gt-xs ></md-input-container>
                 </div>
             </md-content>
           </div>

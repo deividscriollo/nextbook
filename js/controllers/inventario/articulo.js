@@ -18,7 +18,7 @@ app.controller('articuloCtrl', function ($scope, $localStorage, serviciosinventa
 
   // combo grupos
   serviciosinventario.get_grupos().get($scope.query).$promise.then(function(data) {
-    $scope.grupos = data.respuesta.data; 
+    $scope.grupos = data.respuesta.data;
   });
   // fin
 

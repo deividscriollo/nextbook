@@ -2,7 +2,7 @@
     <form name="registroForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Crear Tipo Categorias</h2>
+                <h2>Modificar Tipo Categorias</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="ctrl.cancel()">
                     <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
@@ -14,6 +14,14 @@
           <div>
             <md-content layout-padding layout-wrap>
                 <div layout-gt-xs="row">
+                  <md-input-container class="ng-hide" flex-gt-xs >
+                      <label>Id</label>
+                      <input type="text" required name="id" ng-model="data.id" />
+                      <div ng-messages="registroForm.id.$error">
+                          <div ng-message="required">Id Requerido</div>
+                      </div>
+                  </md-input-container>
+
                   <md-input-container class="md-block" flex-gt-xs >
                       <label>Nombre</label>
                       <input type="text" required name="nombre" ng-model="data.nombre" />
@@ -36,8 +44,8 @@
         <md-dialog-actions layout="row">
             <md-button class="md-warn md-raised md-hue-2" ng-click="ctrl.cancel()">Cancelar</md-button>
             <span flex></span>
-            <md-button class="md-raised md-primary" type="submit" ng-click="guardar_tipo_categorias()" ng-disabled="registroForm.$invalid">
-              Guardar
+            <md-button class="md-raised md-primary" type="submit" ng-click="modificar_tipo_categorias()" ng-disabled="registroForm.$invalid">
+              Modificar
             </md-button>
         </md-dialog-actions>
     </form>

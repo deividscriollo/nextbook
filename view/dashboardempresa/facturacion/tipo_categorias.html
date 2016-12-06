@@ -33,7 +33,6 @@
                     <tr md-row>
                         <th md-column md-numeric>Nombre</th>
                         <th md-column md-numeric>Descripción</th>
-                        <th md-column md-numeric>Fecha Creación</th>
                         <th md-column md-numeric>Editar</th>
                         <th md-column md-numeric>Borrar</th>
                     </tr>
@@ -42,7 +41,6 @@
                     <tr md-row ng-repeat="dessert in desserts.data">
                         <td md-cell>{{dessert.nombre}}</td>
                         <td md-cell>{{dessert.descripcion}}</td>
-                        <td md-cell>{{dessert.created_at}}</td>
                         <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="eddititem(dessert)">edit<md-tooltip>Editar</md-tooltip></md-icon></md-icon></td>
                         <td md-cell><md-icon class="md-accent" style="cursor: pointer" ng-click="deleteitem(dessert)">delete<md-tooltip>Eliminar</md-tooltip></md-icon></td>
                     </tr>

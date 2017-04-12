@@ -171,7 +171,7 @@ app.controller('addItemCategorias', function ($mdDialog, $scope, serviciosfactur
   // combo tipo
   serviciosfacturacion.get_tipo_categorias().get($scope.query).$promise.then(function(data) {
     $scope.tipo_categorias = data.respuesta.data; 
-    console.log($scope.tipo_categorias);
+    // console.log($scope.tipo_categorias);
   });
   // fin
   

@@ -95,7 +95,7 @@ app.controller('Catalogo-Ctrl', function($mdDialog, $scope, servicioscatalogo, s
 	// };
 
 	$scope.guardar_productos = function(cropper) {
-		console.log(cropper);
+		// console.log(cropper);
 	  	servicioscatalogo.add_productos().save($scope.data).$promise.then(function(data) {
 	  		
 	     	if(data.respuesta == true) {
